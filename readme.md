@@ -1,4 +1,4 @@
-# Boilerplate for JS tasks
+# Convert style string to object
 
 **Read the guideline before start**
 

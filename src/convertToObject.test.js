@@ -33,5 +33,6 @@ const EXPECTED_OBJECT = {
 };
 
 test('Convert string to object', () => {
-    expect(JSON.stringify(convertToObject(stylesString))).toBe(JSON.stringify(EXPECTED_OBJECT));
+    expect(JSON.stringify(convertToObject(stylesString)))
+      .toBe(JSON.stringify(EXPECTED_OBJECT));
 });

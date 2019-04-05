@@ -11,7 +11,6 @@
  *
  * @return {object}
  */
-
 function convertToObject(sourceString) {
   // write your code here
 }

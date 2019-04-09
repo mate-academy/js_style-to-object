@@ -12,7 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const separateStyles = sourceString.split(';\n');
+  const stylesObject = {};
+  function addToObject(style, index, arr) {
+    const transitionalArray = style.trim().split(': ');
+    stylesObject[transitionalArray[0]] = transitionalArray[1];
+  }
+  separateStyles.forEach(addToObject);
+  delete stylesObject[''];
+  return stylesObject;
 }
 
 module.exports = convertToObject;

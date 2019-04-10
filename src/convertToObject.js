@@ -12,7 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  let arrayStyles = sourceString.trim().split('/n').join('').split(';').slice(0, -1);
+  let obj = {};
+  arrayStyles.forEach(function(item) {
+    let prop = item.trim().split(': ');
+    obj[prop[0]] = prop[1];
+  }
+  );
+  return obj;
 }
 
 module.exports = convertToObject;

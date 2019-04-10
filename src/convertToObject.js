@@ -16,11 +16,11 @@ function convertToObject(sourceString) {
   const stylesObject = {};
   function addToObject(style, index, arr) {
     const transitionalArray = style.trim().split(': ');
-    stylesObject[transitionalArray[0]] = transitionalArray[1];
+    if (transitionalArray[1] !== undefined) {
+      stylesObject[transitionalArray[0]] = transitionalArray[1];
+    }
   }
   separateStyles.forEach(addToObject);
-  delete stylesObject[''];
   return stylesObject;
 }
-
 module.exports = convertToObject;

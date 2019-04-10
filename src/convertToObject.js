@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   const result = {};
   const inputArr = sourceString.split(';');
   inputArr.pop();
-  inputArr.forEach(function(item) {
+  inputArr.forEach((item) => {
     const [key, value] = item.split(':');
     result[key.trim()] = value.trim();
   });

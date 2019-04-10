@@ -12,9 +12,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let propertiesLine = sourceString.split(';');
-  let result = [];
-  for (let property in propertiesLine) {
+  let properties = sourceString.split(';');
+  let result = {};
+  for (let property of properties) {
     const [key, value] = property.split(':');
     if (value !== undefined) {
       result[key.trim()] = value.trim();

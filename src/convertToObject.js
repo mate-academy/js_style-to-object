@@ -13,13 +13,13 @@
  */
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
-  let cssObject = {};
-  for (let property of properties) {
+  const cssObject = {};
+  properties.forEach(property => {
     const [key, value] = property.split(':');
     if (value !== undefined) {
       cssObject[key.trim()] = value.trim();
     }
-  }
+  });
   return cssObject;
 };
 

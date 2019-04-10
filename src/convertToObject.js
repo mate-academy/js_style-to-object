@@ -12,20 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const properties = sourceString.split('\n');
-  let propertiesTrimed = '';
+  const properties = sourceString.split(';');
   let cssObject = {};
-  let arr = [];
-  for (let prop of properties) {
-    propertiesTrimed += prop.trim();
-  }
-  arr = propertiesTrimed.split(';');
-  arr.forEach((property) => {
-    let key = property.split(': ');
-    if (key[0] !== '') {
-      cssObject[key[0]] = key[1];
+  for (let property of properties) {
+    const [key, value] = property.split(':');
+    if (value !== undefined) {
+      cssObject[key.trim()] = value.trim();
     }
-  });
+  }
   return cssObject;
 };
 

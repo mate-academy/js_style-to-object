@@ -13,15 +13,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  let ourObject = {};
-  let properties = sourceString.split(';');
+  const convertedObject = {};
+  const properties = sourceString.split(';');
   for (let property of properties) {
     let [keys, values] = property.split(':');
     if (values !== undefined) {
-      ourObject[keys.trim()] = values.trim();
+      convertedObject[keys.trim()] = values.trim();
     }
   }
-  return ourObject;
+  return convertedObject;
 }
 
 module.exports = convertToObject;

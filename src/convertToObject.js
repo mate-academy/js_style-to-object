@@ -14,14 +14,11 @@
 
 function convertToObject(sourceString) {
   var outputObject = {};
-  var array = sourceString.split(';').slice(0, -1);
+  var propertiesKeys = sourceString.split(';').slice(0, -1);
 
-  for (let property of array) {
-    var parts = property.split(':');
-    var one = parts[0];
-    var two = parts[1];
-
-    outputObject[one.trim()] = two.trim();
+  for (let property of propertiesKeys) {
+    var propertyKey = property.split(':');
+    outputObject[propertyKey[0].trim()] = propertyKey[1].trim();
   }
   return outputObject;
 }

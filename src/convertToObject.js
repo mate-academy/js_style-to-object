@@ -12,14 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let arrayStyles = sourceString.trim().split('/n').join('').split(';').slice(0, -1);
-  let obj = {};
-  arrayStyles.forEach(function(item) {
-    let prop = item.trim().split(': ');
-    obj[prop[0]] = prop[1];
+  const arrayCssProperties = sourceString.split(';');
+  const result = {};
+  arrayCssProperties.forEach(item => {
+    const [key, value] = item.split(':');
+    if (value !== undefined) {
+      result[key.trim()] = value.trim();
+    }
   }
   );
-  return obj;
+  return result;
 }
 
 module.exports = convertToObject;

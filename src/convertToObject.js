@@ -11,11 +11,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let arr = sourceString.split(';');
-  let obj = {};
+  const arr = sourceString.split(';');
+  const obj = {};
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].split(':')[0] && arr[ i ].split(':')[1]) {
-      obj[arr[ i ].split(':')[0].trim()] = arr[ i ].split(':')[ 1 ].trim();
+    let splt = arr[ i ].split(':');
+    let key = splt[0];
+    let val = splt[1];
+    if (key && val) {
+      obj[key.trim()] = val.trim();
     }
   }
   return obj;

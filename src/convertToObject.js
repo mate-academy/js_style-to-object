@@ -14,13 +14,13 @@
 function convertToObject(sourceString) {
   // write your code here
   const resultObj = {};
-  const properties = sourceString.split(';').slice(0, -1);
-  for (let property of properties) {
-    const [key, value] = property.split(':');
+  const properties = sourceString.split(';');
+  properties.forEach((item) => {
+    const [key, value] = item.split(':');
     if (value !== undefined) {
       resultObj[key.trim()] = value.trim();
     }
-  }
+  });
   return resultObj;
 }
 

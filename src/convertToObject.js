@@ -19,11 +19,11 @@ function convertToObject(sourceString) {
     return item;
   });
 
-  arr.pop();
-
   arr.forEach((item) => {
     let smallArr = item.split(': ');
-    resultObj[`${smallArr[0]}`] = smallArr[1];
+    if (smallArr[1]) {
+      resultObj[`${smallArr[0]}`] = smallArr[1];
+    }
   });
   return resultObj;
 }

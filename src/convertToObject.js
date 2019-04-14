@@ -12,14 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertyObj = {};
-  const propertiesArray = sourceString.split(';');
-
-  for (let property of propertiesArray) {
-    property = property.trim().split(': ');
-    propertyObj[property[0]] = property[1];
-  }
-  return propertyObj;
+  const obj = {};
+  sourceString.split(';').forEach(
+    propertyAndValue => {
+      propertyAndValue = propertyAndValue.trim().split(': ');
+      obj[propertyAndValue[0]] = propertyAndValue[1];
+    }
+  );
+  return obj;
 }
 
 module.exports = convertToObject;

@@ -12,12 +12,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';').map(el => el.slice(3).split(': '))
-    .reduce((sum, curent) => {
+  return sourceString.split(';').map(el => el.split(':'))
+    .reduce((obj, curent) => {
       if (curent[1] !== undefined) {
-        sum[curent[0]] = curent[1];
+        obj[curent[0].trim()] = curent[1].trim();
       };
-      return sum;
+      return obj;
     }, {});
 }
 

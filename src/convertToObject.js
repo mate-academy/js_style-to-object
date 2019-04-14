@@ -12,16 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let obj = sourceString.split(';').map(el => {
-    return el.slice(3).split(': ');
-  }).reduce((sum, curent) => {
-    if (curent[1] !== undefined) {
-      sum[curent[0]] = curent[1];
-    };
-    return sum;
-  }, {});
-
-  return obj;
+  return sourceString.split(';').map(el => el.slice(3).split(': '))
+    .reduce((sum, curent) => {
+      if (curent[1] !== undefined) {
+        sum[curent[0]] = curent[1];
+      };
+      return sum;
+    }, {});
 }
 
 module.exports = convertToObject;

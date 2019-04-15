@@ -13,13 +13,13 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  let splitedArray = sourceString.split(';');
-  for (let item of splitedArray) {
+  const splitedArray = sourceString.split(';');
+  splitedArray.forEach((item) => {
     const [key, value] = item.split(':');
     if (value !== undefined) {
       result[key.trim()] = value.trim();
     }
-  }
+  });
   return result;
 }
 

@@ -13,6 +13,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const separatedString = sourceString
+    .substring(3, sourceString.length - 2)
+    .split(';\n  ');
+  const styleObject = {};
+  for (let i = 0; i < separatedString.length; i++) {
+    separatedString[i] = separatedString[i].split(': ');
+    styleObject[separatedString[i][0]] = separatedString[i][1];
+  }
+  return styleObject;
 }
 
 module.exports = convertToObject;

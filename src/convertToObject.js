@@ -12,8 +12,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normalized = sourceString.split(';').map(row => row.trim().split(': '));
-  normalized.pop();
+  const normalized = sourceString.trim()
+    .split(';')
+    .map(row => row.trim().split(': '));
 
   function arrayToObj(prop) {
     obj[prop[0]] = prop[1];

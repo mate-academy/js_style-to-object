@@ -14,7 +14,8 @@
 function convertToObject(sourceString) {
   // write your code here
   const separatedString = sourceString
-    .substring(3, sourceString.length - 2)
+    .trim()
+    .slice(0, -1)
     .split(';\n  ');
 
   const styleObject = {};

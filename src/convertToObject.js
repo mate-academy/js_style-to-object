@@ -11,8 +11,21 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
-}
+const convertToObject = (sourceString) => {
+  let words = sourceString.replace(/\n/g, '').replace(/[;:]/g, '_').split('_');
+  const styles = {};
+
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].trimLeft();
+  };
+
+  words = words.filter(el => el !== '');
+
+  for (let i = 0; i < words.length - 1; i += 2) {
+    styles[words[i]] = words[i + 1];
+  };
+
+  return styles;
+};
 
 module.exports = convertToObject;

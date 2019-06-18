@@ -19,9 +19,7 @@ const convertToObject = (sourceString) => {
     words[i] = words[i].trimLeft();
   };
 
-  words = words.filter(function(el) {
-    return el !== '';
-  });
+  words = words.filter(el => el !== '');
 
   for (let i = 0; i < words.length - 1; i += 2) {
     styles[words[i]] = words[i + 1];

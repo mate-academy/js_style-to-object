@@ -12,23 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let cssString = sourceString.slice(1);
-  const cssObj = {};
-  let cssProperty = '';
-  let semicolonsIndex = 0;
-  let colonIndex = 0;
-  let key = '';
-  let value = '';
-  while (cssString.length !== 0) {
-    semicolonsIndex = cssString.indexOf(';');
-    cssProperty = cssString.slice(2, semicolonsIndex);
-    colonIndex = cssProperty.indexOf(':');
-    key = cssProperty.slice(0, colonIndex);
-    value = cssProperty.slice(colonIndex + 2);
-    cssObj[key] = value;
-    cssString = cssString.slice(semicolonsIndex + 2);
+  const stylesArray = sourceString.trim().split('\n  ');
+  const stylesObject = {};
+  let keyValueArr = [];
+  for (let i = 0; i < stylesArray.length; i++) {
+    keyValueArr = stylesArray[i].split(': ');
+    keyValueArr[1] = keyValueArr[1].slice(0, keyValueArr[1].length - 1);
+    stylesObject[ keyValueArr[0] ] = keyValueArr[1];
   }
-  return cssObj;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

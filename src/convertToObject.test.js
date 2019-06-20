@@ -29,7 +29,7 @@ const EXPECTED_OBJECT = {
   '-ms-user-select': 'none',
   'user-select': 'none',
   'white-space': 'nowrap',
-  'width': 'auto'
+  'width': 'auto',
 };
 
 test('Convert string to object', () => {

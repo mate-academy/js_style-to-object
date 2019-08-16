@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const PropertyAndValue = sourceString.split(';');
+  const stileList = {};
+  const property = [];
+  const value = [];
 
+  for (let i = 0; i < PropertyAndValue.length; i++) {
+    if (i === 26) {
+      return stileList;
+    }
+    property[i] = PropertyAndValue[i].slice(3,
+      (PropertyAndValue[i].indexOf(':')));
+    value[i] = PropertyAndValue[i].slice((PropertyAndValue[i].indexOf(':') + 1),
+      PropertyAndValue[i].length);
+    stileList[property[i]] = value[i].trim();
+  }
+}
 module.exports = convertToObject;

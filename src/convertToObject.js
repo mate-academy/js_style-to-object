@@ -25,7 +25,7 @@ function convertToObject(sourceString) {
     objectResult[arrRows[i][0]] = arrRows[i][1].trim();
   }
 
-  return (objectResult);
+  return objectResult;
 }
 
 module.exports = convertToObject;

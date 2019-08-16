@@ -18,7 +18,8 @@ function convertToObject(sourceString) {
   const arr = sourceStringNned.split(';');
   for (let i = 0; i < arr.length; i++) {
     if (arr[i]) {
-      const item = arr[i].split(':').trim();
+      const item1 = arr[i].split(':');
+      const item = item1.trim();
       obj[item[0]] = item[1];
     }
   }

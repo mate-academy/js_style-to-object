@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const cssPropertyObj = {};
 
+  const sortedCssPropsArr = sourceString
+    .replace(/\n {2}/g, '')
+    .trim()
+    .split(';')
+    .filter(notEmptyString => notEmptyString);
+
+  for (const element of sortedCssPropsArr) {
+    const property = element.split(':');
+    cssPropertyObj[property.splice(0, 1)] = property.join(':').trim();
+  }
+
+  return cssPropertyObj;
+}
 module.exports = convertToObject;

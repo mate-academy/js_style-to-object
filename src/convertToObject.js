@@ -12,16 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const array = sourceString.split(';');
-  const resultConvert = {};
-  let properties = [];
-  for (let i = 0; i < array.length; i++) {
-    array[i] = array[i].trim();
-    properties = array[i].split(': ');
-    resultConvert[properties[0]] = properties[1];
+  const sourceArrFrom = sourceString.split(';');
+  const stylesObject = {};
+  for (let i = 0; i < sourceArrFrom.length; i++) {
+    const stylesObjectFields = sourceArrFrom[i].trim().split(': ');
+    stylesObject[stylesObjectFields[0]] = stylesObjectFields[1];
   }
 
-  return resultConvert;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

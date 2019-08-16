@@ -14,15 +14,12 @@
 function convertToObject(sourceString) {
   const cssPropertyObj = {};
 
-  const sortedCssPropsArr = sourceString
-    .replace(/\n {2}/g, '')
-    .trim()
-    .split(';')
-    .filter(notEmptyString => notEmptyString);
+  const sortedCssPropsArr = sourceString.replace(/\n {2}/g, '').split(';');
 
-  for (const element of sortedCssPropsArr) {
-    const property = element.split(':');
-    cssPropertyObj[property.splice(0, 1)] = property.join(':').trim();
+  for (const el of sortedCssPropsArr) {
+    const keyAndValue = el.split(': ');
+
+    cssPropertyObj[keyAndValue[0]] = keyAndValue[1];
   }
 
   return cssPropertyObj;

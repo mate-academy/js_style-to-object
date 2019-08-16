@@ -11,8 +11,16 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const listOfProperties = sourceString.replace(/\n  /g, '').split(';');
+  const cssProperties = {};
+
+  for (let i = 0; i < listOfProperties.length; i++) {
+    const [property, value] = listOfProperties[i].split(': ');
+    cssProperties[property] = value;
+  }
+  return cssProperties;
 }
 
 module.exports = convertToObject;

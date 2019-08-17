@@ -12,7 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const createPropObj = {};
+  const splitKeyValue = sourceString.split(';');
+
+  for (let i = 0; i < splitKeyValue.length; i++) {
+    const styleCssProp = splitKeyValue[i].trim().split(': ');
+    createPropObj[styleCssProp[0]] = styleCssProp[1];
+  }
+
+  return createPropObj;
 }
 
 module.exports = convertToObject;

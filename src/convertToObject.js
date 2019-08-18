@@ -12,7 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const solutionArr = sourceString.split(';'); // get a split array
+  const solutionObj = {}; // object for getting solution
+  for (let i = 0; i < solutionArr.length; i++) {
+    const solutionObjProp = solutionArr[i].trim().split(': ');
+    solutionObj[solutionObjProp[0]] = solutionObjProp[1];
+  }
+
+  return solutionObj;
 }
 
 module.exports = convertToObject;

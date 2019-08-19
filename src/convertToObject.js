@@ -27,13 +27,13 @@ function convertToObject(sourceString) {
     }
   }
 
-  const ListOfProperties = {};
+  const listOfProperties = {};
   for (const item of arrayOfProperties) {
     const [key, value] = item.split(':');
-    ListOfProperties[key.trim()] = value.trim();
+    listOfProperties[key.trim()] = value.trim();
   }
 
-  return ListOfProperties;
+  return listOfProperties;
 }
 
 module.exports = convertToObject;

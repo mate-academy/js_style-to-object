@@ -12,11 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const caaArray = sourceString.split(';');
+  const cssArray = sourceString.split(';');
   const cssObject = {};
 
-  for (let i = 0; i < caaArray.length - 1; i++) {
-    const cssDeclaration = caaArray[i].trim().split(': ');
+  for (let i = 0; i < cssArray.length - 1; i++) {
+    const cssDeclaration = cssArray[i].trim().split(': ');
     cssObject[cssDeclaration[0]] = cssDeclaration[1];
   }
 

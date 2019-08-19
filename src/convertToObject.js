@@ -12,18 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const PropertyAndValue = sourceString.split(';');
+  const propertyAndValue = sourceString.split(';');
   const stileList = {};
   const property = [];
   const value = [];
 
-  for (let i = 0; i < PropertyAndValue.length - 1; i++) {
-    property[i] = PropertyAndValue[i]
+  for (let i = 0; i < propertyAndValue.length - 1; i++) {
+    property[i] = propertyAndValue[i]
       .slice(
-        3, (PropertyAndValue[i].indexOf(':')));
-    value[i] = PropertyAndValue[i]
+        3, (propertyAndValue[i].indexOf(':')));
+    value[i] = propertyAndValue[i]
       .slice(
-        (PropertyAndValue[i].indexOf(':') + 1), PropertyAndValue[i].length);
+        (propertyAndValue[i].indexOf(':') + 1), propertyAndValue[i].length);
     stileList[property[i]] = value[i].trim();
   }
 

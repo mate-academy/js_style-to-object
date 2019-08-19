@@ -13,17 +13,17 @@
  */
 function convertToObject(sourceString) {
   const objectResult = {};
-  const inputString = sourceString.split(';');
-  for (let i = 0; i < inputString.length; i += 1) {
-    inputString[i] = inputString[i].split(':');
-    for (let j = 0; j < inputString[i].length; j += 1) {
-      inputString[i][j] = inputString[i][j].trim();
+  const inputData = sourceString.split(';');
+  for (let i = 0; i < inputData.length; i += 1) {
+    inputData[i] = inputData[i].split(':');
+    for (let j = 0; j < inputData[i].length; j += 1) {
+      inputData[i][j] = inputData[i][j].trim();
     }
   }
-  inputString.pop();
+  inputData.pop();
 
-  for (let i = 0; i < inputString.length; i += 1) {
-    objectResult[inputString[i][0]] = inputString[i][1];
+  for (let i = 0; i < inputData.length; i += 1) {
+    objectResult[inputData[i][0]] = inputData[i][1];
   }
 
   return objectResult;

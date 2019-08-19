@@ -17,15 +17,14 @@ function convertToObject(sourceString) {
   const property = [];
   const value = [];
 
-  for (let i = 0; i < PropertyAndValue.length; i++) {
-    if (i === 26) {
-      return stileList;
-    }
+  for (let i = 0; i < PropertyAndValue.length - 1; i++) {
     property[i] = PropertyAndValue[i].slice(3,
       (PropertyAndValue[i].indexOf(':')));
     value[i] = PropertyAndValue[i].slice((PropertyAndValue[i].indexOf(':') + 1),
       PropertyAndValue[i].length);
     stileList[property[i]] = value[i].trim();
   }
+
+  return stileList;
 }
 module.exports = convertToObject;

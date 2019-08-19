@@ -20,6 +20,7 @@ function convertToObject(sourceString) {
     styleElement = styleString[i].trim().split(': ');
     stylePropsObject[styleElement[0]] = styleElement[1];
   }
+
   return stylePropsObject;
 }
 

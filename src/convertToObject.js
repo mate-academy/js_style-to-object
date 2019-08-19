@@ -13,11 +13,11 @@
  */
 function convertToObject(sourceString) {
   const objectFromString = {};
-  const splitString = sourceString.trim().split(';');
+  const cssStyle = sourceString.trim().split(';');
 
-  for (let i = 0; i < splitString.length; i++) {
-    splitString[i] = splitString[i].trim().split(': ');
-    objectFromString[splitString[i][0]] = splitString[i][1];
+  for (let i = 0; i < cssStyle.length; i++) {
+    cssStyle[i] = cssStyle[i].trim().split(': ');
+    objectFromString[cssStyle[i][0]] = cssStyle[i][1];
   };
 
   return objectFromString;

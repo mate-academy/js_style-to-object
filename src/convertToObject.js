@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objectResult = {};
+  const stylesObject = {};
   const inputData = sourceString.split(';');
   for (let i = 0; i < inputData.length; i += 1) {
     inputData[i] = inputData[i].split(':');
@@ -23,10 +23,10 @@ function convertToObject(sourceString) {
   inputData.pop();
 
   for (let i = 0; i < inputData.length; i += 1) {
-    objectResult[inputData[i][0]] = inputData[i][1];
+    stylesObject[inputData[i][0]] = inputData[i][1];
   }
 
-  return objectResult;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

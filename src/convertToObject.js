@@ -12,14 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let cssArr = [];
-  let cssArrNew = [];
+  const cssArr = sourceString.trim().split(';');
   const cssObj = {};
 
-  cssArr = sourceString.trim().split(';');
-
   for (let i = 0; i < cssArr.length; i++) {
-    cssArrNew = cssArr[i].trim().split(': ');
+    let cssArrNew = cssArr[i].trim().split(': ');
     cssObj[cssArrNew[0]] = cssArrNew[1];
     cssArrNew = [];
   }

@@ -15,6 +15,8 @@ function convertToObject(sourceString) {
   const cssPropertyObj = {};
   const sortedCssPropsArr = sourceString.replace(/\n {2}/g, '').split(';');
 
+  sortedCssPropsArr.pop();
+
   for (const el of sortedCssPropsArr) {
     const keyAndValue = el.split(': ');
 

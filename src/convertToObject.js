@@ -20,5 +20,4 @@ function convertToObject(sourceString) {
   }
   return obj;
 }
-
 module.exports = convertToObject;

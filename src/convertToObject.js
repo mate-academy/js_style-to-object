@@ -12,15 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objectFromString = {};
+  const objectStyles = {};
   const cssStyle = sourceString.trim().split(';');
 
   for (let i = 0; i < cssStyle.length; i++) {
     cssStyle[i] = cssStyle[i].trim().split(': ');
-    objectFromString[cssStyle[i][0]] = cssStyle[i][1];
+    objectStyles[cssStyle[i][0]] = cssStyle[i][1];
   };
 
-  return objectFromString;
+  return objectStyles;
 }
 
 module.exports = convertToObject;

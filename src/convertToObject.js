@@ -11,8 +11,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  let keyValuePairs = sourceString.split(';');
+  keyValuePairs = keyValuePairs.map(pair => pair.trim());
+  keyValuePairs.forEach(pair => {
+    if (pair) {
+      const tokens = pair.split(': ');
+      const key = tokens[0];
+      const value = tokens[1];
+      result[key] = value;
+    }
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

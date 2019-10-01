@@ -16,9 +16,9 @@ function convertToObject(sourceString) {
   const propertiesObj = {};
 
   for (const property of cssProperties) {
-    const splitProperty = property.trim().split(': ');
+    const splitProperty = property.trim().split(':');
     if (splitProperty[0]) {
-      propertiesObj[splitProperty[0]] = splitProperty[1];
+      propertiesObj[splitProperty[0].trim()] = splitProperty[1].trim();
     }
   }
 

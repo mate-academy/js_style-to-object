@@ -12,15 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArr = sourceString.trim().split(/: |;\s+|;/g);
+  const stylesArr = sourceString.trim().split(/;\s+|;/g);
+  stylesArr.pop();
   const stylesObj = {};
-  for (let i = 0; i < stylesArr.length - 1; i++) {
-    if (i % 2 === 0 && (i + 1) % 2 !== 0) {
-      const property = stylesArr[i];
-      const value = stylesArr[i + 1];
-      stylesObj[property] = value;
-    }
-  }
+  stylesArr.forEach((property) => {
+    const keyAndValue = property.split(/: /g);
+    const key = keyAndValue[0];
+    const value = keyAndValue[1];
+    stylesObj[key] = value;
+  });
 
   return stylesObj;
 }

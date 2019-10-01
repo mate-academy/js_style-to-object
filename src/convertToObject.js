@@ -17,10 +17,10 @@ function convertToObject(sourceString) {
   const sourceArr = sourceString.split(';');
   sourceArr.pop();
 
-  for (const i in sourceArr) {
-    const convert = sourceArr[i].trim().split(': ');
-    convertingObject[convert[0]] = convert[1];
-  }
+  sourceArr.forEach((i) => {
+    const convert = i.split(':');
+    convertingObject[convert[0].trim()] = convert[1].trim();
+  });
 
   return convertingObject;
 }

@@ -18,9 +18,9 @@ function convertToObject(sourceString) {
   keyValuePairs = keyValuePairs.map(pair => pair.trim());
   keyValuePairs.forEach(pair => {
     if (pair) {
-      const tokens = pair.split(': ');
-      const key = tokens[0];
-      const value = tokens[1];
+      const tokens = pair.split(':');
+      const key = tokens[0].trim();
+      const value = tokens[1].trim();
       result[key] = value;
     }
   });

@@ -14,11 +14,12 @@
 function convertToObject(sourceString) {
   const styles = {};
   const styleArr = sourceString.split(';');
+  styleArr.pop();
 
-  for (let i = 0; i < styleArr.length - 1; i++) {
-    const item = styleArr[i].trim().split(':');
-    styles[item[0]] = item[1].trim();
-  }
+  styleArr.forEach(item => {
+    const separateStyle = item.split(':');
+    styles[separateStyle[0].trim()] = separateStyle[1].trim();
+  });
 
   return styles;
 }

@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssProperties = {};
+  const newArr = [];
+  const splittedStr = sourceString.replace(/[\s+]/g, ' ').split(';');
+  const trimmedStr = splittedStr.map(s => s.trim());
+
+  trimmedStr.pop();
+  for (const style of trimmedStr) {
+    newArr.push(style.split(':'));
+  }
+  for (const keyVal of newArr) {
+    keyVal[1] = keyVal[1].trimLeft();
+    cssProperties[keyVal[0]] = keyVal[1];
+  }
+
+  return cssProperties;
 }
 
 module.exports = convertToObject;

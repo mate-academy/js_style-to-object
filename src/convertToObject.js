@@ -12,15 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(';');
+  let arr = sourceString.split(';');
   arr.pop();
   const newObj = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    const property = arr[i].trim().split(': ');
-    newObj[property[0]] = property[1];
-  }
+  const callback = (inpuItem) => {
+    arr = inpuItem.trim().split(':');
+    newObj[arr[0]] = arr[1].trim();
+  };
 
+  arr.forEach(callback);
   return newObj;
 }
 

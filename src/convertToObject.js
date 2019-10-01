@@ -13,16 +13,13 @@
  */
 function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
+  sourceArray.pop();
   const sourceObject = {};
 
-  for (let i = 0; i < sourceArray.length; i++) {
-    const valuesForObject = sourceArray[i].trim().split(': ');
-    sourceObject[valuesForObject[0]] = valuesForObject[1];
-
-    if (!sourceObject[valuesForObject[0]]) {
-      delete sourceObject[valuesForObject[0]];
-    }
-  }
+  sourceArray.forEach(function(item) {
+    const valuesForObject = item.split(':');
+    sourceObject[valuesForObject[0].trim()] = valuesForObject[1].trim();
+  });
 
   return sourceObject;
 }

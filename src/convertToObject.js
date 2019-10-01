@@ -13,13 +13,14 @@
  */
 function convertToObject(sourceString) {
   const arr = sourceString.split(';');
-  let a = [];
+  arr.pop();
+  let arr2 = [];
   const obj = {};
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    a = arr[i].trim().split(': ');
-    obj[a[0]] = a[1];
-  }
+  const callback = (item) => {
+    arr2 = item.trim().split(':');
+    obj[arr2[0]] = arr2[1].trim();
+  };
+  arr.forEach(callback);
   return obj;
 }
 

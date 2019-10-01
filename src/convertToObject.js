@@ -14,7 +14,7 @@
 function convertToObject(sourceString) {
   const cssProperties = {};
   const newArr = [];
-  const splittedStr = sourceString.replace(/[\s+]/g, ' ').split(';');
+  const splittedStr = sourceString.split(';');
 
   splittedStr.pop();
   for (const style of splittedStr) {

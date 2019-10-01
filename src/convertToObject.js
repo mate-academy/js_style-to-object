@@ -13,14 +13,15 @@
  */
 function convertToObject(sourceString) {
   const stylesList = sourceString.trim().split(';');
+  stylesList.pop();
 
   const stylesObj = {};
 
-  for (let i = 0; i < stylesList.length - 1; i++) {
-    const property = stylesList[i].match(/\S.+(?=:)/g).join('');
-    const value = stylesList[i].match(/(?<=:\s).*/g).join('');
+  stylesList.forEach(e => {
+    const property = e.match(/\S.+(?=:)/g).join('');
+    const value = e.match(/(?<=:\s).*/g).join('');
     stylesObj[property] = value;
-  }
+  });
 
   return stylesObj;
 }

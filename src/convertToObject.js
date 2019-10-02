@@ -13,18 +13,13 @@
  */
 function convertToObject(sourceString) {
   const cssProperties = {};
-  const newArr = [];
   const splittedStr = sourceString.split(';');
 
   splittedStr.pop();
-  for (const style of splittedStr) {
-    newArr.push(style.split(':'));
-  }
-  for (const keyVal of newArr) {
-    [keyVal[1], keyVal[0]] = [keyVal[1].trimLeft(), keyVal[0].trimLeft()];
-    cssProperties[keyVal[0]] = keyVal[1];
-  }
-
+  splittedStr.forEach(item => {
+    const newArr = item.split(':');
+    cssProperties[newArr[0].trim()] = newArr[1].trim();
+  });
   return cssProperties;
 }
 

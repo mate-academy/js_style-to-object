@@ -12,19 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const splitPattern = /;\n/g;
-  const splitStr = sourceString.split(splitPattern);
-  splitStr.pop();
-  let point;
+  return sourceString.split(';').map(item => item.split(':'))
+    .reduce((obj, arr) => {
+      if (arr[1] !== undefined) {
+        obj[arr[0].trim()] = arr[1].trim();
+      }
 
-  for (let i = 0; i < splitStr.length; i++) {
-    point = splitStr[i].trim().indexOf(': ');
-    const key = splitStr[i].trim().slice(0, point);
-    result[key] = splitStr[i].trim().slice((point + 2), (splitStr[i].length));
-  }
-
-  return result;
+      return obj;
+    }, {});
 }
 
 module.exports = convertToObject;

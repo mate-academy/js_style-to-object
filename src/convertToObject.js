@@ -12,9 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArr = sourceString.trim().split(/;\s+|;/g);
+  const stylesArr = sourceString.trim().split(';');
   stylesArr.pop();
   const stylesObj = {};
+
   stylesArr.forEach((property) => {
     const keyAndValue = property.split(':');
     const key = keyAndValue[0].trim();

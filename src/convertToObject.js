@@ -16,9 +16,9 @@ function convertToObject(sourceString) {
   stylesArr.pop();
   const stylesObj = {};
   stylesArr.forEach((property) => {
-    const keyAndValue = property.split(/: /g);
-    const key = keyAndValue[0];
-    const value = keyAndValue[1];
+    const keyAndValue = property.split(':');
+    const key = keyAndValue[0].trim();
+    const value = keyAndValue[1].trim();
     stylesObj[key] = value;
   });
 

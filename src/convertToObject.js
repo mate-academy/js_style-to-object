@@ -13,12 +13,10 @@
  */
 function convertToObject(sourceString) {
   const stylesList = sourceString.trim().split(/;\n*\s*/g);
-  if (stylesList[stylesList.length - 1] === '') {
-    stylesList.pop();
-  }
+  stylesList.pop();
   const obj = {};
   for (const keyAndValue of stylesList) {
-    const [key, value] = keyAndValue.split(': ');
+    const [key, value] = keyAndValue.split(/\s*:\s*/);
     obj[key] = value;
   }
   return obj;

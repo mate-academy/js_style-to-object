@@ -17,10 +17,8 @@ function convertToObject(sourceString) {
   const stylesObj = {};
 
   stylesArr.forEach((property) => {
-    const keyAndValue = property.split(':');
-    const key = keyAndValue[0].trim();
-    const value = keyAndValue[1].trim();
-    stylesObj[key] = value;
+    const [key, value] = property.split(':');
+    stylesObj[key.trim()] = value.trim();
   });
 
   return stylesObj;

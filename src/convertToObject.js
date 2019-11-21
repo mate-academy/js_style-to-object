@@ -16,12 +16,12 @@ function convertToObject(sourceString) {
   sourceString.replace(/\n/g, '')
     .replace(/\s+/g, ' ')
     .split(';')
-    .map(item => item.trim()
+    .map(styleAndPlops => styleAndPlops.trim()
       .replace(/ :/, ':'))
-    .filter(item => item !== '')
-    .map(item => item.split(':'))
-    .forEach(function(item) {
-      obj[`${item[0]}`] = `${item[1].trim()}`;
+    .filter(spaces => spaces !== '')
+    .map(styleAndPlops => styleAndPlops.split(':'))
+    .forEach(function(styleAndPlops) {
+      obj[`${styleAndPlops[0]}`] = `${styleAndPlops[1].trim()}`;
     });
 
   return obj;

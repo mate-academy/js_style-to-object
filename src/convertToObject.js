@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const obj = {};
+  sourceString.replace(/\n/g, '')
+    .replace(/\s+/g, ' ')
+    .split(';')
+    .map(item => item.trim()
+      .replace(/ :/, ':'))
+    .filter(item => item !== '')
+    .map(item => item.split(':'))
+    .forEach(function(item) {
+      obj[`${item[0]}`] = `${item[1].trim()}`;
+    });
+
+  return obj;
 }
 
 module.exports = convertToObject;

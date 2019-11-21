@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
     .split(';')
     .map((str) => { return str.trim(); })
     .filter((str) => { return (str !== ''); })
-    .forEach(function(str) {
+    .map(function(str) {
       const propertyString = str
         .split(':')
         .map((item) => { return item.trim(); });

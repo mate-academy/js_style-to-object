@@ -17,12 +17,11 @@ function convertToObject(sourceString) {
     .map(el => el.replace(/\s+/g, ' ').trim())
     .filter(el => el.length > 0);
 
-  classesArr.forEach(item => {
+  classesArr.reduce((accumulator, item) => {
     const arrItems = item.split(':');
-    classesObj[arrItems[0].trim()] = arrItems[1].trim();
-
-    return classesObj;
-  });
+    accumulator[arrItems[0].trim()] = arrItems[1].trim();
+    return accumulator;
+  }, classesObj);
 
   return classesObj;
 }

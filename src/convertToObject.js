@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
     .filter(spaces => spaces !== '')
     .map(styleAndPlops => styleAndPlops.split(':'))
     .forEach(function(styleAndPlops) {
-      obj[`${styleAndPlops[0]}`] = `${styleAndPlops[1].trim()}`;
+      obj[styleAndPlops[0]] = styleAndPlops[1].trim();
     });
 
   return obj;

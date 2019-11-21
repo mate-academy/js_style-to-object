@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const patternValue = /(?<=:\s).+/g;
+  const patternKey = /.*(?=:)/g;
+  const style = {};
+  sourceString.split(';').forEach(item => {
+    const key = item.trim('').match(patternKey);
+    const value = item.trim('').match(patternValue);
+    if (key !== null && value !== null) {
+      style[key[0].trim()] = value[0].trim();
+    }
+  });
+
+  return style;
 }
 
 module.exports = convertToObject;

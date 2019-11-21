@@ -12,7 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sourceArray = sourceString
+    .split(';')
+    .filter(line => /\S/.test(line))
+    .map(line => line.split(':')
+      .map(propAndValue => propAndValue.trim()));
+
+  return Object.fromEntries(sourceArray);
 }
 
 module.exports = convertToObject;

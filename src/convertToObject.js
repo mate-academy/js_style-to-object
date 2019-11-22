@@ -14,16 +14,10 @@
 function convertToObject(sourceString) {
   const arr = sourceString.split(';');
   const filteredArr = arr.filter(item => item.includes(':'));
-  const readyArr = filteredArr
-    .map(item => item.split(':').map(str => str.trim()));
+  const readyArr = new Map(filteredArr
+    .map(item => item.split(':').map(str => str.trim())));
 
-  const result = {};
-
-  readyArr.forEach(function(item) {
-    result[`${item[0]}`] = `${item[1]}`;
-  });
-
-  return result;
+  return Object.fromEntries(readyArr);
 }
 
 module.exports = convertToObject;

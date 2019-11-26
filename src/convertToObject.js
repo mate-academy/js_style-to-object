@@ -20,9 +20,7 @@ function convertToObject(sourceString) {
       .replace(/ :/, ':'))
     .filter(i => i !== '')
     .map(style => style.split(':'))
-    .forEach(function(elem) {
-      styleObj[elem[0]] = elem[1].trim();
-    });
+    .forEach((elem) => { styleObj[elem[0]] = elem[1].trim(); });
 
   return styleObj;
 }

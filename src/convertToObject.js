@@ -23,13 +23,15 @@ function convertToObject(sourceString) {
 
   const keys = getPropertyPart(sourceString, keysRegEx);
   const values = getPropertyPart(sourceString, valuesRegEx);
-  const object = {};
 
-  for (let i = 0; i < keys.length; i++) {
-    object[keys[i]] = values[i];
-  }
+  const callback = (acc, item, index) => {
+    return {
+      ...acc,
+      [item]: values[index],
+    };
+  };
 
-  return object;
+  return keys.reduce(callback, {});
 }
 
 module.exports = convertToObject;

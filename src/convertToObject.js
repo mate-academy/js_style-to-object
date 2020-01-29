@@ -12,19 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
-  const clearedSourse = sourceString
+  return sourceString
     .split(';')
     .map(item => item.trim())
     .filter(prop => prop.length > 0)
-    .map(item => item.split(':').map(str => str.trim()));
+    .map(item => item.split(':').map(str => str.trim()))
+    .reduce((result, property) => {
+      result[property[0]] = property[1];
 
-  for (let i = 0; i < clearedSourse.length; i++) {
-    result[clearedSourse[i][0]] = clearedSourse[i][1];
-  };
-
-  return result;
+      return result;
+    }, {});
 }
 
 module.exports = convertToObject;

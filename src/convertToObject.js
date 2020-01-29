@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const styleKeys = trimmedProperties(sourceString, /(.+?)(?=:)/g);
+  const styleValues = trimmedProperties(sourceString, /(?<=:)(.+?)(?=;)/g);
+
+  function trimmedProperties(array, pattern) {
+    return array.match(pattern)
+      .map(item => item.trim())
+      .filter(item => !!item);
+  };
+
+  for (let i = 0; i <= styleKeys.length - 1; i++) {
+    result[styleKeys[i]] = styleValues[i];
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

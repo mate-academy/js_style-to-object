@@ -12,19 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
   const splittedBySemicolon = sourceString.split(';');
 
-  splittedBySemicolon.forEach((elem) => {
-    const splittedByColon = elem.split(':');
+  return splittedBySemicolon.reduce((result, firstelem) => {
+    const splittedByColon = firstelem.split(':');
 
     if (splittedByColon[0].trim()) {
       result[splittedByColon[0].trim()] = splittedByColon[1].trim();
     };
-  });
 
-  return result;
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

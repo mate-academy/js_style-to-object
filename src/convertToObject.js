@@ -11,8 +11,20 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const properties = sourceString
+    .replace(/\n+ */g, '')
+    .split(';')
+    .filter(elem => elem.length > 0);
+
+  return properties.reduce((result, firstelem) => {
+    const property = firstelem.split(':').map(elem => elem.trim());
+
+    result[property[0]] = property[1];
+
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

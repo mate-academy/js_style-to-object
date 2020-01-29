@@ -22,9 +22,9 @@ function convertToObject(sourceString) {
       .filter(item => !!item);
   };
 
-  for (let i = 0; i <= styleKeys.length - 1; i++) {
+  styleKeys.forEach((item, i) => {
     result[styleKeys[i]] = styleValues[i];
-  }
+  });
 
   return result;
 }

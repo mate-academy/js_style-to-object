@@ -12,22 +12,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  const splited = sourceString.split(',');
+  const splited = sourceString.split(';');
 
-  for (let i = 0; i < splited.length; i++) {
-    const splited2 = splited[i].split(':');
-    let [property, value] = [...splited2];
+  const result = splited
+    .reduce((acc, fullProperty) => {
+      let [property, value] = fullProperty.split(':');
 
-    if (property === undefined || value === undefined) {
-      continue;
-    }
-    property = property.trim();
-    value = value.trim();
-    obj[property] = value;
-  }
+      if (property && value) {
+        property = property.trim();
+        value = value.trim();
 
-  return obj;
+        return {
+          ...acc,
+          [property]: value,
+        };
+      }
+
+      return {
+        ...acc,
+      };
+    }, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

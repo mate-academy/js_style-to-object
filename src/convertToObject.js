@@ -22,9 +22,8 @@ function convertToObject(sourceString) {
   const convertedObj = {};
 
   correctStringFormat.forEach((item) => {
-    let splitItem = item;
+    const splitItem = item.split(/:\s?/);
 
-    splitItem = splitItem.split(/:\s?/);
     convertedObj[splitItem[0]] = splitItem[1];
   });
 

@@ -11,8 +11,17 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
-}
+
+const convertToObject = (sourceString) =>
+  sourceString
+    .split(';')
+    .map(str => str.split(':'))
+    .reduce((acc, property) => {
+      if (property[1] !== undefined) {
+        acc[property[0].trim()] = property[1].trim();
+      }
+
+      return acc;
+    }, {});
 
 module.exports = convertToObject;

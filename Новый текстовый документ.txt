@@ -1,0 +1,22 @@
+s = "Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill";
+?
+function meeting(s) {
+/*
+  { [userId]: { lastName: '', firstName: '' } }
+*/
+?
+  const res = s
+    .split(';')
+    .reduce((acc, fullName, index) => {
+      const [firstName, lastName] = fullName.split(':');
+?
+      return {
+        ...acc,
+        [index + 1]: { firstName, lastName },
+      };
+    }, {});
+    
+  console.log(res);
+}
+?
+meeting(s)

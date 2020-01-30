@@ -12,9 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';')
-    .map(item => item.split(':'))
-    .reduce((obj, [key, value]) => {
+  return sourceString
+    .split(';')
+    .reduce((obj, pair) => {
+      const [key, value] = pair.split(':');
+
       if (value) {
         obj[key.trim()] = value.trim();
       }

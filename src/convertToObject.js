@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
 
   function getPropertyPart(arr, regEx) {
     return arr.match(regEx)
-      .filter(item => item !== '')
+      .filter(item => item)
       .map(item => item.trim());
   }
 

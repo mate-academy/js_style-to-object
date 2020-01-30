@@ -14,11 +14,11 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(item => item.trim())
-    .filter(prop => prop.length > 0)
-    .map(item => item.split(':').map(str => str.trim()))
+    .map(item => item.split(':'))
     .reduce((result, property) => {
-      result[property[0]] = property[1];
+      if (property[1] !== undefined) {
+        result[property[0].trim()] = property[1].trim();
+      }
 
       return result;
     }, {});

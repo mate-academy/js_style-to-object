@@ -18,9 +18,9 @@ function convertToObject(sourceString) {
     .filter(item => item.length > 0);
 
   return properties.reduce((result, currentElement) => {
-    const [key, value] = currentElement.split(':').map(item => item.trim());
+    const [key, value] = currentElement.split(':');
 
-    result[key] = value;
+    result[key.trim()] = value.trim();
 
     return result;
   }, {});

@@ -12,20 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
+  const styleObj = {};
 
-  const str = sourceString.replace(/;{2,}/g, ';').replace(/;$/, '');
-  const arr = str.split(';');
+  const formattedStr = sourceString.replace(/;{2,}/g, ';').replace(/;$/, '');
+  const styleArr = formattedStr.split(';');
 
-  arr.forEach(item => {
+  styleArr.forEach(item => {
     const splittedItem = item.split(':');
 
     if (splittedItem[0] && splittedItem[1]) {
-      obj[splittedItem[0].trim()] = splittedItem[1].trim();
+      styleObj[splittedItem[0].trim()] = splittedItem[1].trim();
     }
   });
 
-  return obj;
+  return styleObj;
 }
 
 module.exports = convertToObject;

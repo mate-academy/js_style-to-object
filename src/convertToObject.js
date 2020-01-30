@@ -15,10 +15,11 @@
 const convertToObject = (sourceString) =>
   sourceString
     .split(';')
-    .map(str => str.split(':'))
     .reduce((acc, property) => {
-      if (property[1] !== undefined) {
-        acc[property[0].trim()] = property[1].trim();
+      const parts = property.split(':');
+
+      if (parts[1] !== undefined) {
+        acc[parts[0].trim()] = parts[1].trim();
       }
 
       return acc;

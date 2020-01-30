@@ -14,8 +14,8 @@
 function convertToObject(sourceString) {
   const splittedBySemicolon = sourceString.split(';');
 
-  return splittedBySemicolon.reduce((result, firstelem) => {
-    const splittedByColon = firstelem.split(':');
+  return splittedBySemicolon.reduce((result, firstElem) => {
+    const splittedByColon = firstElem.split(':');
 
     if (splittedByColon[0].trim()) {
       result[splittedByColon[0].trim()] = splittedByColon[1].trim();

@@ -15,7 +15,9 @@ function convertToObject(sourceString) {
   return sourceString.split(';')
     .map(item => item.split(':'))
     .reduce((obj, [key, value]) => {
-      value && (obj[key.trim()] = value.trim());
+      if (value) {
+        obj[key.trim()] = value.trim();
+      }
 
       return obj;
     }, {});

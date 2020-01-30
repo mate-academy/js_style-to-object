@@ -18,8 +18,8 @@ function convertToObject(sourceString) {
     .split(';')
     .filter(elem => elem.length > 0);
 
-  return properties.reduce((result, firstelem) => {
-    const property = firstelem.split(':').map(elem => elem.trim());
+  return properties.reduce((result, firstElem) => {
+    const property = firstElem.split(':').map(elem => elem.trim());
 
     result[property[0]] = property[1];
 

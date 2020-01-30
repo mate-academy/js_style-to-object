@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const convertedObj = {};
+  const splittedSemi = sourceString.split(';');
+
+  splittedSemi.forEach((keyValue) => {
+    const splittedKeyValue = keyValue.split(':');
+
+    if (splittedKeyValue.length === 2) {
+      const key = splittedKeyValue[0].trim();
+      const value = splittedKeyValue[1].trim();
+
+      convertedObj[key] = value;
+    }
+  });
+
+  return convertedObj;
 }
 
 module.exports = convertToObject;

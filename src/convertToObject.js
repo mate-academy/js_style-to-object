@@ -17,13 +17,12 @@ const convertToObject = (sourceString) =>
     .split(';')
     .reduce((acc, property) => {
       const [propName, value] = property
-        .split(':')
-        .map(str => str.trim());
+        .split(':');
 
       if (value !== undefined) {
         return {
           ...acc,
-          [propName]: value,
+          [propName.trim()]: value.trim(),
         };
       }
 

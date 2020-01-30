@@ -15,12 +15,12 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .map(item => item.split(':'))
-    .reduce((acc, property) => {
+    .reduce((accumulator, property) => {
       if (property[1]) {
-        acc[property[0].trim()] = property[1].trim();
+        accumulator[property[0].trim()] = property[1].trim();
       }
 
-      return acc;
+      return accumulator;
     }, {});
 }
 

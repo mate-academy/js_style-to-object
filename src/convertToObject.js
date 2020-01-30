@@ -14,10 +14,11 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(item => item.split(':'))
     .reduce((accumulator, property) => {
-      if (property[1]) {
-        accumulator[property[0].trim()] = property[1].trim();
+      const items = property.split(':');
+
+      if (items[1]) {
+        accumulator[items[0].trim()] = items[1].trim();
       }
 
       return accumulator;

@@ -14,17 +14,17 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .reduce((objectOfStyles, styles) => {
-      const [prop, value] = objectOfStyles.split(':');
+    .reduce((styleObj, styles) => {
+      const [prop, value] = styles.split(':');
 
       if (prop !== undefined && value !== undefined) {
         return {
-          ...objectOfStyles,
+          ...styleObj,
           [prop.trim()]: value.trim(),
         };
       }
 
-      return objectOfStyles;
+      return styleObj;
     }, {});
 }
 

@@ -12,7 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const splittedBySemicolon = sourceString.split(';');
+
+  return splittedBySemicolon.reduce((result, firstElem) => {
+    const splittedByColon = firstElem.split(':');
+
+    if (splittedByColon[0].trim()) {
+      result[splittedByColon[0].trim()] = splittedByColon[1].trim();
+    };
+
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

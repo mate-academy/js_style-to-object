@@ -16,10 +16,15 @@ const convertToObject = (sourceString) =>
   sourceString
     .split(';')
     .reduce((acc, property) => {
-      const parts = property.split(':');
+      const [propName, value] = property
+        .split(':')
+        .map(str => str.trim());
 
-      if (parts[1] !== undefined) {
-        acc[parts[0].trim()] = parts[1].trim();
+      if (value !== undefined) {
+        return {
+          ...acc,
+          [propName]: value,
+        };
       }
 
       return acc;

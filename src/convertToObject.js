@@ -16,14 +16,11 @@ function convertToObject(sourceString) {
     const style = keyValue.split(':');
 
     if (style.length === 2) {
-      let [key, value] = style;
-
-      key = key.toString().trim();
-      value = value.toString().trim();
+      const [key, value] = style;
 
       return {
         ...acc,
-        [key]: value,
+        [key.trim()]: value.trim(),
       };
     } else {
       return acc;

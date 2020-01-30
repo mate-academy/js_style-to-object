@@ -12,19 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-  const str = sourceString.split(';');
+  const styles = sourceString
+    .split(';')
+    .map(item => item.split(':'))
+    .reduce((acc, entries) => {
+      if (entries.length === 2) {
+        acc[entries[0].trim()] = entries[1].trim();
+      }
 
-  str.forEach(item => {
-    const entries = item.split(':');
-
-    if (entries.length === 2) {
-      const key = entries[0].toString().trim();
-      const value = entries[1].toString().trim();
-
-      styles[key] = value;
-    }
-  });
+      return acc;
+    }, {});
 
   return styles;
 }

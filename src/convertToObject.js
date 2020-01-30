@@ -15,10 +15,11 @@ function convertToObject(sourceString) {
   const result = sourceString
     .split(';')
     .reduce((acc, style, index) => {
-      const [prop, value] = style.trim().split(':')
-        .map(element => element.trim());
+      let [prop, value] = style.trim().split(':');
 
       if (value !== undefined) {
+        prop = prop.trim();
+        value = value.trim();
         acc[prop] = value;
       }
 

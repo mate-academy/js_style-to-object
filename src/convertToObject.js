@@ -14,11 +14,8 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(word => {
-      return word.trim();
-    })
-    .filter((element) => element !== '')
-    .sort()
+    .map(word => word.trim())
+    .filter((element) => element)
     .reduce((acc, declaration) => {
       let [prop, value] = declaration.split(':');
 

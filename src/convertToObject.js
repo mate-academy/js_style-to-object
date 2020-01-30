@@ -12,12 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // const obj = {};
-
   return sourceString.split(';')
     .map(item => item.split(':'))
     .reduce((obj, [key, value]) => {
-      (value !== undefined) && (obj[key.trim()] = value.trim());
+      value && (obj[key.trim()] = value.trim());
 
       return obj;
     }, {});

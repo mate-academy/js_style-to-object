@@ -18,11 +18,11 @@ function convertToObject(sourceString) {
 
   sourceString.split(';')
     .forEach(prop => {
-      const coupleProp = prop.split(':');
+      const splittedProp = prop.split(':');
 
-      if (coupleProp.length > 1) {
-        const rule = coupleProp[0].substr(1, coupleProp[0].length).trim();
-        const value = coupleProp[1].trim();
+      if (splittedProp.length > 1) {
+        const rule = splittedProp[0].trim();
+        const value = splittedProp[1].trim();
 
         cssObj[rule] = value;
       }

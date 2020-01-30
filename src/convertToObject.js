@@ -14,17 +14,12 @@
 function convertToObject(sourceString) {
   const list = sourceString
     .split(';')
-    .map(item => item
-      .trim())
+    .map(item => item.trim())
     .filter(el => el.length > 0)
     .map(item => item.split(':')
       .map(i => i.trim()));
 
-  const map = new Map(list);
-
-  const stylesObject = Object.fromEntries(map);
-
-  return stylesObject;
+  return Object.fromEntries(list);
 }
 
 module.exports = convertToObject;

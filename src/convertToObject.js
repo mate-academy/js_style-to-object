@@ -14,18 +14,17 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(word => word.trim())
-    .filter((element) => element)
     .reduce((acc, declaration) => {
-      let [prop, value] = declaration.split(':');
+      const [prop, value] = declaration.split(':');
 
-      prop = prop.trim();
-      value = value.trim();
+      if (value !== undefined) {
+        return {
+          ...acc,
+          [prop.trim()]: value.trim(),
+        };
+      }
 
-      return {
-        ...acc,
-        [prop]: value,
-      };
+      return acc;
     }, {});
 }
 

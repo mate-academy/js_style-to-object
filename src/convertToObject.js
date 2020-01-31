@@ -12,9 +12,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splited = sourceString.split(';');
+  const splittedStyles = sourceString.split(';');
 
-  const result = splited
+  const result = splittedStyles
     .reduce((acc, fullProperty) => {
       let [property, value] = fullProperty.split(':');
 

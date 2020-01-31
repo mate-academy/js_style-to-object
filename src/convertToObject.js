@@ -12,15 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const properties = sourceString
-    .replace(/\n */g, '')
-    .split(';')
-    .filter(item => item.length > 0);
+  const properties = sourceString.split(';');
 
   return properties.reduce((result, currentElement) => {
     const [key, value] = currentElement.split(':');
 
-    result[key.trim()] = value.trim();
+    if (value) {
+      result[key.trim()] = value.trim();
+    }
 
     return result;
   }, {});

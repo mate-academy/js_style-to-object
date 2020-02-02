@@ -1,7 +1,6 @@
 'use strict';
 
-const stylesString = `
-  background-color: #fff;
+const stylesString = `background-color: #fff;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid #e8e8e8;
@@ -26,7 +25,6 @@ const stylesString = `
   -ms-user-select: none;
   user-select: none;
   white-space: nowrap;
-  width: auto;
-`;
+  width: auto;`;
 
 module.exports = stylesString;

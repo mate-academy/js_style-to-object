@@ -12,18 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // const goodCss = {};
-
   return sourceString.split(';')
     .map(item => item.split(':'))
-    .filter(space => space.length === 2)
     .reduce((result, [key, value]) => {
-      result[key.trim()] = value.trim();
+      if (value) {
+        result[key.trim()] = value.trim();
+      }
 
       return result;
     }, {});
-
-  // return goodCss;
 }
 
 module.exports = convertToObject;

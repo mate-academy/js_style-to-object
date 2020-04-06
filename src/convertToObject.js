@@ -15,13 +15,13 @@ function convertToObject(sourceString) {
   const arr = sourceString.split(';');
   const obj = {};
 
-  for (const key of arr) {
-    const prop = key.split(':');
+  arr.map(function(item) {
+    const prop = item.split(':');
 
     if (prop[0].match(/-|[a-z]/)) {
       obj[prop[0].trim()] = prop[1].trim();
     }
-  }
+  });
 
   return obj;
 }

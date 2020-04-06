@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   return sourceString.split(';').reduce((allProperties, property) => {
     const properties = property.split(':');
 
-    if (properties[1] !== undefined) {
+    if (properties.length === 2) {
       allProperties[properties[0].trim()] = properties[1].trim();
     }
 

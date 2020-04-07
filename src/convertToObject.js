@@ -14,7 +14,7 @@
 function convertToObject(sourceString) {
   const stylesCss = {};
 
-  sourceString.split(';').filter(item => {
+  sourceString.split(';').forEach(item => {
     if (item.split(':')[1] === undefined) {
       return false;
     }
@@ -23,4 +23,5 @@ function convertToObject(sourceString) {
 
   return stylesCss;
 }
+
 module.exports = convertToObject;

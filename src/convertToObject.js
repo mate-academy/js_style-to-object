@@ -28,8 +28,6 @@ function convertToObject(sourceString) {
   }
 
   for (const val of valuePropArray) {
-    // eslint-disable-next-line no-console
-    console.log(val);
     objWithProps[val[0]] = val[1];
   }
 

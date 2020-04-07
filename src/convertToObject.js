@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(',')
+  return sourceString.split(';')
     .map(elem => elem.split(':'))
     .reduce((result, elem) => {
       if (elem[0] !== undefined && elem[1] !== undefined) {

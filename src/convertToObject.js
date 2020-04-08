@@ -17,7 +17,9 @@ function convertToObject(sourceString) {
   sourceString.split(';')
     .forEach(property => {
       if (property.trim(':') !== '') {
-        objMap[property.split(':')[0].trim()] = property.split(':')[1].trim();
+        const [key, value] = property.split(':');
+
+        objMap[key.trim()] = value.trim();
       }
     });
 

@@ -13,16 +13,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const temp = sourceString.trim().replace(/\n/g, '').split(';');
   const obj = {};
 
-  for (let i = 0; i < temp.length; i++) {
-    if (temp[i].length > 0 & temp[i].includes(':')) {
-      const parts = temp[i].split(':');
+  sourceString.trim().replace(/\n/g, '').split(';').map(item => {
+    if (item.length > 0 & item.includes(':')) {
+      const parts = item.split(':');
 
       obj[parts[0].trim()] = parts[1].trim();
     }
-  }
+  });
 
   return obj;
 }

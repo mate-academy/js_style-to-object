@@ -24,7 +24,7 @@ function convertToObject(sourceString) {
     const property = arr[i].trim().split(':');
 
     if (property[0] !== '' && property[1] !== '') {
-      outputObject[property[0] + ''] = property[1].trim();
+      outputObject[property[0]] = property[1].trim();
     }
   }
 

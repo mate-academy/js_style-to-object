@@ -12,7 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssProperties = {};
+  const properties = sourceString.match(/.+:.+(?=;)/gmi);
+
+  const clearPairs = properties.map(i => i.replace(/\s{,2}/gm, '').split(':'));
+
+  clearPairs.forEach((propery) => {
+    cssProperties[propery[0].trim()] = propery[1].trim();
+  });
+
+  return cssProperties;
 }
 
 module.exports = convertToObject;

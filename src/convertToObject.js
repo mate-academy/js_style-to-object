@@ -12,15 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceToArray = sourceString.split(';');
-  let cssAloneString = [];
+  const cssArray = sourceString.split(';');
+  let single = [];
   const css = {};
 
-  for (let i = 0; i < sourceToArray.length; i++) {
-    cssAloneString = sourceToArray[i].split(':');
+  for (let i = 0; i < cssArray.length; i++) {
+    single = cssArray[i].split(':');
 
-    if (cssAloneString.length > 1) {
-      css[cssAloneString[0].trim()] = cssAloneString[1].trim();
+    if (single.length > 1) {
+      css[single[0].trim()] = single[1].trim();
     }
   }
 

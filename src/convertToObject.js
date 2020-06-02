@@ -11,8 +11,19 @@
  *
  * @return {object}
  */
+/* eslint-disable */
 function convertToObject(sourceString) {
-  // write your code here
+  const regexp = /([a-z-]+)\s*:\s*([a-z0-9!\-.#() ]+)/g;
+  const obj = {};
+
+  for (const i of sourceString.matchAll(regexp)) {
+    console.log(i[1], i[2]);
+    obj[i[1]] = i[2].trim();
+  }
+
+  return obj;
 }
 
+const str = 'font-weight:400; fda'
+convertToObject(str);
 module.exports = convertToObject;

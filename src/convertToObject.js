@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const nonSpaced = sourceString.split(';');
+
+  const styles = nonSpaced.reduce((ac, el) => {
+    const trimmedEl = el.trim();
+
+    if (trimmedEl.length > 0) {
+      const [key, value] = trimmedEl.split(':');
+
+      ac[key.trim()] = value.trim();
+    }
+
+    return ac;
+  }, {});
+
+  return styles;
 }
 
 module.exports = convertToObject;

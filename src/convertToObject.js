@@ -12,18 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const nonSpaced = sourceString.split(';');
-
-  const styles = nonSpaced.reduce((ac, el) => {
-    const trimmedEl = el.trim();
+  const styles = sourceString.split(';').reduce((style, rule) => {
+    const trimmedEl = rule.trim();
 
     if (trimmedEl.length > 0) {
       const [key, value] = trimmedEl.split(':');
 
-      ac[key.trim()] = value.trim();
+      style[key.trim()] = value.trim();
     }
 
-    return ac;
+    return style;
   }, {});
 
   return styles;

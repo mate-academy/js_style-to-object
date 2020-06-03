@@ -14,13 +14,13 @@
 
 function convertToObject(sourceString) {
   const regexp = /([a-z-]+)\s*:\s*([a-z0-9!\-.()# ]+);/g;
-  const obj = {};
+  const converted = {};
 
   for (const i of sourceString.matchAll(regexp)) {
-    obj[i[1]] = i[2].trim();
+    converted[i[1]] = i[2].trim();
   }
 
-  return obj;
+  return converted;
 }
 
 module.exports = convertToObject;

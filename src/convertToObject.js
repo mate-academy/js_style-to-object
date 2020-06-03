@@ -12,7 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const pattern = /(^\s+)|(\s+(?=:))|(\s+$)/g;
+
+  const object = Object.fromEntries(sourceString
+    .replace(/\s+/g, ' ')
+    .split(';')
+    .map(element => element.replace(pattern, '').split(': '))
+    .filter(element => element.length > 1));
+
+  return object;
 }
 
 module.exports = convertToObject;

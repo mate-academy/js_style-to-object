@@ -13,14 +13,14 @@
  */
 function convertToObject(sourceString) {
   const cssArray = sourceString.split(';');
-  let single = [];
+  let cssProperty = [];
   const css = {};
 
   for (let i = 0; i < cssArray.length; i++) {
-    single = cssArray[i].split(':');
+    cssProperty = cssArray[i].split(':');
 
-    if (single.length > 1) {
-      css[single[0].trim()] = single[1].trim();
+    if (cssProperty.length > 1) {
+      css[cssProperty[0].trim()] = cssProperty[1].trim();
     }
   }
 

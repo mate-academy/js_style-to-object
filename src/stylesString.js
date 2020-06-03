@@ -1,5 +1,5 @@
 'use strict';
-
+/*eslint-disable */
 const stylesString = `
   background-color:      #fff;
 -webkit-border-radius: 5px;
@@ -37,3 +37,4 @@ const stylesString = `
 `;
 
 module.exports = stylesString;
+[ [' position: relative;', 'position', 'relative'], [], ]

@@ -12,16 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.replace(/\s{2,}/g, '').split(';').sort(
-    function(a, b) {
-      if (a > b) {
-        return 1;
-      };
-    });
+  const properties = sourceString.replace(/\s{2,}/g, '').split(';');
   const outputObject = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    const property = arr[i].trim().split(':');
+  for (let i = 0; i < properties.length; i++) {
+    const property = properties[i].trim().split(':');
 
     if (property[0] !== '' && property[1] !== '') {
       outputObject[property[0]] = property[1].trim();

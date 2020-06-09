@@ -14,14 +14,18 @@
 function convertToObject(sourceString) {
   // write your code here
 
+  const emptyLengthItem = 1;
   const allSourseArr = sourceString.split(';\n');
-  const filterSourseArr = allSourseArr.filter(data => data.length > 3);
-  const deleteSpacesArr = filterSourseArr.map(item =>
+  const deleteSpacesArr = allSourseArr.map(item =>
     item.split(':').map(spaces => spaces.trim()));
+  const filterDeleteSpacesArr = deleteSpacesArr.filter(data =>
+    data.length > emptyLengthItem);
   const sourseObj = {};
 
-  for (let i = 0; i < deleteSpacesArr.length; i++) {
-    sourseObj[deleteSpacesArr[i][0]] = deleteSpacesArr[i][1];
+  for (const array in filterDeleteSpacesArr) {
+    const [key, value] = filterDeleteSpacesArr[array];
+
+    sourseObj[key] = value;
   }
 
   return sourseObj;

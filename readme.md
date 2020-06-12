@@ -10,7 +10,7 @@ Create a `Сarnivore` class.
 Carnivore has a `bite` method, which takes a herbivore object and decreases the object's health by 50. The method does not work if it is another сarnivore, or the herbivore is currently hiding.
 
 `Herbivore` and `Сarnivore` should extend an `Animal` class.
-Instances of `Herbivore` and `Carnivore` should increase static `Animal.herbivoresCount` and `Animal.carnivoresCount` counters at initialization.
+
 All alive animals should be in the static `Animal.alive` array.
 If the health of the animal reaches 0, the beast dies and it should be removed from the static array `Animals.alive`.
 
@@ -21,8 +21,6 @@ const panther = new Carnivore('Bagira');
 const lion = new Carnivore('King');
 const rabbit = new Herbivore('Max');
 
-Animal.herbivoresCount === 2
-Animal.carnivoresCount === 2
 Animal.alive === [
   {name: 'Bembi', health: 100, hidden: false},
   {name: 'Bagira', health: 100},
@@ -43,8 +41,6 @@ panther.bite(deer);
 rabbit.hide();
 panther.bite(rabbit);
 
-Animal.herbivoresCount === 2
-Animal.carnivoresCount === 2
 Animal.alive === [
   {name: 'Bagira', health: 100},
   {name: 'King', health: 100},

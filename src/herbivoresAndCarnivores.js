@@ -1,19 +1,19 @@
 'use strict';
 
 class Animal {
-  // Write your code here
+
 }
 
-class Herbivore {
-  // Write your code here
+class Herbivore extends Animal {
+
 }
 
-class Сarnivore {
-  // Write your code here
+class Carnivore extends Animal {
+
 }
 
 module.exports = {
   Animal,
   Herbivore,
-  Сarnivore,
+  Carnivore,
 };

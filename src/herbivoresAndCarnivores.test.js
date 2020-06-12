@@ -71,7 +71,7 @@ describe('Animal', () => {
     const herb = new Herbivore('Zebra');
 
     herb.hide();
-    carn.bite(herb)
+    carn.bite(herb);
 
     expect(herb.health)
       .toBe(100);

@@ -100,14 +100,14 @@ describe('Animal', () => {
     const pig = new Carnivore('Pig');
     const rabbit = new Herbivore('Rabbit');
 
-    expect(Animal.alive.findIndex(item => item.name === bear.name))
-      .not.toBe(-1);
+    expect(Animal.alive.includes(bear))
+      .toBe(true);
 
-    expect(Animal.alive.findIndex(item => item.name === pig.name))
-      .not.toBe(-1);
+    expect(Animal.alive.includes(pig))
+      .toBe(true);
 
-    expect(Animal.alive.findIndex(item => item.name === rabbit.name))
-      .not.toBe(-1);
+    expect(Animal.alive.includes(rabbit))
+      .toBe(true);
   });
 
   it(`Herbivores should be removed from 'Animal.alive' array, 

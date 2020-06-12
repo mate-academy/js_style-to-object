@@ -96,18 +96,18 @@ describe('Animal', () => {
   );
 
   it(`Carnivores and Herbivores should be in 'Animal.alive' array`, () => {
-    const tiger = new Carnivore('Tiger');
-    const wolf = new Carnivore('Wolf');
-    const zebra = new Herbivore('Zebra');
+    const bear = new Carnivore('Bear');
+    const pig = new Carnivore('Pig');
+    const rabbit = new Herbivore('Rabbit');
 
-    expect(Animal.alive.includes(tiger))
-      .toBe(true);
+    expect(Animal.alive.findIndex(item => item.name === bear.name))
+      .not.toBe(-1);
 
-    expect(Animal.alive.includes(wolf))
-      .toBe(true);
+    expect(Animal.alive.findIndex(item => item.name === pig.name))
+      .not.toBe(-1);
 
-    expect(Animal.alive.includes(zebra))
-      .toBe(true);
+    expect(Animal.alive.findIndex(item => item.name === rabbit.name))
+      .not.toBe(-1);
   });
 
   it(`Herbivores should be removed from 'Animal.alive' array, 

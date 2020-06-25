@@ -12,7 +12,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return Object.fromEntries(sourceString.split(';')
+    .map(rule => rule.trim())
+    .filter(Boolean)
+    .map(rule => rule.split(':', 2))
+    .map(parts => [parts[0].trim(), parts[1].trim()])
+  );
 }
 
 module.exports = convertToObject;

@@ -11,21 +11,15 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  const result = {};
+  const properties = sourceString
+    .replace(/ +/g, ' ').split('\n').join('')
+    .split(':').join('":"').split(';').join('","')
+    .split('" ').join('"').split(' "').join('"')
+    .split('"",').join('');
 
-  const properties = sourceString.replace(/ +/g, ' ')
-    .split('\n').join('').split(';').join().split(':').join().split(',');
-
-  for (let i = 0; i < properties.length; i++) {
-    properties[i] = properties[i].trim();
-
-    if (i % 2 === 0 && properties[i]) {
-      result[properties[i]] = properties[i + 1].trim();
-    }
-  }
-
-  return result;
+  return JSON.parse('{"' + properties.slice(1, properties.length - 3) + '"}');
 }
 
 module.exports = convertToObject;

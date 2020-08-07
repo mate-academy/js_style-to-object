@@ -17,16 +17,13 @@ function convertToObject(sourceString) {
   const properties = sourceString.replace(/ +/g, ' ')
     .split('\n').join('').split(';').join().split(':').join().split(',');
 
-  for (const i in properties) {
+  for (let i = 0; i < properties.length; i++) {
     properties[i] = properties[i].trim();
-  }
 
-  for (let i = 0; i < properties.length; i += 2) {
-    if (properties[i]) {
-      result[properties[i]] = properties[i + 1];
+    if (i % 2 === 0 && properties[i]) {
+      result[properties[i]] = properties[i + 1].trim();
     }
   }
-  delete result['\'\''];
 
   return result;
 }

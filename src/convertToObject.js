@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
   return JSON.parse('{"' + sourceString
     .replace(/ +/g, ' ')
     .split('\n').join('')
-    .split(': ').join('":"')
+    .split(':').join('":"')
     .split(';').join('","')
     .split(' "').join('"')
     .split('" ').join('"')

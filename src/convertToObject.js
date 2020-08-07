@@ -13,13 +13,14 @@
  */
 
 function convertToObject(sourceString) {
-  const properties = sourceString
+  return JSON.parse('{"' + sourceString
     .replace(/ +/g, ' ').split('\n').join('')
-    .split(':').join('":"').split(';').join('","')
-    .split('" ').join('"').split(' "').join('"')
-    .split('"",').join('');
-
-  return JSON.parse('{"' + properties.slice(1, properties.length - 3) + '"}');
+    .split(': ').join('":"')
+    .split(';').join('","')
+    .split(' "').join('"')
+    .split('" ').join('"')
+    .split('"",').join('')
+    .trim().slice(0, -3) + '"}');
 }
 
 module.exports = convertToObject;

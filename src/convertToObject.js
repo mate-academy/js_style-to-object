@@ -11,8 +11,16 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  return JSON.parse('{"' + sourceString
+    .replace(/ +/g, ' ')
+    .split('\n').join('')
+    .split(':').join('":"')
+    .split(';').join('","')
+    .split('"').map(prop => prop.trim()).join('"')
+    .split('"",').join('')
+    .slice(0, -3) + '"}');
 }
 
 module.exports = convertToObject;

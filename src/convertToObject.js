@@ -18,10 +18,9 @@ function convertToObject(sourceString) {
     .split('\n').join('')
     .split(':').join('":"')
     .split(';').join('","')
-    .split(' "').join('"')
-    .split('" ').join('"')
+    .split('"').map(prop => prop.trim()).join('"')
     .split('"",').join('')
-    .trim().slice(0, -3) + '"}');
+    .slice(0, -3) + '"}');
 }
 
 module.exports = convertToObject;

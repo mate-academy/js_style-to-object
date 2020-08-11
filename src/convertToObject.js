@@ -14,11 +14,11 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const sourseString = sourceString.split(';')
+  const finalArray = sourceString.split(';')
     .map(element => (element.split(':')))
     .filter(group => (group.length > 1));
 
-  for (const prop of sourseString) {
+  for (const prop of finalArray) {
     result[prop[0].trim()] = prop[1].trim();
   }
 

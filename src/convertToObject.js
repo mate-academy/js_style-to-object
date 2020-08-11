@@ -16,12 +16,15 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .filter(string => string.length > 5)
-    .map(prop => {
-      const separator = prop.indexOf(':');
+    .filter(string => string.length > 0)
+    .map(string => {
+      const prop = string
+        .split(':')
+        .map(part => part.trim());
 
-      result[prop.slice(0, separator).trim()]
-      = prop.slice(separator + 1).trim();
+      if (prop[1]) {
+        result[prop[0]] = prop[1];
+      }
     });
 
   return result;

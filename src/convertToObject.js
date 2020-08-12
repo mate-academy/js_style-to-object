@@ -11,8 +11,25 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const obj = {};
+
+  const props = sourceString.split(';');
+
+  const arr = [];
+
+  for (const prop of props) {
+    arr.push(prop.split(':'));
+  }
+
+  for (const prop of arr) {
+    if (prop[1] !== undefined) {
+      obj[prop[0].trim()] = prop[1].trim();
+    }
+  }
+
+  return obj;
 }
 
 module.exports = convertToObject;

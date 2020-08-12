@@ -15,8 +15,8 @@ function convertToObject(sourceString) {
   const result = {};
 
   const finalArray = sourceString.split(';')
-    .map(element => (element.split(':')))
-    .filter(group => (group.length > 1));
+    .map(element => element.split(':'))
+    .filter(group => group.length > 1);
 
   for (const prop of finalArray) {
     result[prop[0].trim()] = prop[1].trim();

@@ -13,6 +13,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const ans = {};
+
+  sourceString
+    .split(';')
+    .map(key => key
+      .split(':')
+      .map(elem => elem.trim()))
+    .forEach(elem => {
+      elem[0] && (ans[elem[0]] = elem[1]);
+    });
+
+  return ans;
 }
 
 module.exports = convertToObject;

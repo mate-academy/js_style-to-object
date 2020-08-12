@@ -13,18 +13,17 @@
  */
 function convertToObject(sourceString) {
   const arr = sourceString.split(';');
-  const normArr = arr
+  const normalizedStyles = arr
     .map(item => item.trim())
     .filter(item => item.length !== 0)
     .map(item => item.split(':')
-      .map(key => key
-        .trim()));
+      .map(key => key.trim()));
 
   const obj = {};
 
-  normArr.map(item => {
-    obj[item[0]] = item[1];
-  });
+  for (const key of normalizedStyles) {
+    obj[key[0]] = key[1];
+  }
 
   return obj;
 }

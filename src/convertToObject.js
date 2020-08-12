@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const parseCssStyle = sourceString.split(';')
+    .map(space => space.trim())
+    .filter(Boolean)
+    .map(pair => pair.split(':')
+      .map(keyValue => keyValue.trim()));
+
+  const objStyle = parseCssStyle.reduce((acc, [key, value]) => {
+    acc[key] = value;
+
+    return acc;
+  }, {});
+
+  return objStyle;
 }
 
 module.exports = convertToObject;

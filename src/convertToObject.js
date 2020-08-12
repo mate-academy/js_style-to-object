@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
 
   const obj = {};
 
-  arr.map(item => {
+  arr.forEach(item => {
     const prop = item.trim().split(':');
 
     if (prop[0]) {

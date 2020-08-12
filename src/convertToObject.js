@@ -12,16 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objStyle = sourceString.split(';')
+  const parseCssStyle = sourceString.split(';')
     .map(space => space.trim())
-    .filter(space => space)
+    .filter(Boolean)
     .map(pair => pair.split(':')
-      .map(keyValue => keyValue.trim()))
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
+      .map(keyValue => keyValue.trim()));
 
-      return acc;
-    }, {});
+  const objStyle = parseCssStyle.reduce((acc, [key, value]) => {
+    acc[key] = value;
+
+    return acc;
+  }, {});
 
   return objStyle;
 }

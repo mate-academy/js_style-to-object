@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
   stylesArr.forEach((style) => {
     const property = style.split(':');
 
-    if (property[1]) {
+    if (property[0] && property[1]) {
       result[property[0].trim()] = property[1].trim();
     }
   });

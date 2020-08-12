@@ -16,9 +16,9 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .filter(string => string.length > 0)
-    .map(string => {
-      const prop = string
+    .filter(property => property.length > 0)
+    .map(property => {
+      const prop = property
         .split(':')
         .map(part => part.trim());
 

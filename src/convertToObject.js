@@ -19,7 +19,9 @@ function convertToObject(sourceString) {
     .map(property => property
       .split(':')
       .map(elem => elem.trim()))
-    .forEach(elem => (elem[0]) && (result[elem[0]] = elem[1]));
+    .forEach(elem => {
+      (elem[0]) && (result[elem[0]] = elem[1]);
+    });
 
   return result;
 }

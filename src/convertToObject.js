@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const refactored = {};
+  const refactoredStyles = {};
 
   const arr = sourceString.split(';');
 
@@ -20,11 +20,11 @@ function convertToObject(sourceString) {
     const value = property.trim().split(':');
 
     if (value[0]) {
-      refactored[value[0].trim()] = value[1].trim();
+      refactoredStyles[value[0].trim()] = value[1].trim();
     }
   });
 
-  return refactored;
+  return refactoredStyles;
 }
 
 module.exports = convertToObject;

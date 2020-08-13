@@ -16,10 +16,10 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .filter(x => Boolean(x.trim()))
-    .map((y) => y
+    .filter(elements => Boolean(elements.trim()))
+    .map((classes) => classes
       .split(':')
-      .map(z => z.trim())
+      .map(value => value.trim())
     )
     .forEach(style => {
       resultObj[style[0]] = style[1];

@@ -12,7 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const params = sourceString.split(';')
+    .filter(param => param.length > 4);
+
+  const itemParam = params
+    .map(item => item.split(':')
+      .map(x => x.trim()));
+
+  const result = Object.fromEntries(itemParam);
+
+  return result;
 }
 
 module.exports = convertToObject;

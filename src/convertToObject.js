@@ -12,11 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitedProp = sourceString.split(';');
+  const splittedProp = sourceString.split(';');
 
   const objectProp = {};
 
-  splitedProp.map(item => {
+  splittedProp.forEach(item => {
     const eachProp = item.split(':');
 
     if (eachProp[0] && eachProp[1]) {

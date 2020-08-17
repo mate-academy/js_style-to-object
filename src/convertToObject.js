@@ -15,9 +15,9 @@ function convertToObject(sourceString) {
   const arr = sourceString.split(';\n').filter(elem => elem.includes(':'));
   const obj = {};
 
-  for (const elem of arr) {
+  arr.forEach(function(elem) {
     obj[elem.split(': ')[0].trim()] = elem.split(': ')[1].trim();
-  }
+  });
 
   return obj;
 }

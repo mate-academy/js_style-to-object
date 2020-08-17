@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   const resArr = sourceString.split(';')
     .map(prop => prop.split(':'))
     .map(arrElem => arrElem.map(str => str.trim()))
-    .filter(e => e.length > 1);
+    .filter(elem => elem.length > 1);
   const res = {};
 
   for (const key in resArr) {

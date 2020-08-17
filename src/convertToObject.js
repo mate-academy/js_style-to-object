@@ -26,7 +26,6 @@ function convertToObject(sourceString) {
     const value = string.split(':');
 
     object[value[0].trim()] = value[1].trim();
-    string++;
   }
 
   return object;

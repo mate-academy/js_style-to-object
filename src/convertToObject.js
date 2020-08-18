@@ -16,11 +16,10 @@ function convertToObject(sourceString) {
 
   stringToArr = stringToArr.map((elem) => elem.split(':'));
 
-  for (let i = 0; i < stringToArr.length; i++) {
-    for (let j = 0; j < stringToArr[i].length; j++) {
-      stringToArr[i][j] = stringToArr[i][j].trim();
-    }
-  }
+  stringToArr = stringToArr
+    .map(stringToArrElem => stringToArrElem
+      .map(elem => elem.trim())
+    );
 
   const styleObj = {};
 

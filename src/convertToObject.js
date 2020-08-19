@@ -12,6 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const stylesObj = {};
   let stylesArr = sourceString.split(';');
 
   stylesArr = stylesArr.map(element => {
@@ -19,19 +20,11 @@ function convertToObject(sourceString) {
 
     valuePair = valuePair.map(value => value.trim());
 
+    if (valuePair[0] !== '') {
+      stylesObj[valuePair[0]] = valuePair[1];
+    }
+
     return valuePair.join(':');
-  });
-
-  while (stylesArr.includes('')) {
-    stylesArr.splice(stylesArr.indexOf(''), 1);
-  };
-
-  const stylesObj = {};
-
-  stylesArr.forEach(style => {
-    const stylesPair = style.split(':');
-
-    stylesObj[stylesPair[0]] = stylesPair[1];
   });
 
   return stylesObj;

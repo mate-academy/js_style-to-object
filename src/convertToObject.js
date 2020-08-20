@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const out = {};
+  const strMod = sourceString
+    .split(';')
+    .join().split(':')
+    .join().split(',')
+    .map(value => value.trim());
+
+  const strFiltered = strMod.filter(value => value.length > 0);
+
+  for (let i = 0; i < strFiltered.length; i += 2) {
+    out[strFiltered[i]] = strFiltered[i + 1];
+  };
+
+  return out;
 }
 
 module.exports = convertToObject;

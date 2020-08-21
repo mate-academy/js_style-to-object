@@ -14,12 +14,11 @@
 function convertToObject(sourceString) {
   const properties = {};
 
-  sourceString.split(';')
-    .map((line) => line.split(':'))
-    .filter((element) => element.length > 1)
-    .forEach(function(property) {
-      properties[property[0].trim()] = property[1].trim();
-    });
+  sourceString.split(';').forEach((item) => {
+    if (item.includes(':')) {
+      properties[item.split(':')[0].trim()] = item.split(':')[1].trim();
+    }
+  });
 
   return properties;
 }

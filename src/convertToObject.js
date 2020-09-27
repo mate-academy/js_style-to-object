@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const rawProperies = sourceString.split(';');
+  const properties = rawProperies.filter(property => {
+    return property.includes(':');
+  });
+
+  const cssSelectorObj = {};
+
+  for (const property of properties) {
+    const [key, value] = property.split(':');
+
+    cssSelectorObj[key.trim()] = value.trim();
+  }
+
+  return cssSelectorObj;
 }
 
 module.exports = convertToObject;

@@ -13,10 +13,10 @@
  */
 
 function convertToObject(sourceString) {
-  const sourceArray = sourceString.split(';');
-  const resultObject = {};
+  const splitedSourceString = sourceString.split(';');
+  const convertedToObject = {};
 
-  for (let item of sourceArray) {
+  for (let item of splitedSourceString) {
     item.trim();
 
     item = item.split(': ');
@@ -31,10 +31,10 @@ function convertToObject(sourceString) {
     key = key.trim();
     value = value.trim();
 
-    resultObject[key] = value;
+    convertedToObject[key] = value;
   }
 
-  return resultObject;
+  return convertedToObject;
 }
 
 module.exports = convertToObject;

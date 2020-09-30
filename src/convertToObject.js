@@ -22,7 +22,7 @@ function convertToObject(sourceString) {
       const key = item[0].trim();
       const value = item[1].trim();
 
-      selectorObj[`${key}`] = value;
+      selectorObj[key] = value;
     }
   }
 

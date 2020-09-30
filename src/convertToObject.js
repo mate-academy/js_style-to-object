@@ -15,10 +15,10 @@ function convertToObject(sourceString) {
   const sourceStringSplitted = sourceString.split(';');
   const sourceStringConverted = {};
 
-  for (const el of sourceStringSplitted) {
-    if (el.trim()) {
-      const property = el.split(':')[0].trim();
-      const value = el.split(':')[1].trim();
+  for (const CSSrule of sourceStringSplitted) {
+    if (CSSrule.trim()) {
+      const property = CSSrule.split(':')[0].trim();
+      const value = CSSrule.split(':')[1].trim();
 
       sourceStringConverted[property] = value;
     }

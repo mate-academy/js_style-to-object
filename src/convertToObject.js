@@ -14,9 +14,9 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const array = sourceString.split(';');
+  const splitStr = sourceString.split(';');
 
-  array.forEach(property => {
+  splitStr.forEach(property => {
     const value = property.trim().split(':');
 
     if (value[0]) {

@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .map(rule => {
+    .forEach(rule => {
       const splitedRule = rule.trim().split(':');
 
       if (splitedRule.length > 1) {

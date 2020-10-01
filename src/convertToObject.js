@@ -14,7 +14,7 @@
 function convertToObject(sourceString) {
   const cssProperties = {};
   const styles = sourceString.split(';')
-    .map(i => i.split(':').map(j => j.trim()));
+    .map(stylesItem => stylesItem.split(':').map(property => property.trim()));
 
   for (let i = 0; i < styles.length; i++) {
     const [key, value] = styles[i];

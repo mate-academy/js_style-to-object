@@ -12,8 +12,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssObject = {};
-  const splittedString = sourceString.split(';');
+  const css = {};
+  const splitedSource = sourceString.split(';');
 
   splittedString.forEach(properties => {
     const property = properties.split(':');

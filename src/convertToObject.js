@@ -11,11 +11,11 @@ function convertToObject(sourceString) {
 
   parameters.map(parameter => {
     const splitParameter = parameter.split(':');
-    const first = splitParameter[0];
-    const second = splitParameter[1];
+    const key = splitParameter[0];
+    const value = splitParameter[1];
 
-    if (first && second) {
-      styleParameters[first.trim()] = second.trim();
+    if (key && value) {
+      styleParameters[key.trim()] = value.trim();
     }
   });
 

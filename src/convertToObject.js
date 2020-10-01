@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const cssObject = {};
 
   const rules = sourceString.split(';');
 
@@ -25,11 +25,11 @@ function convertToObject(sourceString) {
     if (key && value) {
       key = key.trim();
       value = value.trim();
-      result[key] = value;
+      cssObject[key] = value;
     }
   });
 
-  return result;
+  return cssObject;
 }
 
 module.exports = convertToObject;

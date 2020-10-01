@@ -13,11 +13,11 @@
  */
 function convertToObject(sourceString) {
   const cssProperties = {};
-  const arrayStyles = sourceString.split(';')
+  const styles = sourceString.split(';')
     .map(i => i.split(':').map(j => j.trim()));
 
-  for (let i = 0; i < arrayStyles.length; i++) {
-    const [key, value] = arrayStyles[i];
+  for (let i = 0; i < styles.length; i++) {
+    const [key, value] = styles[i];
 
     if (key.length > 0) {
       cssProperties[key] = value;

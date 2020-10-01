@@ -12,21 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceStringPars = sourceString.split(';');
-  const cssRuls = {};
+  const sourceStringParse = sourceString.split(';');
+  const cssRules = {};
 
-  sourceStringPars
-    .forEach(rule => {
-      const rulePars = rule
-        .split(':')
-        .map(ruleItem => ruleItem.trim());
+  sourceStringParse.forEach(rule => {
+    const ruleParse = rule.split(':').map(ruleItem => ruleItem.trim());
 
-      if (rulePars[0] && rulePars[1]) {
-        cssRuls[rulePars[0]] = rulePars[1];
-      }
-    });
+    if (ruleParse[0] && ruleParse[1]) {
+      cssRules[ruleParse[0]] = ruleParse[1];
+    }
+  });
 
-  return cssRuls;
+  return cssRules;
 }
 
 module.exports = convertToObject;

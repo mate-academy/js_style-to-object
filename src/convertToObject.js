@@ -13,6 +13,7 @@
  */
 function convertToObject(sourceString) {
   const css = {};
+
   const splittedSource = sourceString.split(';');
 
   splittedSource.forEach(properties => {

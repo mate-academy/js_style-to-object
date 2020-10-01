@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sourceStringParse = sourceString.split(';');
+  const cssRules = {};
+
+  sourceStringParse.forEach(rule => {
+    const ruleParse = rule.split(':').map(ruleItem => ruleItem.trim());
+
+    if (ruleParse[0] && ruleParse[1]) {
+      cssRules[ruleParse[0]] = ruleParse[1];
+    }
+  });
+
+  return cssRules;
 }
 
 module.exports = convertToObject;

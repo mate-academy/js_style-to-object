@@ -17,10 +17,7 @@ function convertToObject(sourceString) {
   const rules = sourceString.split(';');
 
   rules.forEach(rule => {
-    const keyAndValue = rule.split(':');
-
-    let key = keyAndValue[0];
-    let value = keyAndValue[1];
+    let [key, value] = rule.split(':');
 
     if (key && value) {
       key = key.trim();

@@ -13,10 +13,10 @@
  */
 function convertToObject(sourceString) {
   const convertedToObject = {};
-  const splitedSourceString = sourceString.split(';');
 
-  const arrayOfProperties = splitedSourceString.map(string =>
-    string.trim().split(':'));
+  const arrayOfProperties = sourceString.split(';').map(string => {
+    return string.trim().split(':');
+  });
 
   for (const element of arrayOfProperties) {
     if (element[0] === '') {

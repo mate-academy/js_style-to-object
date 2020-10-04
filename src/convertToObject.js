@@ -25,9 +25,7 @@ function convertToObject(sourceString) {
     };
   };
 
-  const result = newString.reduce(callback, 0);
-
-  return result;
+  return newString.reduce(callback, 0);
 }
 
 module.exports = convertToObject;

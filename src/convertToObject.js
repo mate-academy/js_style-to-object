@@ -13,21 +13,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const cssArr = sourceString.split(';');
-  const cssObj = {};
+  const splitedString = sourceString.split(';');
+  const convertedObject = {};
 
-  for (let param of cssArr) {
-    param = param.split(':');
+  for (let property of splitedString) {
+    property = property.split(':');
 
-    if (param[0] && param[1]) {
-      const key = param[0].trim();
-      const value = param[1].trim();
+    if (property[0] && property[1]) {
+      const key = property[0].trim();
+      const value = property[1].trim();
 
-      cssObj[key] = value;
+      convertedObject[key] = value;
     }
   }
 
-  return cssObj;
+  return convertedObject;
 }
 
 module.exports = convertToObject;

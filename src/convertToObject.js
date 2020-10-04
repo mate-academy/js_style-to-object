@@ -13,22 +13,18 @@
  */
 function convertToObject(sourceString) {
   const splitedString = sourceString.trim().split(';');
-
-  const notFarmatedProperties = [];
-
-  splitedString.forEach(property =>
-    notFarmatedProperties.push(property.trim()));
-
   const convertedString = {};
 
-  notFarmatedProperties.map(property => {
-    if (property !== '') {
-      const key = (property.slice(0, property.indexOf(':'))).trimEnd();
-      const value = (property.slice(property.indexOf(':') + 1)).trimStart();
+  for (let property of splitedString) {
+    property = property.split(':');
 
-      convertedString[key] = value;
+    if (property[0] && property[1]) {
+      const propertyName = property[0].trim();
+      const propertyValue = property[1].trim();
+
+      convertedString[propertyName] = propertyValue;
     }
-  });
+  }
 
   return convertedString;
 }

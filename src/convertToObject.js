@@ -12,7 +12,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  let newString = sourceString.split(';');
+
+  newString = newString.map(prop => prop.split(':'));
+  newString = newString.map(prop => prop.map(x => x.trim()));
+  newString = newString.filter(prop => prop.length > 1);
+
+  const callback = (prev, x) => {
+    return {
+      ...prev,
+      [x[0]]: x[1],
+    };
+  };
+
+  const result = newString.reduce(callback, 0);
+
+  return result;
 }
 
 module.exports = convertToObject;

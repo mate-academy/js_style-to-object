@@ -12,7 +12,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleMap = sourceString
+    .split('\n')
+    .map(el => el.trim())
+    .filter(
+      el => el !== '' && el !== ';'
+    ).map(
+      el => el.split(':').map(item => item.trim()
+      ));
+
+  const styleList = {};
+
+  for (const [ key, value ] of styleMap) {
+    styleList[key] = value.substr(0, value.length - 1).trim();
+  }
+
+  return styleList;
 }
 
 module.exports = convertToObject;

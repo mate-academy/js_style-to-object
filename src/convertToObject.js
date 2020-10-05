@@ -15,10 +15,11 @@ function convertToObject(sourceString) {
   const styleMap = sourceString
     .split('\n')
     .map(el => el.trim())
-    .filter(el =>
-      el !== '' && el !== ';').map(el => (
-      el.split(':').map(item => item.trim())
-    ));
+    .filter(
+      el => el !== '' && el !== ';'
+    ).map(
+      el => el.split(':').map(item => item.trim()
+      ));
 
   const styleList = {};
 

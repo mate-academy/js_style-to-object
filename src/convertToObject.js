@@ -15,20 +15,17 @@ function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
   const convertedToObject = {};
 
-  for (let declaration of sourceArray) {
-    declaration.trim();
+  for (let property of sourceArray) {
+    property.trim();
 
-    declaration = declaration.split(': ');
+    property = property.split(': ');
 
-    if (!declaration[0] || !declaration[1]) {
+    if (!property[0] || !property[1]) {
       continue;
     }
 
-    let key = declaration[0].split('').splice(1).join('');
-    let value = declaration[1];
-
-    key = key.trim();
-    value = value.trim();
+    const key = property[0].split('').splice(1).join('').trim();
+    const value = property[1].trim();
 
     convertedToObject[key] = value;
   }

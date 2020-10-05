@@ -16,12 +16,12 @@ function convertToObject(sourceString) {
   const splitedString = sourceString.split(';');
   const convertedObject = {};
 
-  for (let property of splitedString) {
-    property = property.split(':');
+  for (const property of splitedString) {
+    const splitedProperty = property.split(':');
 
-    if (property[0] && property[1]) {
-      const key = property[0].trim();
-      const value = property[1].trim();
+    if (splitedProperty[0] && splitedProperty[1]) {
+      const key = splitedProperty[0].trim();
+      const value = splitedProperty[1].trim();
 
       convertedObject[key] = value;
     }

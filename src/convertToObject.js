@@ -12,20 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfCssRules = sourceString.split(';');
+  const cssRule = sourceString
+    .split(';')
+    .map(element => element.split(':'))
+    .reduce((acc, property) => {
+      if (property[0] && property[1]) {
+        acc[property[0].trim()] = property[1].trim();
+      }
 
-  const mappedCssRules = arrayOfCssRules.map(element =>
-    element.split(':'));
+      return acc;
+    }, {});
 
-  const cssRules = mappedCssRules.reduce((acc, startItem) => {
-    if (startItem[0] && startItem[1]) {
-      acc[startItem[0].trim()] = startItem[1].trim();
-    }
-
-    return acc;
-  }, {});
-
-  return cssRules;
+  return cssRule;
 }
 
 module.exports = convertToObject;

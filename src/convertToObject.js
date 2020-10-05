@@ -15,12 +15,12 @@ function convertToObject(sourceString) {
   const splitedString = sourceString.trim().split(';');
   const convertedString = {};
 
-  for (let property of splitedString) {
-    property = property.split(':');
+  for (const property of splitedString) {
+    const splitedProperty = property.split(':');
 
-    if (property[0] && property[1]) {
-      const propertyName = property[0].trim();
-      const propertyValue = property[1].trim();
+    if (splitedProperty[0] && splitedProperty[1]) {
+      const propertyName = splitedProperty[0].trim();
+      const propertyValue = splitedProperty[1].trim();
 
       convertedString[propertyName] = propertyValue;
     }

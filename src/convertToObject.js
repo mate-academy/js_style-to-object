@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   // write your code here
   const formattedSource = sourceString.split(';')
     .map(property => {
-      return property.trim().split(':');
+      return property.split(':');
     })
     .filter(element => element.length === 2)
     .map(element => element.map(property => property.trim()));

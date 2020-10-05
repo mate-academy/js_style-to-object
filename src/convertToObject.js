@@ -12,11 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let newString = sourceString.split(';');
+  let cssProperties = sourceString.split(';');
 
-  newString = newString.map(prop => prop.split(':'));
-  newString = newString.map(prop => prop.map(x => x.trim()));
-  newString = newString.filter(prop => prop.length > 1);
+  cssProperties = cssProperties.map(prop => prop.split(':'));
+  cssProperties = cssProperties.map(prop => prop.map(x => x.trim()));
+  cssProperties = cssProperties.filter(prop => prop.length > 1);
 
   const callback = (prev, x) => {
     return {
@@ -25,7 +25,7 @@ function convertToObject(sourceString) {
     };
   };
 
-  return newString.reduce(callback, 0);
+  return cssProperties.reduce(callback, 0);
 }
 
 module.exports = convertToObject;

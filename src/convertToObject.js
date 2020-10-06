@@ -13,6 +13,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const formattedSource = sourceString.split(';')
+    .map(property => property.split(':'))
+    .filter(element => element.length === 2)
+    .map(element => element
+      .map(property => property.trim()));
+
+  return formattedSource.reduce((prev, property) => {
+    return {
+      ...prev,
+      [property[0]]: property[1],
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

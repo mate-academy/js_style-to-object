@@ -15,7 +15,6 @@ function convertToObject(sourceString) {
   const cssProperties = sourceString.split(';');
   const cssObject = {};
   const objectEntries= [];
-
   cssProperties.forEach(element => objectEntries.push(element.split(':')));
 
   for (let i = 0; i < objectEntries.length; i++) {

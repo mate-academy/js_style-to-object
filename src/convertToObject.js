@@ -12,19 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const array = sourceString.split(';');
-  const cssObj = {};
-  const splittedArray = [];
+  const cssProperties = sourceString.split(';');
+  const cssObject = {};
+  const objectEntries= [];
 
-  array.forEach(element => splittedArray.push(element.split(':')));
+  cssProperties.forEach(element => objectEntries.push(element.split(':')));
 
-  for (let i = 0; i < splittedArray.length; i++) {
-    if (splittedArray[i][0] && splittedArray[i][1]) {
-      cssObj[splittedArray[i][0].trim()] = splittedArray[i][1].trim();
+  for (let i = 0; i < objectEntries.length; i++) {
+    if (objectEntries[i][0] && objectEntries[i][1]) {
+      cssObject[objectEntries[i][0].trim()] = objectEntries[i][1].trim();
     }
   }
 
-  return cssObj;
+  return cssObject;
 }
 
 module.exports = convertToObject;

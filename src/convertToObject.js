@@ -13,6 +13,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const props = sourceString.split(';');
+  const styleObject = {};
+
+  props.map(prop => {
+    const i = prop.trim().split(':');
+
+    if (i.length > 1) {
+      const key = i[0].trim();
+      const value = i[1].trim();
+
+      styleObject[key] = value;
+    }
+  });
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

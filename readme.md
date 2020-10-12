@@ -28,8 +28,8 @@ Animal.alive === [
   {name: 'Max', health: 100, hidden: false},
 ];
 
-tiger.bite(deer);
-panther.bite(tiger);
+lion.bite(deer);
+panther.bite(lion);
 Animal.alive === [
   {name: 'Bembi', health: 50},
   {name: 'Bagira', health: 100},

@@ -11,8 +11,20 @@
  *
  * @return {object}
  */
+// eslint-disable-next-line space-before-function-paren
 function convertToObject(sourceString) {
-  // write your code here
+  const obj = {};
+  const props = sourceString.split(';');
+
+  props.forEach((prop) => {
+    if (prop.trim() && prop !== ';') {
+      const keyValues = prop.split(':');
+
+      obj[keyValues[0].trim()] = keyValues[1].trim();
+    }
+  });
+
+  return obj;
 }
 
 module.exports = convertToObject;

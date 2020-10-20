@@ -36,4 +36,34 @@ const stylesString = `
   width: auto;
 `;
 
+/*
+const styleToObject = (source) => {
+  // const result = {};
+
+  return source.split(';')
+    .map(rule => rule.split(':'))
+    .filter(pair => pair.length === 2)
+    .reduce(
+      // деструктуризация
+      (result, [key, value]) => {
+        result[key.trim()] = value.trim();
+        return result;
+      },
+
+      {}
+    );
+};
+*/
+
+/**
+ const styleToObject = (source) => {
+  return Object.fromEntries(
+    source.split(';')
+      .map(rule => rule.split(':'))
+      .filter(pair => pair.length === 2)
+      .map(([key, value]) => [key.trim(), value.trim()])
+  );
+};
+ */
+
 module.exports = stylesString;

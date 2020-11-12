@@ -13,16 +13,15 @@
  */
 function convertToObject(sourceString) {
   const resultObject = {};
-  let propArray = sourceString.split(';');
-
-  propArray = propArray.map(
-    prop => prop.slice(
-      prop.lastIndexOf('\n') + 1, prop.length));
-  propArray = propArray.map(prop => prop.trim());
-  propArray = propArray.filter(prop => prop !== '');
+  const propArray = sourceString.split(';');
 
   propArray.forEach(function(prop) {
-    resultObject[(prop.split(':')[0]).trim()] = (prop.split(':')[1]).trim();
+    const key = (prop.split(':')[0]);
+    const value = (prop.split(':')[1]);
+
+    if (key !== undefined && value !== undefined) {
+      resultObject[key.trim()] = value.trim();
+    }
   });
 
   return resultObject;

@@ -14,48 +14,18 @@
 function convertToObject(sourceString) {
   // write your code here
 
-  const splited = sourceString.split(';');
-  const trimed = [];
+  const result = {};
+  const arr = sourceString.split(';');
 
-  splited.forEach(element => {
-    trimed.push(element.trim());
+  arr.forEach(value => {
+    const styles = value.split(':');
+
+    if (styles[0] && styles[1]) {
+      result[styles[0].trim()] = styles[1].trim();
+    }
   });
 
-  const splitedByColon = [];
-
-  trimed.forEach(element => {
-    splitedByColon.push(element.split(':'));
-  });
-
-  const eachTrimed = [];
-
-  for (let i = 0; i < splitedByColon.length; i++) {
-    splitedByColon[i].forEach(element => {
-      eachTrimed.push(element.trim());
-    });
-  }
-
-  const filtredFromEmpty = eachTrimed.filter(element => element !== '');
-
-  const keys = [];
-
-  for (let i = 0; i < filtredFromEmpty.length; i += 2) {
-    keys.push(filtredFromEmpty[i]);
-  }
-
-  const values = [];
-
-  for (let i = 1; i < filtredFromEmpty.length; i += 2) {
-    values.push(filtredFromEmpty[i]);
-  }
-
-  const newObj = {};
-
-  for (let i = 0; i < values.length; i++) {
-    newObj[keys[i]] = values[i];
-  }
-
-  return newObj;
+  return result;
 }
 
 module.exports = convertToObject;

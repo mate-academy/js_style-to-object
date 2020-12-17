@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  let arr = sourceString.split(';');
+
+  arr = arr.map(property => property.trim());
+  arr = arr.filter(property => property.length > 0);
+
+  arr = arr.map(function makeArrays(property) {
+    return property.split(':');
+  });
+
+  return arr.reduce((total, property) => {
+    return {
+      ...total,
+      [property[0].trim()]: property[1].trim(),
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

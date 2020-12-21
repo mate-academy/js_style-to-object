@@ -12,25 +12,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objString = {};
-  let prop = '';
-
-  sourceString
+  const arrayStyles = sourceString
     .split(';')
-    .map(styles => styles.split(':'))
-    .flat()
-    .map((el) => el.trim())
-    .filter(elem => elem.length > 0)
-    .forEach((item, index) => {
-      if (index % 2 === 0) {
-        prop = item;
-      } else {
-        objString[prop] = item;
-        prop = '';
-      }
-    });
+    .map(styles => styles.split(':')
+      .map(elements => elements.trim()));
 
-  return objString;
+  const obsStyles = arrayStyles.reduce(createObj, {});
+
+  function createObj(obj, style) {
+    if (style[0] === '') {
+      return obj;
+    }
+
+    obj[style[0]] = style[1];
+
+    return obj;
+  }
+
+  return obsStyles;
 }
 
 module.exports = convertToObject;

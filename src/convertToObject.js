@@ -1,5 +1,7 @@
 'use strict';
 
+// const { valueOf } = require("./stylesString");
+
 /**
  * Implement convertToObject function:
  *
@@ -12,7 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arr = sourceString.split(';')
+    .map(item => item.split(':').map(prop => prop.trim()));
+
+  const obj = {};
+
+  for (const key of arr) {
+    if (key.length > 1) {
+      obj[key[0]] = key[1];
+    }
+  }
+
+  return obj;
 }
 
 module.exports = convertToObject;

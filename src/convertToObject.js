@@ -13,13 +13,12 @@
  */
 function convertToObject(sourceString) {
   const filter = sourceString
-    .split(';')
-    .map(each => Array(each));
+    .split(';');
 
   let arr = [];
 
   for (const each of filter) {
-    arr.push(String(each).split(':').map(str => str.trim()));
+    arr.push(each.split(':').map(str => str.trim()));
   }
 
   arr = arr.filter(elem => elem.length > 1);

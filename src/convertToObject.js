@@ -12,20 +12,7 @@
  * @return {object}
  */
 
-// const addClass = (el, classToAdd) => {
-//   el.className += ` ${classToAdd}`;
-//
-//   const classes = el.className.split(' ');
-//
-//   let final = [...new Set(classes)];
-//
-//   final = final.filter(word => word !== '');
-//
-//   el.className = final.join(' ');
-// };
 function convertToObject(sourceString) {
-  // write your code here
-
   const styles = sourceString
     .split(';')
     .map(rule => rule

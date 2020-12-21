@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssClass = {};
+
+  const splitedProperties = sourceString
+    .split(';')
+    .map(el => el.split(':'))
+    .map(x => x.map(y => y.trim()));
+
+  for (const item of splitedProperties) {
+    if (item.length > 1) {
+      cssClass[item[0]] = item[1];
+    }
+  }
+
+  return cssClass;
 }
 
 module.exports = convertToObject;

@@ -12,14 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let arr = sourceString.split(';');
-
-  arr = arr.map(property => property.trim());
-  arr = arr.filter(property => property.length > 0);
-
-  arr = arr.map(function makeArrays(property) {
-    return property.split(':');
-  });
+  const arr = sourceString.split(';')
+    .map(property => property.trim())
+    .filter(property => property.length > 0)
+    .map(property => property.split(':'));
 
   return arr.reduce((total, property) => {
     return {

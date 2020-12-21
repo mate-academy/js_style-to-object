@@ -12,21 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
+  const cssClass = {};
 
-  const arr = sourceString.split(';').map(
-    el => el.split(':')
-  ).filter(a => a.length > 1);
+  const splitedProperties = sourceString
+    .split(';')
+    .map(el => el.split(':'))
+    .map(x => x.map(y => y.trim()));
 
-  const arr2 = arr.map(el =>
-    [el[0].trim(), el[1].trim()]
-  );
-
-  for (const item of arr2) {
-    obj[item[0]] = item[1];
+  for (const item of splitedProperties) {
+    if (item.length > 1) {
+      cssClass[item[0]] = item[1];
+    }
   }
 
-  return obj;
+  return cssClass;
 }
 
 module.exports = convertToObject;

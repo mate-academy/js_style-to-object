@@ -11,8 +11,32 @@
  *
  * @return {object}
  */
+
+// const addClass = (el, classToAdd) => {
+//   el.className += ` ${classToAdd}`;
+//
+//   const classes = el.className.split(' ');
+//
+//   let final = [...new Set(classes)];
+//
+//   final = final.filter(word => word !== '');
+//
+//   el.className = final.join(' ');
+// };
 function convertToObject(sourceString) {
   // write your code here
+
+  const styles = sourceString
+    .split(';')
+    .map(rule => rule
+      .trim()
+      .split(':').map(
+        style => style.trim()
+      )
+    )
+    .filter(arr => arr[0] !== '');
+
+  return Object.fromEntries(styles);
 }
 
 module.exports = convertToObject;

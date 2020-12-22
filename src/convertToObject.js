@@ -1,18 +1,18 @@
 'use strict';
 
-/**
- * Implement convertToObject function:
- *
- * Function takes string with styles
- * and returns object where CSS properties are keys
- * and values are the values of related CSS properties
-
- * @param {string} sourceString
- *
- * @return {object}
- */
 function convertToObject(sourceString) {
-  // write your code here
+  const arrayString = sourceString.split(';');
+  const result = {};
+
+  for (let string of arrayString) {
+    string = string.split(':').map(word => word.trim());
+
+    if (string[0].length > 0) {
+      result[string[0]] = string[1];
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

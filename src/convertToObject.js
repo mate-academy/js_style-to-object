@@ -13,15 +13,18 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const ofSArr = sourceString.split(';');
-  const opArray = ofSArr.map(x => x.trim().split(':').map(y => y.trim()));
-  const filteredArray = opArray.filter(el => el.length > 1);
+  const sourceStringSplitInArray = sourceString.split(';');
+  const ArrayOfSubArraysPropValue = sourceStringSplitInArray.map(PropValue =>
+    PropValue.split(':'));
 
-  function callback(el) {
-    result[el[0]] = el[1];
+  function objectFiller(el) {
+    if (el.length < 2) {
+      return;
+    }
+    result[el[0].trim()] = el[1].trim();
   }
 
-  filteredArray.forEach(callback);
+  ArrayOfSubArraysPropValue.forEach(objectFiller);
 
   return result;
 }

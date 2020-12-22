@@ -12,18 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const res = {};
-
-  sourceString
+  return sourceString
     .split(';')
     .map(s => s.trim())
     .filter(e => e)
     .map(s => s.split(':').map(props => props.trim()))
-    .forEach(e => {
-      res[e[0]] = e[1];
-    });
-
-  return res;
+    .reduce((obj, e) => ({
+      ...obj,
+      [e[0]]: e[1],
+    }), {});
 }
 
 module.exports = convertToObject;

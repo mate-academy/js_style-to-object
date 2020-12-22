@@ -12,15 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  // write your code here
+  const pairs = sourceString.split(';');
   const result = {};
-  let pairs = sourceString.split(';');
+  let array = [];
 
-  pairs = pairs.map(e => e.trim()).filter(el => el.length > 0);
+  for (const item of pairs) {
+    array.push(item.split(':').map(word => word.trim()));
+  }
 
-  for (let i = 0; i < pairs.length; i++) {
-    const valueKey = pairs[i].split(':');
+  array = array.filter(element => element.length > 1);
 
-    result[valueKey[0].trim()] = valueKey[1].trim();
+  for (const item of array) {
+    result[item[0]] = item[1];
   }
 
   return result;

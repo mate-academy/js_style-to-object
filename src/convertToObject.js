@@ -12,20 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArray = sourceString
-    .split('\n')
-    .join('')
+  const sourceOfStyles = sourceString
     .split(';')
-    .map(param => param.split(':')
-      .map(part => part
-        .split(' ')
-        .filter(x => x.length > 0)
-        .join(' ')))
-    .filter(param => param.length === 2);
+    .map(param => param
+      .split(':')
+    );
   const result = {};
 
-  for (const param of sourceArray) {
-    result[param[0]] = param[1];
+  for (const param of sourceOfStyles) {
+    if (param[1]) {
+      result[param[0].trim()] = param[1].trim();
+    }
   }
 
   return result;

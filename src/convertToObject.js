@@ -13,17 +13,19 @@
  */
 
 function convertToObject(sourceString) {
-  const styles = sourceString
-    .split(';')
-    .map(rule => rule
-      .trim()
-      .split(':').map(
-        style => style.trim()
-      )
-    )
-    .filter(arr => arr[0] !== '');
+  const stylesObj = {};
 
-  return Object.fromEntries(styles);
+  sourceString
+    .split(';')
+    .map(stile => stile.trim())
+    .filter(style => style.length > 0)
+    .forEach(rule => {
+      const ruleArr = rule.split(':');
+
+      stylesObj[ruleArr[0].trim()] = ruleArr[1].trim();
+    });
+
+  return stylesObj;
 }
 
 module.exports = convertToObject;

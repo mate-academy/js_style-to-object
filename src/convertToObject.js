@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
 
   sourceString.split(';')
     .map(value => value.split(':'))
-    .filter(value => value.length > 1)
+    .filter(value => value.length === 2)
     .map(([property, value]) =>
       (result[property.trim()] = value.trim()));
 

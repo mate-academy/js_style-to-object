@@ -13,17 +13,17 @@
  */
 
 function convertToObject(sourceString) {
-  let stringCSS = sourceString.split(';');
   const result = {};
 
-  stringCSS = stringCSS.map(x => x.replace(/\n|\s\s+/g, ''));
-  stringCSS = stringCSS.filter(x => x.length > 1);
+  sourceString.split(';')
+    .map(item => item.replace(/\n|\s\s+/g, ''))
+    .forEach(el => {
+      if (el) {
+        const [rule, value] = el.split(':');
 
-  stringCSS.forEach(el => {
-    const [rule, value] = el.split(':');
-
-    result[rule] = value.trim();
-  });
+        result[rule.trim()] = value.trim();
+      }
+    });
 
   return result;
 }

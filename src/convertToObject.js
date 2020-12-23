@@ -13,14 +13,13 @@
  */
 function convertToObject(sourceString) {
   const arrOfStrings = sourceString.split(';')
-    .map(item => item.split(':')
-      .map(prop => prop.trim()));
+    .map(item => item.split(':'));
 
   const objesctOfSelectors = {};
 
   arrOfStrings.forEach(elem => {
     if (elem.length === 2) {
-      objesctOfSelectors[elem[0]] = elem[1];
+      objesctOfSelectors[elem[0].trim()] = elem[1].trim();
     }
   });
 

@@ -11,8 +11,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+
+  sourceString.split(';')
+    .map(item => item.replace(/\n|\s\s+/g, ''))
+    .forEach(el => {
+      if (el) {
+        const [rule, value] = el.split(':');
+
+        result[rule.trim()] = value.trim();
+      }
+    });
+
+  return result;
 }
 
 module.exports = convertToObject;

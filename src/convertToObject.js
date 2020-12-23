@@ -18,11 +18,12 @@ function convertToObject(sourceString) {
   const arrayOfStyles = sourceString.split(';');
 
   arrayOfStyles
-    .filter(item => item.length > 5)
+    .map(item => item.trim())
+    .filter(item => item.length > 0)
     .map((item) => item.split(':'))
-    .map((item) => [item[0].trim(), item[1].trim()])
+    .map((item) => [item[0], item[1]])
     .forEach(item => {
-      objOfStyles[item[0]] = item[1];
+      objOfStyles[item[0].trim()] = item[1].trim();
     });
 
   return objOfStyles;

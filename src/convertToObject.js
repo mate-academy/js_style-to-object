@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
     .filter(elem => elem.length > 1)
     .map(elem => elem.map((item) => item.trim()));
 
-  const res = {};
+  const result = {};
 
   for (const elem of styles5) {
     res[elem[0]] = elem[1];

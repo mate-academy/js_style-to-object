@@ -14,9 +14,7 @@
 function convertToObject(sourceString) {
   const result = {};
   const stringSplitting = sourceString.split(';');
-  const arrOfValues = stringSplitting.map(element => {
-    return element.split(':');
-  });
+  const arrOfValues = stringSplitting.map(element => element.split(':'));
   const withoutSpace = arrOfValues.map(bl =>
     bl.map(el => el.trim(''))).filter(el => el[0] !== '');
 

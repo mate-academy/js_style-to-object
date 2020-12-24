@@ -12,7 +12,6 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-
   const styles = sourceString.split(';')
     .map((elem) => elem.split(':'))
     .map((elem) => elem.map((item) => item.replace(/\s+/g, ' ')))
@@ -21,11 +20,11 @@ function convertToObject(sourceString) {
 
   const result = {};
 
-  for (const elem of styles5) {
-    res[elem[0]] = elem[1];
+  for (const elem of styles) {
+    result[elem[0]] = elem[1];
   }
 
-  return res;
+  return result;
 }
 
 module.exports = convertToObject;

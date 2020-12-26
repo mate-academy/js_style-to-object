@@ -13,21 +13,15 @@
  */
 function convertToObject(sourceString) {
   const pairs = sourceString.split(';');
-  let validPairs = pairs.map((n) => n.trim());
-  const validItems = [];
   const result = {};
+  let array = [];
 
-  validPairs = validPairs.filter((n) => n !== '');
-
-  const items = validPairs.map((n) => n.split(':'));
-
-  items.map((m, index) => {
-    validItems.push([]);
-    validItems[index].push(items[index][0].trim());
-    validItems[index].push(items[index][1].trim());
+  pairs.forEach(item => {
+    array.push(item.split(':').map(word => word.trim()));
   });
+  array = array.filter(item => item.length > 1);
 
-  validItems.forEach((item) => {
+  array.forEach(item => {
     result[item[0]] = item[1];
   });
 

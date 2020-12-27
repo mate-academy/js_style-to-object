@@ -12,16 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // eslint-disable-next-line max-len
-  const arr = sourceString.replace(/\s+|\n/g, ' ')
-    .split(';').join(':').split(':')
-    .filter(el => el.length > 1);
-  const obj = {};
-
-  for (let i = 0; i < arr.length; i++) {
-    obj[arr[i].trim()] = arr[++i].trim();
-  }
-
-  return obj;
+  // write your code here
+  return sourceString
+    .split(';')
+    .map(item => item.split(':'))
+    .filter(item => item.length > 1)
+    .reduce((prev, [key, value]) => ({
+      ...prev,
+      [key.trim()]: value.trim(),
+    }), {});
 }
 module.exports = convertToObject;

@@ -12,19 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const convert = sourceString
+  const convertObject = {};
+
+  sourceString
     .split(';')
     .map(prop => prop.split(':'))
-    .filter(prop => prop.length > 1)
-    .map(prop => [prop[0].trim(), prop[1].trim()]);
+    .map(([prov, value]) =>
+      ((prov && value) ? (convertObject[prov.trim()] = value.trim()) : false));
 
-  const result = {};
-
-  for (const prop of convert) {
-    result[prop[0]] = prop[1];
-  }
-
-  return result;
+  return convertObject;
 }
 
 module.exports = convertToObject;

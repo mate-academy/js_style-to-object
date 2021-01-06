@@ -12,7 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString.split(';')
+    .filter(str => str.length > 4)
+    .map(rule => rule.split(':').map(el => el.trim()))
+    .reduce((obj, [key, value]) => ({
+
+      ...obj, [key]: value,
+    }), {});
 }
 
 module.exports = convertToObject;

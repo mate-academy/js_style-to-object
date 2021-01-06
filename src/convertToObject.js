@@ -13,15 +13,14 @@
  */
 function convertToObject(sourceString) {
   const styles = sourceString.split(';')
-    .map((elem) => elem.split(':'))
-    .map((elem) => elem.map((item) => item.replace(/\s+/g, ' ')))
-    .filter(elem => elem.length > 1)
-    .map(elem => elem.map((item) => item.trim()));
+    .map(style => style.split(':'));
 
   const result = {};
 
-  for (const elem of styles) {
-    result[elem[0]] = elem[1];
+  for (const [key, value] of styles) {
+    if (key && value) {
+      result[key.trim()] = value.trim();
+    }
   }
 
   return result;

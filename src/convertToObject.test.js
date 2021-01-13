@@ -32,7 +32,7 @@ const EXPECTED_OBJECT = {
   'width': 'auto',
 };
 
-test.only('Convert string to object', () => {
+test('Convert string to object', () => {
   expect(convertToObject(stylesString))
     .toEqual(EXPECTED_OBJECT);
 });

@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
       return item;
     }
   }).forEach(item => {
-    const x = item.split(':');
+    const [key, value] = item.split(':');
 
-    if (x[0].trim() && x[1].trim()) {
-      result[x[0].trim()] = x[1].trim();
+    if (key.trim() && value.trim()) {
+      result[key.trim()] = value.trim();
     }
   });
 

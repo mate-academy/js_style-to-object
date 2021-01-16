@@ -2,7 +2,7 @@
 
 const stylesString = `
   background-color:      #fff;
--webkit-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius     : 5px;
   border: 1px solid #e8e8e8;
   -webkit-box-sizing: border-box;

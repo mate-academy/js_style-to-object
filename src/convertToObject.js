@@ -12,20 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  const spl = sourceString.split(';');
-  const mp = spl.map(a => a.split(`:`));
-  const tirm = mp.map(a => a.map(b => b.trim()));
+  const convertedSourseString = {};
+  const preEntries = sourceString.split(';');
+  const entries = preEntries.map(a => a.split(`:`));
+  const entriesWithoutSpace = entries.map(a => a.map(b => b.trim()));
 
-  for (let i = 0; i < tirm.length; i++) {
-    if (tirm[i][1] === undefined) {
+  for (let i = 0; i < entriesWithoutSpace.length; i++) {
+    if (entriesWithoutSpace[i][1] === undefined) {
       i++;
     } else {
-      obj[tirm[i][0]] = tirm[i][1];
+      convertedSourseString[entriesWithoutSpace[i][0]]
+        = entriesWithoutSpace[i][1];
     }
   }
 
-  return obj;
+  return convertedSourseString;
 }
 
 module.exports = convertToObject;

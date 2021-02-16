@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 'use strict';
 
 /**
@@ -12,7 +13,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sourceArr = sourceString.split(';').map((words) => words.split(': '));
+  const clearSourceArr = sourceArr.map((word) =>
+    word.map((letter) => letter.trim())
+  );
+
+  return clearSourceArr
+    .filter((word) => word[1] !== undefined)
+    .reduce((obj, item) => {
+      return {
+        ...obj, [item[0]]: item[1],
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -14,14 +14,14 @@
 function convertToObject(sourceString) {
   const splitBySemicolon = sourceString.split(';');
 
-  return splitBySemicolon.reduce((arr, value) => {
+  return splitBySemicolon.reduce((accumulator, value) => {
     const splitByColon = value.split(':');
 
     if (splitByColon.length !== 1) {
-      arr[splitByColon[0].trim()] = splitByColon[1].trim();
+      accumulator[splitByColon[0].trim()] = splitByColon[1].trim();
     }
 
-    return arr;
+    return accumulator;
   }, {});
 }
 

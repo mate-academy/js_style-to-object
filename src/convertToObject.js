@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const resultObject = {};
+
+  const rowsArray = sourceString
+    .split('\n')
+    .map(string => string.replace(';', ''))
+    .filter(string => string.trim() !== '');
+
+  const keysArray = rowsArray.map(row => row.split(':')[0].trim());
+  const valuesArray = rowsArray.map(row => row.split(':')[1].trim());
+
+  for (let i = 0; i < keysArray.length; i++) {
+    resultObject[keysArray[i]] = valuesArray[i];
+  }
+
+  return resultObject;
 }
 
 module.exports = convertToObject;

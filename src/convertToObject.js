@@ -3,9 +3,6 @@
 function convertToObject(sourceString) {
   const stylesSet = new Set(sourceString.split(';'));
 
-  stylesSet.delete('\n  ');
-  stylesSet.delete('\n');
-
   const styles = [...stylesSet]
     .map(style => style.replace(['\n'], ''))
     .map(style => style.split(':'))

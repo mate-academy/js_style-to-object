@@ -23,9 +23,8 @@ function convertToObject(sourceString) {
   const propertiesWithoutSpaces = properties
     .map(elem => elem.split(':').map(item => item.trim()));
 
-  for (let i = 0; i < propertiesWithoutSpaces.length; i++) {
-    stringToObject[propertiesWithoutSpaces[i][0]]
-    = propertiesWithoutSpaces[i][1];
+  for (const item of propertiesWithoutSpaces) {
+    stringToObject[item[0]] = item[1];
   }
 
   return stringToObject;

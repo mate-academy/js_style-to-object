@@ -1,19 +1,17 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const stylesSet = new Set(sourceString.split(';'));
-
-  const styles = [...stylesSet]
-    .map(style => style.replace(['\n'], ''))
-    .map(style => style.split(':'))
-    .map(style => style.map(word => word.trim()));
   const result = {};
 
-  for (const style of styles) {
-    if (style.length === 2) {
-      result[style[0]] = style[1];
-    }
-  }
+  Array.from(new Set(sourceString.split(';')))
+    .map(x => x.replace(['\n'], ''))
+    .map(x => x.split(':'))
+    .map(x => x.map(y => y.trim()))
+    .map((style) => {
+      if (style.length === 2) {
+        result[style[0]] = style[1];
+      }
+    });
 
   return result;
 }

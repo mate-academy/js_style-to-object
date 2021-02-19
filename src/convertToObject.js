@@ -20,11 +20,12 @@ function convertToObject(sourceString) {
     .map(elem => elem.trim())
     .filter(elem => elem !== '');
 
-  const propertiesWioutSpaces = properties
+  const propertiesWithoutSpaces = properties
     .map(elem => elem.split(':').map(item => item.trim()));
 
-  for (let i = 0; i < propertiesWioutSpaces.length; i++) {
-    stringToObject[propertiesWioutSpaces[i][0]] = propertiesWioutSpaces[i][1];
+  for (let i = 0; i < propertiesWithoutSpaces.length; i++) {
+    stringToObject[propertiesWithoutSpaces[i][0]]
+    = propertiesWithoutSpaces[i][1];
   }
 
   return stringToObject;

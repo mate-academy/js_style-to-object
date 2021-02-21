@@ -16,11 +16,11 @@ function convertToObject(sourceString) {
   const arrayOfProperties = sourceString.split(';')
     .map(el => el.trim()).filter(element => element !== '');
   const property = arrayOfProperties.map(el => el.split(':'));
-  const trimmedvalues = property.map(el => el[1].trim());
-  const trimmedkeys = property.map(el => el[0].trim());
+  const trimmedValues = property.map(el => el[1].trim());
+  const trimmedKeys = property.map(el => el[0].trim());
 
-  for (let i = 0; i < trimmedvalues.length; i++) {
-    object[trimmedkeys[i]] = trimmedvalues[i];
+  for (let i = 0; i < trimmedValues.length; i++) {
+    object[trimmedKeys[i]] = trimmedValues[i];
   }
 
   return object;

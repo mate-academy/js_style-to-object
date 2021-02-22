@@ -14,24 +14,28 @@
 function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
 
-  const trimmedArray = sourceArray.map(word => (word + '').trim());
+  const trimmedArray = sourceArray.map(word => String(word).trim());
 
   const arrayWithValues = trimmedArray.map(string => string.split(':'));
 
-  const arrayWithoutEmptyValues = arrayWithValues.filter(value =>
-    value.length > 1);
+  const arrayWithoutEmptyValues = arrayWithValues.filter(
+    value => value.length > 1
+  );
 
-  const property = {};
+  const properties = {};
 
   function callback(array) {
-    property[array[0].trim()] = array[1].trim();
+    properties[array[0].trim()] = array[1].trim();
 
-    return property;
+    return properties;
   }
 
-  const result = arrayWithoutEmptyValues.map(callback)[0];
+  const styles = arrayWithoutEmptyValues.map(callback)
+    .reduce((prev, current) => {
+      return prev;
+    });
 
-  return result;
+  return styles;
 }
 
 module.exports = convertToObject;

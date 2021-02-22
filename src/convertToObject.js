@@ -12,19 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleElements = sourceString.split(';');
-  const styleElement = styleElements.map(element =>
-    element.split(':').map(property => property.trim()));
+  const styleElements = sourceString.split(';')
+    .map(element => element.split(':'))
+    .map(property => property.map(element => element.trim()))
+    .filter(element => element.length === 2);
 
-  const styleObject = {};
+  const style = {};
 
-  for (let i = 0; i < styleElements.length; i++) {
-    if (styleElement[i][1] !== undefined) {
-      styleObject[styleElement[i][0]] = styleElement[i][1];
-    }
+  for (const element of styleElements) {
+    style[element[0]] = element[1];
   }
 
-  return styleObject;
+  return style;
 }
 
 module.exports = convertToObject;

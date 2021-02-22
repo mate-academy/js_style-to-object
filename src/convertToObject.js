@@ -16,14 +16,14 @@ function convertToObject(sourceString) {
   const styles = {};
 
   const splitBySemicolon = sourceString.split(';');
-  const ArrayOfStyles = splitBySemicolon.map(item => {
+  const arrayOfStyles = splitBySemicolon.map(item => {
     const splitByColumn = item.split(':');
 
     return splitByColumn.map(element => element.trim());
   });
-  const FilteredArrayOfStyles = ArrayOfStyles.filter(item => item.length > 1);
+  const filteredArrayOfStyles = arrayOfStyles.filter(item => item.length > 1);
 
-  for (const item of FilteredArrayOfStyles) {
+  for (const item of filteredArrayOfStyles) {
     styles[item[0]] = item[1];
   }
 

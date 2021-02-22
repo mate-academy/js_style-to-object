@@ -15,8 +15,9 @@ function convertToObject(sourceString) {
   // write your code here
   const makeArraywithoutEmpty = sourceString
     .split(';').filter(element => element.includes(':'));
+
   const prepearingForStyle = makeArraywithoutEmpty
-    .map(styles => styles.split(':')
+    .map(oneStyle => oneStyle.split(':')
       .map(partOfStyle => partOfStyle.trim()));
 
   const style = {};

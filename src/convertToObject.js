@@ -12,18 +12,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const object = {};
-  const arrayOfProperties = sourceString.split(';')
-    .map(el => el.trim()).filter(element => element !== '');
-  const property = arrayOfProperties.map(el => el.split(':'));
-  const trimmedValues = property.map(el => el[1].trim());
-  const trimmedKeys = property.map(el => el[0].trim());
+  const styles = {};
 
-  for (let i = 0; i < trimmedValues.length; i++) {
-    object[trimmedKeys[i]] = trimmedValues[i];
+  const allProperties = sourceString.split(';');
+
+  const trimmedProperties = allProperties.map(element => element.trim());
+
+  const propertiesWithoutSpaces = trimmedProperties.filter(
+    element => element !== ''
+  );
+
+  const property = propertiesWithoutSpaces.map(element => element.split(':'));
+
+  const trimmedvalues = property.map(element => element[1].trim());
+
+  const trimmedkeys = property.map(element => element[0].trim());
+
+  for (let i = 0; i < trimmedvalues.length; i++) {
+    styles[trimmedkeys[i]] = trimmedvalues[i];
   }
 
-  return object;
+  return styles;
 }
 
 module.exports = convertToObject;

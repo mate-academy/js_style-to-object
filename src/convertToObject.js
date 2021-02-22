@@ -14,7 +14,9 @@
 function convertToObject(sourceString) {
   const styleElements = sourceString.split(';');
   const styleElementsCell = styleElements.map(element => element.split(':'));
-  const property = styleElementsCell.map(element => element.trim());
+  const property = styleElementsCell.map(
+    element => element.map(pair => pair.trim())
+  );
   const styleElementsWithoutEmpty = property.filter(
     element => element.length === 2
   );

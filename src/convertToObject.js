@@ -12,7 +12,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const propertiesAll = sourceString.split(';');
+  const propertiesTrimmed = propertiesAll.map(property => property.trim());
+  const propertieswithoutEmptyLine = propertiesTrimmed
+    .filter(property => property);
+  const properties = propertieswithoutEmptyLine
+    .map(property => property.split(':'));
+
+  const propertiesUnion = (previousProperties, property) => {
+    return {
+      ...previousProperties,
+      [property[0].trim()]: property[1].trim(),
+    };
+  };
+
+  const styles = properties.reduce(propertiesUnion, {});
+
+  return styles;
 }
 
 module.exports = convertToObject;

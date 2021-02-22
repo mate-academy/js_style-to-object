@@ -11,8 +11,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const splittedStyles = sourceString.split(';');
+  const trimmedStyles = splittedStyles
+    .map(item => item.split(':').map(prop => prop.trim()));
+
+  const result = {};
+
+  for (const key of trimmedStyles) {
+    if (key.length > 1) {
+      result[key[0]] = key[1];
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

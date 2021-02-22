@@ -13,21 +13,19 @@
  */
 
 function convertToObject(sourceString) {
-  const stringToObject = {};
+  const properties = sourceString.split(';').map(elem => elem.trim());
+  const deleteEmptyPropetries = properties.filter(elem => elem !== '');
+  const propertiesWithoutSpaces = deleteEmptyPropetries
+    .map(elem => elem.split(':')
+      .map(item => item.trim()));
 
-  const properties = sourceString
-    .split(';')
-    .map(elem => elem.trim())
-    .filter(elem => elem !== '');
+  const styles = propertiesWithoutSpaces.reduce((accumulator, value) => {
+    accumulator[value[0]] = value[1];
 
-  const propertiesWithoutSpaces = properties
-    .map(elem => elem.split(':').map(item => item.trim()));
+    return accumulator;
+  }, {});
 
-  for (const item of propertiesWithoutSpaces) {
-    stringToObject[item[0]] = item[1];
-  }
-
-  return stringToObject;
+  return styles;
 }
 
 module.exports = convertToObject;

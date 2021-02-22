@@ -13,19 +13,21 @@
  */
 
 function convertToObject(sourceString) {
-  const splittedStyles = sourceString.split(';');
+  const splittedStyles = sourceString
+    .split(';');
   const trimmedStyles = splittedStyles
-    .map(item => item.split(':').map(prop => prop.trim()));
+    .map(item => item.split(':')
+      .map(prop => prop.trim()));
 
-  const result = {};
+  const finalStyles = {};
 
   for (const key of trimmedStyles) {
     if (key.length > 1) {
-      result[key[0]] = key[1];
+      finalStyles[key[0]] = key[1];
     }
   }
 
-  return result;
+  return finalStyles;
 }
 
 module.exports = convertToObject;

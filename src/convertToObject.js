@@ -13,12 +13,14 @@
  */
 function convertToObject(sourceString) {
   const cascadingStyleSheets = {};
-  const stringConvertedToArray = sourceString.split(';')
-    .map(style => style.split(':'))
-    .map(pair => pair.map(element => element.trim()))
-    .filter(style => style.length === 2);
+  const stringConvertedToArray = sourceString.split(';');
+  const splittedArray = stringConvertedToArray.map(style => style.split(':'));
+  const deletedGaps = splittedArray.map(
+    pair => pair.map(element => element.trim())
+  );
+  const filteredArray = deletedGaps.filter(style => style.length === 2);
 
-  for (const style of stringConvertedToArray) {
+  for (const style of filteredArray) {
     cascadingStyleSheets[style[0]] = style[1];
   }
 

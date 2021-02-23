@@ -12,21 +12,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertiesAll = sourceString.split(';');
-  const propertiesTrimmed = propertiesAll.map(property => property.trim());
+  const splittedProperties = sourceString.split(';');
+
+  const propertiesTrimmed = splittedProperties.map(property => property.trim());
+
   const propertieswithoutEmptyLine = propertiesTrimmed
-    .filter(property => property);
+    .filter(Boolean);
+
   const properties = propertieswithoutEmptyLine
     .map(property => property.split(':'));
 
-  const propertiesUnion = (previousProperties, property) => {
+  const mergeProperties = (previousProperties, property) => {
     return {
       ...previousProperties,
       [property[0].trim()]: property[1].trim(),
     };
   };
 
-  const styles = properties.reduce(propertiesUnion, {});
+  const styles = properties.reduce(mergeProperties, {});
 
   return styles;
 }

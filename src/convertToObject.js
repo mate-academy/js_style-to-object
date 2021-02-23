@@ -11,8 +11,23 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const properties = sourceString.split(';').map(elem => elem.trim());
+
+  const deleteEmptyPropetries = properties.filter(Boolean);
+
+  const splitProperties = deleteEmptyPropetries.map(
+    elem => elem.split(':')
+  );
+
+  const styles = splitProperties.reduce((accumulator, [key, value]) => {
+    accumulator[key.trim()] = value.trim();
+
+    return accumulator;
+  }, {});
+
+  return styles;
 }
 
 module.exports = convertToObject;

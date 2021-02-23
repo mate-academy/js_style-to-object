@@ -15,14 +15,14 @@ function convertToObject(sourceString) {
   const styles = {};
 
   const splitedString = sourceString.split(';');
-  const splitedProperties = splitedString.map(words => words.split(':'));
-  const trimmedProperties = splitedProperties.map(
-    word => word.map(string => string.trim())
+
+  const splitedProperties = splitedString.map(words =>
+    words.split(':').map(word => word.trim())
   );
 
-  for (const item of trimmedProperties) {
-    if (item.length > 1) {
-      styles[item[0]] = item[1];
+  for (const property of splitedProperties) {
+    if (property.length > 1) {
+      styles[property[0]] = property[1];
     }
   }
 

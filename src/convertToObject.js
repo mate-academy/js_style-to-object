@@ -12,21 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArray = sourceString.split(';');
+  const sourceValues = sourceString.split(';');
 
-  const trimmedArray = sourceArray.map(word => String(word).trim());
+  const trimmedSourceValues = sourceValues.map(word => String(word).trim());
 
-  const arrayWithValues = trimmedArray.map(string => string.split(':'));
+  const values = trimmedSourceValues.map(string => string.split(':'));
 
-  const arrayWithoutEmptyValues = arrayWithValues.filter(
+  const definedValues = values.filter(
     value => value.length > 1
   );
 
   const properties = {};
 
-  for (let i = 0; i < arrayWithoutEmptyValues.length; i++) {
-    properties[String(arrayWithoutEmptyValues[i][0]).trim()]
-    = String(arrayWithoutEmptyValues[i][1]).trim();
+  for (let i = 0; i < definedValues.length; i++) {
+    properties[definedValues[i][0].trim()]
+    = definedValues[i][1].trim();
   }
 
   return properties;

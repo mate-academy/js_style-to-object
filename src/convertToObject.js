@@ -17,11 +17,11 @@ function convertToObject(sourceString) {
 
   const deleteEmptyPropetries = properties.filter(Boolean);
 
-  const propertiesWithoutSpaces = deleteEmptyPropetries.map(
+  const splitProperties = deleteEmptyPropetries.map(
     elem => elem.split(':')
   );
 
-  const styles = propertiesWithoutSpaces.reduce((accumulator, [key, value]) => {
+  const styles = splitProperties.reduce((accumulator, [key, value]) => {
     accumulator[key.trim()] = value.trim();
 
     return accumulator;

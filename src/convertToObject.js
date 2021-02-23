@@ -17,12 +17,14 @@ function convertToObject(sourceString) {
     .split(';').filter(element => element.includes(':'));
 
   const prepearingForStyle = makeArraywithoutEmpty
-    .map(oneStyle => oneStyle.split(':')
-      .map(partOfStyle => partOfStyle.trim()));
+    .map(oneStyle => oneStyle.split(':'));
+
+  const deleteSpacesArrrayIsReady = prepearingForStyle
+    .map(partOfStyle => [partOfStyle[0].trim(), partOfStyle[1].trim()]);
 
   const style = {};
 
-  for (const part of prepearingForStyle) {
+  for (const part of deleteSpacesArrrayIsReady) {
     style[part[0]] = part[1];
   }
 

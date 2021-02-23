@@ -19,17 +19,17 @@ function convertToObject(sourceString) {
   const trimmedProperties = allProperties.map(element => element.trim());
 
   const propertiesWithoutSpaces = trimmedProperties.filter(
-    element => element !== ''
+    element => element.length
   );
 
   const property = propertiesWithoutSpaces.map(element => element.split(':'));
 
-  const trimmedvalues = property.map(element => element[1].trim());
+  const trimmedValues = property.map(element => element[1].trim());
 
-  const trimmedkeys = property.map(element => element[0].trim());
+  const trimmedKeys = property.map(element => element[0].trim());
 
-  for (let i = 0; i < trimmedvalues.length; i++) {
-    styles[trimmedkeys[i]] = trimmedvalues[i];
+  for (let i = 0; i < trimmedValues.length; i++) {
+    styles[trimmedKeys[i]] = trimmedValues[i];
   }
 
   return styles;

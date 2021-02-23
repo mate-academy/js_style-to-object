@@ -12,17 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfProperties = sourceString.split('\n');
-  const arrayOfValidProperties = arrayOfProperties
-    .map(property => property.split(';'))
-    .filter(property => property[0].length > 3)
-    .map(property => property.join('').split(':'))
+  const splittingString = sourceString.split('\n');
+  const unvalidProperties = splittingString
+    .map(property => property.split(';'));
+  const filteredProperties = unvalidProperties
+    .filter(property => property[0].length > 3);
+  const unionFiltered = filteredProperties
+    .map(property => property.join('').split(':'));
+  const validProperties = unionFiltered
     .map(value => [value[0].trim(), value[1].trim()]);
 
   const styles = {};
 
-  for (let i = 0; i < arrayOfValidProperties.length; i++) {
-    styles[arrayOfValidProperties[i][0]] = arrayOfValidProperties[i][1];
+  for (let i = 0; i < validProperties.length; i++) {
+    styles[validProperties[i][0]] = validProperties[i][1];
   }
 
   return styles;

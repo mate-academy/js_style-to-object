@@ -13,7 +13,6 @@
  */
 function convertToObject(sourceString) {
   const string = sourceString.split(';');
-  // const resultList = {};
 
   return string.reduce((acc, item) => {
     const rule = item.split(':');

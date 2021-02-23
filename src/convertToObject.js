@@ -17,10 +17,18 @@ function convertToObject(sourceString) {
   const splitedString = sourceString.split(';');
 
   const splitedProperties = splitedString.map(words =>
-    words.split(':').map(word => word.trim())
+    words.split(':')
   );
 
-  for (const property of splitedProperties) {
+  const filtredProperties = splitedProperties.filter(([, value]) =>
+    value !== undefined
+  );
+
+  const trimmedProperties = filtredProperties.map(
+    ([key, value]) => [key.trim(), value.trim()]
+  );
+
+  for (const property of trimmedProperties) {
     if (property.length > 1) {
       styles[property[0]] = property[1];
     }

@@ -12,7 +12,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = {};
+
+  const rules = sourceString.split(';');
+
+  const rulesWithoutEmpties = rules.filter(
+    element => element.includes(':')
+  );
+
+  const entries = rulesWithoutEmpties.map(
+    expression => expression.split(':')
+  );
+
+  const trimmedEntries = entries.map(
+    ([key, value]) => [key.trim(), value.trim()]
+  );
+
+  for (const [key, value] of trimmedEntries) {
+    styles[key] = value;
+  }
+
+  return styles;
 }
 
 module.exports = convertToObject;

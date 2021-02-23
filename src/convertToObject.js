@@ -14,14 +14,13 @@
 function convertToObject(sourceString) {
   const styles = {};
 
-  const expressions = sourceString.split(';');
-  const properties = expressions.map(expression =>
-    expression.split(':').map(property =>
-      property.trim()));
+  const splitedStyles = sourceString.split(';');
+  const properties = splitedStyles.map(expression =>
+    expression.split(':').map(property => property.trim()));
 
-  for (const property of properties) {
-    if (property[1] !== undefined) {
-      styles[property[0]] = property[1];
+  for (const [key, value] of properties) {
+    if (value !== undefined) {
+      styles[key] = value;
     }
   }
 

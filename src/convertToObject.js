@@ -13,17 +13,17 @@
  */
 function convertToObject(sourceString) {
   const string = sourceString.split(';');
-  const resultList = {};
+  // const resultList = {};
 
   return string.reduce((acc, item) => {
     const rule = item.split(':');
 
     if (rule[0] !== undefined && rule[1] !== undefined) {
-      resultList[rule[0].trim()] = rule[1].trim();
+      acc[rule[0].trim()] = rule[1].trim();
     }
 
-    return resultList;
-  }, 0);
+    return acc;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -15,16 +15,19 @@ function convertToObject(sourceString) {
   // write your code here
   const styles = {};
 
-  const splitBySemicolon = sourceString.split(';');
-  const arrayOfStyles = splitBySemicolon.map(item => {
-    const splitByColumn = item.split(':');
+  const stylesSplittedBySemicolon = sourceString.split(';');
 
-    return splitByColumn.map(element => element.trim());
-  });
-  const filteredArrayOfStyles = arrayOfStyles.filter(item => item.length > 1);
+  const includeColumn = stylesSplittedBySemicolon.filter(
+    element => element.includes(':')
+  );
+  const stylesSplittedByColumn = includeColumn
+    .map(expression => expression.split(':'));
 
-  for (const item of filteredArrayOfStyles) {
-    styles[item[0]] = item[1];
+  const filteredStyles = stylesSplittedByColumn
+    .map(([key, value]) => [key.trim(), value.trim()]);
+
+  for (const [key, value] of filteredStyles) {
+    styles[key] = value;
   }
 
   return styles;

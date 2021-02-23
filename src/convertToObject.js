@@ -21,13 +21,15 @@ function convertToObject(sourceString) {
   );
 
   const entries = rulesWithoutEmpties.map(
-    elements => elements.split(':').map(
-      element => element.trim()
-    )
+    expression => expression.split(':')
   );
 
-  for (let i = 0; i < entries.length; i++) {
-    styles[entries[i][0]] = entries[i][1];
+  const trimmedEntries = entries.map(
+    ([key, value]) => [key.trim(), value.trim()]
+  );
+
+  for (const [key, value] of trimmedEntries) {
+    styles[key] = value;
   }
 
   return styles;

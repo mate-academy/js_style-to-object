@@ -16,12 +16,15 @@ function convertToObject(sourceString) {
 
   const splitedStyles = sourceString.split(';');
   const properties = splitedStyles.map(expression =>
-    expression.split(':').map(property => property.trim()));
+    expression.split(':'));
 
-  for (const [key, value] of properties) {
-    if (value !== undefined) {
-      styles[key] = value;
-    }
+  const withoutEmtyLine = properties.filter(([, value]) => value !== undefined);
+
+  const trimedProperties = withoutEmtyLine.map(([key, value]) =>
+    [key.trim(), value.trim()]);
+
+  for (const [key, value] of trimedProperties) {
+    styles[key] = value;
   }
 
   return styles;

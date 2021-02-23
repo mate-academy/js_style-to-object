@@ -24,18 +24,12 @@ function convertToObject(sourceString) {
 
   const properties = {};
 
-  function callback(array) {
-    properties[array[0].trim()] = array[1].trim();
-
-    return properties;
+  for (let i = 0; i < arrayWithoutEmptyValues.length; i++) {
+    properties[String(arrayWithoutEmptyValues[i][0]).trim()]
+    = String(arrayWithoutEmptyValues[i][1]).trim();
   }
 
-  const styles = arrayWithoutEmptyValues.map(callback)
-    .reduce((prev, current) => {
-      return prev;
-    });
-
-  return styles;
+  return properties;
 }
 
 module.exports = convertToObject;

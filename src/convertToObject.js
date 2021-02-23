@@ -12,8 +12,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splittingString = sourceString.split('\n');
-  const unvalidProperties = splittingString
+  const splittingSource = sourceString.split('\n');
+  const unvalidProperties = splittingSource
     .map(property => property.split(';'));
   const filteredProperties = unvalidProperties
     .filter(property => property[0].length > 3);

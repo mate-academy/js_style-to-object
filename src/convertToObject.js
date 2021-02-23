@@ -14,13 +14,15 @@
 
 function convertToObject(sourceString) {
   const properties = sourceString.split(';').map(elem => elem.trim());
-  const deleteEmptyPropetries = properties.filter(elem => elem !== '');
-  const propertiesWithoutSpaces = deleteEmptyPropetries
-    .map(elem => elem.split(':')
-      .map(item => item.trim()));
 
-  const styles = propertiesWithoutSpaces.reduce((accumulator, value) => {
-    accumulator[value[0]] = value[1];
+  const deleteEmptyPropetries = properties.filter(Boolean);
+
+  const propertiesWithoutSpaces = deleteEmptyPropetries.map(
+    elem => elem.split(':')
+  );
+
+  const styles = propertiesWithoutSpaces.reduce((accumulator, [key, value]) => {
+    accumulator[key.trim()] = value.trim();
 
     return accumulator;
   }, {});

@@ -12,18 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const convertedToArray = sourceString
-    .split(';').map(
-      string => string.trim().split(':').map(
-        key => key.trim()
-      )
-    );
+  const convertedToArray = sourceString.split(';');
 
-  return Object.fromEntries(
-    convertedToArray.filter(
-      array => array.every(key => key.length !== 0)
-    )
-  );
+  const convertedToArrayWithProperties = convertedToArray
+    .map(string => string.split(':'));
+
+  const propertiesWithoutEmptySpaces = convertedToArrayWithProperties
+    .map(array => array.map(property => property.trim()));
+
+  const filteredProperties = propertiesWithoutEmptySpaces
+    .filter(array => array.every(property => property.length !== 0));
+
+  return Object.fromEntries(filteredProperties);
 }
 
 module.exports = convertToObject;

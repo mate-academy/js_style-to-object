@@ -12,10 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const string = sourceString.split(';');
+  const stringSplittedBySemicolon = sourceString.split(';');
 
-  return string.reduce((acc, item) => {
-    const rule = item.split(':');
+  return stringSplittedBySemicolon.reduce((acc, potentialRule) => {
+    const rule = potentialRule.split(':');
 
     if (rule[0] !== undefined && rule[1] !== undefined) {
       acc[rule[0].trim()] = rule[1].trim();

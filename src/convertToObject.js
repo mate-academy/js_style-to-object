@@ -14,18 +14,19 @@
 function convertToObject(sourceString) {
   const styles = {};
 
-  const properties = sourceString
-    .split(';')
-    .map(property => (
-      property
-        .trimLeft()
-        .split(':')
-        .map(elementOfProperty => elementOfProperty.trim())
-    ));
+  const properties = sourceString.split(';');
 
-  for (let i = 0; i < properties.length; i++) {
-    if (properties[i].length > 1) {
-      styles[properties[i][0]] = properties[i][1];
+  const trimmedProperties = properties.map(property => property.trimLeft());
+
+  const valuesOfProperties = trimmedProperties.map(string => string.split(':'));
+
+  const values = valuesOfProperties.map(property => property.map(
+    elementOfProperty => elementOfProperty.trim()
+  ));
+
+  for (let i = 0; i < values.length; i++) {
+    if (values[i].length > 1) {
+      styles[values[i][0]] = values[i][1];
     }
   }
 

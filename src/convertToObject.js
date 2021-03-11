@@ -13,6 +13,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const splitString = sourceString.split(';');
+
+  const splitItems = splitString.map(item => item.split(':'));
+
+  const filterItems = splitItems.filter(item => item.length > 1);
+
+  const callback = (prev, [key, value]) =>
+    ({
+      ...prev,
+      [key.trim()]: value.trim(),
+    });
+
+  const result = filterItems.reduce(callback, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

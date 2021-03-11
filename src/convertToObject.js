@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrFromString = sourceString.split('\n');
+  const arrFromString = sourceString.split(';');
   const arrFromArr = [];
   const result = {};
 
@@ -22,7 +22,7 @@ function convertToObject(sourceString) {
 
   for (let i = 0; i < arrFromArr.length; i++) {
     if (arrFromArr[i][1] !== undefined) {
-      result[arrFromArr[i][0].trim()] = arrFromArr[i][1].slice(0, -1).trim();
+      result[arrFromArr[i][0].trim()] = arrFromArr[i][1].trim();
     }
   }
 

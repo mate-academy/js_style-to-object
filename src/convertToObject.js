@@ -12,7 +12,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObject = {};
+  const splitSouresSting = sourceString.split('\n');
+  const propertyList = [];
+
+  for (let i = 0; i < splitSouresSting.length; i++) {
+    propertyList.push(splitSouresSting[i].split(': '));
+  }
+
+  for (let i = 0; i < propertyList.length; i++) {
+    if (propertyList[i][1] !== undefined) {
+      styleObject[propertyList[i][0].trim()]
+       = propertyList[i][1].slice(0, -1).trim();
+    }
+  }
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

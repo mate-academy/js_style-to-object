@@ -13,17 +13,17 @@
  */
 function convertToObject(sourceString) {
   const styleObject = {};
-  const splitSouresSting = sourceString.split('\n');
+  const splitSouresSting = sourceString.split(';');
   const propertyList = [];
 
   for (let i = 0; i < splitSouresSting.length; i++) {
-    propertyList.push(splitSouresSting[i].split(': '));
+    propertyList.push(splitSouresSting[i].split(':'));
   }
 
   for (let i = 0; i < propertyList.length; i++) {
     if (propertyList[i][1] !== undefined) {
       styleObject[propertyList[i][0].trim()]
-       = propertyList[i][1].slice(0, -1).trim();
+       = propertyList[i][1].trim();
     }
   }
 

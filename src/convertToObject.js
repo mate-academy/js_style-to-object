@@ -13,7 +13,7 @@
  */
 function convertToObject(sourceString) {
   const stylesObject = {};
-  const sourceStringArray = sourceString.split('\n');
+  const sourceStringArray = sourceString.split(';');
   const propertyArray = [];
 
   for (let i = 0; i < sourceStringArray.length; i++) {
@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
   for (let i = 0; i < propertyArray.length; i++) {
     if (propertyArray[i][1] !== undefined) {
       stylesObject[propertyArray[i][0].trim()]
-        = propertyArray[i][1].slice(0, -1).trim();
+        = propertyArray[i][1].trim();
     }
   }
 

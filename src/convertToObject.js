@@ -13,17 +13,17 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const sourceArray = sourceString.trim().split(';').map(el => {
-    return el.trim().split(':').map(str => {
+  const sourceArray = sourceString.split(';').map(el => {
+    return el.split(':').map(str => {
       return str.trim();
     });
   });
 
-  for (let i = 0; i < sourceArray.length; i++) {
-    if (sourceArray[i].length === 2) {
-      result[sourceArray[i][0]] = sourceArray[i][1];
+  sourceArray.forEach(el => {
+    if (el.length === 2) {
+      result[el[0]] = el[1];
     }
-  }
+  });
 
   return result;
 }

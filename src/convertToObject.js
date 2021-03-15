@@ -15,18 +15,20 @@ function convertToObject(sourceString) {
   // write your code here
 
   const sourceArray = sourceString.split(';');
-  const property = [];
+  const properties = [];
 
   for (let i = 0; i < sourceArray.length; i++) {
-    property.push(sourceArray[i].split(':'));
+    properties.push(sourceArray[i].split(':'));
   }
 
   const styles = {};
 
-  for (let i = 0; i < property.length; i++) {
-    if (property[i][1] !== undefined) {
-      styles[property[i][0].trim()]
-        = property[i][1].trim();
+  for (let i = 0; i < properties.length; i++) {
+    const propertyName = properties[i][0];
+    const propertyValue = properties[i][1];
+
+    if (propertyValue !== undefined) {
+      styles[propertyName.trim()] = propertyValue.trim();
     }
   }
 

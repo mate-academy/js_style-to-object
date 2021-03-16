@@ -13,11 +13,10 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const arrSourceString = sourceString.split(';');
+  const sourceStringParts = sourceString.split(';')
+    .filter(propertiesCss => propertiesCss.length > 1 && propertiesCss !== ' ');
 
-  arrSourceString.filter(i => i.length > 1 && i !== ' ');
-
-  for (const element of arrSourceString) {
+  for (const element of sourceStringParts) {
     const css = element.split(':');
 
     if (css[1] !== undefined) {

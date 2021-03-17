@@ -3,6 +3,7 @@ module.exports = {
   env: {
     jest: true
   },
+  parser: 'babel-eslint',
   rules: {
     'no-proto': 0
   },

@@ -12,18 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const props = sourceString.split(';').filter((prop) => prop.includes(':'));
+  return sourceString.split(';')
+    .filter(prop => prop.includes(':'))
+    .reduce((object, propStr) => {
+      const [prop, value] = propStr.split(':').map(str => str.trim());
 
-  return props.reduce((object, propStr) => {
-    const colon = propStr.indexOf(':');
-    const prop = propStr.slice(0, colon).trim();
-    const value = propStr.slice(colon + 1).trim();
-
-    return {
-      ...object,
-      [prop]: value,
-    };
-  }, {});
+      return {
+        ...object,
+        [prop]: value,
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

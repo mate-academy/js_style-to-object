@@ -13,7 +13,7 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const splitStr = sourceString.split(';').filter(value => value.length > 4);
+  const splitStr = sourceString.split(';').filter(value => value.length > 5);
 
   for (const value of splitStr) {
     result[value.slice(0, value.indexOf(':')).trim()] = value

@@ -12,20 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssPairs = sourceString.split('\n').join('').split(';');
-  // morfing cssPairs string by removing \n
-  // and splitting it by ';' to key/value strings
-  const cssParams = {}; // our resulting object
+  const cssPairs = sourceString
+    .split('\n').join('')
+    .split(';')
+    .map((rule) => rule.split(':'))
+    .filter(([key, value]) => key.trim() && value.trim());
 
-  for (let item of cssPairs) {
-    item = item.split(':'); // spliting to key/value pairs
-    item[0] = item[0].trim();
+  const cssParams = {};
 
-    if (item[0].length === 0) { // check if key is invalid
-      continue; // meaning pair will be invalid as well
-    }
-    item[1] = item[1].trim(); // if pair valid triming value
-    cssParams[item[0]] = item[1]; // assigning key/value to object
+  for (const [key, value] of cssPairs) {
+    cssParams[key.trim()] = value.trim();
   }
 
   return cssParams;

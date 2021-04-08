@@ -12,13 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const splitStr = sourceString.split(';').filter(value => value.length > 5);
-
-  for (const value of splitStr) {
-    result[value.slice(0, value.indexOf(':')).trim()] = value
-      .slice(value.indexOf(':') + 1, value.length).trim();
-  }
+  const result = sourceString
+    .split(';')
+    .filter(value => value.length > 4)
+    .reduce((prev, value) => ({
+      ...prev,
+      [value.slice(0, value.indexOf(':')).trim()]:
+        value.slice(value.indexOf(':') + 1, value.length).trim(),
+    }), {});
 
   return result;
 }

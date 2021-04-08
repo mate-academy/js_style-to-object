@@ -12,17 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssPairs = sourceString
+  const cssParams = {};
+
+  sourceString
     .split('\n').join('')
     .split(';')
     .map((rule) => rule.split(':'))
-    .filter(([key, value]) => key.trim() && value.trim());
-
-  const cssParams = {};
-
-  for (const [key, value] of cssPairs) {
-    cssParams[key.trim()] = value.trim();
-  }
+    .filter(([key, value]) => key.trim() && value.trim())
+    .map(function([key, value]) {
+      cssParams[key.trim()] = value.trim();
+    }
+    );
 
   return cssParams;
 }

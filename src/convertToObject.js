@@ -12,13 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const minCssPropertylength = 4;
   const result = sourceString
     .split(';')
-    .filter(value => value.length > 4)
+    .filter(value => value.length > minCssPropertylength)
     .reduce((prev, value) => ({
       ...prev,
-      [value.slice(0, value.indexOf(':')).trim()]:
-        value.slice(value.indexOf(':') + 1, value.length).trim(),
+      [value.split(':')[0].trim()]: value.split(':')[1].trim(),
     }), {});
 
   return result;

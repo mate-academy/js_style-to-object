@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
     .split(';')
     .map((rule) => rule.split(':'))
     .filter(([key, value]) => key.trim() && value.trim())
-    .map(function([key, value]) {
+    .forEach(([key, value]) => {
       cssParams[key.trim()] = value.trim();
     }
     );

@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssParams = {};
+
+  sourceString
+    .split('\n').join('')
+    .split(';')
+    .map((rule) => rule.split(':'))
+    .filter(([key, value]) => key.trim() && value.trim())
+    .forEach(([key, value]) => {
+      cssParams[key.trim()] = value.trim();
+    }
+    );
+
+  return cssParams;
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const lines = sourceString.split('\n');
+  const keyIndex = 0;
+  const valueIndex = 1;
+
+  return lines.filter(line => line.includes(':'))
+    .reduce((config, line) => {
+      const splitedLine = line.split(':');
+      const key = splitedLine[keyIndex].trim();
+      const value = splitedLine[valueIndex].replace(';', '').trim();
+
+      return {
+        ...config,
+        [key]: value,
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

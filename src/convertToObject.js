@@ -12,7 +12,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const string = sourceString.split(';');
+
+  const paransOfObject = string.map(param => {
+    const newParam = param.split(':');
+
+    const writeParam = newParam.map(item => item.trim());
+
+    return writeParam;
+  });
+
+  const entries = paransOfObject.filter(item => item.length > 1);
+
+  const result = {};
+
+  for (const params of entries) {
+    result[params[0]] = params[1];
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

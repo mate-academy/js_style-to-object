@@ -14,7 +14,7 @@
 function convertToObject(sourceString) {
   const string = sourceString.split(';');
 
-  const newString = string.map(param => {
+  const paransOfObject = string.map(param => {
     const newParam = param.split(':');
 
     const writeParam = newParam.map(item => item.trim());
@@ -22,11 +22,11 @@ function convertToObject(sourceString) {
     return writeParam;
   });
 
-  const paramForObject = newString.filter(item => item.length > 1);
+  const entries = paransOfObject.filter(item => item.length > 1);
 
   const result = {};
 
-  for (const params of paramForObject) {
+  for (const params of entries) {
     result[params[0]] = params[1];
   }
 

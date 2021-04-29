@@ -12,7 +12,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const propertiesAndValuesArray = sourceString.split(';');
+
+  for (let i = 0; i < propertiesAndValuesArray.length; i++) {
+    propertiesAndValuesArray[i] = propertiesAndValuesArray[i].trim();
+  }
+
+  const filteredPropAndVal = propertiesAndValuesArray.filter(
+    item => item !== ''
+  );
+
+  for (let i = 0; i < filteredPropAndVal.length; i++) {
+    filteredPropAndVal[i] = filteredPropAndVal[i].split(':');
+  }
+
+  const propertiesAndValuesObject = {};
+
+  for (let i = 0; i < filteredPropAndVal.length; i++) {
+    propertiesAndValuesObject[filteredPropAndVal[i][0].trim()]
+    = filteredPropAndVal[i][1].trim();
+  }
+
+  return propertiesAndValuesObject;
 }
 
 module.exports = convertToObject;

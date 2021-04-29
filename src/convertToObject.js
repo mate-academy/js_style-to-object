@@ -12,13 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split('\n') // array key-value
-    .map(row => row.split(':')) // array [key,value]
-    .filter(rule => rule.length === 2) // remove excess
-    .map(([prop, value]) => // remove space and semicolon
-      [prop.trim(), value.replace(';', '').trim()]
+  return sourceString.split(';')
+    .map(row => row.split(':'))
+    .filter(rule => rule.length === 2)
+    .map(([prop, value]) =>
+      [prop.trim(), value.trim()]
     )
-    .reduce((convertList, [prop, value]) => ( // make object
+    .reduce((convertList, [prop, value]) => (
       {
         ...convertList, ...{ [prop]: value },
       }

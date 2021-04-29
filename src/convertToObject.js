@@ -20,7 +20,8 @@ function convertToObject(sourceString) {
     )
     .reduce((convertList, [prop, value]) => (
       {
-        ...convertList, ...{ [prop]: value },
+        ...convertList,
+        ...{ [prop]: value },
       }
     ), {});
 }

@@ -13,6 +13,20 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const cssObj = {};
+  const result = sourceString
+    .split(':')
+    .join(';')
+    .split(';')
+    .map(i => i.trim());
+
+  for (let i = 0; i < result.length; i += 2) {
+    if (result[i]) {
+      cssObj[result[i]] = result[i + 1];
+    }
+  }
+
+  return cssObj;
 }
 
 module.exports = convertToObject;

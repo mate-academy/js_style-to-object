@@ -14,24 +14,15 @@
 function convertToObject(sourceString) {
   const properties = {};
   const splited = sourceString
-    .split('\n')
-    .map(property => property.trim())
-    .filter(property => property !== '' && property !== ';')
-    .map(property => property
-      .split(':')
-      .map(part => part
-        .split(' ')
-        .filter(element => element !== '')
-        .join(' ')
-        .split('')
-        .filter(char => char !== ';')
-        .join('')
-      )
-    );
+    .split(':')
+    .join(';')
+    .split(';')
+    .map(word => word.trim())
+    .filter(word => word !== '');
 
-  splited.forEach(part => {
-    properties[part[0]] = part[1].trim();
-  });
+  for (let i = 0; i < splited.length; i += 2) {
+    properties[splited[i]] = splited[i + 1];
+  }
 
   return properties;
 }

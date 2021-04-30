@@ -12,25 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // const filteredString = s.replaceAll(/\n/g, '').split(' ').join('');
-  // const filteredString = sourceString.split(' ').join('');
-  const arr = sourceString.split(';');
-  // const sorted = arr.sort((a, b) => {
-  //   return a.localeCompare(b);
-  // });
-  const finalArr = arr.filter(string => string.trim().length > 0)
-    .map(string => {
-      return string.split(':');
-    });
-  const obj = {};
+  const cssStylesInArray = sourceString.split(';');
+  const fixedCssStylesInArray = cssStylesInArray.filter(string =>
+    string.trim().length > 0).map(string => {
+    return string.split(':');
+  });
+  const stylesObj = {};
 
-  finalArr.forEach(([key, value]) => {
+  fixedCssStylesInArray.forEach(([key, value]) => {
     if (value) {
-      obj[key.trim()] = value.trim();
+      stylesObj[key.trim()] = value.trim();
     }
   });
 
-  return obj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

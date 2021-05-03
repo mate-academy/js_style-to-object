@@ -13,7 +13,7 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const rules = sourceString.split(';\n')
+  const rules = sourceString.split(';')
     .map(selector => selector.split(':').map(elem => elem.trim()));
 
   for (let i = 0; i < rules.length; i++) {

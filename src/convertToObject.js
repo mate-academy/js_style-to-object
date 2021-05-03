@@ -13,17 +13,11 @@
  */
 function convertToObject(sourceString) {
   const clearArr = sourceString
-    .split(';').map(
-      property => property
-        .split('')
-        .filter(name => name !== '\n')
-        .join('')
-    ).filter(elem => elem !== '')
-    .map(
-      property => property
-        .split(':')
-        .map(elem => elem.trim())
-    ).filter(prop => prop.length > 1);
+    .split(';')
+    .map(property => property
+      .split(':').map(styleValue => styleValue.trim())
+    )
+    .filter(property => property.length > 1);
 
   const cssPropertyesObj = {};
 

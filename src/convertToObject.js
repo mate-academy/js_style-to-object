@@ -12,7 +12,32 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const objCss = {};
+  let properties = sourceString.split(';');
+
+  properties = properties.map(
+    (prop) => prop.split(':')
+  );
+
+  let items = properties.map(
+    (item) => item.map(
+      (string) => string.trim()
+    )
+  );
+
+  items = items.filter(
+    (item) => item.every(
+      (string) => string.length !== 0
+    )
+  );
+
+  items.map(
+    (item) => {
+      objCss[item[0]] = item[1];
+    }
+  );
+
+  return objCss;
 }
 
 module.exports = convertToObject;

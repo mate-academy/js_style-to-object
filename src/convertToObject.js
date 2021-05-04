@@ -11,8 +11,19 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const cssObject = {};
+  const modifiedData = sourceString.split(':')
+    .join(';').split(';').map(x => x.trim());
+
+  for (let i = 0; i < modifiedData.length; i += 2) {
+    if (modifiedData[i] !== '') {
+      cssObject[modifiedData[i]] = modifiedData[i + 1];
+    }
+  }
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

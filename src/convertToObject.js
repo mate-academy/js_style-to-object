@@ -11,8 +11,23 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+
+  const source = sourceString
+    .split(':')
+    .join(';')
+    .split(';')
+    .map(str => str.trim());
+
+  for (let i = 0; i < source.length; i += 2) {
+    if (source[i]) {
+      result[source[i]] = source[i + 1];
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const properties = new Set(sourceString.split(';'));
 
+  properties.delete('\n');
+  properties.delete('\n  ');
+  properties.delete('\n\n  ');
+
+  const propertyList = {};
+
+  for (const property of properties) {
+    const element = property.split(':');
+
+    propertyList[element[0].trim()] = element[1].trim();
+  }
+
+  return propertyList;
+}
 module.exports = convertToObject;

@@ -12,31 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(' ');
   const result = {};
 
+  const arr = sourceString
+    .split(';')
+    .map(prop => prop
+      .split(':')
+      .map(word => word
+        .trim())
+    );
+
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === '') {
-      arr.splice(i, 1);
-      i--;
+    if (arr[i].length !== 1) {
+      result[arr[i][0]] = arr[i][1];
     }
-  }
-
-  const str = arr.join(' ');
-  const obj = str.split(';');
-  const key = [];
-
-  for (let i = 0; i < obj.length; i++) {
-    key.push(obj[i].split(':'));
-  }
-
-  for (let i = 0; i < key.length; i++) {
-    if (key[i][1] === undefined) {
-      key.splice(i, 1);
-      i--;
-    }
-
-    result[key[i][0].trim()] = key[i][1].trim();
   }
 
   return result;

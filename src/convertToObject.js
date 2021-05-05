@@ -17,15 +17,15 @@ function convertToObject(sourceString) {
   styles = styles.map(x => x.replace(/\s/g, ' ').trim());
   styles = styles.filter(x => x.length > 0);
   styles = styles.map(x => x.split(':'));
-  styles = styles.flat();
 
-  const object = {};
+  styles = styles.reduce((a, b) => {
+    return {
+      ...a,
+      [b[0].trim()]: b[1].trim(),
+    };
+  }, {});
 
-  for (let i = 1; i < styles.length; i += 2) {
-    object[styles[i - 1].trim()] = styles[i].trim();
-  }
-
-  return object;
+  return styles;
 }
 
 module.exports = convertToObject;

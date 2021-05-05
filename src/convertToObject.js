@@ -13,15 +13,17 @@
  */
 function convertToObject(sourceString) {
   const obj = {};
-  const strArr = sourceString.split(':').join(';').split(';')
-    .map(item => item.trim());
 
-  for (let i = 0; i < strArr.length; i++) {
-    if (strArr[i] !== '') {
-      obj[strArr[i]] = strArr[i + 1];
-      i++;
-    }
-  }
+  sourceString
+    .split(';')
+    .map((rule) => rule.split(':'))
+    .filter((pair) => pair.length === 2)
+    .forEach((pair) => {
+      const key = pair[0].trim();
+      const value = pair[1].trim();
+
+      obj[key] = value;
+    });
 
   return obj;
 }

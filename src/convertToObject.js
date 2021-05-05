@@ -11,8 +11,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const stylesArray = sourceString.split(';')
+    .map(item => item.trim())
+    .filter(item => item !== '')
+    .map(item => item.split(':'))
+    .map(item => item.map(i => i.trim()));
+
+  const stylesObject = {};
+
+  for (let i = 0; i < stylesArray.length; i++) {
+    stylesObject[stylesArray[i][0]] = stylesArray[i][1];
+  }
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -12,14 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';').map(s => s.split(':'))
-    .map(s => s.map(x => x.trim()))
-    .filter(x => x.length === 2);
+  const styles = sourceString
+    .split(';')
+    .map(item => item
+      .split(':')
+      .map(prop => prop.trim()))
+    .filter(element => element.length === 2);
   const styleObject = {};
 
-  for (const style of styles) {
-    styleObject[style[0]] = style[1];
-  }
+  styles.forEach(element => {
+    styleObject[element[0]] = element[1];
+  });
 
   return styleObject;
 }

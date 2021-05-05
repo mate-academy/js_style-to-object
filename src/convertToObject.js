@@ -14,24 +14,16 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const splitedString = sourceString.split(';');
-
-  const splitedProperties = splitedString.map(words =>
+  const splitedString = sourceString.split(';').map(words =>
     words.split(':')
   );
 
-  const filtredProperties = splitedProperties.filter(value =>
+  const filtredProperties = splitedString.filter(value =>
     value.length === 2
   );
 
-  const trimmedProperties = filtredProperties.map(
-    ([key, value]) => [key.trim(), value.trim()]
-  );
-
-  for (const property of trimmedProperties) {
-    if (property.length > 1) {
-      result[property[0]] = property[1];
-    }
+  for (const property of filtredProperties) {
+    result[property[0].trim()] = property[1].trim();
   }
 
   return result;

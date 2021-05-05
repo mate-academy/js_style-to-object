@@ -13,21 +13,19 @@
  */
 
 function convertToObject(sourceString) {
-  const result = {};
-
   const source = sourceString
-    .split(':')
-    .join(';')
     .split(';')
-    .map(str => str.trim());
+    .map(str => str.split(':'))
+    .filter(parts => parts.length === 2)
+    .reduce((result, [key, value]) => {
+      result[key.trim()] = value.trim();
 
-  for (let i = 0; i < source.length; i += 2) {
-    if (source[i]) {
-      result[source[i]] = source[i + 1];
-    }
-  }
+      return result;
+    },
 
-  return result;
-}
+    {});
+
+  return source;
+};
 
 module.exports = convertToObject;

@@ -12,16 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const styleObject = {};
   const styles = sourceString
     .split(';')
     .map(item => item
       .split(':')
       .map(prop => prop.trim()))
     .filter(element => element.length === 2);
-  const styleObject = {};
 
   styles.forEach(element => {
-    styleObject[element[0]] = element[1];
+    const [key, value] = element;
+
+    styleObject[key] = value;
   });
 
   return styleObject;

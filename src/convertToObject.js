@@ -14,14 +14,14 @@
 function convertToObject(sourceString) {
   let styles = sourceString.split(';');
 
-  styles = styles.map(x => x.replace(/\s/g, ' ').trim());
-  styles = styles.filter(x => x.length > 0);
-  styles = styles.map(x => x.split(':'));
+  styles = styles.map(style => style.replace(/\s/g, ' ').trim());
+  styles = styles.filter(style => style.length > 0);
+  styles = styles.map(style => style.split(':'));
 
-  return styles.reduce((a, b) => {
+  return styles.reduce((prev, style) => {
     return {
-      ...a,
-      [b[0].trim()]: b[1].trim(),
+      ...prev,
+      [style[0].trim()]: style[1].trim(),
     };
   }, {});
 }

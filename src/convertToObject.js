@@ -13,13 +13,13 @@
  */
 
 function convertToObject(sourceString) {
-  let stylesArray = sourceString.split(';');
-  const stylesObject = {};
+  const stylesArray = sourceString.split(';')
+    .map(item => item.trim())
+    .filter(item => item !== '')
+    .map(item => item.split(':'))
+    .map(item => item.map(i => i.trim()));
 
-  stylesArray = stylesArray.map(item => item.trim());
-  stylesArray = stylesArray.filter(item => item !== '');
-  stylesArray = stylesArray.map(item => item.split(':'));
-  stylesArray = stylesArray.map(item => item.map(i => i.trim()));
+  const stylesObject = {};
 
   for (let i = 0; i < stylesArray.length; i++) {
     stylesObject[stylesArray[i][0]] = stylesArray[i][1];

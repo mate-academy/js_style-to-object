@@ -14,14 +14,15 @@
 function convertToObject(sourceString) {
   const clearArr = sourceString
     .split(';')
-    .map(property => property
-      .split(':').map(styleValue => styleValue.trim())
+    .map(
+      property => property
+        .split(':').map(styleValue => styleValue.trim())
     )
     .filter(property => property.length > 1);
 
   const cssPropertyesObj = {};
 
-  clearArr.map(prop => {
+  clearArr.forEach(prop => {
     cssPropertyesObj[prop[0]] = prop[1];
   });
 

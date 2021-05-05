@@ -18,14 +18,12 @@ function convertToObject(sourceString) {
   styles = styles.filter(x => x.length > 0);
   styles = styles.map(x => x.split(':'));
 
-  styles = styles.reduce((a, b) => {
+  return styles.reduce((a, b) => {
     return {
       ...a,
       [b[0].trim()]: b[1].trim(),
     };
   }, {});
-
-  return styles;
 }
 
 module.exports = convertToObject;

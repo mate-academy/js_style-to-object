@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
         .split(':')
         .map(elem => elem.trim());
 
-      stylesObj[property[0]] = property[1];
+      if (property[0] !== '') {
+        stylesObj[property[0]] = property[1];
+      }
     });
-
-  delete stylesObj[''];
 
   return stylesObj;
 }

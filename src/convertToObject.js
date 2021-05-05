@@ -12,25 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesList = sourceString.split('\n');
-
   const stylesObj = {};
 
-  stylesList.forEach((style, ind, arr) => {
-    arr[ind] = style.split(':');
+  sourceString
+    .split(';')
+    .forEach((style, ind, arr) => {
+      const property = style
+        .split(':')
+        .map(elem => elem.trim());
 
-    if (arr[ind].length > 1) {
-      arr[ind][0] = arr[ind][0].trim();
-      // console.log(arr[ind][1]);
-      arr[ind][1] = arr[ind][1].slice(0, arr[ind][1].length - 1).trim();
-    } else {
-      arr[ind][0] = arr[ind][0].trim();
-    }
-    stylesObj[arr[ind][0]] = arr[ind][1];
-  });
+      stylesObj[property[0]] = property[1];
+    });
 
   delete stylesObj[''];
-  delete stylesObj[';'];
 
   return stylesObj;
 }

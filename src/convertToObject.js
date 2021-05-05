@@ -13,6 +13,14 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+
+  return sourceString.split(';')
+    .map(each => each.split(':'))
+    .filter(pair => pair.length === 2)
+    .reduce((arr, [key, value]) => ({
+      ...arr,
+      [key.trim()]: value.trim(),
+    }), {});
 }
 
 module.exports = convertToObject;

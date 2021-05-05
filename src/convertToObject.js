@@ -13,19 +13,13 @@
  */
 function convertToObject(sourceString) {
   const stylesObj = {};
-  const convertStylesToArr = sourceString
-    .split('\n')
+
+  const styles = sourceString
+    .split(';')
     .filter(prop => prop.includes(':'))
-    .map(el => {
-      const style = el.slice(0, el.lastIndexOf(';')).split(':');
+    .map(el => el.split(':').map(prop => prop.trim()));
 
-      style[0] = style[0].trim();
-      style[1] = style[1].trim();
-
-      return style;
-    });
-
-  convertStylesToArr.forEach(el => {
+  styles.forEach(el => {
     stylesObj[el[0]] = el[1];
   });
 

@@ -12,18 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const properties = new Set(sourceString.split(';'));
-
-  properties.delete('\n');
-  properties.delete('\n  ');
-  properties.delete('\n\n  ');
-
+  const properties = sourceString.split(';');
   const propertyList = {};
 
   for (const property of properties) {
-    const element = property.split(':');
+    if (property.includes(':')) {
+      const element = property.split(':');
 
-    propertyList[element[0].trim()] = element[1].trim();
+      propertyList[element[0].trim()] = element[1].trim();
+    }
   }
 
   return propertyList;

@@ -11,29 +11,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  const propertiesAndValuesArray = sourceString.split(';');
+  let stylesArray = sourceString.split(';');
+  const stylesObject = {};
 
-  for (let i = 0; i < propertiesAndValuesArray.length; i++) {
-    propertiesAndValuesArray[i] = propertiesAndValuesArray[i].trim();
+  stylesArray = stylesArray.map(item => item.trim());
+  stylesArray = stylesArray.filter(item => item !== '');
+  stylesArray = stylesArray.map(item => item.split(':'));
+  stylesArray = stylesArray.map(item => item.map(i => i.trim()));
+
+  for (let i = 0; i < stylesArray.length; i++) {
+    stylesObject[stylesArray[i][0]] = stylesArray[i][1];
   }
 
-  const filteredPropAndVal = propertiesAndValuesArray.filter(
-    item => item !== ''
-  );
-
-  for (let i = 0; i < filteredPropAndVal.length; i++) {
-    filteredPropAndVal[i] = filteredPropAndVal[i].split(':');
-  }
-
-  const propertiesAndValuesObject = {};
-
-  for (let i = 0; i < filteredPropAndVal.length; i++) {
-    propertiesAndValuesObject[filteredPropAndVal[i][0].trim()]
-    = filteredPropAndVal[i][1].trim();
-  }
-
-  return propertiesAndValuesObject;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

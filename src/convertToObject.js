@@ -12,7 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const trimed = sourceString.split(';').map(element => element.trim());
+  const noEmpty = trimed.filter(word => word !== '');
+  const pairs = noEmpty.map(element => element.split(':'));
+
+  pairs.forEach(element => {
+    result[element[0].trim()] = element[1].trim();
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
     .map(item => item.split(':'))
     .filter(style => style.length > 1)
     .map(([property, value]) => {
-      return [property.replace('\n', '').trim(), value.trim()];
+      return [property.trim(), value.trim()];
     });
 
   const result = {};

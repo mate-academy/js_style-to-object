@@ -16,11 +16,11 @@ function convertToObject(sourceString) {
   const stylesObject = {};
 
   stylesArrey.forEach(item => {
-    const tempArr = item.split(':');
+    const style = item.split(':');
 
-    if (tempArr[0] !== undefined && tempArr[1] !== undefined) {
-      const key = tempArr[0].trim();
-      const property = tempArr[1].trim();
+    if (style[0] !== undefined && style[1] !== undefined) {
+      const key = style[0].trim();
+      const property = style[1].trim();
 
       stylesObject[key] = property;
     }

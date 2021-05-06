@@ -13,7 +13,8 @@
  */
 function convertToObject(sourceString) {
   return Object.fromEntries(
-    sourceString.split(';')
+    sourceString
+      .split(';')
       .map(rule => rule.split(':'))
       .filter(pair => pair.length === 2)
       .map(([key, value]) => [key.trim(), value.trim()])

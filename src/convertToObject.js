@@ -13,18 +13,12 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const stringToArr = sourceString.split(':').join(';').split(';')
-    .map(item => item.trim());
-  const cssRules = {};
-
-  for (let i = 0; i < stringToArr.length; i++) {
-    if (stringToArr[i] !== '') {
-      cssRules[stringToArr[i]] = stringToArr[i + 1];
-      i++;
-    }
-  }
-
-  return cssRules;
+  return Object.fromEntries(
+    sourceString.split(';')
+      .map(rule => rule.split(':'))
+      .filter(pair => pair.length === 2)
+      .map(([key, value]) => [key.trim(), value.trim()])
+  );
 }
 
 module.exports = convertToObject;

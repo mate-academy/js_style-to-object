@@ -31,7 +31,7 @@ function convertToObject(sourceString) {
     )
   );
 
-  items.map(
+  items.forEach(
     (item) => {
       objCss[item[0]] = item[1];
     }

@@ -13,6 +13,22 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const cssObj = {};
+
+  sourceString
+    .split(';')
+    .map(el => {
+      return el
+        .split(':')
+        .map(element => element.trim());
+    })
+    .map(el => {
+      if (el[0]) {
+        cssObj[el[0]] = el[1];
+      }
+    });
+
+  return cssObj;
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const result = {};
+  const sourceArr = sourceString.split(';')
+    .map(rule => rule.split(':'))
+    .map(rule => rule.map(x => x.trim()))
+    .filter(pair => pair.length === 2);
+
+  for (const prop of sourceArr) {
+    result[prop[0]] = prop[1];
+  }
+
+  return result;
+};
 
 module.exports = convertToObject;

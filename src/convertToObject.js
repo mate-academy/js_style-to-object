@@ -12,23 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normalizeString = sourceString.replace(/[ \r\n]/g, '')
-    .replace('solid', ' solid ')
-    .replace('!important', ' !important')
-    .replace(/\.2s/g, ' .2s ')
-    .split(';');
-
-  const styles = {};
-
-  for (let style of normalizeString) {
-    style = style.split(':');
-
-    if (style.length > 1) {
-      styles[style[0]] = style[1];
-    }
-  }
-
-  return styles;
+  return Object.fromEntries(sourceString.split(';')
+    .map(style => style.split(':'))
+    .filter(style => style.length === 2)
+    .map(([key, value]) => [key.trim(), value.trim()]));
 }
 
 module.exports = convertToObject;

@@ -13,19 +13,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const result = {};
   const stylesData = sourceString
     .split(';')
     .map(style => style.trim().split(': '));
 
-  return stylesData.reduce((all, style) => {
-    return style.length > 1
-      ? {
-        ...all,
-        [style[0].trim()]: style[1].trim(),
-      }
+  for (const style of stylesData) {
+    if (style.length > 1) {
+      result[style[0].trim()] = style[1].trim();
+    }
+  }
 
-      : all;
-  }, {});
+  return result;
 }
 
 module.exports = convertToObject;

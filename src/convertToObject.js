@@ -12,7 +12,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObject = {};
+
+  const sourceStringArray = sourceString.split(';');
+
+  sourceStringArray.forEach(splitString);
+
+  function splitString(string) {
+    const convertArray = string.split(':');
+
+    if (convertArray.length === 2) {
+      styleObject[convertArray[0].trim()] = convertArray[1].trim();
+      convertArray.length = 0;
+    }
+  }
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

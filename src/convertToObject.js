@@ -17,8 +17,9 @@ function convertToObject(sourceString) {
 
   cssRulesArr.map(rule => {
     if (rule.trim()) {
-      const property = rule.split(':')[0].trim();
-      const value = rule.split(':')[1].trim();
+      const trimmedRule = rule.split(':').map(part => part.trim());
+      const property = trimmedRule[0];
+      const value = trimmedRule[1];
 
       cssRulesObject = {
         ...cssRulesObject, [property]: value,

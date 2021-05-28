@@ -12,7 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arr = sourceString.split('\n');
+  const clearSpaces = arr.map((item) => item.trim());
+  const clearSmallItems = clearSpaces.filter((item) => item.length > 1);
+  const clearSemicolons = clearSmallItems.map((item) => item.slice(0, -1));
+  const pairs = clearSemicolons.map((item) => item.split(':'));
+  const trimPairs = pairs.map((item) => [item[0].trim(), item[1].trim()]);
+  const object = {};
+
+  trimPairs.forEach((item) => (object[item[0]] = item[1]));
+
+  return object;
 }
 
 module.exports = convertToObject;

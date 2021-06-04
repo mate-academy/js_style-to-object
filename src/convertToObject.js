@@ -12,7 +12,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const strToArray = sourceString.split(';');
+  const outputObj = {};
+
+  strToArray.forEach((keyVal) => {
+    if (keyVal !== 0) {
+      const arrayKeyVal = keyVal.split(':');
+
+      const key = (arrayKeyVal[0]).trim();
+      let value = '';
+
+      if (arrayKeyVal[1] !== undefined) {
+        value = (arrayKeyVal[1]).trim();
+        outputObj[key] = value;
+      }
+    }
+  });
+
+  return outputObj;
 }
 
 module.exports = convertToObject;

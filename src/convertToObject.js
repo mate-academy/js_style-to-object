@@ -17,14 +17,14 @@ function convertToObject(sourceString) {
 
   sourceString.split(';'
   ).map(
-    (a) => a.split(':'
+    (fullStyleLine) => fullStyleLine.split(':'
     ).map(
-      (c) => c.trim())
+      (strExtraSpaces) => strExtraSpaces.trim())
   ).filter(
-    (a) => a[0] !== '' && a[0] !== undefined
-  ).map(
-    (a) => {
-      res[a[0]] = a[1];
+    (strValidCheck) => strValidCheck[0] !== '' && strValidCheck[0] !== undefined
+  ).forEach(
+    (finStrStyle) => {
+      res[finStrStyle[0]] = finStrStyle[1];
     });
 
   return res;

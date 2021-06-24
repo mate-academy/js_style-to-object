@@ -12,9 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const allProperties = sourceString.split(';').map(property => {
-    return property.replace(/[\n]+/, '').trim();
-  }).filter(property => property.length > 0);
+  const allProperties = sourceString
+    .split(';')
+    .map(property => property.trim())
+    .filter(property => property.length > 0);
 
   const keys = allProperties.map(property => property.split(':')[0].trim());
   const values = allProperties.map(property => property.split(':')[1].trim());

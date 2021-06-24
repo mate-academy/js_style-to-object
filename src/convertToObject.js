@@ -12,23 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';')
-    .filter(style => !style.split('').every(ch => ch === ' '));
-  const convertedStyle = styles.reduce((prev, style) => {
-    const styleParts = style.split(':');
-    const currentConvertedStyle = (styleParts[0] === undefined)
-      || (styleParts[1] === undefined)
-      ? {
-        ...prev,
-      }
-      : {
-        ...prev,
-        [styleParts[0].trim()]: styleParts[1].trim(),
-      };
+  const styles = sourceString.split(';');
+  const convertedStyle = {};
 
-    return currentConvertedStyle;
-  },
-  {});
+  styles.forEach(style => {
+    const styleParts = style.split(':');
+
+    if (styleParts[1] === undefined) {
+      return;
+    }
+
+    convertedStyle[styleParts[0].trim()] = styleParts[1].trim();
+  });
 
   return convertedStyle;
 }

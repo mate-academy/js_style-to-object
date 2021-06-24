@@ -12,20 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultConvert = {};
-
   sourceString
     .split(';')
     .map((item) => item.split(':'))
     .filter((elem) => elem.length === 2)
-    .forEach((item) => {
+    .reduce((resultConvert, item) => {
       const key = item[0].trim();
       const value = item[1].trim();
 
       return (resultConvert[key] = value);
-    });
-
-  return resultConvert;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -1,10 +1,10 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const splittedSourceString = sourceString.split(';');
+  const splittedStyles = sourceString.split(';');
   const convertedStyles = {};
 
-  splittedSourceString.forEach(string => {
+  splittedStyles.forEach(string => {
     const currentStyle = string.split(':');
 
     if (currentStyle[1] === undefined) {

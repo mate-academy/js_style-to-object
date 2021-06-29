@@ -15,10 +15,12 @@ function convertToObject(sourceString) {
   const splitedSourceString = sourceString.split(';');
 
   const callback = (previousValue, currentValue) => {
+    const key = (currentValue.substr(0, currentValue.indexOf(':'))).trim();
+    const value = (currentValue.substr(currentValue.indexOf(':') + 1)).trim();
+
     return {
       ...previousValue,
-      [(currentValue.substr(0, currentValue.indexOf(':'))).trim()]:
-        (currentValue.substr(currentValue.indexOf(':') + 1)).trim(),
+      [key]: value,
     };
   };
 

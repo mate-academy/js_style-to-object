@@ -14,11 +14,11 @@
 function convertToObject(sourceString) {
   const splitedSourceString = sourceString.split(';');
 
-  const callback = (prev, item) => {
+  const callback = (previousValue, currentValue) => {
     return {
-      ...prev,
-      [(item.substr(0, item.indexOf(':'))).trim()]:
-        (item.substr(item.indexOf(':') + 1)).trim(),
+      ...previousValue,
+      [(currentValue.substr(0, currentValue.indexOf(':'))).trim()]:
+        (currentValue.substr(currentValue.indexOf(':') + 1)).trim(),
     };
   };
 

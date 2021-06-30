@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const resultOfDivision = {};
+  const elementForDivision = sourceString.split(':').map(item => item.trim())
+    .join(': ').split(';').map(style => style.trim())
+    .filter(value => value.length > 1);
+
+  elementForDivision.forEach((item, index) => {
+    const indexColons = elementForDivision[index].indexOf(':');
+
+    resultOfDivision[elementForDivision[index].slice(0, indexColons)]
+    = elementForDivision[index].slice(indexColons + 2,
+        elementForDivision[index].length);
+  });
+
+  return resultOfDivision;
 }
 
 module.exports = convertToObject;

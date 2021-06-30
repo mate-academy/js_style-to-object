@@ -13,15 +13,16 @@
  */
 function convertToObject(sourceString) {
   const resultOfDivision = {};
-  const elementForDivision = sourceString.split(':').map(x => x.trim())
-    .join(': ').split(';').map(y => y.trim()).filter(x => x.length > 1);
+  const elementForDivision = sourceString.split(':').map(item => item.trim())
+    .join(': ').split(';').map(style => style.trim())
+    .filter(value => value.length > 1);
 
-  elementForDivision.forEach((k, i) => {
-    const indexColons = elementForDivision[i].indexOf(':');
+  elementForDivision.forEach((item, index) => {
+    const indexColons = elementForDivision[index].indexOf(':');
 
-    resultOfDivision[elementForDivision[i].slice(0, indexColons)]
-    = elementForDivision[i].slice(indexColons + 2,
-        elementForDivision[i].length);
+    resultOfDivision[elementForDivision[index].slice(0, indexColons)]
+    = elementForDivision[index].slice(indexColons + 2,
+        elementForDivision[index].length);
   });
 
   return resultOfDivision;

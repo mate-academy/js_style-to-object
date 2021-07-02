@@ -13,22 +13,22 @@
  */
 function convertToObject(sourceString) {
   const final = {};
-  const key = [];
-  const value = [];
+  const keys = [];
+  const values = [];
   const arrayFromString = sourceString.replace(/[\n]/gi, '').split(';');
 
-  for (let i = 0; i < arrayFromString.length; i++) {
-    const index = arrayFromString[i].indexOf(':');
+  arrayFromString.forEach(item => {
+    const index = item.indexOf(':');
 
-    key.push(arrayFromString[i].slice(0, index).trim());
-    value.push(arrayFromString[i].slice(index + 1).trim());
-  }
+    keys.push(item.slice(0, index).trim());
+    values.push(item.slice(index + 1).trim());
+  });
 
-  for (let i = 0; i < key.length; i++) {
-    if (key[i].length > 0) {
-      final[key[i]] = value[i];
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i].length > 0) {
+      final[keys[i]] = values[i];
     }
-  }
+  };
 
   return final;
 }

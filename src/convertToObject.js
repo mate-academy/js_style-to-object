@@ -14,11 +14,6 @@
 function convertToObject(sourceString) {
   const propertyDataObject = {};
 
-  // const transformedArray = sourceString.split(';')
-  //   .map(element => element.trim())
-  //   .map(element => element.split(':')
-  //     .map(item => item.trim()));
-
   const transformedArray = sourceString.split(';')
     .map(element => element.trim().split(':')
       .map(item => item.trim()));

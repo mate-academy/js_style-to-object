@@ -11,24 +11,15 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
-  const result = {};
-  const properties = sourceString.split(';').map(prop => {
-    const property = prop.split(':');
 
-    for (let i = 0; i < property.length; i++) {
-      property[i] = property[i].trim();
-    }
+function convertToObject(sourceString) {
+  const properties = sourceString.split(';').map(prop => {
+    const property = prop.split(':').map(propertyItem => propertyItem.trim());
 
     return property;
   }).filter(prop => prop.length > 1);
 
-  for (const element of properties) {
-    result[element[0]] = element[1];
-  }
-
-  return result;
+  return Object.fromEntries(properties);
 }
 
 module.exports = convertToObject;

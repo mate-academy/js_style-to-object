@@ -11,8 +11,15 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const properties = sourceString.split(';').map(prop => {
+    const property = prop.split(':').map(propertyItem => propertyItem.trim());
+
+    return property;
+  }).filter(prop => prop.length > 1);
+
+  return Object.fromEntries(properties);
 }
 
 module.exports = convertToObject;

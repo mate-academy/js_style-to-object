@@ -12,7 +12,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = sourceString.split(';');
+
+  const getObject = function(prev, style) {
+    const propertyAndValue = style.split(':');
+    const result = (propertyAndValue[1] !== undefined)
+      ? {
+        ...prev,
+        [propertyAndValue[0].trim()]: propertyAndValue[1].trim(),
+      }
+      : { ...prev };
+
+    return result;
+  };
+
+  const object = styles.reduce(getObject, {});
+
+  return object;
 }
 
 module.exports = convertToObject;

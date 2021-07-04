@@ -16,14 +16,12 @@ function convertToObject(sourceString) {
 
   const getObject = function(prev, style) {
     const propertyAndValue = style.split(':');
-    let result = { ...prev };
-
-    if (propertyAndValue[1] !== undefined) {
-      result = {
+    const result = (propertyAndValue[1] !== undefined)
+      ? {
         ...prev,
         [propertyAndValue[0].trim()]: propertyAndValue[1].trim(),
-      };
-    }
+      }
+      : { ...prev };
 
     return result;
   };

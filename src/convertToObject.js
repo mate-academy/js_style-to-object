@@ -24,9 +24,9 @@ function convertToObject(sourceString) {
     };
   };
 
-  const sourceObjects = properties.reduce(addProperty, {});
+  const styles = properties.reduce(addProperty, {});
 
-  return sourceObjects;
+  return styles;
 }
 
 module.exports = convertToObject;

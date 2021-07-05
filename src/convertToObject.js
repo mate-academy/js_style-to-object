@@ -12,23 +12,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const t = sourceString.split(';');
+  const arrayOfValues = sourceString.split(';');
 
-  t.forEach(element => element.split(':'));
+  arrayOfValues.forEach(element => element.split(':'));
 
-  const y = t.map(element => {
+  const arrayPreResult = arrayOfValues.map(element => {
     return element.trim().split(':');
   });
 
-  const u = {};
+  const result = {};
 
-  for (const char of y) {
+  for (const char of arrayPreResult) {
     if (char[1] !== undefined) {
-      u[`${char[0].trim()}`] = char[1].trim();
+      result[`${char[0].trim()}`] = char[1].trim();
     }
   }
 
-  return u;
+  return result;
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = {};
+  // const styles = {};
 
   const splitSourceString = sourceString.split(';')
     .map(style => style
@@ -20,11 +20,11 @@ function convertToObject(sourceString) {
       .map(item => item.trim()))
     .filter(item => item.length > 1);
 
-  splitSourceString.forEach(arr => {
-    styleObject[arr[0]] = arr[1];
-  });
+  const styles = splitSourceString.reduce((accum, [key, value]) => ({
+    ...accum, [key]: value,
+  }), {});
 
-  return styleObject;
+  return styles;
 };
 
 module.exports = convertToObject;

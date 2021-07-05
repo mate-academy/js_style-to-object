@@ -18,8 +18,6 @@ function convertToObject(sourceString) {
     .filter((string) => string.trim().length > 0)
     .map((string) => string.split(':'))
     .forEach((element) => {
-      element[1] = element[1].trim();
-
       styles[element[0].trim()] = element[1].trim();
     });
 

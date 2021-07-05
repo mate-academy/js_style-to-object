@@ -16,13 +16,13 @@ function convertToObject(sourceString) {
   const sourceStringToArr = sourceString.split(';')
     .map(item => item.split(': '))
     .filter(item => item.length === 2);
-  const resultObj = {};
+  const properties = {};
 
   sourceStringToArr.reduce((prev, item) => {
-    resultObj[item[0].trim()] = item[1].trim();
+    properties[item[0].trim()] = item[1].trim();
   }, 0);
 
-  return resultObj;
+  return properties;
 }
 
 module.exports = convertToObject;

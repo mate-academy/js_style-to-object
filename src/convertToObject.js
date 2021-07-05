@@ -12,8 +12,6 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // const styles = {};
-
   const splitSourceString = sourceString.split(';')
     .map(style => style
       .split(':')

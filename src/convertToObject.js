@@ -12,7 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const semicolon = sourceString.split(';');
+  const doublequote = semicolon.map(line => line.trim().split(':'));
+  const filtred = doublequote.filter(value => value.length !== 1);
+
+  filtred.forEach(couple => {
+    couple[0] = couple[0].trim();
+    couple[1] = couple[1].trim();
+  });
+
+  return Object.fromEntries(filtred);
 }
 
 module.exports = convertToObject;

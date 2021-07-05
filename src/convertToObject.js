@@ -16,12 +16,14 @@ function convertToObject(sourceString) {
     .split(';')
     .map(pairStyle => pairStyle.split(':'))
     .filter(pairStyle => pairStyle.length === 2);
+
   const callback = (object, pairStyle) => {
     return {
       ...object,
       [pairStyle[0].trim()]: pairStyle[1].trim(),
     };
   };
+
   const cssProperties = properties.reduce(callback, {});
 
   return cssProperties;

@@ -19,8 +19,8 @@ function convertToObject(sourceString) {
     .filter((item) => Boolean(item.trim()))
     .map((item) => item.trim());
 
-  const cssPropertiesObject
-    = filteredCssProperies.reduce((previouslyState, property) => {
+  const styles = filteredCssProperies.reduce(
+    (previouslyState, property) => {
       const key = property.split(':')[0].trim();
       const value = property.split(':')[1].trim();
 

@@ -12,13 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const strFormated = sourceString.replace(/\n/g, '');
-  const arr = strFormated.split(';');
-  const arrMap = arr.map(value => value.split(':'));
-  const removeFake = arrMap.filter(value => value.length > 1);
-  const arrMapTrimmed = removeFake.map(value =>
-    [value[0].trim(), value[1].trim()]);
-  const result = Object.fromEntries(arrMapTrimmed);
+  const arrFromString = sourceString.split(';');
+  const splitedArr = arrFromString.map(value => value.split(':'));
+  const removeFake = splitedArr.filter(value => value.length > 1);
+  const result = removeFake.reduce((prev, item) => {
+    return {
+      ...prev,
+      [item[0].trim()]: item[1].trim(),
+    };
+  }, {});
 
   return result;
 }

@@ -12,17 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let properties = sourceString.split(';');
-  const sourceObject = {};
+  const properties = sourceString
+    .split(';')
+    .map(property => property.split(':'))
+    .filter(property => property.length > 1);
 
-  properties = properties.map(property => property.split(':'));
-  properties = properties.filter(property => property.length > 1);
+  const addProperty = (objects, property) => {
+    return {
+      ...objects,
+      [property[0].trim()]: property[1].trim(),
+    };
+  };
 
-  properties.map(property => {
-    return (sourceObject[property[0].trim()] = property[1].trim());
-  });
+  const sourceObjects = properties.reduce(addProperty, {});
 
-  return sourceObject;
+  return sourceObjects;
 }
 
 module.exports = convertToObject;

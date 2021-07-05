@@ -12,21 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(';');
-  let result = {};
+  const splittedStyles = sourceString.split(';');
+  const arrayWithStyles = splittedStyles.filter(style =>
+    style.includes(':')).map(style => style.split(':'));
+  const objectWithStyles = arrayWithStyles.reduce((prev, [key, value]) => ({
+    ...prev,
+    [key.trim()]: value.trim(),
+  }), {});
 
-  arr.forEach(item => {
-    if (item.trim() !== '') {
-      const styleForObject = item.split(':');
-
-      result = {
-        ...result,
-        [styleForObject[0].trim()]: styleForObject[1].trim(),
-      };
-    }
-  });
-
-  return result;
+  return objectWithStyles;
 }
 
 module.exports = convertToObject;

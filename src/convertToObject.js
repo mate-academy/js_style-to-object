@@ -22,7 +22,10 @@ function convertToObject(sourceString) {
   const cssRules = sourceArray.filter(removeEmptyRules);
 
   for (const rule of cssRules) {
-    styleObject[rule.split(':')[0].trim()] = rule.split(':')[1].trim();
+    const key = rule.split(':')[0].trim();
+    const value = rule.split(':')[1].trim();
+
+    styleObject[key] = value;
   }
 
   return styleObject;

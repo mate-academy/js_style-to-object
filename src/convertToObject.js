@@ -12,12 +12,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfValues = sourceString.split(';').map(
+  const valuesWithOutBlank = sourceString.split(';').map(
     element => {
       return element.split(':');
     });
 
-  return arrayOfValues.reduce(
+  return valuesWithOutBlank.reduce(
     (acumulator, element) => {
       const result = { };
 

@@ -14,14 +14,11 @@
 function convertToObject(sourceString) {
   const noNewlines = sourceString.split(';')
     .map(property => property.trim())
-    .filter(property => property !== '');
+    .filter(property => property);
   const propertyAndValue = noNewlines
-    .map(property => property
-      .split(':'));
+    .map(property => property.split(':'));
   const noSpaces = propertyAndValue
-    .map(property => property
-      .map(item => item.trim()));
-
+    .map(property => property.map(item => item.trim()));
   const putPropertiesIntoObject = noSpaces
     .reduce((accum, property) => {
       return {

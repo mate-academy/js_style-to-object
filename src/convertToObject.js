@@ -12,17 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesProperties = {};
-
   const splitedProperty = sourceString.split(';');
 
-  const filtered = splitedProperty
-    .map(item => item.split(':'))
-    .filter(item => item.length === 2);
+  const filteredProperties = splitedProperty.map(
+    item => item.split(':')).filter(
+    item => item.length === 2);
 
-  filtered.map(item => (stylesProperties[item[0].trim()] = item[1].trim()));
+  const cssProperties = filteredProperties.reduce(
+    (prev, [key, value]) => ({
+      ...prev,
+      [key.trim()]: value.trim(),
+    }), {});
 
-  return stylesProperties;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

@@ -14,14 +14,15 @@
 function convertToObject(sourceString) {
   const convertedToObject = {};
   const splitString = sourceString.split(';');
-  const filteredSplitString = splitString.filter(x => x.length > 5)
-    .map(x => x.trim()).map(x => x.split(':'))
-    .map(x => `${x[0].trim()} ${x[1].trim()}`);
+  const filteredSplitString = splitString
+    .filter(property => property.includes(':'))
+    .map(property => property.trim()).map(property => property.split(':'))
+    .map(property => [property[0].trim(), property[1].trim()]);
 
-  filteredSplitString.map(x => {
-    const property = x.split(' ').shift();
+  filteredSplitString.map(property => {
+    const properties = property[0];
 
-    convertedToObject[property] = x.split(' ').slice(1).join(' ');
+    convertedToObject[properties] = property[1];
 
     return convertedToObject;
   });

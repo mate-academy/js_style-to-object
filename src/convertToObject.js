@@ -11,18 +11,16 @@
  *
  * @return {object}
  */
-function convertToObject(styles) {
-  const splitedStyles = styles.split(';');
+function convertToObject(sourceString) {
+  const sortedStyles = sourceString.split(';')
+    .map(element => element.split(':')
+      .map(trimedElement => trimedElement.trim()))
+    .filter(filteredElement => filteredElement[0])
+    .reduce((prev, value) => {
+      (prev[value[0]] = value[1]);
 
-  const splitedStylesWithoutEmpty = splitedStyles.map(
-    element => element.split(':')
-      .map(value => value.trim()))
-    .filter(filterElement => filterElement[0] !== '');
-
-  const sortedStyles = {};
-
-  splitedStylesWithoutEmpty.map(
-    element => (sortedStyles[element[0]] = element[1]));
+      return prev;
+    }, {});
 
   return sortedStyles;
 }

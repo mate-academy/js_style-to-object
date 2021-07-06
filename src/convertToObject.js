@@ -12,16 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfAttributesWithValue = sourceString.split(';');
-  const trimmedArrayOfCouples
-    = arrayOfAttributesWithValue.map(line => line.trim().split(':'));
+  const attributesWithValue = sourceString.split(';');
+  const trimmedCouples
+    = attributesWithValue.map(line => line.trim().split(':'));
   const filtredEmptyElements
-    = trimmedArrayOfCouples.filter(value => value.length !== 1);
+    = trimmedCouples.filter(value => value.length !== 1);
 
-  const styles = filtredEmptyElements.reduce((prev, attribute) => {
+  const styles = filtredEmptyElements.reduce((prev, [attribute, value]) => {
     return {
       ...prev,
-      [attribute[0].trim()]: attribute[1].trim(),
+      [attribute.trim()]: value.trim(),
     };
   }, {});
 

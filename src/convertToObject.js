@@ -18,12 +18,11 @@ function convertToObject(sourceString) {
     .split(';')
     .map(pairs => pairs.split(':'))
     .filter(pair => pair.length === 2)
-    .forEach(pair => {
-      const key = pair[0].trim();
-      const value = pair[1].trim();
+    .reduce((properties, values) => {
+      properties[values[0].trim()] = values[1].trim();
 
-      result[key] = value;
-    });
+      return properties;
+    }, result);
 
   return result;
 }

@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const strvalue = sourceString.split(';')
+    .map(pair => pair.split(':'));
+
+  const result = {};
+
+  for (const value of strvalue) {
+    for (let i = 0; i < value.length - 1; i++) {
+      result[value[i].trim()] = value[i + 1].trim();
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const attributesWithValue = sourceString.split(';');
+  const trimmedCouples
+    = attributesWithValue.map(line => line.trim().split(':'));
+  const filtredEmptyElements
+    = trimmedCouples.filter(value => value.length !== 1);
+
+  const styles = filtredEmptyElements.reduce((prev, [attribute, value]) => {
+    return {
+      ...prev,
+      [attribute.trim()]: value.trim(),
+    };
+  }, {});
+
+  return styles;
 }
 
 module.exports = convertToObject;

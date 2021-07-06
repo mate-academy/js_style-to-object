@@ -12,13 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-
-  sourceString
+  const updatedSource = sourceString
     .split(';')
     .filter(property => property.includes(':'))
-    .map(property => property.split(':'))
-    .map(property => (styles[property[0].trim()] = property[1].trim()));
+    .map(property => property.split(':'));
+
+  const styles = updatedSource.reduce((acc, [key, value]) => ({
+    ...acc,
+    [key.trim()]: value.trim(),
+  }), {});
 
   return styles;
 }

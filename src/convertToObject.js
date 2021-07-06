@@ -20,9 +20,11 @@ function convertToObject(sourceString) {
     .filter(element => element.length > 1)
     .map(property => property.split(':')
       .map(prop => prop.trim()))
-    .forEach((property) => {
-      result[property[0]] = property[1];
-    });
+    .reduce(function(key, value) {
+      key[value[0]] = value[1];
+
+      return key;
+    }, result);
 
   return result;
 }

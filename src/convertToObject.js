@@ -12,20 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfValues = sourceString.split(';');
-
-  const arrayPreResult = arrayOfValues.map(
+  const arrayOfValues = sourceString.split(';').map(
     element => {
       return element.split(':');
     });
 
-  return arrayPreResult.reduce(
+  return arrayOfValues.reduce(
     (acumulator, element) => {
       const result = { };
 
       if (element[1] === undefined) {
         return { ...acumulator };
       }
+
       result[`${element[0].trim()}`] = element[1].trim();
 
       return {

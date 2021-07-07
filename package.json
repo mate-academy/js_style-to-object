@@ -1,4 +1,7 @@
 {
+  "jest": {
+    "testEnvironment": "node"
+  },
   "name": "style-to-object",
   "version": "1.0.0",
   "description": "Convert style string to object",

@@ -13,17 +13,17 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  let style = sourceString.split(';');
+  const style = sourceString.split(';')
 
-  style = style.map(str => str.split(':'));
+    .map(rule => rule.split(':'))
+    .map(rule => rule.map(x => x.trim()))
+    .filter(pair => pair.length === 2);
 
-  for (let i = 0; i < style.length; i++) {
-    if (typeof style[i][1] === 'string') {
-      result[style[i][0].trim()] = style[i][1].trim();
-    }
+  for (const prop of style) {
+    result[prop[0]] = prop[1];
   }
 
   return result;
-}
+};
 
 module.exports = convertToObject;

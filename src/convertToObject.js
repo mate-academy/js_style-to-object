@@ -12,32 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objCss = {};
-  let properties = sourceString.split(';');
-
-  properties = properties.map(
-    (prop) => prop.split(':')
-  );
-
-  let items = properties.map(
-    (item) => item.map(
-      (string) => string.trim()
-    )
-  );
-
-  items = items.filter(
-    (item) => item.every(
-      (string) => string.length !== 0
-    )
-  );
-
-  items.forEach(
-    (item) => {
-      objCss[item[0]] = item[1];
-    }
-  );
-
-  return objCss;
+  return sourceString
+    .split(';')
+    .filter(properties => properties.includes(':'))
+    .map(properties => properties.split(':'))
+    .reduce((acc, item) => ({
+      ...acc,
+      [item[0].trim()]: item[1].trim(),
+    }), {});
 }
 
 module.exports = convertToObject;

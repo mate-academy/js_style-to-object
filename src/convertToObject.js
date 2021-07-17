@@ -12,42 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newString = sourceString.replace(/\n/g, '');
-
-  const array = newString.split(';');
-
   const object = {};
 
+  const array = sourceString.split(';');
+
   array.forEach(element => {
-    const colon = element.indexOf(':');
-    let key = element.slice(0, colon);
-    const keyChar = key.split('');
+    const key = element.split(':');
 
-    while (keyChar[0] === ' ') {
-      keyChar.shift();
-    };
-
-    while (keyChar[keyChar.length - 1] === ' ') {
-      keyChar.pop();
-    };
-
-    key = keyChar.join('');
-
-    let value = element.slice(colon + 1);
-    const valueChar = value.split('');
-
-    while (valueChar[0] === ' ') {
-      valueChar.shift();
-    };
-
-    while (valueChar[valueChar.length - 1] === ' ') {
-      valueChar.pop();
-    };
-
-    value = valueChar.join('');
-
-    if (key.length !== 0 && value.length !== 0) {
-      object[key] = value;
+    if (key.length === 2) {
+      object[key[0].trim()] = key[1].trim();
     }
   });
 

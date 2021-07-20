@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const splittedString = sourceString.split(';');
+  const mappedString = splittedString.map(string =>
+    string.replace(/\n/g, '').trim().split(':'));
+  const secondMappedString = mappedString.map(string =>
+    string.map(item => item.trim())).filter(item => item.length > 1);
+  const result = secondMappedString.reduce(function(prev, current) {
+    return {
+      ...prev,
+      [current[0]]: current[1],
+    };
+  }, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

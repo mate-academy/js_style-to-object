@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  function splitAndTrim(string, char) {
+    const arr = string.split(char);
+
+    return arr.map((item) => item.trim());
+  }
+
+  const stringArray = splitAndTrim(sourceString, ';');
+
+  while (stringArray.includes('')) {
+    stringArray.splice(stringArray.indexOf(''), 1);
+  }
+
+  const entries = stringArray.map((item) => splitAndTrim(item, ':'));
+
+  return Object.fromEntries(entries);
 }
 
 module.exports = convertToObject;

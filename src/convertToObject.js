@@ -14,15 +14,15 @@
 function convertToObject(sourceString) {
   // write your code here
   return sourceString
-    .split('\n')
-    .filter(string => string.trim().length > 2)
-    .map(item => item.split(':').map(x => x.trim()))
-    .reduce((obj, arr) => {
-      const y = {};
+    .split(';')
+    .filter(field => field.trim().length > 2)
+    .map(keyValue => keyValue.split(':').map(prop => prop.trim()))
+    .reduce((object, property) => {
+      const keyValue = {};
 
-      y[arr[0]] = arr[1].split(';')[0].trim();
+      keyValue[property[0]] = property[1];
 
-      return Object.assign(obj, y);
+      return Object.assign(object, keyValue);
     }, {});
 }
 

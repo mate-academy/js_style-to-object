@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
       .map(stringItem => stringItem.trim()))
     .filter(item => item.length > 1);
 
-  const arrToObject = formattedArray
+  const arrayToObject = formattedArray
     .reduce((previous, property) => {
       return {
         ...previous,
@@ -30,7 +30,7 @@ function convertToObject(sourceString) {
     }
     , {});
 
-  return arrToObject;
+  return arrayToObject;
 }
 
 module.exports = convertToObject;

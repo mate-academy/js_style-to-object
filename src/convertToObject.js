@@ -12,7 +12,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleLines = sourceString.split(';')
+  const styleLines = sourceString
+    .split(';')
     .map(styleLine => styleLine.split(':'))
     .filter(styleLine => styleLine.length === 2)
     .map(styleLine => styleLine

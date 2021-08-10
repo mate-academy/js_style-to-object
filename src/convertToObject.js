@@ -13,11 +13,13 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const strToArr = sourceString.split(';').filter(item => item.length > 4);
+  const strToArray = sourceString.split(';');
 
-  const formattedArr = strToArr
-    .map(element => element.split(':')
-      .map(strItem => strItem.trim()));
+  const formattedArr = strToArray
+    .map(element => element
+      .split(':')
+      .map(strItem => strItem.trim()))
+    .filter(item => item.length > 1);
 
   const arrToObj = formattedArr
     .reduce((prev, prop) => {

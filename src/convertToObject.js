@@ -13,24 +13,24 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const strToArray = sourceString.split(';');
+  const stringToArray = sourceString.split(';');
 
-  const formattedArr = strToArray
+  const formattedArray = stringToArray
     .map(element => element
       .split(':')
-      .map(strItem => strItem.trim()))
+      .map(stringItem => stringItem.trim()))
     .filter(item => item.length > 1);
 
-  const arrToObj = formattedArr
-    .reduce((prev, prop) => {
+  const arrToObject = formattedArray
+    .reduce((previous, property) => {
       return {
-        ...prev,
-        [prop[0]]: prop[1],
+        ...previous,
+        [property[0]]: property[1],
       };
     }
     , {});
 
-  return arrToObj;
+  return arrToObject;
 }
 
 module.exports = convertToObject;

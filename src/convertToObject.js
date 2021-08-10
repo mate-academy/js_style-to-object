@@ -12,21 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const css = {};
+  return sourceString
+    .split(';')
+    .map(x => x.split(':')
+      .map(y => y.trim()))
+    .filter(z => z[0] !== '')
+    .reduce((css, property) => {
+      css[property[0]] = property[1];
 
-  const trimmed = sourceString.split(';').map(x => x.trim());
-
-  for (const property of trimmed) {
-    const normalizedProperty = property.split(':').map(x => x.trim());
-    const key = normalizedProperty[0];
-    const value = normalizedProperty[1];
-
-    if (key !== '') {
-      css[key] = value;
-    }
-  }
-
-  return css;
+      return css;
+    }, {});
 }
 
 module.exports = convertToObject;

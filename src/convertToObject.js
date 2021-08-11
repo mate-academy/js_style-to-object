@@ -19,8 +19,15 @@ function convertToObject(sourceString) {
 
   const resultObject = {};
 
-  arrayFromString.forEach(item => {
-    resultObject[item[0].trim()] = item[1].slice(0, -1).trim();
+  const arrayOfProperties = arrayFromString.map(item => {
+    const propertyName = item[0].trim();
+    const value = item[1].slice(0, -1).trim();
+
+    return [propertyName, value];
+  });
+
+  arrayOfProperties.forEach(item => {
+    resultObject[item[0]] = item[1];
   });
 
   return resultObject;

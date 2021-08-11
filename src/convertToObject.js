@@ -12,10 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayFromString = sourceString.split('\n').filter(
-    item => item).map(
-    item => item.split(':')).filter(
-    item => item.length > 1);
+  const arrayFromString = sourceString.split('\n')
+    .filter(item => item)
+    .map(item => item.split(':'))
+    .filter(item => item.length > 1);
 
   const resultObject = {};
 

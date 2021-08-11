@@ -12,21 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultStyles = {};
-
-  sourceString.replace(/\r?\n|\r/g, '')
+  return sourceString
+    .replace(/\r?\n|\r/g, '')
     .split(';')
-    .forEach(line => {
-      const split = line.trim().split(':');
-
-      if (!split[0].length) {
-        return;
-      }
-
-      resultStyles[split[0].trim()] = split[1].trim();
-    });
-
-  return resultStyles;
+    .map(line => line.trim().split(':'))
+    .filter(x => x[0].length)
+    .reduce((prev, keyValue) => {
+      return {
+        ...prev,
+        [keyValue[0].trim()]: keyValue[1].trim(),
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

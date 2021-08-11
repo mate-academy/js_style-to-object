@@ -12,14 +12,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayFromSource = sourceString.split(';');
-
-  let keyValuePairs = arrayFromSource.map(x => x.split(':'));
-
-  keyValuePairs = keyValuePairs.map(x => x.map(y => y.trim()));
-  keyValuePairs = keyValuePairs.filter(x => x.length > 1);
-
-  const entries = new Map(keyValuePairs);
+  const entries = new Map(sourceString.split(';')
+    .map(x => x.split(':'))
+    .map(x => x.map(y => y.trim()))
+    .filter(x => x.length > 1));
 
   return Object.fromEntries(entries);
 }

@@ -12,7 +12,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const propertiesArray = (sourceString.split('\n')
+    .filter(property => property.length > 3));
+
+  const propertyKeys = propertiesArray.map(property => {
+    const indexToDivide = property.indexOf(':');
+
+    return property.slice(0, indexToDivide).trim();
+  });
+
+  const propertyValues
+  = propertiesArray.map(property => {
+    const indexToDivide = property.indexOf(':');
+
+    return property.slice(indexToDivide + 1, property.length - 1).trim();
+  });
+
+  const propertiesObject = {};
+
+  for (let i = 0; i < propertiesArray.length; i++) {
+    propertiesObject[propertyKeys[i]] = propertyValues[i];
+  }
+
+  return propertiesObject;
 }
 
 module.exports = convertToObject;

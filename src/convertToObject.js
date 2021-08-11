@@ -14,9 +14,9 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(x => x.split(':')
-      .map(y => y.trim()))
-    .filter(z => z[0] !== '')
+    .map(item => item.split(':')
+      .map(line => line.trim()))
+    .filter(trimmedLine => trimmedLine[0] !== '')
     .reduce((css, property) => {
       css[property[0]] = property[1];
 

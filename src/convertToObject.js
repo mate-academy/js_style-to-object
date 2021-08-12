@@ -12,7 +12,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const newArrayString = sourceString.split(';')
+    .map(element => element.split(' '))
+    .map(element => (
+      element.reduce((accumulator, currentValue) => {
+        const item = currentValue.trim();
+
+        if (item !== '') {
+          accumulator.push(item);
+        }
+
+        return accumulator;
+      }, [])
+    ))
+    .filter(array => array.length > 0)
+    .map(array => array.join(' ').split(':'))
+    .map(array => array.map(element => element.trim()));
+
+  return Object.fromEntries(newArrayString);
 }
 
 module.exports = convertToObject;

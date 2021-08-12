@@ -13,7 +13,7 @@
  */
 function convertToObject(sourceString) {
   const newString = sourceString.split(';')
-    .map(array => array.split(':').map(el => el.trim()))
+    .map(array => array.split(':').map(element => element.trim()))
     .filter(array => array.length > 1);
 
   return Object.fromEntries(newString);

@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertiesArray = (sourceString.split('\n')
+  const propertiesArray = (sourceString.split(';\n')
     .filter(property => property.length > 3));
 
   const propertyKeys = propertiesArray.map(property => {
@@ -25,16 +25,17 @@ function convertToObject(sourceString) {
   = propertiesArray.map(property => {
     const indexToDivide = property.indexOf(':');
 
-    return property.slice(indexToDivide + 1, property.length - 1).trim();
+    return property.slice(indexToDivide + 1, property.length).trim();
   });
 
-  const propertiesObject = {};
+  const objectConstructor = (object, propertyKey, index) => {
+    return {
+      ...object,
+      [propertyKey]: propertyValues[index],
+    };
+  };
 
-  for (let i = 0; i < propertiesArray.length; i++) {
-    propertiesObject[propertyKeys[i]] = propertyValues[i];
-  }
-
-  return propertiesObject;
+  return propertyKeys.reduce(objectConstructor, {});
 }
 
 module.exports = convertToObject;

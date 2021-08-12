@@ -14,7 +14,7 @@
 function convertToObject(sourceString) {
   // write your code here
   const sourceStringToArray = sourceString
-    .split('\n')
+    .split(';')
     .map(el => el.split(': '))
     .filter(el => el.length > 1);
 

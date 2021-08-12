@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
   const newArr = sourceString.split(';');
 
   function callback(prev, x) {
-    const element = x.split(':');
+    const [key, value] = x.split(':');
 
     if (value.trim()) {
       prev[key.trim()] = value.trim();

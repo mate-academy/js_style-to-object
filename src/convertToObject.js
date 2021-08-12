@@ -15,18 +15,11 @@ function convertToObject(sourceString) {
   const propertiesArray = (sourceString.split(';\n')
     .filter(property => property.length > 3));
 
-  const propertyKeys = propertiesArray.map(property => {
-    const indexToDivide = property.indexOf(':');
+  const propertyKeys = propertiesArray.map(property =>
+    property.split(':')[0].trim());
 
-    return property.slice(0, indexToDivide).trim();
-  });
-
-  const propertyValues
-  = propertiesArray.map(property => {
-    const indexToDivide = property.indexOf(':');
-
-    return property.slice(indexToDivide + 1, property.length).trim();
-  });
+  const propertyValues = propertiesArray.map(property =>
+    property.split(':')[1].trim());
 
   const objectConstructor = (object, propertyKey, index) => {
     return {

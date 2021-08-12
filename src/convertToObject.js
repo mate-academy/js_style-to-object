@@ -18,8 +18,8 @@ function convertToObject(sourceString) {
   function callback(prev, x) {
     const element = x.split(':');
 
-    if (element[1]) {
-      prev[element[0].trim()] = element[1].trim();
+    if (value.trim()) {
+      prev[key.trim()] = value.trim();
     }
 
     return prev;

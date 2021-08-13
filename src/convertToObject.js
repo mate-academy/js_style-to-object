@@ -17,8 +17,11 @@ function convertToObject(sourceString) {
       .map(element => element.trim()))
     .filter(string => string.length > 1);
 
-  const styledObject = styledArray.reduce((prev, [key, val]) =>
-    Object.assign(prev, { [key]: val }), {});
+  const styledObject = {};
+
+  styledArray.forEach(([key, value]) => {
+    styledObject[key] = value;
+  });
 
   return styledObject;
 }

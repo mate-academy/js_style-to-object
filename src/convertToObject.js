@@ -12,13 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = new Set(sourceString.split(';'));
+  const uniqueProperties = new Set(sourceString.split(';'));
 
-  arr.delete('\n');
-  arr.delete('\n  ');
-  arr.delete('\n\n  ');
+  uniqueProperties.delete('\n');
+  uniqueProperties.delete('\n  ');
+  uniqueProperties.delete('\n\n  ');
 
-  const filteredProperties = [...arr];
+  const filteredProperties = [...uniqueProperties];
 
   return filteredProperties.map(property => property.split(':')
     .map(el => el.trim()))

@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arr = new Set(sourceString.split(';'));
+
+  arr.delete('\n');
+  arr.delete('\n  ');
+  arr.delete('\n\n  ');
+
+  const filteredProperties = [...arr];
+
+  return filteredProperties.map(property => property.split(':')
+    .map(el => el.trim()))
+    .reduce((objectConvert, pair) => {
+      return Object.assign(objectConvert, { [pair[0]]: pair[1] });
+    }, {});
 }
 
 module.exports = convertToObject;

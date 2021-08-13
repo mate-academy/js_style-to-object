@@ -13,8 +13,7 @@
  */
 function convertToObject(sourceString) {
   const styledArray = sourceString.split(';')
-    .map(cssProperty => cssProperty.split(':')
-      .map(element => element.trim()))
+    .map(cssProperty => cssProperty.split(':').map(element => element.trim()))
     .filter(string => string.length > 1);
 
   const styledObject = {};

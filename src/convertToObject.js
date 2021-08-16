@@ -19,9 +19,9 @@ function convertToObject(sourceString) {
 
   const cssObj = {};
 
-  for (const key of formatString) {
+  formatString.forEach(key => {
     cssObj[key[0].trim()] = key[1].trim();
-  }
+  });
 
   return cssObj;
 }

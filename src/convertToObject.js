@@ -12,14 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const string = sourceString.split(';');
-  const strTrim = string.filter(empty => empty.trim().length);
-  const arrObj = strTrim.map(key => key.split(':').map(value => value.trim()));
+  return sourceString
+    .split(';')
+    .filter(empty => empty.trim().length)
+    .map(key => key.split(':').map(value => value.trim()))
 
-  return arrObj.reduce((obj, value) => ({
-    ...obj,
-    [value[0]]: value[1],
-  }), 0);
+    .reduce((obj, value) => {
+      obj[value[0]] = value[1];
+
+      return obj;
+    }, {});
 };
 
 module.exports = convertToObject;

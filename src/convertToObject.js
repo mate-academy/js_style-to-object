@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const stylesObject = {};
+
+  const breakToListStyles = sourceString.split(';')
+    .map(style => style.split(':')
+      .map(prop => prop.trim())
+    ).filter(item => item.length > 1);
+
+  for (const properties of breakToListStyles) {
+    const key = properties[0];
+    const values = properties[1];
+
+    stylesObject[key] = values;
+  }
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

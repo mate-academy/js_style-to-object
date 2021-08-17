@@ -16,14 +16,13 @@ function convertToObject(sourceString) {
     .split(';')
     .map(property => property.split(':'))
     .filter(property => property.length === 2);
-  const addProperty = (styles, [key, value]) => {
+
+  return properties.reduce((styles, [key, value]) => {
     return {
       ...styles,
       [key.trim()]: value.trim(),
     };
-  };
-
-  return properties.reduce(addProperty, {});
+  }, {});
 }
 
 module.exports = convertToObject;

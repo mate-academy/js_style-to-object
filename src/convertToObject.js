@@ -12,16 +12,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfSymbols = sourceString.split('').filter(x => x !== '\n');
-
   function callback(sum, x) {
     return sum + x;
   }
-
-  const arrayOfStylesWithValue = arrayOfSymbols.reduce(callback, '').split(';');
-  const secondaryArrays = arrayOfStylesWithValue.map(x => x.split(':'));
-  const formatingOfStyles = secondaryArrays.map(x => x.map(y => y.trim()));
-  const filterOfEmptyArrays = formatingOfStyles.filter(x => !x.includes(''));
 
   function sumInObj(sum, a) {
     return {
@@ -30,7 +23,8 @@ function convertToObject(sourceString) {
     };
   }
 
-  const objectOfStyles = filterOfEmptyArrays.reduce(sumInObj, {});
+  // eslint-disable-next-line max-len
+  const objectOfStyles = sourceString.split('').filter(x => x !== '\n').reduce(callback, '').split(';').map(x => x.split(':')).map(x => x.map(y => y.trim())).filter(x => !x.includes('')).reduce(sumInObj, {});
 
   return objectOfStyles;
 }

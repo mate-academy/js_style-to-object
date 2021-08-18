@@ -24,7 +24,14 @@ function convertToObject(sourceString) {
   }
 
   // eslint-disable-next-line max-len
-  const objectOfStyles = sourceString.split('').filter(x => x !== '\n').reduce(callback, '').split(';').map(x => x.split(':')).map(x => x.map(y => y.trim())).filter(x => !x.includes('')).reduce(sumInObj, {});
+  const objectOfStyles = sourceString
+    .split('')
+    .filter(x => x !== '\n')
+    .reduce(callback, '')
+    .split(';').map(x => x.split(':'))
+    .map(x => x.map(y => y.trim()))
+    .filter(x => !x.includes(''))
+    .reduce(sumInObj, {});
 
   return objectOfStyles;
 }

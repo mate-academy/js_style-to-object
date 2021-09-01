@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sourceStringArr = sourceString.trim().split(';');
+  const cssObject = {};
+
+  sourceStringArr.forEach((element) => {
+    const position = element.indexOf(':');
+    const key = element.substring(0, position).trim();
+    const value = element.substring(position + 1, element.length).trim();
+
+    if (key !== '') {
+      cssObject[key] = value;
+    }
+  });
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

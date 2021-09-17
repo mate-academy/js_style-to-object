@@ -17,10 +17,9 @@ function convertToObject(sourceString) {
   const objStyles = {};
 
   string.forEach(style => {
-    const styleTrim = style.trim();
+    const splitStyle = style.split(':');
 
-    if (styleTrim.length > 1) {
-      const splitStyle = styleTrim.split(':');
+    if (splitStyle.length > 1) {
       const styleName = splitStyle[0].trim();
       const styleParameter = splitStyle[1].trim();
 

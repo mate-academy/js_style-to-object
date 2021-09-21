@@ -13,14 +13,14 @@
  */
 function convertToObject(sourceString) {
   const style = {};
-  const stylesList = sourceString
+
+  sourceString
     .split(';')
     .map(property => property.split(':').map(properties => properties.trim()))
-    .filter(property => property[0] !== '');
-
-  for (let i = 0; i < stylesList.length; i++) {
-    style[stylesList[i][0]] = stylesList[i][1];
-  };
+    .filter(property => property[0] !== '')
+    .forEach(styles => {
+      style[styles[0]] = styles[1];
+    });
 
   return style;
 }

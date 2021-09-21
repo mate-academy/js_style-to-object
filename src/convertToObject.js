@@ -12,19 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArr = sourceString.split(';');
+  const splittedStyles = sourceString.split(';');
   const result = {};
 
-  for (const count of sourceArr) {
-    const keyValue = count.split(':');
-
-    if (keyValue.length > 1) {
-      const key = keyValue[0].trim();
-      const value = keyValue[1].trim();
-
-      result[key] = value;
-    }
-  }
+  splittedStyles.map(styles => styles.split(':'))
+    .filter(styles => styles.length > 1)
+    .forEach(style => {
+      result[style[0].trim()] = style[1].trim();
+    });
 
   return result;
 }

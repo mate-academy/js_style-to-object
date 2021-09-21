@@ -12,17 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssObject = {};
-  const styleArr = sourceString
+  const style = {};
+  const stylesList = sourceString
     .split(';')
-    .map(x => x.split(':').map(y => y.trim()))
-    .filter(z => z[0] !== '');
+    .map(property => property.split(':').map(properties => properties.trim()))
+    .filter(property => property[0] !== '');
 
-  for (let i = 0; i < styleArr.length; i++) {
-    cssObject[styleArr[i][0]] = styleArr[i][1];
-  }
+  for (let i = 0; i < stylesList.length; i++) {
+    style[stylesList[i][0]] = stylesList[i][1];
+  };
 
-  return cssObject;
+  return style;
 }
 
 module.exports = convertToObject;

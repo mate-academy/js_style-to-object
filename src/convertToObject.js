@@ -13,14 +13,12 @@
  */
 function convertToObject(sourceString) {
   return sourceString.split(';')
-    .map(prop => prop
-      .split(':')
-      .map(item => item.trim()))
+    .map(prop => prop.split(':').map(item => item.trim()))
     .filter(item => item.length > 1)
-    .reduce((prev, element) => {
+    .reduce((prev, [key, value]) => {
       return {
         ...prev,
-        [element[0]]: element[1],
+        [key]: value,
       };
     }, {});
 }

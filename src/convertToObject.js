@@ -12,7 +12,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObj = {};
+  const arr1 = sourceString.split(';\n');
+  const arr2 = arr1.filter(el => el.includes(':'));
+  const arr3 = arr2.map(el => el.trim('\n') || el.trim('\n\n')
+    || el.trim('      ') || el.trim('     ')
+    || el.trim('    ') || el.trim('   ') || el.trim('  ')
+    || el.trim(' '));
+
+  for (let i = 0; i < arr3.length; i++) {
+    arr3[i] = arr3[i].split(':');
+  }
+
+  for (const item of arr3) {
+    if (!styleObj[item[0].trim(' ')]) {
+      styleObj[item[0].trim(' ')] = item[1].trim(' ');
+    }
+  }
+
+  return styleObj;
 }
 
 module.exports = convertToObject;

@@ -14,8 +14,10 @@
 function convertToObject(sourceString) {
   const normilisedWhitespaces = sourceString.replace(/\n/g, '');
   const stringSliced = normilisedWhitespaces.split(';');
+
   const arrWithoutEmpty = stringSliced
     .filter(elmnt => elmnt !== ' ' && elmnt !== '' && elmnt !== '  ');
+
   const arrOfKeyAndValues = arrWithoutEmpty.map(elmnt => {
     const cell = elmnt.split(':').map(x => x.trim());
 

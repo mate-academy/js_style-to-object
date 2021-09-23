@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const regex = /(\S.*?:)(\s.*\b)/g;
+  const arrOfLines = sourceString.match(regex);
+
+  return arrOfLines.reduce((result, line) => {
+    let [key, value] = line.split(':');
+
+    key = key.trim();
+    value = value.trim();
+
+    return {
+      ...result,
+      [key]: value,
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

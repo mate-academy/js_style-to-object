@@ -13,8 +13,7 @@
  */
 function convertToObject(sourceString) {
   const sort = sourceString.replace(/(\r\n|\n|\r)/gm, '').split(';')
-    .filter(x => x !== '  ')
-    .filter(x => x !== '');
+    .filter(x => x.length > 2);
 
   const result = {};
 

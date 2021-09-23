@@ -29,7 +29,6 @@ function convertToObject(sourceString) {
 
     return keyAndValue;
   });
-  console.table(string);
 
   const result = {};
 

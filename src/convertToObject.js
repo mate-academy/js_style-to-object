@@ -14,7 +14,7 @@
 function convertToObject(sourceString) {
   const draftArrOfProperties = sourceString.replace(/\n/g, '').split(';');
 
-  const arrOfKeyAndValues = draftArrOfProperties
+  const ArrOfProperties = draftArrOfProperties
     .filter(elmnt => elmnt !== ' ' && elmnt !== '' && elmnt !== '  ')
     .map(elmnt => {
       const cell = elmnt
@@ -24,7 +24,7 @@ function convertToObject(sourceString) {
       return cell;
     });
 
-  const result = Object.fromEntries(arrOfKeyAndValues);
+  const result = Object.fromEntries(ArrOfProperties);
 
   return result;
 }

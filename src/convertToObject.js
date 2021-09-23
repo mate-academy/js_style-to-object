@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const normilisedWhitespaces = sourceString.replace(/\n/g, '');
+  const stringSliced = normilisedWhitespaces.split(';');
+  const arrWithoutEmpty = stringSliced
+    .filter(elmnt => elmnt !== ' ' && elmnt !== '' && elmnt !== '  ');
+  const arrOfKeyAndValues = arrWithoutEmpty.map(elmnt => {
+    const cell = elmnt.split(':').map(x => x.trim());
+
+    return cell;
+  });
+
+  const result = Object.fromEntries(arrOfKeyAndValues);
+
+  return result;
 }
 
 module.exports = convertToObject;

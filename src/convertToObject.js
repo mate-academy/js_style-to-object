@@ -12,17 +12,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normilisedWhitespaces = sourceString.replace(/\n/g, '');
-  const stringSliced = normilisedWhitespaces.split(';');
+  const draftArrOfProperties = sourceString.replace(/\n/g, '').split(';');
 
-  const arrWithoutEmpty = stringSliced
-    .filter(elmnt => elmnt !== ' ' && elmnt !== '' && elmnt !== '  ');
+  const arrOfKeyAndValues = draftArrOfProperties
+    .filter(elmnt => elmnt !== ' ' && elmnt !== '' && elmnt !== '  ')
+    .map(elmnt => {
+      const cell = elmnt
+        .split(':')
+        .map(x => x.trim());
 
-  const arrOfKeyAndValues = arrWithoutEmpty.map(elmnt => {
-    const cell = elmnt.split(':').map(x => x.trim());
-
-    return cell;
-  });
+      return cell;
+    });
 
   const result = Object.fromEntries(arrOfKeyAndValues);
 

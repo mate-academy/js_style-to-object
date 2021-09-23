@@ -11,8 +11,24 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const list = {};
+  const arr = sourceString.split(';');
+
+  for (const item of arr) {
+    const colon = item.indexOf(':');
+    const key = item.slice(0, colon).trim();
+    const value = item.slice(colon + 2).trim();
+
+    list[key] = value;
+
+    if (list[key].length === 0) {
+      delete list[key];
+    }
+  }
+
+  return list;
 }
 
 module.exports = convertToObject;

@@ -15,13 +15,13 @@ function convertToObject(sourceString) {
   const result = {};
   const stylesPairs = sourceString.split(';').map(pair => pair.split(':'));
 
-  stylesPairs.forEach(convert);
-
-  function convert(pair) {
+  stylesPairs.forEach(pair => {
     if (pair.length === 2) {
-      result[pair[0].trim()] = pair[1].trim();
+      const [key, value] = pair;
+
+      result[key.trim()] = value.trim();
     }
-  }
+  });
 
   return result;
 }

@@ -13,22 +13,12 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const finalObj = {};
-  const styleStr = sourceString.replace(/\n/g, '').replace(/ +/g, ' ').trim();
-  let styleArr = styleStr.split(';');
+  const styleObj = sourceString.split(';')
+    .map(el => el.split(':'))
+    .filter(el => el.length === 2)
+    .map(([key, value]) => [key.trim(), value.trim()]);
 
-  styleArr = styleArr.map(el => el.split(':'));
-
-  for (let i = 0; i < styleArr.length; i++) {
-    const key = String(styleArr[i][0]).trim();
-    const value = String(styleArr[i][1]).trim();
-
-    if (key !== '') {
-      finalObj[key] = value;
-    }
-  }
-
-  return finalObj;
+  return Object.fromEntries(styleObj);
 }
 
 module.exports = convertToObject;

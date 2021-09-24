@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   const stylesArray = sourceString.split(';\n');
   const stylesObject = {};
 
-  let filteredArray = stylesArray.map(item => {
+  const filteredArray = stylesArray.map(item => {
     const splittedItem = item.split(':');
     const set = new Set(splittedItem);
 
@@ -27,15 +27,12 @@ function convertToObject(sourceString) {
     return res.join(':');
   });
 
-  const removeEmptyLines = new Set(filteredArray);
-
-  removeEmptyLines.delete('');
-  filteredArray = [...removeEmptyLines];
-
   filteredArray.forEach(item => {
-    const splitted = item.split(':');
+    if (item.length > 0) {
+      const splitted = item.split(':');
 
-    stylesObject[splitted[0]] = splitted[1];
+      stylesObject[splitted[0]] = splitted[1];
+    }
   });
 
   return stylesObject;

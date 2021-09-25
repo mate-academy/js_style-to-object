@@ -6,5 +6,8 @@ module.exports = {
   rules: {
     'no-proto': 0
   },
+  rules: {
+    'no-console': 'off',
+},
   plugins: ['jest']
 };

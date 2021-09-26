@@ -12,18 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const regex = /(\S.*?:)(\s.*\b)/g;
-  const arrOfLines = sourceString.match(regex);
+  const arr = sourceString
+    .split(';')
+    .map(line => line.trim().split(':'))
+    .filter(line => line.length > 1);
 
-  return arrOfLines.reduce((result, line) => {
-    let [key, value] = line.split(':');
-
-    key = key.trim();
-    value = value.trim();
-
+  return arr.reduce((result, [key, value]) => {
     return {
       ...result,
-      [key]: value,
+      [key.trim()]: value.trim(),
     };
   }, {});
 }

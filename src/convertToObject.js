@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
   for (const item of splitedString) {
     const splitedItem = item.split(':').map(el => el.trim());
 
-    if (splitedItem[0] !== '' || splitedItem[0] !== '') {
+    if (splitedItem[0] !== '') {
       resultObject[splitedItem[0]] = splitedItem[1];
     }
   }

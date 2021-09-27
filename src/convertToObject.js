@@ -16,8 +16,7 @@ function convertToObject(sourceString) {
   const stylesObject = {};
 
   const filteredArray = stylesArray.map(item => {
-    const splittedItem = item.split(':');
-    const set = new Set(splittedItem);
+    const set = new Set(item.split(':'));
 
     set.delete('\n');
     set.delete('');

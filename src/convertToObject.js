@@ -22,16 +22,12 @@ function convertToObject(sourceString) {
     set.delete('\n');
     set.delete('');
 
-    const res = [...set].map(value => value.trim());
-
-    return res.join(':');
+    return [...set].map(value => value.trim());
   });
 
   filteredArray.forEach(item => {
-    if (item.length > 0) {
-      const splitted = item.split(':');
-
-      stylesObject[splitted[0]] = splitted[1];
+    if (item.length > 1) {
+      stylesObject[item[0]] = item[1];
     }
   });
 

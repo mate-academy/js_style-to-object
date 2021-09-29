@@ -14,21 +14,20 @@
 
 function convertToObject(sourceString) {
   const splited = sourceString.split(';');
-  const styles = {};
+  const obj = {};
 
   splited.forEach(style => {
+    const styles = style.split(':');
 
-    const splitedStyle = style.split(':');
+    if (styles.length > 1) {
+      const keyName = styles[0].trim();
+      const value = styles[1].trim();
 
-    if (splitedStyle.length > 1) {
-      const keyName = splitedStyle[0].trim();
-      const value = splitedStyle[1].trim();
-
-      styles[keyName] = value;
+      obj[keyName] = value;
     }
   });
 
-  return styles;
+  return obj;
 }
 
 module.exports = convertToObject;

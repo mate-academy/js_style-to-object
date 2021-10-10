@@ -12,7 +12,6 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
   const arr = sourceString.split(';');
   const array = arr.map(elem => elem.split(':'));
   const res = [];

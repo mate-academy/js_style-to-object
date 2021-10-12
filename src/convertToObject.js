@@ -12,13 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrOfProperties = sourceString.split(';')
-    .map(el => el.trim()).filter(el => el !== '')
-    .map(el => el.split(':').map(subel => subel.trim()));
+  const properties = sourceString.split(';')
+    .map(property => property.trim()).filter(Boolean)
+    .map(property => property.split(':').map(value => value.trim()));
 
-  const objectOfProperties = Object.fromEntries(arrOfProperties);
-
-  return objectOfProperties;
+  return Object.fromEntries(properties);
 }
 
 module.exports = convertToObject;

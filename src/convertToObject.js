@@ -12,7 +12,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssProperties = sourceString.split(';');
+  const cssObject = {};
+
+  for (const propery of cssProperties) {
+    const [key, value] = [...propery.split(':').map(word => word.trim())];
+
+    if (!key.length) {
+      continue;
+    }
+
+    cssObject[key] = value;
+  }
+
+  return cssObject;
 }
 
+const stylesString = require('./stylesString');
+
+convertToObject(stylesString);
 module.exports = convertToObject;

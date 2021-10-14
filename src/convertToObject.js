@@ -13,19 +13,18 @@
  */
 function convertToObject(sourceString) {
   const cssProperties = sourceString.split(';');
-  const cssObject = {};
 
-  for (const propery of cssProperties) {
-    const [key, value] = [...propery.split(':').map(word => word.trim())];
+  return cssProperties.reduce((object, property) => {
+    const [key, value] = property.split(':');
 
-    if (!key.length) {
-      continue;
+    if (!key.length || !value) {
+      return object;
     }
 
-    cssObject[key] = value;
-  }
+    object[key.trim()] = value.trim();
 
-  return cssObject;
+    return object;
+  }, {});
 }
 
 const stylesString = require('./stylesString');

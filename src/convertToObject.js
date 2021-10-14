@@ -13,11 +13,11 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  return sourceString.split(';').reduce((obj, codeline) => {
-    const propertyAndValue = codeline.split(':');
+  return sourceString.split(';').reduce((obj, cssProperty) => {
+    const [key, value] = cssProperty.split(':');
 
-    if (propertyAndValue.length === 2) {
-      obj[propertyAndValue[0].trim()] = propertyAndValue[1].trim();
+    if (key && value) {
+      obj[key.trim()] = value.trim();
     }
 
     return obj;

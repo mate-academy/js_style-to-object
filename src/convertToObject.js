@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const properties = sourceString.split(';');
+  const propertiesWithoutSymbol = properties.map(
+    string => string.replace(/\n/g, '').trim());
+  const withoutEmptyProperties = propertiesWithoutSymbol.filter(
+    string => string.length > 1);
+  const convertedProperties = withoutEmptyProperties.map(
+    string => string.split(':'));
+  const trimmedProperties = convertedProperties.map(
+    string => string.map(
+      element => element.trim()));
+
+  return Object.fromEntries(trimmedProperties);
 }
 
 module.exports = convertToObject;

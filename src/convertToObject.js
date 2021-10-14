@@ -13,6 +13,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  return sourceString.split(';').reduce((obj, codeline) => {
+    const propertyAndValue = codeline.split(':');
+
+    if (propertyAndValue.length === 2) {
+      obj[propertyAndValue[0].trim()] = propertyAndValue[1].trim();
+    }
+
+    return obj;
+  }, {});
 }
 
 module.exports = convertToObject;

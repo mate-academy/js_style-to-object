@@ -12,7 +12,33 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  let sourceArray = [];
+
+  sourceArray = sourceString.split(';');
+
+  let trimmedSourceArray = [...sourceArray];
+
+  trimmedSourceArray = 
+  trimmedSourceArray.map(line =>
+    line.split('').slice(2).join('').trim());
+
+  let filteredProperties = [...trimmedSourceArray];
+
+  filteredProperties = filteredProperties.filter(x => x.length > 0);
+
+  let arrayOfProperties = [...filteredProperties];
+
+  arrayOfProperties = 
+  arrayOfProperties.map(property =>
+    property.split(':').map(x => x.trim()));
+
+  const resultObject = {};
+
+  arrayOfProperties.map(element => {
+    resultObject[element[0]] = element[1];
+  });
+
+  return resultObject;
 }
 
 module.exports = convertToObject;

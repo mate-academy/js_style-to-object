@@ -14,10 +14,10 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  sourceString.split(';').map(el => el.split(':'))
-    .filter(el => el.length === 2)
-    .map(el => {
-      result[el[0].trim()] = el[1].trim();
+ const preparedString = sourceString.split(';').map(element => element.split(':'))
+    .filter(array => array.length === 2)
+    .map(array => {
+      result[array[0].trim()] = array[1].trim();
     });
 
   return result;

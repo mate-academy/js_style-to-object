@@ -1,8 +1,8 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const arrStyles = sourceString.split(';').map(x => {
-    return x.trim();
+  const arrStyles = sourceString.split(';').map(style => {
+    return style.trim();
   }).filter(style => style.length > 0);
 
   const result = arrStyles.reduce((prev, current) => {

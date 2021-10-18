@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   const splittedSourceString = sourceString.split(';');
 
   return splittedSourceString.reduce((acc, el) => {
-    const [key, values] = el.trim().split(':');
+    const [key, values] = el.split(':');
 
     return key && values
       ? {

@@ -13,9 +13,9 @@
  */
 function convertToObject(sourceString) {
   const cssObject = {};
-  let splitedSource = sourceString.split(';');
-
-  splitedSource = splitedSource.filter(element => element.includes(':'));
+  const splitedSource = sourceString
+    .split(';')
+    .filter(element => element.includes(':'));
 
   for (const el of splitedSource) {
     const separator = el.indexOf(':');

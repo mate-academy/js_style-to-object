@@ -18,9 +18,9 @@ function convertToObject(sourceString) {
 
   let trimmedSourceArray = [...sourceArray];
 
-  trimmedSourceArray = 
-  trimmedSourceArray.map(line =>
-    line.split('').slice(2).join('').trim());
+  trimmedSourceArray
+  = trimmedSourceArray.map(line =>
+      line.trim());
 
   let filteredProperties = [...trimmedSourceArray];
 
@@ -28,9 +28,9 @@ function convertToObject(sourceString) {
 
   let arrayOfProperties = [...filteredProperties];
 
-  arrayOfProperties = 
-  arrayOfProperties.map(property =>
-    property.split(':').map(x => x.trim()));
+  arrayOfProperties
+  = arrayOfProperties.map(property =>
+      property.split(':').map(x => x.trim()));
 
   const resultObject = {};
 

@@ -12,31 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let sourceArray = [];
-
-  sourceArray = sourceString.split(';');
-
-  let trimmedSourceArray = [...sourceArray];
-
-  trimmedSourceArray
-  = trimmedSourceArray.map(line =>
-      line.trim());
-
-  let filteredProperties = [...trimmedSourceArray];
-
-  filteredProperties = filteredProperties.filter(x => x.length > 0);
-
-  let arrayOfProperties = [...filteredProperties];
-
-  arrayOfProperties
-  = arrayOfProperties.map(property =>
-      property.split(':').map(x => x.trim()));
-
   const resultObject = {};
 
-  arrayOfProperties.map(element => {
-    resultObject[element[0]] = element[1];
-  });
+  sourceString.split(';').map(line => line.trim()).filter(x => x.length > 0)
+    .map(property => property.split(':').map(x => x.trim()))
+    .map(element => {resultObject[element[0]] = element[1]});
 
   return resultObject;
 }

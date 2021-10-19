@@ -19,10 +19,8 @@ function convertToObject(sourceString) {
     .filter(element => element !== '')
     .map(element => element.split(':'))
     .map(element => element.map(subEl => subEl.trim()))
-    .map(function(element) {
+    .forEach(element => {
       result[element[0]] = element[1];
-
-      return element;
     });
 
   return result;

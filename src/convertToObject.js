@@ -15,10 +15,9 @@ function convertToObject(sourceString) {
   const resultObject = {};
 
   sourceString.split(';')
-    .map(line => line.trim())
-    .filter(x => x.length > 0)
-    .map(property => property.split(':')
-      .map(x => x.trim()))
+    .map(line => line.split(':'))
+    .filter(x => x.length === 2)
+    .map(property => property.map(el => el.trim()))
     .forEach(element => {
       resultObject[element[0]] = element[1];
     });

@@ -17,21 +17,15 @@ function convertToObject(sourceString) {
   sourceString
     .trim()
     .split(';')
-    .map(element => element.split(':'))
-    .filter(element => element.length >= 2)
-    .map(element => element.map(value => value.trim()))
-    .forEach(element => {
-      if (element === undefined) {
-        return;
-      }
-
-      const [key, value] = element.trim().split(':');
-
-      if (key === undefined || value === undefined) {
-        return;
-      }
-
-      obj[key.trim()] = value.trim();
+    .map(element =>
+      element.split(':'))
+    .filter(element =>
+      element.length >= 2)
+    .map(element =>
+      element
+        .map(value => value.trim()))
+    .forEach(([key, value]) => {
+      obj[key] = value;
     });
 
   return obj;

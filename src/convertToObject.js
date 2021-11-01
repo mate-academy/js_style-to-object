@@ -18,10 +18,12 @@ function convertToObject(sourceString) {
   arr.forEach(elem => {
     const prop = elem.split(':').map(e => e.trim());
 
-    obj[prop[0]] = prop[1];
+    for (let i = 0; i < prop.length; i++) {
+      if (prop[i].length > 0) {
+        obj[prop[0]] = prop[1];
+      }
+    }
   });
-
-  delete obj[''];
 
   return obj;
 }

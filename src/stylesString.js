@@ -34,6 +34,9 @@ const stylesString = `
 
   white-space: nowrap;
   width: auto;
+
+  
+  
 `;
 
 module.exports = stylesString;

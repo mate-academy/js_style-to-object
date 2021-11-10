@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = sourceString.match(/\S.*;/g);
+
+  const converted = styles.reduce((css, style) => {
+    const [property, value] = style
+      .replace(/\s*(?=:)|(?<=:)\s*(?=\S)|\s*;/g, '').split(':');
+
+    css[property] = value;
+
+    return css;
+  }, {});
+
+  return converted;
 }
 
 module.exports = convertToObject;

@@ -12,26 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(';').filter((el) =>
-    el !== '' || el !== ' ');
-  const result = {};
-  const newArr = [];
+  const styles = sourceString.split(';');
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].trim().toLowerCase() !== arr[i].trim().toUpperCase()) {
-      newArr.push(arr[i]);
+  return styles.reduce((prev, el) => {
+    if (el.trim() !== '' && el.trim() !== ' ') {
+      const [key, value] = el.split(':');
+
+      return {
+        ...prev,
+        [key.trim()]: value.trim(),
+      };
     }
-  }
 
-  const trim = newArr.map((index) =>
-    index.trim()).join(':').split(':').map((x) =>
-    x.trim());
-
-  for (let i = 0; i < trim.length; i += 2) {
-    result[trim[i]] = trim[i + 1];
-  }
-
-  return result;
+    return { ...prev };
+  }, {});
 }
-
 module.exports = convertToObject;

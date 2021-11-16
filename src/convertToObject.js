@@ -12,18 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const removeSpecialSymbol = sourceString.replace(/;/g, ' ');
-  const splitSrc = removeSpecialSymbol.split('\n');
-  const filterSource = splitSrc.filter(str => str !== '' && str !== '   ');
-  const trimSource = filterSource.map(strin => strin.trim());
+  const filterSrc
+     = sourceString.split('\n')
+       .map(s => s.trim())
+       .filter(s => s !== '' && s !== ';');
 
   const arrKeys = [];
   const arrValues = [];
   const resultObject = {};
 
-  for (let i = 0; i < trimSource.length; i++) {
-    arrValues.push(trimSource[i].slice(trimSource[i].indexOf(':') + 1).trim());
-    arrKeys.push(trimSource[i].slice(0, trimSource[i].indexOf(':')).trim());
+  for (let i = 0; i < filterSrc.length; i++) {
+    arrValues.push(filterSrc[i]
+      .slice(filterSrc[i].indexOf(':') + 1, filterSrc[i].indexOf(';')).trim());
+    arrKeys.push(filterSrc[i].slice(0, filterSrc[i].indexOf(':')).trim());
 
     resultObject[arrKeys[i]] = arrValues[i];
   }

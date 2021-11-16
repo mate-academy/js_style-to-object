@@ -13,21 +13,21 @@
  */
 function convertToObject(sourceString) {
   const filterSrc
-     = sourceString.split('\n')
-       .map(s => s.trim())
-       .filter(s => s !== '' && s !== ';');
+     = sourceString.split(';')
+       .map(item => item.split('')
+         .filter(i => i !== '\n' && i !== '')
+         .join('')
+         .split(':')
+         .map(a => a.trim())
+         .filter(b => b !== ''));
 
-  const arrKeys = [];
-  const arrValues = [];
-  const resultObject = {};
+  const resultObject = filterSrc.reduce((previous, element) => {
+    if (element.length > 1) {
+      previous[element[0]] = element[1];
+    }
 
-  for (let i = 0; i < filterSrc.length; i++) {
-    arrValues.push(filterSrc[i]
-      .slice(filterSrc[i].indexOf(':') + 1, filterSrc[i].indexOf(';')).trim());
-    arrKeys.push(filterSrc[i].slice(0, filterSrc[i].indexOf(':')).trim());
-
-    resultObject[arrKeys[i]] = arrValues[i];
-  }
+    return previous;
+  }, {});
 
   return resultObject;
 }

@@ -20,14 +20,14 @@ function convertToObject(sourceString) {
     .split(';')
     .forEach(prop => propertiesAndValues.push(prop.split(':')));
 
-  for (const property of propertiesAndValues) {
+  propertiesAndValues.forEach(function(property) {
     if (property.length === 2) {
       const propName = property[0].trim();
       const propValue = property[1].trim();
 
       css[propName] = propValue;
     }
-  }
+  });
 
   return css;
 }

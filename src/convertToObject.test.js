@@ -32,12 +32,12 @@ const EXPECTED_OBJECT = {
   'width': 'auto',
 };
 
-test.only('Convert string to object', () => {
+test('Convert string to object', () => {
   expect(convertToObject(stylesString))
     .toEqual(EXPECTED_OBJECT);
 });
 
-test.only('Object should have same count of keys as styles in css', () => {
+test('Object should have same count of keys as styles in css', () => {
   expect(Object.keys(convertToObject(stylesString)).length)
     .toBe(Object.keys(EXPECTED_OBJECT).length);
 });

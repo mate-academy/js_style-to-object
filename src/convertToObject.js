@@ -13,9 +13,7 @@
  */
 function convertToObject(sourceString) {
   const stylesObject = {};
-  const formatSourceString = sourceString.split(' ')
-    .filter(el => el !== '\n').join(' ');
-  const parseSourceString = formatSourceString.split(';');
+  const parseSourceString = sourceString.split(';');
 
   for (const style of parseSourceString) {
     if (style) {

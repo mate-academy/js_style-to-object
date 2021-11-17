@@ -16,12 +16,10 @@ function convertToObject(sourceString) {
   const parseSourceString = sourceString.split(';');
 
   for (const style of parseSourceString) {
-    if (style) {
-      const parseStyle = style.split(':');
+    const parseStyle = style.split(':');
 
-      for (let i = 0; i < parseStyle.length - 1; i += 2) {
-        stylesObject[parseStyle[i].trim()] = parseStyle[i + 1].trim();
-      }
+    for (let i = 0; i < parseStyle.length - 1; i += 2) {
+      stylesObject[parseStyle[i].trim()] = parseStyle[i + 1].trim();
     }
   }
 

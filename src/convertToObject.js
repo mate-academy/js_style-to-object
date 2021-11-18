@@ -12,25 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceStringArr = sourceString.split(';').map(
-    item => item.split(':')
-  ).map(
-    ([prop, value]) => (
-      {
-        [prop.trim()]: (value + '').trim(),
+  const sourceStringArr = sourceString
+    .split(';')
+    .map(item => item.split(':'))
+    .map(([prop, value]) => ({
+      [prop.trim()]: (value + '').trim(),
+    }));
+
+  const result = sourceStringArr.reduce((prev, next) => {
+    return Object.keys(next)[0]
+      ? {
+        ...prev,
+        ...next,
       }
-    )
-  );
-
-  const result = {};
-
-  Object.assign(result, ...sourceStringArr);
-
-  for (const key in result) {
-    if (!key) {
-      delete result[key];
-    }
-  }
+      : { ...prev };
+  }, {});
 
   return result;
 }

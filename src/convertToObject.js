@@ -12,7 +12,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';').reduce((object, property) => {
+  return sourceString
+    .split(';')
+    .reduce((object, property) => {
     const [key, value] = property.split(':');
 
     if (key && value) {

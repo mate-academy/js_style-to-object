@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
 
         result[key] = values;
 
-        return item[0].length > 0;
+        return true;
       }
     });
 

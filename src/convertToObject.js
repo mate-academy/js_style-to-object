@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = {};
+  const strArr = sourceString.trim().replace(/\s+/g, ' ').split(';');
+
+  strArr.forEach(string => {
+    if (string !== ' ' && string) {
+      const [property, value] = string.split(':');
+
+      styles[property.trim()] = value.trim();
+    }
+  });
+
+  return styles;
 }
 
 module.exports = convertToObject;

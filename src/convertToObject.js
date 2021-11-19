@@ -14,12 +14,15 @@
 const convertToObject = (sourceString) => {
   const array = sourceString
     .split(';')
-    .filter(style => style.length > 5)
-    .map(style => style.split(':'));
+    .map(style => style.split(':'))
+    .filter(style => style.length === 2)
+    .map(style => style.map(styleProperty => styleProperty.trim()));
 
-  const styles = array.reduce((object, [key, value]) => ({
-    ...object, [key.trim()]: value.trim(),
-  }), {});
+  const styles = {};
+
+  array.forEach(([ name, value ]) => {
+    styles[name] = value;
+  });
 
   return styles;
 };

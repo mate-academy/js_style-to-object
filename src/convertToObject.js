@@ -13,10 +13,12 @@
  */
 function convertToObject(sourceString) {
   return sourceString.split(';').reduce((acc, cur) => {
-    const [key, value] = cur.split(':');
+    const [rawKey, rawValue] = cur.split(':');
+    const key = rawKey && rawKey.trim();
+    const value = rawValue && rawValue.trim();
 
-    if (/\S/.test(key) && /\S/.test(value)) {
-      acc[key.trim()] = value.trim();
+    if (key && value) {
+      acc[key] = value;
     }
 
     return acc;

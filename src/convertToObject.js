@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   return sourceString.split(';').reduce((acc, cur) => {
     const [key, value] = cur.split(':');
 
-    if (key && value) {
+    if (/\S/.test(key) && /\S/.test(value)) {
       acc[key.trim()] = value.trim();
     }
 

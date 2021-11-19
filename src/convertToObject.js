@@ -14,18 +14,23 @@
 function convertToObject(sourceString) {
   const sourceStringArr = sourceString
     .split(';')
-    .map(item => item.split(':'))
-    .map(([prop, value]) => ({
-      [prop.trim()]: (value + '').trim(),
-    }));
+    .map(item => {
+      const newItem = item.split(':');
+
+      return {
+        [newItem[0].trim()]: (newItem[1] + '').trim(),
+      };
+    });
 
   const result = sourceStringArr.reduce((prev, next) => {
-    return Object.keys(next)[0]
-      ? {
+    if (!Object.keys(next)[0]) {
+      return { ...prev };
+    } else {
+      return {
         ...prev,
         ...next,
-      }
-      : { ...prev };
+      };
+    }
   }, {});
 
   return result;

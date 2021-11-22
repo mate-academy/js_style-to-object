@@ -12,18 +12,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringArr = sourceString.split(';').map(string => (
-    string.split(':').map(e => e.trim()))
-  );
+  const stringArr = sourceString
+    .split(';')
+    .map(string => (
+      string
+        .split(':')
+    ));
 
   const callback = (css, style) => {
     return {
       ...css,
-      [style[0]]: style[1],
+      [style[0].trim()]: style[1].trim(),
     };
   };
 
-  return stringArr.filter(element => element.length > 1).reduce(callback, {});
+  return stringArr
+    .filter(element => element.length > 1)
+    .reduce(callback, {});
 }
 
 module.exports = convertToObject;

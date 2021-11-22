@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssObj = {};
+  const cssArrey = sourceString.split(';');
+
+  cssArrey.forEach((lineCss) => {
+    const arrProperties = lineCss.split(':');
+
+    if (arrProperties.length === 2) {
+      const property = arrProperties[0].trim();
+      const value = arrProperties[1].trim();
+
+      cssObj[property] = value;
+    }
+  });
+
+  return cssObj;
 }
 
 module.exports = convertToObject;

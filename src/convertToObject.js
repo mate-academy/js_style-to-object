@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   const cssObj = {};
   const cssArrey = sourceString.split(';');
 
-  cssArrey.map(function(lineCss) {
+  cssArrey.forEach((lineCss) => {
     const arrProperties = lineCss.split(':');
 
     if (arrProperties.length === 2) {

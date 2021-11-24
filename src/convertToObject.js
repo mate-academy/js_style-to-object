@@ -17,9 +17,9 @@ function convertToObject(sourceString) {
 
   const arr = sourceArr.map(elem => elem.split(':').map(item => item.trim()));
 
-  arr.map((item) => {
-    if (item.length === 2) {
-      obj[item[0]] = item[1];
+  arr.forEach(([key, value]) => {
+    if (key.length >= 1 && value.length >= 1) {
+      obj[key] = value;
     }
   });
 

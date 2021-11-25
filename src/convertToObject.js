@@ -4,15 +4,12 @@ function convertToObject(sourceString) {
   const sourceArr = sourceString.split(';\n');
   const sourceObj = {};
 
-  sourceArr.map(property => {
+  sourceArr.forEach(property => {
     if (property !== '') {
-      const propArray = property.split(':');
-      const propertyName = propArray[0].trim();
+      const [key, value] = property.split(':');
 
-      if (propArray[1] !== undefined) {
-        const propertyValue = propArray[1].trim();
-
-        sourceObj[propertyName] = propertyValue;
+      if (value) {
+        sourceObj[key.trim()] = value.trim();
       }
     }
   });

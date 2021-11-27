@@ -12,40 +12,34 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const masivStrings = sourceString.split('\n');
+  const newObj = sourceString
+    .split('\n')
+    .filter((string) => string.length > 3)
+    .map((string) => {
+      const result = string.split(':');
 
-  const onlyWithProperties = masivStrings.filter((string) => string.length > 3);
+      return result;
+    })
+    .reduce((prev, masiv) => {
+      const newM = [];
 
-  const callback = (string) => {
-    const result = string.split(':');
+      for (const key in masiv) {
+        const str = masiv[key];
+        const stringWithoutSpaces = str.trim();
 
-    return result;
-  };
+        newM.push(stringWithoutSpaces);
+      }
 
-  const keyWithProrertiesInMasiv = onlyWithProperties.map(callback);
+      const first = newM[0];
+      const second = newM[1];
+      const x = second.slice(0, -1);
+      const y = x.trim();
 
-  const callb = (prev, masiv) => {
-    const newM = [];
-
-    for (const key in masiv) {
-      const str = masiv[key];
-      const stringWithoutSpaces = str.trim();
-
-      newM.push(stringWithoutSpaces);
-    }
-
-    const first = newM[0];
-    const second = newM[1];
-    const x = second.slice(0, -1);
-    const y = x.trim();
-
-    return {
-      ...prev,
-      [first]: y,
-    };
-  };
-
-  const newObj = keyWithProrertiesInMasiv.reduce(callb, {});
+      return {
+        ...prev,
+        [first]: y,
+      };
+    }, {});
 
   return newObj;
 }

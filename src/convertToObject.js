@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const draftArrOfProperties = sourceString.replace(/\n/g, '').split(';');
+
+  const ArrOfProperties = draftArrOfProperties
+    .filter(elmnt => elmnt !== ' ' && elmnt !== '' && elmnt !== '  ')
+    .map(elmnt => {
+      const cell = elmnt
+        .split(':')
+        .map(x => x.trim());
+
+      return cell;
+    });
+
+  const result = Object.fromEntries(ArrOfProperties);
+
+  return result;
 }
 
 module.exports = convertToObject;

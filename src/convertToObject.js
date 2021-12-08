@@ -13,6 +13,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  return sourceString.split(';').reduce((obj, cssProperty) => {
+    const [key, value] = cssProperty.split(':');
+
+    if (key && value) {
+      obj[key.trim()] = value.trim();
+    }
+
+    return obj;
+  }, {});
 }
 
 module.exports = convertToObject;

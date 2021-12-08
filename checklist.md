@@ -16,3 +16,4 @@ const cssStyles = styles
  .filter(style => style.length)
  .slice(0, 5)
 ```
+5. [CODE PRACTICE] - Avoid using loops in this task, use iteration methods instead. 

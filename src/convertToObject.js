@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const properties = sourceString.split(';');
+  const propertiesWithoutTab = properties.map(string =>
+    string.replace(/\n/g, '').trim());
+
+  const propertiesFilteredByLength = propertiesWithoutTab.filter(string =>
+    string.length > 1);
+
+  const splitedKey = propertiesFilteredByLength.map(string =>
+    string.split(':'));
+
+  const cleanProperties = splitedKey.map(string => string.map(el =>
+    el.trim()));
+
+  return Object.fromEntries(cleanProperties);
 }
 
 module.exports = convertToObject;

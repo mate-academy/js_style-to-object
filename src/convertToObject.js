@@ -15,17 +15,12 @@ function convertToObject(sourceString) {
   // write your code here
   const arrayOfValues = sourceString.split(';');
   const object = arrayOfValues.reduce((prev, element) => {
-    const arrTemp = element.split(':');
-    let key = '';
-    let value = '';
+    const [key, value] = element.split(':');
 
-    if (arrTemp.length === 2) {
-      key = arrTemp[0].trim();
-      value = arrTemp[1].trim();
-
+    if (key.trim() && value.trim()) {
       return {
         ...prev,
-        [key]: value,
+        [key.trim()]: value.trim(),
       };
     } else {
       return { ...prev };

@@ -1,19 +1,19 @@
 'use strict';
 
 /**
- * Implement convertToObject function:
+ * Implement convertToresultect function:
  *
  * Function takes string with styles
- * and returns object where CSS properties are keys
+ * and returns resultect where CSS properties are keys
  * and values are the values of related CSS properties
  *
  * @param {string} sourceString
  *
- * @return {object}
+ * @return {resultect}
  */
-function convertToObject(sourceString) {
-  const result = [];
-  const obj = {};
+function convertToresultect(sourceString) {
+  const done = [];
+  const result = {};
 
   for (const item of sourceString.split(';')) {
     const split = item.split(':');
@@ -23,16 +23,16 @@ function convertToObject(sourceString) {
       temp.push(value.trim());
     }
 
-    result.push(temp);
+    done.push(temp);
   }
 
-  for (const item of result) {
+  for (const item of done) {
     if (item.length > 1) {
-      obj[item[0]] = item[1];
+      result[item[0]] = item[1];
     }
   }
 
-  return obj;
+  return result;
 }
 
-module.exports = convertToObject;
+module.exports = convertToresultect;

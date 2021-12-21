@@ -12,25 +12,16 @@
  * @return {resultect}
  */
 function convertToresultect(sourceString) {
-  const done = [];
   const result = {};
+  const parsed = sourceString.split(';');
 
-  for (const item of sourceString.split(';')) {
-    const split = item.split(':');
-    const temp = [];
+  parsed.forEach(item => {
+    const temp = item.split(':');
 
-    for (const value of split) {
-      temp.push(value.trim());
+    if (temp.length > 1) {
+      result[temp[0].trim()] = temp[1].trim();
     }
-
-    done.push(temp);
-  }
-
-  for (const item of done) {
-    if (item.length > 1) {
-      result[item[0]] = item[1];
-    }
-  }
+  });
 
   return result;
 }

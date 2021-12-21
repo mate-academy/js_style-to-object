@@ -20,7 +20,7 @@ function convertToObject(sourceString) {
   arr.forEach(item => {
     const tempValue = item.split(':');
 
-    if (tempValue[0] !== undefined && tempValue !== undefined) {
+    if (tempValue[0] !== undefined && tempValue[1] !== undefined) {
       cssStyles[tempValue[0].trim()] = tempValue[1].trim();
     }
   });

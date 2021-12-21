@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const refactoredStyles = {};
+
+  const arr = sourceString.split(';');
+
+  arr.forEach(el => {
+    const [key, value] = el.trim().split(':');
+
+    if (key && value) {
+      refactoredStyles[key.trim()] = value.trim();
+    }
+  });
+
+  return refactoredStyles;
 }
 
 module.exports = convertToObject;

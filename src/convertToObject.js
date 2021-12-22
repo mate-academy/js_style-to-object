@@ -1,4 +1,5 @@
 'use strict';
+// /* eslint-disable */
 
 /**
  * Implement convertToObject function:
@@ -11,8 +12,23 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = {};
+  const rules = sourceString
+    .split(';')
+    .map(i => i.trim())
+    .filter(Boolean);
+
+  rules.forEach(rule => {
+    const ruleParts = rule.split(':');
+    const property = ruleParts[0].trim();
+    const value = ruleParts[1].trim();
+
+    styles[property] = value;
+  });
+
+  return styles;
 }
 
 module.exports = convertToObject;

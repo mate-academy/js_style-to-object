@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const cssPropertiesObject = {};
   const lines = sourceString.split(';')
     .map(line => line.split(':'))
     .filter(line => line.length === 2);
@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
     const property = line[0].trim();
     const value = line[1].trim();
 
-    result[property] = value;
+    cssPropertiesObject[property] = value;
   });
 
-  return result;
+  return cssPropertiesObject;
 }
 
 module.exports = convertToObject;

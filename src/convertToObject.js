@@ -12,16 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArray = sourceString
+  return sourceString
     .split(';')
     .filter(property => property.trim().length > 0)
-    .map(pair => pair.split(':'));
+    .map(pair => pair.split(':'))
+    .reduce((stylesObject, pair) => {
+      stylesObject[pair[0].trim()] = pair[1].trim();
 
-  return stylesArray.reduce((stylesObject, pair) => {
-    stylesObject[pair[0].trim()] = pair[1].trim();
-
-    return stylesObject;
-  }, {});
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

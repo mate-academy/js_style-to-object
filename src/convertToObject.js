@@ -19,9 +19,9 @@ function convertToObject(sourceString) {
     .map(style => style.split(':'))
     .filter(style => style.length === 2);
 
-  for (const style of filteredString) {
+  filteredString.forEach(style => {
     styleCss[style[0].trim()] = style[1].trim();
-  }
+  });
 
   return styleCss;
 }

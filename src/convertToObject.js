@@ -14,14 +14,15 @@
 
 function convertToObject(sourceString) {
   // write your code here
-  const arr = sourceString.split(';');
+  const styles = sourceString.split(';');
   const cssStyles = {};
 
-  arr.forEach(item => {
-    const tempValue = item.split(':');
+  styles.forEach(item => {
+    const propertyAndValue = item.split(':');
 
-    if (tempValue[0] !== undefined && tempValue[1] !== undefined) {
-      cssStyles[tempValue[0].trim()] = tempValue[1].trim();
+    if (propertyAndValue[0] !== undefined
+        && propertyAndValue[1] !== undefined) {
+      cssStyles[propertyAndValue[0].trim()] = propertyAndValue[1].trim();
     }
   });
 

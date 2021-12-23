@@ -11,8 +11,28 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const formattedStyles = {};
+
+  let stylesString = '';
+
+  for (let i = 1; i < sourceString.length - 1; i++) {
+    stylesString += sourceString[i];
+  }
+
+  const stylesArray = stylesString.split(';')
+    .map(style => style.trim()).map(style1 => style1.split(':'));
+
+  for (let i = 0; i < stylesArray.length; i++) {
+    if (stylesArray[i][0] !== undefined && stylesArray[i][1] !== undefined) {
+      stylesArray[i][0] = stylesArray[i][0].trim();
+      stylesArray[i][1] = stylesArray[i][1].trim();
+      formattedStyles[stylesArray[i][0]] = stylesArray[i][1];
+    }
+  }
+
+  return formattedStyles;
 }
 
 module.exports = convertToObject;

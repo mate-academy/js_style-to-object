@@ -12,7 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const convert = sourceString.split(';')
+    .map(removeEdgeGaps => removeEdgeGaps.trim())
+    .filter(removeSingleChar => removeSingleChar.length > 1)
+    .map(removeMultiSpaces => removeMultiSpaces.replace(/\s\s+/g, ''))
+    .map(separateWord => separateWord.split(':')
+      .map(removeEdgeGaps => removeEdgeGaps.trim()));
+
+  return Object.fromEntries(convert);
 }
 
 module.exports = convertToObject;

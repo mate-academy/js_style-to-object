@@ -16,10 +16,10 @@ function convertToresultect(sourceString) {
   const parsed = sourceString.split(';');
 
   parsed.forEach(item => {
-    const temp = item.split(':');
+    const splited = item.split(':');
 
-    if (temp.length > 1) {
-      result[temp[0].trim()] = temp[1].trim();
+    if (splited.length > 1) {
+      result[splited[0].trim()] = splited[1].trim();
     }
   });
 

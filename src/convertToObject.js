@@ -22,7 +22,7 @@ function convertToObject(sourceString) {
   }
 
   const stylesArray = stylesString.split(';')
-    .map(style => style.trim()).map(style1 => style1.split(':'));
+    .map(style => style.trim()).map(style => style.split(':'));
 
   for (let i = 0; i < stylesArray.length; i++) {
     if (stylesArray[i][0] !== undefined && stylesArray[i][1] !== undefined) {

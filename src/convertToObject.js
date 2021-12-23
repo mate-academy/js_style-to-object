@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssStyles = {};
+  const splitBySemicolon = sourceString.split('\n').join('').trim().split(';');
+
+  splitBySemicolon.forEach((item, index) => {
+    const splitByColon = item.split(':');
+
+    if (splitByColon.length === 2) {
+      const key = splitByColon[0].trim();
+      const value = splitByColon[1].trim();
+
+      cssStyles[key] = value;
+    }
+  });
+
+  return cssStyles;
 }
 
 module.exports = convertToObject;

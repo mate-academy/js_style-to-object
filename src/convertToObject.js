@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/* *
  * Implement convertToObject function:
  *
  * Function takes string with styles
@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const clearCSS = {};
+
+  const styleCSS = sourceString
+    .split(';')
+    .map(element => element.split(':'))
+    .filter(element => element.length === 2)
+    .map(element => element.map(elementValue => elementValue.trim()));
+
+  styleCSS.forEach(element => {
+    clearCSS[element[0]] = element[1];
+  });
+
+  return clearCSS;
 }
 
 module.exports = convertToObject;

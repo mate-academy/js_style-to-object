@@ -12,14 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const convert = sourceString.split(';')
-    .map(removeEdgeGaps => removeEdgeGaps.trim())
-    .filter(removeSingleChar => removeSingleChar.length > 1)
-    .map(removeMultiSpaces => removeMultiSpaces.replace(/\s\s+/g, ''))
-    .map(separateWord => separateWord.split(':')
-      .map(removeEdgeGaps => removeEdgeGaps.trim()));
+  const stylesArray = sourceString
+    .split(';')
+    .map(string => string.trim())
+    .filter(element => element.length > 1)
+    .map(item => item.split(':')
+      .map(string => string.trim()));
 
-  return Object.fromEntries(convert);
+  return Object.fromEntries(stylesArray);
 }
 
 module.exports = convertToObject;

@@ -13,9 +13,11 @@
  */
 function convertToObject(sourceString) {
   const cssStyles = {};
-  const styles = sourceString.split(';').filter(style => style.trim());
+  const styles = sourceString
+    .split(';')
+    .filter(style => style.trim());
 
-  styles.filter(style => {
+  styles.forEach(style => {
     const keysValues = style.split(':');
 
     if (keysValues.length > 1) {

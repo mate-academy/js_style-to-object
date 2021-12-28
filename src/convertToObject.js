@@ -31,9 +31,8 @@ function convertToObject(sourceString) {
 
   const obj = {};
 
-  for (let i = 0; i < strArray.length; i++) {
+  for (let i = 0; i < strArray.length; i + 2) {
     obj[strArray[i]] = strArray[i + 1];
-    i++;
   }
 
   return obj;

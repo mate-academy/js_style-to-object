@@ -12,17 +12,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let words = sourceString.split('');
+  const words = sourceString.split(';');
   const cssCode = {};
-
-  words.forEach((el, index) => {
-    if ('\n'.includes(el)) {
-      delete words[index];
-    }
-  });
-
-  words = words.join('')
-    .split(';');
 
   words.forEach((word, index) => {
     const wordTrim = word.trim();

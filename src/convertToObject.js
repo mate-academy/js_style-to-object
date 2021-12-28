@@ -15,32 +15,12 @@ function convertToObject(sourceString) {
   const words = sourceString.split(';');
   const cssCode = {};
 
-  words.forEach((word, index) => {
-    const wordTrim = word.trim();
+  words.forEach(word => {
+    const property = word.split(':');
 
-    words[index] = wordTrim;
-
-    if (wordTrim === '') {
-      words.splice(index, 1);
+    if (property.length === 2) {
+      cssCode[property[0].trim()] = property[1].trim();
     }
-  });
-
-  words.forEach((word, index) => {
-    const wordTrim = word.trim();
-
-    words[index] = wordTrim;
-
-    if (wordTrim === '') {
-      words.splice(index, 1);
-    }
-  });
-
-  words.forEach((word, index) => {
-    words.splice(index, 1, word.split(':'));
-  });
-
-  words.forEach((word) => {
-    cssCode[word[0].trim()] = word[1].trim();
   });
 
   return cssCode;

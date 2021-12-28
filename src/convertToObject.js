@@ -14,10 +14,10 @@
 function convertToObject(sourceString) {
   const styles = sourceString.split(';');
 
-  const arrayStyles = styles.map(style => style.split(':'));
-  const object = {};
+  const allStyles = styles.map(style => style.split(':'));
+  const styleContainer = {};
 
-  arrayStyles.map(item => {
+  allStyles.map(item => {
     item[0] = item[0].trim();
 
     if (item[0].length < 2) {
@@ -31,15 +31,15 @@ function convertToObject(sourceString) {
         item[1] = '0';
       }
 
-      object[item[0]] = item[1];
+      styleContainer[item[0]] = item[1];
     } else {
-      object[item[0]] = item[0];
+      styleContainer[item[0]] = item[0];
     }
 
     return item;
   });
 
-  return object;
+  return styleContainer;
 }
 
 module.exports = convertToObject;

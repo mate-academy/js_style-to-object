@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arraySourceString = sourceString.split(';')
+    .filter(element => !!element.trim());
+
+  const result = {};
+
+  const arrayProperties = arraySourceString.map(property => property.split(':')
+    .map(value => value.trim()));
+
+  for (const cssPair of arrayProperties) {
+    result[cssPair[0]] = cssPair[1];
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

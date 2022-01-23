@@ -11,6 +11,7 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   const styles = {};
 
@@ -26,4 +27,5 @@ function convertToObject(sourceString) {
 
   return styles;
 }
+
 module.exports = convertToObject;

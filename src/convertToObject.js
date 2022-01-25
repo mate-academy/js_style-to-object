@@ -17,13 +17,13 @@ function convertToObject(sourceString) {
 
   const styles = {};
 
-  for (const prop of arrOfProps) {
+  for (const prop of props) {
     if (prop[0] && prop[1]) {
-      newObj[prop[0]] = prop[1];
+      styles[prop[0]] = prop[1];
     }
   }
 
-  return newObj;
+  return styles;
 }
 
 module.exports = convertToObject;

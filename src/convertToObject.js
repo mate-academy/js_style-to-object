@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
   const props = sourceString.split(';')
     .map(prop => prop.split(':').map(x => x.trim()));
 
-  const newObj = {};
+  const styles = {};
 
   for (const prop of arrOfProps) {
     if (prop[0] && prop[1]) {

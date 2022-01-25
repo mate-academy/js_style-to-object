@@ -12,7 +12,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrOfProps = sourceString.split(';')
+  const props = sourceString.split(';')
     .map(prop => prop.split(':').map(x => x.trim()));
 
   const newObj = {};

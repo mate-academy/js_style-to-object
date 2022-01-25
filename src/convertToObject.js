@@ -12,16 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';');
-  const stylesObject = {};
+  const stylesList = {};
 
-  for (const style of styles) {
-    if (style.split(':')[1] !== undefined) {
-      stylesObject[style.split(':')[0].trim()] = style.split(':')[1].trim();
-    }
-  }
+  sourceString
+    .split(';')
+    .map((style) => {
+      const styleProp = style.split(':')[0];
+      const styleValue = style.split(':')[1];
 
-  return stylesObject;
+      if (styleValue !== undefined) {
+        stylesList[styleProp.trim()] = styleValue.trim();
+      }
+    });
+
+  return stylesList;
 }
 
 module.exports = convertToObject;

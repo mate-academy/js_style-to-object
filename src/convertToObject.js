@@ -13,7 +13,7 @@
  */
 function convertToObject(sourceString) {
   const props = sourceString.split(';')
-    .map(prop => prop.split(':').map(x => x.trim()));
+    .map(prop => prop.split(':').map(elem => elem.trim()));
 
   const styles = {};
 

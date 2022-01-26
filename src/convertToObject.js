@@ -13,12 +13,18 @@
  */
 function convertToObject(sourceString) {
   const styles = {};
-  const properties = [...sourceString.matchAll(/[-a-z]+? *?:.+?;/g)];
+  const properties = sourceString
+    .split(';')
+    .map(property => property.trim());
 
   properties.forEach(function(property) {
-    const propertyPair = property[0].replace(/  +|;/g, '').split(/: */g);
+    if (property) {
+      const propertyPair = property
+        .split(':')
+        .map(p => p.trim());
 
-    styles[propertyPair[0]] = propertyPair[1];
+      styles[propertyPair[0]] = propertyPair[1];
+    }
   });
 
   return styles;

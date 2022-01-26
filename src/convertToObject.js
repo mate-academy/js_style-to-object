@@ -21,10 +21,8 @@ function convertToObject(sourceString) {
   const properties = {};
 
   arrOfString.forEach(str => {
-    let [propertie, value] = str.split(':');
+    const [propertie, value] = str.split(':').map(el => el.trim());
 
-    propertie = propertie.trim();
-    value = value.trim();
     properties[propertie] = value;
   });
 

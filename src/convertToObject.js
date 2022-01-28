@@ -13,18 +13,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const compliteObject = {};
-  const properties = sourceString.split(';')
+  const compliteObjectForCSS = {};
+  const propertiesForObject = sourceString.split(';')
     .map(element => element.trim())
     .filter(element => element.length !== 0)
     .map(element => element.split(':')
       .map(item => item.trim()));
 
-  for (const property of properties) {
-    compliteObject[property[0]] = property[1];
+  for (const property of propertiesForObject) {
+    compliteObjectForCSS[property[0]] = property[1];
   }
 
-  return compliteObject;
+  return compliteObjectForCSS;
 }
 
 module.exports = convertToObject;

@@ -13,20 +13,22 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arrOfString = sourceString
+  const modifyString = sourceString
     .split(';')
     .map((el) => el.trim())
     .filter(el => el !== '');
 
-  const properties = {};
+  const propertys = {};
 
-  arrOfString.forEach(str => {
-    const [propertie, value] = str.split(':').map(el => el.trim());
+  modifyString.forEach(str => {
+    const [property, value] = str
+      .split(':')
+      .map(el => el.trim());
 
-    properties[propertie] = value;
+    propertys[property] = value;
   });
 
-  return properties;
+  return propertys;
 }
 
 module.exports = convertToObject;

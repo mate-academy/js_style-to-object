@@ -28,11 +28,7 @@ function convertToObject(sourceString) {
   const convertedStyles = Object.assign(...properties.map((n, i) =>
     ({ [n]: values[i] })));
 
-  for (const key in convertedStyles) {
-    if (convertedStyles[key] === '') {
-      delete convertedStyles[key];
-    }
-  }
+  delete convertedStyles[''];
 
   return convertedStyles;
 }

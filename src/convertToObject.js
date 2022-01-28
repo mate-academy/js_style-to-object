@@ -20,10 +20,10 @@ function convertToObject(sourceString) {
 
   const propertys = {};
 
-  modifyString.forEach(str => {
-    const [property, value] = str
+  modifyString.forEach(words => {
+    const [property, value] = words
       .split(':')
-      .map(el => el.trim());
+      .map(word => word.trim());
 
     propertys[property] = value;
   });

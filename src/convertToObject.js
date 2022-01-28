@@ -12,7 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sringWithoutTrim = sourceString.split(';')
+    .map(el => el.split(':').map(prop => prop.trim()))
+    .filter(element => element.length > 1);
+
+  const result = Object.fromEntries(sringWithoutTrim);
+
+  return result;
 }
 
 module.exports = convertToObject;

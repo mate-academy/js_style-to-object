@@ -12,33 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let stringToArr = [];
-  let stringWithoutSemicolon = '';
-  let stringToArrClean = [];
-  const rowCSSvalues = [];
+  let styleRow;
   const objCSSvalues = {};
 
-  stringWithoutSemicolon = (sourceString.split('').filter(item =>
-    ((item !== ';') && (item !== ':'))).join(''));
+  sourceString.split(';').forEach(row => {
+    styleRow = row.split(':').map(word => word.trim());
 
-  stringToArr = stringWithoutSemicolon.split('\n');
-  stringToArrClean = stringToArr.filter(item => /\S/.test(item));
+    const [ cssProperty, value ] = styleRow;
 
-  for (let i = 0; i < stringToArrClean.length; i++) {
-    rowCSSvalues[i] = (stringToArrClean[i].split('').filter(item =>
-      ((item !== ';') && (item !== ':'))).join(''));
-  }
-
-  for (let i = 0; i < stringToArrClean.length; i++) {
-    (rowCSSvalues[i] = (stringToArrClean[i].split(' ')
-      .filter(item => item !== '')));
-  }
-
-  for (let i = 0; i < rowCSSvalues.length; i++) {
-    const [ cssname, ...values ] = rowCSSvalues[i];
-
-    objCSSvalues[cssname] = values.join(' ');
-  }
+    if (cssProperty && value) {
+      objCSSvalues[cssProperty] = value;
+    }
+  });
 
   return (objCSSvalues);
 }

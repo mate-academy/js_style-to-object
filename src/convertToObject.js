@@ -11,8 +11,26 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = sourceString.split(';');
+  const values = styles.map(style => {
+    const value = style.slice(style.indexOf(':') + 1, style.length).trim();
+
+    return value;
+  });
+  const properties = styles.map(style => {
+    const property = style.slice(style.indexOf(''), style.indexOf(':')).trim();
+
+    return property;
+  });
+
+  const convertedStyles = Object.assign(...properties.map((n, i) =>
+    ({ [n]: values[i] })));
+
+  delete convertedStyles[''];
+
+  return convertedStyles;
 }
 
 module.exports = convertToObject;

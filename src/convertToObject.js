@@ -14,17 +14,16 @@
 function convertToObject(sourceString) {
   const convertedToObject = {};
 
-  const TempArray = sourceString.split(';').map(item => item.trim());
-
-  const TempArrayFiltred = TempArray.filter(item => item.length !== 0);
-
-  const TempArrayOfArrayes = TempArrayFiltred
+  const tempArray = sourceString
+    .split(';')
+    .map(item => item.trim())
+    .filter(item => item.length !== 0)
     .map(
       item => item.split(':').map(itemIn => itemIn.trim())
     );
 
-  for (const ArrayCoupel of TempArrayOfArrayes) {
-    convertedToObject[ArrayCoupel[0]] = ArrayCoupel[1];
+  for (const arrayCoupel of tempArray) {
+    convertedToObject[arrayCoupel[0]] = arrayCoupel[1];
   }
 
   return convertedToObject;

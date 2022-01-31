@@ -13,6 +13,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const stylesAsObject = {};
+  const stylesAsArray = sourceString.split(';')
+    .map(element => element
+      .trim())
+    .filter(element => element.length !== 0)
+    .map(element => element
+      .split(':')
+      .map(item => item
+        .trim()));
+
+  for (const style of stylesAsArray) {
+    stylesAsObject[style[0]] = style[1];
+  }
+
+  return stylesAsObject;
 }
 
 module.exports = convertToObject;

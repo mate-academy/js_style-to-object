@@ -12,11 +12,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const filteredArr = sourceString.split(';')
+  const filteredStyles = sourceString.split(';')
     .map(str => str.trim())
     .filter(item => item !== '');
 
-  const result = filteredArr.map(function f(item) {
+  const result = filteredStyles.map(function f(item) {
     return item.split(':').map(str => str.trim());
   });
 

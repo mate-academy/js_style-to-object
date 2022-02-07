@@ -14,33 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertiesArray = sourceString.split(';');
-  let propValuesArray = [];
-  let index = 0;
-
-  for (let i = 0; i < propertiesArray.length; i++) {
-    propertiesArray[i] = propertiesArray[i].trim();
-  }
-
-  for (const property of propertiesArray) {
-    if (property !== ';' && property !== '') {
-      propValuesArray[index] = property;
-      index++;
-    }
-  }
-
-  propValuesArray = propValuesArray.map(property => property.split(':'));
-
-  for (let i = 0; i < propValuesArray.length; i++) {
-    propValuesArray[i][0] = propValuesArray[i][0].trim();
-    propValuesArray[i][1] = propValuesArray[i][1].trim();
-  }
+  const propertiesArray = sourceString.split(';').map(property =>
+    property.trim()).map(property =>
+    property.split(':')).map((property) =>
+    property.map(element => element.trim()));
 
   const resultObj = {};
 
-  for (let i = 0; i < propValuesArray.length; i++) {
-    resultObj[propValuesArray[i][0]] = propValuesArray[i][1];
-  }
+  propertiesArray.forEach(property => {
+    if (property[0] !== ';' && property[0] !== '') {
+      resultObj[property[0]] = property[1];
+    }
+  });
 
   return resultObj;
 }

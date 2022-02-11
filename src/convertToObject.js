@@ -18,9 +18,8 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .map(pair => pair.trim())
-    .filter(pair => pair.length > 0)
     .map(pair => pair.split(':'))
+    .filter(pair => pair.length === 2)
     .map(pair => (stringObject[pair[0].trim()] = pair[1].trim()));
 
   return stringObject;

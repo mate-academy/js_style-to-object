@@ -14,18 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArray = sourceString.split(';').map(elem =>
+  const stylesList = sourceString.split(';').map(elem =>
     elem.split(':')).filter(elem => elem.length > 1);
 
-  const stylesObject = {};
+  const outputStyles = {};
 
-  stylesArray.forEach(elem => {
-    Object.assign(stylesObject, {
+  stylesList.forEach(elem => {
+    Object.assign(outputStyles, {
       [elem[0].trim()]: elem[1].trim(),
     });
   });
 
-  return stylesObject;
+  return outputStyles;
 }
 
 module.exports = convertToObject;

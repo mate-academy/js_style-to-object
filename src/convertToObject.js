@@ -19,9 +19,9 @@ function convertToObject(sourceString) {
 
   const outputStyles = {};
 
-  stylesList.forEach(elem => {
+  stylesList.forEach(([key, value]) => {
     Object.assign(outputStyles, {
-      [elem[0].trim()]: elem[1].trim(),
+      [key.trim()]: value.trim(),
     });
   });
 

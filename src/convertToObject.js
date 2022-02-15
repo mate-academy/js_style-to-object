@@ -10,18 +10,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normalize = sourceString.split(';').map(a => {
-    return a.split(':').map(s => s.trim()).join(':');
-  }).filter(a => a.length > 1);
+  const normalize = sourceString.split(';').map(propValuePair => {
+    return propValuePair.split(':').map(propOrValue =>
+      propOrValue.trim()).join(':');
+  }).filter(propValuePair => propValuePair.length > 1);
 
   const result = {};
 
-  normalize.map(a => {
-    const [key, value] = a.split(':');
+  normalize.map(propValuePair => {
+    const [key, value] = propValuePair.split(':');
 
     result[key] = value;
 
-    return a;
+    return propValuePair;
   });
 
   return result;

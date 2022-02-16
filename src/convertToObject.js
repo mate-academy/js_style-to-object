@@ -14,10 +14,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesList = sourceString.split(';').map(elem =>
+  const styles = sourceString.split(';').map(elem =>
     elem.split(':')).filter(elem => elem.length > 1);
 
-  return stylesList.reduce((prev, [key, value]) => {
+  return styles.reduce((prev, [key, value]) => {
     return {
       ...prev,
       [key.trim()]: value.trim(),

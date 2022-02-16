@@ -1,7 +1,7 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const transformedString = sourceString.split(';')
+  return sourceString.split(';')
     .map(pair => {
       return pair.split(':').map(item => item.trim());
     })
@@ -11,8 +11,6 @@ function convertToObject(sourceString) {
 
       return object;
     }, {});
-
-  return transformedString;
 };
 
 module.exports = convertToObject;

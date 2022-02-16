@@ -15,9 +15,7 @@
  */
 function convertToObject(sourceString) {
   const arrStyles = sourceString.trim().split('\n');
-  const arrStylesClean = arrStyles.map(style => {
-    return style.split(':');
-  });
+  const arrStylesClean = arrStyles.map(style => style.split(':'));
 
   return arrStylesClean.reduce((objStyles, style) => {
     const [property, value] = style;

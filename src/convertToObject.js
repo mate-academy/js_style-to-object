@@ -8,7 +8,7 @@ function convertToObject(sourceString) {
         = unparsedRule.split(':').map(pair => pair.trim());
 
       if (property && value) {
-        CSSObject[property.toString()] = value.toString();
+        CSSObject[property] = value;
       }
 
       return CSSObject;

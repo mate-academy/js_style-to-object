@@ -12,15 +12,15 @@ function convertToObject(sourceString) {
     .map(style => style.split(' ')
       .filter(char => char !== ''));
 
-  const obj = {};
+  const formatedStyles = {};
 
   styles.forEach(el => {
     const [property, ...value] = el;
 
-    obj[property] = [...value].join(' ');
+    formatedStyles[property] = [...value].join(' ');
   });
 
-  return obj;
+  return formatedStyles;
 }
 
 module.exports = convertToObject;

@@ -14,17 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrStyles = sourceString.trim().split('\n');
-  const arrStylesClean = arrStyles.map(style => style.split(':'));
+  const stylesList = sourceString.trim().split('\n');
+  const stylesListClean = stylesList.map(style => style.split(':'));
 
-  return arrStylesClean.reduce((objStyles, style) => {
-    const [property, value] = style;
-
+  return stylesListClean.reduce((formattedStyles, [property, value]) => {
     if (property && value) {
-      objStyles[property.trim()] = value.slice(0, -1).trim();
+      formattedStyles[property.trim()] = value.slice(0, -1).trim();
     }
 
-    return objStyles;
+    return formattedStyles;
   }, {});
 }
 

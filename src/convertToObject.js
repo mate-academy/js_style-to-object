@@ -16,7 +16,6 @@
 function convertToObject(sourceString) {
   let cssStyles = sourceString
     .split(';')
-    .map(properties => properties.trim())
     .map(properties => properties.split(':')
       .map(value => value.trim()));
 

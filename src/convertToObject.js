@@ -1,17 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const styles = sourceString
+  return sourceString
     .split(';')
     .map(rule => rule.split(':').map(item => item.trim()))
     .filter(rule => rule.length === 2)
-    .reduce((obj, [property, value]) => {
-      obj[property] = value;
+    .reduce((stylesList, [property, value]) => {
+      stylesList[property] = value;
 
-      return obj;
+      return stylesList;
     }, {});
-
-  return styles;
 }
 
 module.exports = convertToObject;

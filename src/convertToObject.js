@@ -15,17 +15,18 @@
  */
 function convertToObject(sourceString) {
   const stylesList = sourceString.split(';');
-  const allStyles = {};
+  const splitedList = stylesList.map(
+    style => style.split(':').map(prop => prop.trim()
+    )
+  );
 
-  for (const style of stylesList) {
-    const [key, value] = style.split(':').map(prop => prop.trim());
+  const filteredList = splitedList.filter(item => item.length >= 2);
+  const allStylesMap = filteredList.reduce((cssStyles, [key, value]) => ({
+    ...cssStyles,
+    [key]: value,
+  }), {});
 
-    if (key && value) {
-      allStyles[key] = value;
-    }
-  }
-
-  return allStyles;
+  return allStylesMap;
 }
 
 module.exports = convertToObject;

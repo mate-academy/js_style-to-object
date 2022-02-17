@@ -6,9 +6,9 @@ function convertToObject(sourceString) {
     .map(elem => elem.split(':'))
     .filter(elem => elem.length > 1);
 
-  return styles.reduce((previus, [key, value]) => {
+  return styles.reduce((cssStyles, [key, value]) => {
     return {
-      ...previus,
+      ...cssStyles,
       [key.trim()]: value.trim(),
     };
   }, {});

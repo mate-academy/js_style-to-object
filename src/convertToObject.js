@@ -8,16 +8,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssStyles = {};
-  const stylesArray = sourceString.split(';')
+  const splittedStyles = sourceString.split(';')
     .map(row => row.split(':'))
-    .filter(el => el.length > 1);
+    .filter(element => element.length > 1);
 
-  for (const row of stylesArray) {
-    cssStyles[row[0].trim()] = row[1].trim();
-  };
+  return splittedStyles.reduce((cssStyles, [prop, value]) => {
+    cssStyles[prop.trim()] = value.trim();
 
-  return cssStyles;
+    return cssStyles;
+  }, {});
 }
 
 module.exports = convertToObject;

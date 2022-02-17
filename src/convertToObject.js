@@ -14,13 +14,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const firstArr = sourceString.split(';')
-    .map(el => el.split(':'))
-    .filter(el => el.length > 1);
+  const cssArray = sourceString.split(';')
+    .map(declaration => declaration.split(':'))
+    .filter(property => property.length > 1);
 
   const result = {};
 
-  for (const prop of firstArr) {
+  for (const prop of cssArray) {
     result[prop[0].trim()] = prop[1].trim();
   }
 

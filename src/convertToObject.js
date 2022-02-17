@@ -12,7 +12,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const tagValue = sourceString.split(';');
+  const tagWithValue = tagValue.map(item => item.split(':'));
+  const css = {};
+
+  tagWithValue.map(item => {
+    item[0] = item[0].trim();
+
+    if (item[1]) {
+      item[1] = item[1].trim();
+      css[item[0]] = item[1];
+    }
+
+    return item;
+  });
+
+  return css;
 }
 
 module.exports = convertToObject;

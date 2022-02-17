@@ -14,12 +14,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssRule = sourceString.split(';').map(element => element.split(':'))
-    .filter(empty => empty.length > 1).reduce(
-      (resultCssObj, [keys, value]) => {
-        resultCssObj[keys.trim()] = value.trim();
+  const cssRule = sourceString.split(';')
+    .map(element => element.split(':'))
+    .filter(empty => empty.length > 1)
+    .reduce(
+      (cssStyles, [keys, value]) => {
+        cssStyles[keys.trim()] = value.trim();
 
-        return resultCssObj;
+        return cssStyles;
       }, {});
 
   return cssRule;

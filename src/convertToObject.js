@@ -2,25 +2,16 @@
 
 function convertToObject(sourceString) {
   const styles = sourceString
-    .trim()
     .split(';')
-    .map(style => style
-      .split(':')
-      .join(' ')
-      .trim())
-    .filter(style => style !== '')
-    .map(style => style.split(' ')
-      .filter(char => char !== ''));
+    .map(rule => rule.split(':').map(item => item.trim()))
+    .filter(rule => rule.length === 2)
+    .reduce((obj, [property, value]) => {
+      obj[property] = value;
 
-  const formatedStyles = {};
+      return obj;
+    }, {});
 
-  styles.forEach(el => {
-    const [property, ...value] = el;
-
-    formatedStyles[property] = [...value].join(' ');
-  });
-
-  return formatedStyles;
+  return styles;
 }
 
 module.exports = convertToObject;

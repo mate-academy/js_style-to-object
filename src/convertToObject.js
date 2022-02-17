@@ -19,11 +19,12 @@ function convertToObject(sourceString) {
     .map(declaration => declaration.split(':'))
     .filter(property => property.length > 1);
 
-  const result = {};
+  const result = cssArray.reduce(
+    (resultObj, [property, value]) => {
+      resultObj[property.trim()] = value.trim();
 
-  for (const prop of cssArray) {
-    result[prop[0].trim()] = prop[1].trim();
-  }
+      return resultObj;
+    }, {});
 
   return result;
 }

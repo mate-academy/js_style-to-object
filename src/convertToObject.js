@@ -3,16 +3,21 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
- *
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssStyles = {};
+  const stylesArray = sourceString.split(';')
+    .map(row => row.split(':'))
+    .filter(el => el.length > 1);
+
+  for (const row of stylesArray) {
+    cssStyles[row[0].trim()] = row[1].trim();
+  };
+
+  return cssStyles;
 }
 
 module.exports = convertToObject;

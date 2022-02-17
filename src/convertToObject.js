@@ -10,22 +10,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normalize = sourceString.split(';').map(propValuePair => {
-    return propValuePair.split(':').map(propOrValue =>
-      propOrValue.trim()).join(':');
+  const normalizedSourceString = sourceString.split(';').map(propValuePair => {
+    return propValuePair
+      .split(':')
+      .map(propOrValue =>
+        propOrValue.trim()).join(':');
   }).filter(propValuePair => propValuePair.length > 1);
 
-  const result = {};
-
-  normalize.map(propValuePair => {
+  return normalizedSourceString.reduce((cssStyles, propValuePair) => {
     const [key, value] = propValuePair.split(':');
 
-    result[key] = value;
+    cssStyles[key] = value;
 
-    return propValuePair;
-  });
-
-  return result;
+    return cssStyles;
+  }, {});
 }
 
 module.exports = convertToObject;

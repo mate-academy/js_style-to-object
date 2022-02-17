@@ -14,7 +14,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssArray = sourceString.split(';')
+  const cssArray = sourceString
+    .split(';')
     .map(declaration => declaration.split(':'))
     .filter(property => property.length > 1);
 

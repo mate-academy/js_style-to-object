@@ -20,10 +20,10 @@ function convertToObject(sourceString) {
     .filter(property => property.length > 1);
 
   return splitedStyles.reduce(
-    (resultObj, [property, value]) => {
-      resultObj[property.trim()] = value.trim();
+    (cssStyles, [property, value]) => {
+      cssStyles[property.trim()] = value.trim();
 
-      return resultObj;
+      return cssStyles;
     }, {});
 }
 

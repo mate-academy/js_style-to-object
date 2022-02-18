@@ -3,15 +3,15 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .reduce((CSSObject, unparsedRule) => {
+    .reduce((cssRulesObject, unparsedRule) => {
       const [property, value]
-        = unparsedRule.split(':').map(pair => pair.trim());
+        = unparsedRule.split(':').map(ruleItem => ruleItem.trim());
 
       if (property && value) {
-        CSSObject[property] = value;
+        cssRulesObject[property] = value;
       }
 
-      return CSSObject;
+      return cssRulesObject;
     }, {});
 }
 

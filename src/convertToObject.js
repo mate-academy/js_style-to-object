@@ -17,19 +17,15 @@ function convertToObject(sourceString) {
   const clearStyles = sourceString.split(';').map(string => {
     return string.split(':').map(item =>
       item.trim()).join(':');
-  }).filter(string => string.length > 1);
+  }).filter(string => string.length > 1).map(string => string.split(':'));
 
-  const result = {};
+  const cssStyles = clearStyles.reduce((accum, [key, value]) => {
+    accum[key.trim()] = value.trim();
 
-  clearStyles.map(rule => {
-    rule.split(':');
+    return accum;
+  }, {});
 
-    const [key, value] = rule.split(':');
-
-    result[key] = value;
-  });
-
-  return result;
+  return cssStyles;
 }
 
 module.exports = convertToObject;

@@ -1,18 +1,13 @@
 'use strict';
 
-function convertToObject(sourceString) {
-  const stylesLine = sourceString.replace(/\s+/g, ' ').trim().split(';');
-  const styles = {};
+const convertToObject = (sourceString) => {
+  return sourceString.split(';').reduce((stylesObject, string) => {
+    const [prop, value] = string.split(':').map((rulePart) => rulePart.trim());
 
-  for (const style of stylesLine) {
-    const [key, value] = style.split(':');
+    prop && value && (stylesObject[prop] = value);
 
-    if (key && value) {
-      styles[key.trim()] = value.trim();
-    }
-  }
-
-  return styles;
-}
+    return stylesObject;
+  }, {});
+};
 
 module.exports = convertToObject;

@@ -15,13 +15,17 @@
  */
 
 function convertToObject(sourceString) {
-  return sourceString.split(';').map(value =>
-    value.split(':')).map(el => el.map(subel => subel.trim()))
+  return sourceString.split(';')
+    .map(value => value
+      .split(':'))
+    .map(el => el
+      .map(subEl => subEl
+        .trim()))
     .filter(value => value.length > 1)
-    .reduce((object, [key, value]) => {
-      object[key] = value;
+    .reduce((classes, [key, value]) => {
+      classes[key] = value;
 
-      return object;
+      return classes;
     }, {});
 }
 

@@ -1,32 +1,13 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const clearSpaces = str => {
-    let result = '';
+  return sourceString.split(';').reduce((stylesObject, string) => {
+    const [prop, value] = string.split(':').map(item => item.trim());
 
-    for (let i = 0; i < str.length; i++) {
-      if ((str[i] === ' ' && str[i + 1] === ' ') || str[i] === ';') {
-        continue;
-      } else {
-        result += str[i];
-      }
-    }
+    prop && value && (stylesObject[prop] = value);
 
-    return result;
-  };
-
-  const splittedSource = sourceString.split('\n');
-  const resultObject = {};
-
-  for (const value of splittedSource) {
-    if (value.length > 3) {
-      const [styleProp, styleValue] = value.split(':');
-
-      resultObject[styleProp.trim()] = clearSpaces(styleValue).trim();
-    }
-  }
-
-  return resultObject;
+    return stylesObject;
+  }, {});
 }
 
 module.exports = convertToObject;

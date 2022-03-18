@@ -16,19 +16,21 @@
 function convertToObject(sourceString) {
   const elements = sourceString.split(';');
   const filteredElements = [];
-  const result = {};
+  const stylesObject = {};
 
   for (let i = 0; i < elements.length; i++) {
-    if (elements[i].length > 4) {
-      filteredElements.push(elements[i].split(':'));
+    const trimedLine = elements[i].trim();
+
+    if (trimedLine !== '') {
+      filteredElements.push(trimedLine.split(':'));
     }
   }
 
   for (let j = 0; j < filteredElements.length; j++) {
-    result[filteredElements[j][0].trim()] = filteredElements[j][1].trim();
+    stylesObject[filteredElements[j][0].trim()] = filteredElements[j][1].trim();
   }
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString.split(';')
+    .map(property => property.trim())
+    .filter(property => property.length)
+    .map(pair => pair.split(':').map(pairElement => pairElement.trim()))
+    .reduce((styleObject, pair) => {
+      return Object.assign(styleObject, { [pair[0]]: pair[1] });
+    }, {});
 }
 
 module.exports = convertToObject;

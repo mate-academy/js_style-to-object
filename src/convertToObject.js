@@ -15,24 +15,14 @@
  */
 function convertToObject(sourceString) {
   const properties = sourceString
-    .split('\n')
+    .split(';')
     .filter((line) => line.includes(':'));
 
-  const divideProp = (item) => {
-    let items = item.split(':');
-
-    const preparationProp = (part) => {
-      if (part.includes(';')) {
-        return part.slice(0, -1).trim();
-      }
-
-      return part.trim();
-    };
-
-    items = items.map(preparationProp);
+  const divideProp = (strings) => {
+    const newStr = strings.split(':');
 
     return {
-      [items[0]]: items[1],
+      [newStr[0].trim()]: newStr[1].trim(),
     };
   };
 

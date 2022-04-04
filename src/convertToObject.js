@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssObj = {};
+
+  const splitedSource = sourceString.split(';').filter(el => el.includes(':'));
+  
+  for (const el of splitedSource) {
+    const seperator = el.indexOf(':');
+    const value = el.slice(seperator + 1).trim();
+    const key = el.slice(0, seperator).trim();
+
+    cssObj[key] = value;
+  }
+
+  return cssObj;
 }
 
 module.exports = convertToObject;

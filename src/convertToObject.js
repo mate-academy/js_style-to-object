@@ -14,11 +14,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';').map(i => (
-    i.split(':'))).map(x => x.map(i => (
-    i.trim()))).filter(x => x.length > 1).reduce((prev, [prop, val]) => ({
+  const splitedStr = sourceString.split(';').map(i => i.split(':'));
+  const trimStr = splitedStr.map(x => x.map(i => i.trim()));
+  const withoutBlank = trimStr.filter(x => x.length > 1);
+  const result = withoutBlank.reduce((prev, [prop, val]) => ({
     ...prev, [prop]: val,
   }), {});
+
+  return result;
 }
 
 module.exports = convertToObject;

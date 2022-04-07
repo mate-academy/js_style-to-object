@@ -20,12 +20,9 @@ function convertToObject(sourceString) {
   for (let i = 0; i < properties.length; i++) {
     const splittedProperties = properties[i].split(':');
 
-    const clearLine = splittedProperties.filter(item => item !== ''
-      && item !== '\n' && item !== '\n\n' && item !== ' ');
-
-    for (let k = 0; k < clearLine.length; k++) {
-      clearLine[k] = clearLine[k].trim();
-    }
+    const clearLine = splittedProperties.map(item => {
+      return item.trim();
+    });
 
     if (clearLine.length === 2) {
       styledObject[clearLine[0]] = clearLine[1];

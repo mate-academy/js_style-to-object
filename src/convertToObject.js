@@ -18,21 +18,17 @@ function convertToObject(sourceString) {
     .split(';')
     .filter((line) => line.includes(':'));
 
+  const objectStyle = {};
+
   const divideProp = (strings) => {
     const newStr = strings.split(':');
 
-    return {
-      [newStr[0].trim()]: newStr[1].trim(),
-    };
+    objectStyle[[newStr[0].trim()]] = newStr[1].trim();
   };
 
-  const resultAraay = properties.map(divideProp);
+  properties.map(divideProp);
 
-  return resultAraay.reduce((pre, item) => (
-    {
-      ...pre,
-      ...item,
-    }), {});
+  return objectStyle;
 }
 
 module.exports = convertToObject;

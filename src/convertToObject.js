@@ -14,15 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arraySplit1 = sourceString.split(';');
+  const lines = sourceString.split(';');
 
-  const arraySplit2 = arraySplit1.map(string => string.split(':'));
+  const halfLines = lines.map(string => string.split(':'));
 
-  const filteredArray = arraySplit2.filter(string => (string.length === 2));
+  const filtered = halfLines.filter(string => (string.length === 2));
 
   const styleObject = {};
 
-  filteredArray.forEach(arrayStyleString => {
+  filtered.forEach(arrayStyleString => {
     styleObject[arrayStyleString[0].trim()] = arrayStyleString[1].trim();
   });
 

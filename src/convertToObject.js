@@ -2,7 +2,6 @@
 
 function convertToObject(sourceString) {
   const splitString = sourceString.split(';');
-
   const styleList = {};
 
   splitString.forEach(item => {

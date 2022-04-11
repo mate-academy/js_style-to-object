@@ -5,7 +5,7 @@ function convertToObject(sourceString) {
   const styleList = {};
 
   splitString.forEach(item => {
-    if (item.trim().length > 0) {
+    if (item.trim().length) {
       const parameter = item.split(':');
       const resultKey = parameter[0].trim();
       const resultValue = parameter[1].trim();

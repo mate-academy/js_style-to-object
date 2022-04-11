@@ -15,20 +15,19 @@
  */
 function convertToObject(sourceString) {
   const partsString = sourceString.split(';');
-  const newPartsArr = partsString.map(changesParts);
   const result = {};
 
-  for (const item of newPartsArr) {
-    Object.assign(result, item);
+  for (const item of partsString) {
+    Object.assign(result, changesParts(item));
   }
 
   return result;
 }
 
 function changesParts(part) {
-  const index = part.indexOf(':');
-  const key = part.slice(0, index).trim();
-  const value = part.slice(index + 1).trim();
+  const elements = part.split(':');
+  const key = elements[0].trim();
+  const value = elements[1] && elements[1].trim();
   const obj = {};
 
   if (key.length > 0) {

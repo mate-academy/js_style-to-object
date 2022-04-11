@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
   const cssObject = {};
   const properties = sourceString.split(';');
 
-  properties.map(property => {
+  properties.forEach(property => {
     const propertiesArray = property.split(':').map(element => element.trim());
 
     if (propertiesArray.length >= 2) {

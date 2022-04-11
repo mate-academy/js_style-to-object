@@ -14,27 +14,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr_ = sourceString.split(';');
+  const noSemi = sourceString.split(';');
 
-  const separ = arr_.map(elem => {
-    const index_ = elem.indexOf(':');
+  const separ = noSemi.map(elem => {
+    const indexColon = elem.indexOf(':');
 
-    const obj_ = index_ >= 0
-      ? [elem.slice(0, index_), elem.slice(index_ + 1,)]
+    const keyValue = indexColon >= 0
+      ? elem.split(':')
       : undefined;
 
-    return obj_;
+    return keyValue;
   });
 
-  const newObj = {};
+  const result = {};
 
   for (const x of separ) {
     if (x !== undefined) {
-      newObj[x[0].replace(/\n/g, '').trim()] = x[1].trim();
+      result[x[0].replace(/\n/g, '').trim()] = x[1].trim();
     }
   }
 
-  return newObj;
+  return result;
 }
 
 module.exports = convertToObject;

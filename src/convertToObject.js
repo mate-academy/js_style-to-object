@@ -9,17 +9,15 @@
  */
 
 function convertToObject(sourceString) {
-  const arrStrings = sourceString.split(';')
-    .map(el => el.split(':'));
+  const arrayProperties = sourceString.split(';')
+    .map(property => property.split(':'));
   const styleObj = {};
 
-  arrStrings.forEach(str => {
-    const trimStrings = str.map(el => el.trim());
+  arrayProperties.forEach(property => {
+    if (property.length === 2) {
+      const key = property[0].trim();
+      const value = property[1].trim();
 
-    const key = trimStrings[0];
-    const value = trimStrings[1];
-
-    if (key && value) {
       styleObj[key] = value;
     }
   });

@@ -14,16 +14,11 @@
  * @return {object}
  */
 function splitKey(string) {
-  const firstIndex = string.lastIndexOf('\n') + 1;
-  const lastIndex = string.indexOf(':');
-
-  return string.slice(firstIndex, lastIndex).trim();
+  return string.split(':')[0].trim();
 }
 
 function splitValue(string) {
-  const valuePart = string.slice(string.indexOf(':') + 1);
-
-  return valuePart.replace(/\s+/g, ' ').trim();
+  return string.split(':')[1].trim();
 }
 
 function convertToObject(sourceString) {
@@ -36,30 +31,7 @@ function convertToObject(sourceString) {
     }
   }
 
-  const sortedCss = Object.keys(cssProperties).sort((a, b) => {
-    let first = a;
-    let second = b;
-
-    if (a.includes('-webkit-')) {
-      first = a.slice(8);
-    } else if (a.indexOf('-') === 0) {
-      first = a.slice(1);
-    }
-
-    if (b.includes('-webkit-')) {
-      second = b.slice(8);
-    } else if (b.indexOf('-') === 0) {
-      second = b.slice(1);
-    }
-
-    return first - second;
-  }).reduce((obj, key) => {
-    obj[key] = cssProperties[key];
-
-    return obj;
-  }, {});
-
-  return sortedCss;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

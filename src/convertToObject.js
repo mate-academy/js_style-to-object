@@ -17,12 +17,12 @@ function convertToObject(sourceString) {
   const sourceArr = sourceString.split(';');
   const EXPECTED_OBJECT = {};
 
-  sourceArr.forEach(e => {
-    const index = e.indexOf(':');
-    const key = e.slice(0, index).trim();
-    const value = e.slice(index + 1).trim();
+  sourceArr.forEach(cssProp => {
+    const index = cssProp.indexOf(':');
+    const key = cssProp.slice(0, index).trim();
+    const value = cssProp.slice(index + 1).trim();
 
-    if (key.length > 0) {
+    if (key) {
       EXPECTED_OBJECT[key] = value;
     };
   });

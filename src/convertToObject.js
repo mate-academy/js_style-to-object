@@ -15,17 +15,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const properties = {};
-
-  sourceString
+  return sourceString
     .split(';')
     .map(prop => prop.split(':').map(item => item.trim()))
     .filter(item => item.length === 2)
-    .forEach(property => {
-      properties[property[0]] = property[1];
-    });
+    .reduce((obj, [key, value]) => {
+      obj[key] = value;
 
-  return properties;
+      return obj;
+    }, {});
 }
 
 module.exports = convertToObject;

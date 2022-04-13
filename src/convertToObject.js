@@ -16,17 +16,15 @@
 
 function convertToObject(sourceString) {
   const obj = {};
-  const arr = sourceString.split(';');
 
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].split(':');
-
-    if (arr[i].length > 1) {
-      obj[`${arr[i][0].trim()}`] = arr[i][1].trim();
-    }
-  }
+  sourceString
+    .split(';')
+    .map(str => str.split(':').map(el => el.trim()))
+    .filter(el => el.length > 1)
+    .forEach(element => {
+      obj[element[0]] = element[1];
+    });
 
   return obj;
 }
-
 module.exports = convertToObject;

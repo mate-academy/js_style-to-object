@@ -24,11 +24,8 @@ function convertToObject(sourceString) {
     withoutEmptyArr[i][0] = withoutEmptyArr[i][0].trim();
     withoutEmptyArr[i][1] = withoutEmptyArr[i][1].trim();
     trimElementArr.push(withoutEmptyArr[i]);
-  };
-
-  for (let i = 0; i < trimElementArr.length; i++) {
     result[trimElementArr[i][0]] = trimElementArr[i][1];
-  }
+  };
 
   return result;
 }

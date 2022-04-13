@@ -15,24 +15,21 @@
  */
 
 function convertToObject(sourceString) {
-  const array = {};
-  let parts = '';
-  let key = [];
-  let values = [];
+  const obj = {};
 
   const expressions = sourceString.split(';')
     .map(str => str.trim())
     .filter(trimmed => trimmed.length > 0);
 
   expressions.forEach(exp => {
-    parts = exp.split(':');
-    key = parts[0].trim();
-    values = parts[1].trim();
+    const parts = exp.split(':');
+    const key = parts[0].trim();
+    const value = parts[1].trim();
 
-    array[key] = values;
+    obj[key] = value;
   });
 
-  return array;
+  return obj;
 }
 
 module.exports = convertToObject;

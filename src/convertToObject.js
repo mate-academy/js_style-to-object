@@ -18,14 +18,12 @@ function convertToObject(sourceString) {
   const pairArr = sourceString.split(';');
   const splitePairArr = pairArr.map(x => x.split(':'));
   const withoutEmptyArr = splitePairArr.filter(x => x.length === 2);
-  const trimElementArr = [];
 
-  for (let i = 0; i < withoutEmptyArr.length; i++) {
-    withoutEmptyArr[i][0] = withoutEmptyArr[i][0].trim();
-    withoutEmptyArr[i][1] = withoutEmptyArr[i][1].trim();
-    trimElementArr.push(withoutEmptyArr[i]);
-    result[trimElementArr[i][0]] = trimElementArr[i][1];
-  };
+  withoutEmptyArr.forEach(function(item) {
+    item[0] = item[0].trim();
+    item[1] = item[1].trim();
+    result[item[0]] = item[1];
+  });
 
   return result;
 }

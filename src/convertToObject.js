@@ -1,11 +1,6 @@
 'use strict';
 
 /**
- * Implement convertToObject function:
- *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
@@ -13,6 +8,26 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-}
+  const newArr = sourceString.replace(/\r?\n/g, '').split('');
 
+  newArr.unshift(';');
+
+  const newObject = {};
+
+  const result = newArr.reduce((arr, sym, index) => sym === ';'
+    ? [...arr, index] : sym === ':' ? [...arr, index] : arr, []);
+
+  for (let i = 0; i < result.length - 2; i = i + 2) {
+    const key = newArr.slice(result[i] + 1, result[i + 1]);
+    const value = newArr.slice(result[i + 1] + 1, result[i + 2]);
+
+    if (!key.join('').trim().length) {
+      continue;
+    }
+
+    newObject[key.join('').trim()] = value.join('').trim();
+  }
+
+  return newObject;
+}
 module.exports = convertToObject;

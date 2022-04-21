@@ -14,19 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const result = {};
-  const resultArr = [];
-  const strArr = sourceString.split(';').join(':').split(':');
+  const cleanStyles = {};
+  const cleanStylesArray = [];
+  const stylesArrayWithSpaces = sourceString.split(';').join(':').split(':');
 
-  strArr.map((str) => resultArr.push(str.trim()));
+  stylesArrayWithSpaces.forEach(item => cleanStylesArray.push(item.trim()));
 
-  resultArr.map((item, i, arr) => {
-    if (i % 2 === 0 && arr[i]) {
-      result[arr[i]] = arr[i + 1];
+  cleanStylesArray.forEach((item, i, array) => {
+    if (i % 2 === 0 && array[i]) {
+      cleanStyles[array[i]] = array[i + 1];
     }
   });
 
-  return result;
+  return cleanStyles;
 }
 module.exports = convertToObject;

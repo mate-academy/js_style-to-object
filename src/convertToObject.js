@@ -16,9 +16,9 @@
 function convertToObject(sourceString) {
   const cleanStyles = {};
   const cleanStylesArray = [];
-  const stylesArrayWithSpaces = sourceString.split(';').join(':').split(':');
+  const stylesArrayWithSpaces = sourceString.replace(/;/g, ':').split(':');
 
-  stylesArrayWithSpaces.forEach(item => cleanStylesArray.push(item.trim()));
+  stylesArrayWithSpaces.map(item => cleanStylesArray.push(item.trim()));
 
   cleanStylesArray.forEach((item, i, array) => {
     if (i % 2 === 0 && array[i]) {

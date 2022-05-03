@@ -15,7 +15,7 @@
  */
 function convertToObject(sourceString) {
   const splitProperties = sourceString.split(';');
-  const filterEmpty = splitProperties.filter(style => style.trim().length > 0);
+  const filterEmpty = splitProperties.filter(style => style.trim());
   const entries = filterEmpty.map(style => style.split(':'));
   const trimmedEntries = entries.map(style => style.map(value => value.trim()));
 

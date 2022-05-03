@@ -14,28 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(';');
-
-  const arr1 = [];
   const objectResult = {};
 
+  const arr = sourceString.split(';').map((key) => key.split(':'));
+
   arr.forEach((str) => {
-    const str1 = str.split(':');
+    if (str.length > 1) {
+      const key = str[0].trim();
 
-    arr1.push(str1);
-  });
-
-  arr1.forEach((str) => {
-    const key = str[0].trim();
-
-    objectResult[key] = typeof str[1] === 'string' ? str[1].trim() : '';
-  });
-
-  for (const key in objectResult) {
-    if (key.length === 0 && objectResult[key].length === 0) {
-      delete objectResult[key];
+      objectResult[key] = typeof str[1] === 'string' ? str[1].trim() : '';
     }
-  }
+  });
 
   return objectResult;
 }

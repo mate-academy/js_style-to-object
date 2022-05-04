@@ -21,14 +21,9 @@ function convertToObject(sourceString) {
     .map(rule => rule.split(':'))
     .forEach(([key, keyValue]) => {
       const keyCopy = key.trim();
-      let keyValueCopy = keyValue;
-
-      if (keyValueCopy === undefined) {
-        keyValueCopy = '';
-      }
 
       if (keyCopy) {
-        cssStyles[keyCopy] = keyValueCopy.trim();
+        cssStyles[keyCopy] = keyValue.trim();
       }
     });
 

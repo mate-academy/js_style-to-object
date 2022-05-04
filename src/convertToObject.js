@@ -15,23 +15,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
-  // preparing array to data extraction
-  let arrOfProp = sourceString.split(';');
+  const arrOfProp = sourceString.split(';');
 
-  arrOfProp = arrOfProp.map(value => value.replace(/\n*/g, ''));
+  const properties = arrOfProp.map(value => value.replace(/\n*/g, ''));
 
-  arrOfProp.forEach(element => {
+  return properties.reduce(function(accumulator, currentValue) {
     let key = '';
     let val = '';
 
-    if (element.includes(':')) {
-      [key, val] = element.split(':');
-      result[key.trim()] = val.trim();
+    if (currentValue.includes(':')) {
+      [key, val] = currentValue.split(':');
+      accumulator[key.trim()] = val.trim();
     }
-  });
 
-  return result;
+    return accumulator;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -14,18 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const res = {};
-  const arr = sourceString
+  const result = {};
+  const arrayWithPartOfSourceString = sourceString
     .replace(/\s{2,}|^\s/g, '')
     .split(';')
-    .filter(a => a.length > 2);
+    .filter(element => element.length > 2);
 
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].trim().replace(/\s(?=:)|^\s/gm, '');
-    res[arr[i].match(/.+(?=:)/g)[0]] = (arr[i].match(/(?<=:).+/g)[0]).trim();
-  }
+  arrayWithPartOfSourceString.forEach(element => {
+    element.trim().replace(/\s(?=:)|^\s/gm, '');
 
-  return res;
+    result[element.match(/.+(?=:)/g)[0]]
+    = (element.match(/(?<=:).+/g)[0]).trim();
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

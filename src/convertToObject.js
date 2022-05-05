@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -12,7 +13,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const obj = {};
+  let index = 0;
+  let key = '';
+  let value = '';
+  const arr = sourceString.split(';');
+  const arrWithoutSpace = arr.map(el => el.trim());
+  const arrWithoutEmptyStr = arrWithoutSpace.filter(el => el.length !== 0);
+
+  arrWithoutEmptyStr.forEach(element => {
+    for (let i = 0; i < element.length; i++) {
+      if (element[i] === ':') {
+        index = i;
+      }
+    }
+    key = element.slice(0, index).trim();
+    value = element.slice(index + 1).trim();
+    obj[key] = value;
+  });
+
+  return obj;
 }
 
 module.exports = convertToObject;

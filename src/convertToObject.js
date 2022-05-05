@@ -14,16 +14,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfValues = sourceString.split(';');
+  const arrayOfValues = sourceString.split(';').map(item => item.split(':'));
   const obj = {};
 
-  for (let i = 0; i < arrayOfValues.length; i++) {
-    const item = arrayOfValues[i].split(':');
-
+  arrayOfValues.forEach((item) => {
     if (item[1] !== undefined) {
       obj[item[0].trim()] = item[1].trim();
-    }
-  }
+    };
+  });
 
   return obj;
 }

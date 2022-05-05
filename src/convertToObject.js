@@ -14,21 +14,16 @@
  */
 function convertToObject(sourceString) {
   const obj = {};
-  let index = 0;
-  let key = '';
-  let value = '';
-  const arr = sourceString.split(';');
-  const arrWithoutSpace = arr.map(el => el.trim());
-  const arrWithoutEmptyStr = arrWithoutSpace.filter(el => el.length !== 0);
+  const arr = sourceString
+    .split(';')
+    .map(el => el.trim())
+    .filter(el => el.length !== 0);
 
-  arrWithoutEmptyStr.forEach(element => {
-    for (let i = 0; i < element.length; i++) {
-      if (element[i] === ':') {
-        index = i;
-      }
-    }
-    key = element.slice(0, index).trim();
-    value = element.slice(index + 1).trim();
+  arr.forEach(element => {
+    const index = element.split('').findIndex(el => el === ':');
+    const key = element.slice(0, index).trim();
+    const value = element.slice(index + 1).trim();
+
     obj[key] = value;
   });
 

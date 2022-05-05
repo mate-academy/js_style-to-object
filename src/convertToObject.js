@@ -13,21 +13,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  const arr = sourceString
+  const objStyles = {};
+  const arrayStyles = sourceString
     .split(';')
     .map(el => el.trim())
     .filter(el => el.length !== 0);
 
-  arr.forEach(element => {
-    const index = element.split('').findIndex(el => el === ':');
-    const key = element.slice(0, index).trim();
-    const value = element.slice(index + 1).trim();
+  arrayStyles.forEach(element => {
+    const key = element.split(':')[0].trim();
+    const value = element.split(':')[1].trim();
 
-    obj[key] = value;
+    objStyles[key] = value;
   });
 
-  return obj;
+  return objStyles;
 }
 
 module.exports = convertToObject;

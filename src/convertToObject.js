@@ -12,7 +12,8 @@
 function convertToObject(sourceString) {
   const result = [];
 
-  const properties = sourceString.split(';')
+  const properties = sourceString
+    .split(';')
     .map(item => item.trim().split(':'))
     .filter(item => !item.includes(''));
 

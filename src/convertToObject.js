@@ -7,8 +7,6 @@ function convertToObject(sourceString) {
     .split(':')
     .map(item => item.trim())
     .join(':')
-    .split('\n')
-    .join('')
     .split(';')
     .map(item => item.trim())
     .filter(item => item !== '')

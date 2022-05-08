@@ -18,13 +18,13 @@ function convertToObject(sourceString) {
 
   const stylesArray = sourceString.split(';');
 
-  for (let i = 0; i < stylesArray.length; i++) {
-    const currentKeyValue = stylesArray[i].split(':');
+  stylesArray.forEach((element) => {
+    const currentKeyValue = element.split(':');
 
     if (currentKeyValue[1]) {
       stylesObject[currentKeyValue[0].trim()] = currentKeyValue[1].trim();
     }
-  }
+  });
 
   return stylesObject;
 }

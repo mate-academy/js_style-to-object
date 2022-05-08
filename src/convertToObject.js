@@ -23,11 +23,11 @@ function convertToObject(sourceString) {
     .map(x => x.trim())
     .filter(x => x !== '');
 
-  for (let i = 0; i < inpArr.length; i++) {
-    const el = inpArr[i].split(':');
+  inpArr.forEach(el => {
+    const tempString = el.split(':');
 
-    obj[el[0]] = el[1];
-  }
+    obj[tempString[0]] = tempString[1];
+  });
 
   return obj;
 }

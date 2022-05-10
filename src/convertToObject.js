@@ -17,17 +17,10 @@ function convertToObject(sourceString) {
   const stylesArray = sourceString
     .split(';')
     .map(style => style.split(':')
-      .map(value => value.trim()));
+      .map(value => value.trim()))
+    .filter(item => item[0] !== '');
 
-  const stylesObject = {};
-
-  for (const style of stylesArray) {
-    if (style[0] !== undefined && style[1] !== undefined) {
-      stylesObject[style[0]] = style[1];
-    }
-  }
-
-  return stylesObject;
+  return Object.fromEntries(stylesArray);
 }
 
 module.exports = convertToObject;

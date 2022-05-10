@@ -17,47 +17,12 @@ function convertToObject(sourceString) {
   const result = {};
 
   if (sourceString) {
-    let x = '';
+    const lines = sourceString.split(';')
+      .map(line => line.split(':'))
+      .filter(line => line.length === 2);
 
-    for (let i = 0; i < sourceString.length - 1; i++) {
-      if (sourceString[i] === '\n') {
-        continue;
-      }
-
-      if (sourceString[i] === ' '
-        && ((sourceString[i + 1] === ' ')
-        || (sourceString[i + 1] === ':')
-        || (sourceString[i + 1] === ';'))) {
-        continue;
-      }
-
-      x += sourceString[i];
-    }
-    x += sourceString[sourceString.length - 1];
-
-    const newString = x.split(';');
-    const styleArray = [];
-
-    for (let i = 0; i < newString.length; i++) {
-      if (newString[i].length <= 2) {
-        continue;
-      }
-      styleArray.push(newString[i].split(':'));
-    }
-
-    for (let i = 0; i < styleArray.length; i++) {
-      let key = styleArray[i][0];
-      let value = styleArray[i][1];
-
-      if (key[0] === ' ') {
-        key = key.slice(1);
-      }
-
-      if (value[0] === ' ') {
-        value = value.slice(1);
-      }
-
-      result[key] = value;
+    for (let i = 0; i < lines.length; i++) {
+      result[lines[i][0].trim()] = lines[i][1].trim();
     }
 
     return result;

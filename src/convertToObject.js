@@ -6,10 +6,10 @@ function convertToObject(sourceString) {
   const someMagic = sourceString.split(';')
     .map(element => element.split(':'));
 
-  someMagic.forEach(string => {
-    if (string.length > 1) {
-      const key = string[0].trim();
-      const value = string[1].trim();
+  someMagic.forEach(array => {
+    if (array.length > 1) {
+      const key = array[0].trim();
+      const value = array[1].trim();
 
       stylesObject[key] = value;
     }

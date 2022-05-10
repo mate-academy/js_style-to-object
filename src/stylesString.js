@@ -1,7 +1,7 @@
 'use strict';
 
 const stylesString = `
-  background-color:      #fff;
+   background-color:     #fff;
 -webkit-border-radius: 5px;
   border-radius     : 5px;
   border: 1px solid #e8e8e8;

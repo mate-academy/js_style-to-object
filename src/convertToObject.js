@@ -23,16 +23,16 @@ function convertToObject(sourceString) {
   const valuesArray = [];
   const stylesObject = {};
 
-  chaoticArray.forEach(el => {
-    const x = el.split(':');
+  chaoticArray.forEach(element => {
+    const partOfElement = element.split(':');
 
-    keysArray.push(x[0].trim());
-    valuesArray.push(x[1]);
+    keysArray.push(partOfElement[0].trim());
+    valuesArray.push((partOfElement[1] || '').trim());
   });
 
   for (let i = 0; i < keysArray.length; i++) {
     if (keysArray[i] !== '') {
-      stylesObject[keysArray[i]] = valuesArray[i].trim();
+      stylesObject[keysArray[i]] = valuesArray[i];
     }
   }
 

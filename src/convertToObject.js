@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
     .map(elm => elm.trim())
     .filter(elm => elm.length !== 0)
     .map(elm => elm.split(':')
-      .map(val => val));
+      .map(val => val.trim()));
 
   for (const prop of objProp) {
     objProp[prop[0]] = prop[1];

@@ -14,19 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const cssObj = {};
   const objProp = sourceString.split(';')
     .map(elm => elm.trim())
     .filter(elm => elm.length !== 0)
-    .map(elm => elm.split(':')
-      .map(val => val.trim()));
+    .map(elm => elm.split(':').trim()
+      .map(val => val));
 
   for (const prop of objProp) {
-    cssObj[prop[0]] = prop[1];
+    objProp[prop[0]] = prop[1];
   }
 
-  return cssObj;
+  return Object.fromEntries(objProp);
 }
 
 module.exports = convertToObject;

@@ -20,9 +20,9 @@ function convertToObject(sourceString) {
     .map(item => item.trim().split(':'))
     .filter(item => !item.includes(''));
 
-  properties.forEach(value =>
-    newArray.push([value[0].trim(),
-      value[1].trim()]));
+  properties.forEach(([property, value]) =>
+    newArray.push([property.trim(),
+      value.trim()]));
 
   return Object.fromEntries(newArray);
 }

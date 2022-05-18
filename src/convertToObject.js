@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
     // console.log(properties[i]);
     // background-color:      #fff
     const arr = properties[i].split(':');
-    // [  background-color:      #fff]
+    // ['\n  padding-left    ', ' 18px']
 
     if (arr.length === 2) {
       const cut = arr.map(y => y.trim());
@@ -37,3 +37,31 @@ function convertToObject(sourceString) {
 }
 
 module.exports = convertToObject;
+
+// ============================
+
+// function convertToObject(sourceString) {
+//   return sourceString.split(';').reduce((acc, rec) => {
+//     const entries = rec.split(':');
+
+//     return entries.length === 2
+//       ? ({
+//         ...acc, [entries[0].trim()]: entries[1].trim(),
+//       })
+//       : acc;
+//   }, {});
+// }
+// =========================
+
+// function convertToObject(sourceString) {
+//   return sourceString.split(';').reduce((acc, rec) => {
+//     const entries = rec.split(':');
+//     if (entries.length === 2) {
+//       const [key, value] = entries;
+//       return {
+//         ...acc, [key.trim()]: value.trim(),
+//       };
+//     }
+//     return acc;
+//   }, {});
+// }

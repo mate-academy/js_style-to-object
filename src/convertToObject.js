@@ -13,21 +13,6 @@
  *
  * @return {object}
  */
-
-//  const stylesString = `
-//  background-color:      #fff;
-// -webkit-border-radius: 5px;
-//  border-radius     : 5px;
-//  border: 1px solid #e8e8e8;
-//  -webkit-box-sizing: border-box;
-//  box-sizing: border-box;
-//  clear   : both       ;
-//  cursor: pointer;
-//  float: left;
-//  font-family: inherit;
-//      font-size: 14px;
-//      `;
-
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
   // (29)['\n  background-color:      #fff', '\n-webkit-border-radius: 5px',

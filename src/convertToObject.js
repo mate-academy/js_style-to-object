@@ -15,14 +15,14 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arrString = sourceString.split(';');
-  const separString = arrString.map(str => str.split(':'));
+  const arrString = sourceString.split(';')
+    .filter(el => el.trim().length > 0)
+    .map(str => str.split(':'));
+
   const convertObject = {};
 
-  for (const prop of separString) {
-    if (prop.length > 1) {
-      convertObject[prop[0].trim()] = prop[1].trim();
-    }
+  for (const [key, value] of arrString) {
+    convertObject[key.trim()] = value.trim();
   }
 
   return convertObject;

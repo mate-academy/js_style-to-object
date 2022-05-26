@@ -17,18 +17,17 @@ function convertToObject(sourceString) {
   // write your code here
   const clearItem = sourceString.split(';');
   const result = clearItem.reduce((prev, styles) => {
-    let firstElement = styles.split('').findIndex((item) => item === ':');
+    const [key, value] = styles.split(':');
 
-    const endElement = styles.slice(firstElement + 1).trim();
-
-    firstElement = styles.slice(0, firstElement).trim();
+    if (value === undefined || key === undefined) {
+      return prev;
+    }
 
     return {
-      ...prev, [firstElement]: endElement,
+      ...prev,
+      [key.trim()]: value.trim(),
     };
   }, {});
-
-  delete result[''];
 
   return result;
 }

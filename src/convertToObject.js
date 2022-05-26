@@ -13,18 +13,19 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   // write your code here
   const object = {};
   let cssString = sourceString.split(';');
 
-  cssString = cssString.map(element => element.trim());
-  cssString = cssString.map(element => element.split(':'));
-  cssString = cssString.map(element => element.map(str => str.trim()));
-  cssString = cssString.filter(element => element[0] !== '');
+  cssString = cssString.map(element => element.trim()).map(element =>
+    element.split(':')).map(element =>
+    element.map(str => str.trim())).filter(element =>
+    element[0] !== '');
 
-  for (const data of cssString) {
-    object[data[0]] = data[1];
+  for (const [key, value] of cssString) {
+    object[key] = value;
   }
 
   return object;

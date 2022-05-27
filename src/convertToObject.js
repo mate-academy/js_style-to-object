@@ -16,15 +16,12 @@
 function convertToObject(sourceString) {
   const cssObj = {};
 
-  const cssArray = sourceString.split(';');
-  const correctedArray = cssArray.map(elem => elem.trim());
-  const withoutEmpty = correctedArray.filter(elem => elem.length > 0);
-  const divided = withoutEmpty.map(elem => elem.split(':'));
-  const dividedWithoutSpaces = divided.map(elem => elem.map(
-    word => word.trim()));
+  const cssArray = sourceString.split(';').map(elem =>
+    elem.trim()).filter(elem => elem.length > 0).map(elem =>
+    elem.split(':')).map(elem => elem.map(word => word.trim()));
 
-  dividedWithoutSpaces.forEach((elem, i) => {
-    cssObj[elem[0]] = elem[1];
+  cssArray.forEach(([key, value], i) => {
+    cssObj[key] = value;
   });
 
   return cssObj;

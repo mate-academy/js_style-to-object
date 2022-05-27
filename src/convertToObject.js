@@ -16,11 +16,13 @@
 function convertToObject(sourceString) {
   const cssObj = {};
 
-  const cssArray = sourceString.split(';').map(elem =>
-    elem.trim()).filter(elem => elem.length > 0).map(elem =>
-    elem.split(':')).map(elem => elem.map(word => word.trim()));
+  const cssArray = sourceString
+    .split(';').map(elem => elem.trim())
+    .filter(elem => elem.length > 0)
+    .map(elem => elem.split(':'))
+    .map(elem => elem.map(word => word.trim()));
 
-  cssArray.forEach(([key, value], i) => {
+  cssArray.forEach(([key, value]) => {
     cssObj[key] = value;
   });
 

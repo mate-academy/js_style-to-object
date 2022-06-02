@@ -1,18 +1,21 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const styles = {};
   const sourceSplitted = sourceString.split(';');
   const sourceProperty = sourceSplitted.map(property => property.split(':'));
+  const sourceFiltered = sourceProperty.filter(
+    property => property.length === 2);
 
-  sourceProperty.forEach(property => {
-    if (property.length === 2) {
-      const key = property[0].trim();
-      const value = property[1].trim();
+  const styles = sourceFiltered.reduce((prev, property) => {
+    const [key, value] = property;
+    const styleKey = key.trim();
+    const styleValue = value.trim();
 
-      styles[key] = value;
-    }
-  });
+    return {
+      ...prev,
+      [styleKey]: styleValue,
+    };
+  }, {});
 
   return styles;
 }

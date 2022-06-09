@@ -24,7 +24,7 @@ function convertToObject(sourceString) {
 
       return styles;
     })
-    .filter((style) => style[0] !== '' && style[1] !== '');
+    .filter((style) => style[0] && style[1]);
 
   const sourceObj = sourceArray
     .reduce((stylesObj, [key, value]) => {

@@ -14,23 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const rules = sourceString.split('\n');
-  const stylesObject = {};
+  const rules = sourceString
+    .split('\n')
+    .filter((rule) => rule.trim() !== '' && rule.trim() !== ';')
+    .map((rule) => {
+      let [property, value] = rule.trim().split(': ');
 
-  for (const rule of rules) {
-    const currentRule = rule.split(':');
+      property = property.trim();
+      value = value.slice(0, -1).trim();
 
-    if (currentRule.length !== 2) {
-      continue;
-    }
+      return [property, value];
+    });
 
-    const currentProperty = currentRule[0].trim();
-    const currentValue = currentRule[1].slice(0, -1).trim();
-
-    stylesObject[currentProperty] = currentValue;
-  }
-
-  return stylesObject;
+  return Object.fromEntries(rules);
 }
 
 module.exports = convertToObject;

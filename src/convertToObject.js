@@ -16,12 +16,8 @@
 function convertToObject(sourceString) {
   const properties = sourceString
     .split(';')
-    .map(prop => prop.split(':'));
-
-  const propertiesWithValues = properties
-    .filter(prop => prop.length > 1);
-
-  const clearProperties = propertiesWithValues
+    .map(prop => prop.split(':'))
+    .filter(prop => prop.length > 1)
     .map(prop => ([prop[0].trim(), prop[1].trim()]));
 
   const callback = (prev, property) => {
@@ -31,7 +27,7 @@ function convertToObject(sourceString) {
     };
   };
 
-  return clearProperties.reduce(callback, {});
+  return properties.reduce(callback, {});
 }
 
 module.exports = convertToObject;

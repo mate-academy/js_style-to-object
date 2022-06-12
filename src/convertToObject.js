@@ -11,7 +11,6 @@ function convertToObject(sourceString) {
     const key = element.slice(0, element.indexOf(':')).trim();
     const value = element
       .slice(element.indexOf(':') + 1, element.length)
-      .replace(';', '')
       .trim();
 
     formatedStyles[key] = value;

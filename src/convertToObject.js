@@ -14,23 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayString = sourceString
+  const styles = sourceString
     .split('\n')
-    .filter(item => item.trim().length > 1)
-    .map(x => x.split(':'));
+    .filter(property => property.trim().length > 1)
+    .map(property => property.split(':'));
 
-  const callback = (array, property) => {
-    const [objKey, objValue] = property;
-
+  const formatStyles = (previous, properties) => {
     return {
-      ...array,
-      [objKey.trim()]: objValue.slice(0, -1).trim(),
+      ...previous,
+      [properties[0].trim()]: properties[1].slice(0, -1).trim(),
     };
   };
 
-  const result = arrayString.reduce(callback, {});
+  const convertedStyles = styles.reduce(formatStyles, {});
 
-  return result;
+  return convertedStyles;
 }
 
 module.exports = convertToObject;

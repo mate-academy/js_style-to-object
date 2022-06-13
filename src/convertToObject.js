@@ -14,27 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const properties = {};
-  const sourceStringsNoSpaces = [];
-
-  for (const item of sourceString) {
-    if (item.replace(/\n/g, '')) {
-      sourceStringsNoSpaces.push(item);
-    }
-  }
-
-  const propertiesArray
-    = sourceStringsNoSpaces.join('').split(';').filter(a => (
-      a.length > 2
-    ));
-  const keysAndValuesProperties
-    = propertiesArray.map(a => a.split(':')).map(a => (
-      a.map(b => b.trim())
-    ));
-
-  for (const item of keysAndValuesProperties) {
-    properties[item[0]] = item[1];
-  }
+  const properties = sourceString
+    .split(';')
+    .map(property => property.split(':'))
+    .reduce(
+      (prevPropertys, property) => (
+        (property.length === 2)
+          ? {
+            ...prevPropertys,
+            [property[0].trim()]: property[1].trim(),
+          }
+          : { ...prevPropertys }
+      ), {});
 
   return properties;
 }

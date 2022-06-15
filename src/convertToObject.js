@@ -13,6 +13,7 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   const stringCleaning = sourceString.split(';')
     .map(str => str.trim().split(':'))

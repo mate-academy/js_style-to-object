@@ -1,21 +1,12 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const arrOfArrays = [];
   const arrOfProps = sourceString.split(';')
-    .map(e => e.trim())
-    .filter(e => e.length > 0);
+    .map(prop => prop.trim())
+    .filter(prop => prop.length > 0)
+    .map(prop => prop.split(':').map(element => element.trim()));
 
-  for (let prop of arrOfProps) {
-    prop = prop.split(':').map(e => e.trim());
-    arrOfArrays.push(prop);
-  }
-
-  const objectOfStyles = {};
-
-  for (let i = 0; i < arrOfArrays.length; i++) {
-    objectOfStyles[arrOfArrays[i][0]] = arrOfArrays[i][1];
-  }
+  const objectOfStyles = Object.fromEntries(arrOfProps);
 
   return objectOfStyles;
 }

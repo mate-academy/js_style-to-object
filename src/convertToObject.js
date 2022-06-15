@@ -15,13 +15,13 @@
  */
 function convertToObject(sourceString) {
   const rules = sourceString
-    .split('\n')
-    .filter((rule) => rule.trim() !== '' && rule.trim() !== ';')
+    .split(';')
+    .filter((rule) => rule.trim().length !== 0)
     .map((rule) => {
-      let [property, value] = rule.trim().split(': ');
+      let [property, value] = rule.split(': ');
 
       property = property.trim();
-      value = value.slice(0, -1).trim();
+      value = value.trim();
 
       return [property, value];
     });

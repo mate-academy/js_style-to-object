@@ -14,18 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
   const resultArr = sourceString
     .split(';')
     .map(element => element.split(':'))
     .map(element => element.map(value => value.trim()))
     .filter(element => element.length > 1);
 
-  resultArr.forEach(element => {
-    obj[element[0]] = element[1];
-  });
-
-  return obj;
+  return resultArr.reduce((prev, current) => ({
+    ...prev,
+    [current[0]]: current[1],
+  }), {});
 }
 
 module.exports = convertToObject;

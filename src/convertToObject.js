@@ -21,22 +21,18 @@ function convertToObject(sourceString) {
     .join('')
     .split('\n');
 
-  const sourceObject = {};
-
-  for (const item of sourceArr) {
+  const callback = (prev, item) => {
     const indexOfColon = item.indexOf(':');
-
-    if (indexOfColon === -1) {
-      continue;
-    }
 
     const key = item.slice(0, indexOfColon).trim();
     const value = item.slice(indexOfColon + 1, -1).trim();
 
-    sourceObject[key] = value;
-  }
+    return indexOfColon === -1
+      ? { ...prev }
+      : Object.assign(prev, { [key]: value });
+  };
 
-  return sourceObject;
+  return sourceArr.reduce(callback, {});
 }
 
 module.exports = convertToObject;

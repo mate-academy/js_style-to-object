@@ -37,7 +37,7 @@ test('Convert string to object', () => {
     .toEqual(EXPECTED_OBJECT);
 });
 
-test('Object should have same count of keys as styles in css', () => {
+test.only('Object should have same count of keys as styles in css', () => {
   expect(Object.keys(convertToObject(stylesString)).length)
     .toBe(Object.keys(EXPECTED_OBJECT).length);
 });

@@ -14,19 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const classes = sourceString.split(';');
-  const classesCss = classes.reduce((cls, rule) => {
-    const clss = rule.split(':');
+  const properties = sourceString.split(';');
+  const cssProperties = properties.reduce((cssPropertyName, cssPropetyRule) => {
+    const convertedCssStyles = cssPropetyRule.split(':');
 
-    return clss[1]
+    return convertedCssStyles[1]
       ? {
-        ...cls,
-        [clss[0].trim()]: clss[1].trim(),
+        ...cssPropertyName,
+        [convertedCssStyles[0].trim()]: convertedCssStyles[1].trim(),
       }
-      : cls;
+      : cssPropertyName;
   }, {});
 
-  return classesCss;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

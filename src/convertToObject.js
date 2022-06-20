@@ -14,14 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArray
-    = sourceString.split(';').filter(el => el.indexOf(':') !== -1);
+  const sourceArray = sourceString
+    .split(';')
+    .filter(el => el.indexOf(':') !== -1);
   const finObj = {};
 
   sourceArray.map(callback);
 
   function callback(element) {
-    const clearElement = element.replace(' ', '').replace('\n', '');
+    const clearElement = element
+      .replace(' ', '')
+      .replace('\n', '');
     const dividedElement = clearElement.split(':');
 
     finObj[dividedElement[0]] = dividedElement[1];

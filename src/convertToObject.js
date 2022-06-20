@@ -19,16 +19,13 @@ function convertToObject(sourceString) {
 
   const arrayStyles = sourceString
     .split(';')
-    .map(item => item.slice(1)
-      .split(':')
-      .map(style => style
-        .trim()));
+    .map(item => item.split(':')
+      .map(style => style.trim()));
 
-  arrayStyles.map(item => {
-    if (item[0]) {
+  arrayStyles.filter(prop => prop.length > 1)
+    .map(item => {
       objectStyles[item[0]] = item[1];
-    }
-  });
+    });
 
   return objectStyles;
 }

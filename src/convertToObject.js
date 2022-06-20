@@ -3,7 +3,7 @@
 function convertToObject(sourceString) {
   const styleArr = sourceString.split(';')
     .map(strOfStyleArr => strOfStyleArr.trim().split(':'))
-    .filter(itemOfStrOfStyleArr => itemOfStrOfStyleArr.length > 1);
+    .filter(styleItem => styleItem.length > 1);
 
   const stylesObject = {};
 

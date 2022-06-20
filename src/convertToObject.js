@@ -20,11 +20,12 @@ function convertToObject(sourceString) {
 
   const filteredArr = stylesArr.filter((arr) => arr.length > 1);
 
-  const stylesObject = {};
+  const callback = (prev, current) => ({
+    ...prev,
+    [current[0].trim()]: current[1].trim(),
+  });
 
-  for (const styles of filteredArr) {
-    stylesObject[styles[0].trim()] = styles[1].trim();
-  }
+  const stylesObject = filteredArr.reduce(callback, {});
 
   return stylesObject;
 }

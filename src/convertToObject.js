@@ -15,10 +15,10 @@
  */
 function convertToObject(sourceString) {
   function getFormatDeclaration(prev, prop) {
-    return ({
+    return {
       ...prev,
       [getTrim(prop[0])]: getTrim(prop[1]),
-    });
+    };
   }
 
   function getTrim(property) {

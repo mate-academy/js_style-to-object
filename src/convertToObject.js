@@ -16,18 +16,17 @@
 function convertToObject(sourceString) {
   const stylesAndProp = sourceString
     .split(';')
-    .map(item => item.split(': '));
+    .map(item => item.split(':'));
 
   const reducer = stylesAndProp
     .filter(item => item.length > 1)
-    .reduce((acc, item) => {
-      const key = item[0].replace('\n', '').trim();
-      const values = item
-        .splice(1).map((value) => value.replace('\n', '').trim());
+    .reduce((acc, [key, value]) => {
+      const keys = key.replace('\n', '').trim();
+      const values = value.replace('\n', '').trim();
 
       return ({
         ...acc,
-        [key]: values.join(''),
+        [keys]: values,
       });
     }, {});
 

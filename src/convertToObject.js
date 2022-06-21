@@ -14,8 +14,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArr = sourceString.split(';')
-    .map(style => style.trim().split(':'))
+  const sourceArr = sourceString
+    .split(';')
+    .map(style => style.split(':'))
     .filter(style => style.length > 1);
 
   const arrToObj = (previous, current) => ({

@@ -22,10 +22,7 @@ function convertToObject(sourceString) {
   sourceArray.map(callback);
 
   function callback(element) {
-    const clearElement = element
-      .replace(' ', '')
-      .replace('\n', '');
-    const dividedElement = clearElement.split(':');
+    const dividedElement = element.split(':').map(word => word.trim());
 
     finObj[dividedElement[0]] = dividedElement[1];
   };

@@ -14,25 +14,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objectOfStyles = {};
-  const arrStyles = sourceString.split(';');
+  const arrStyles = sourceString
+    .split(';')
+    .map(el => el.trim().split(':').map(x => x.trim()))
+    .map(elem => elem.filter(item => item.length !== 0))
+    .filter(element => element.length !== 0);
 
-  const resultTrim = trimmer(arrStyles);
-
-  for (let i = 0; i < resultTrim.length; i++) {
-    if (resultTrim[i].length !== 0 && resultTrim[i][0].length !== 0) {
-      const style = resultTrim[i][0];
-      const value = resultTrim[i][1];
-
-      objectOfStyles[style.trim()] = value.trim();
-    }
-  }
-
-  return objectOfStyles;
-}
-
-function trimmer(arr) {
-  return arr.map(el => el.trim().split(':'));
+  return Object.fromEntries(arrStyles);
 }
 
 module.exports = convertToObject;

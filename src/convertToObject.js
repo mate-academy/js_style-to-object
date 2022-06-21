@@ -14,14 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';').map(item => item.split(':'))
+  const styles = sourceString
+    .split(';')
+    .map(item => item.split(':'))
     .filter(element => element.length > 1)
     .map(property => ([property[0].trim(), property[1].trim()]));
 
-  return styles.reduce((previous, line) => {
+  return styles.reduce((previous, [property, value]) => {
     return {
       ...previous,
-      [line[0]]: line[1],
+      [property]: value,
     };
   }, {});
 }

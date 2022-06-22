@@ -18,10 +18,6 @@ function convertToObject(sourceString) {
     .forEach(style => (objectOfStyles[style[0].trim()] = style[1].trim())
     );
 
-  // for (const style of arrayOfStyles) {
-  //   objectOfStyles[style[0].trim()] = style[1].trim();
-  // }
-
   return objectOfStyles;
 }
 

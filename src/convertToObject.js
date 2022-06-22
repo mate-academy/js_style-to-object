@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
   const obj = {};
 
   function removeGap(array) {
-    return arr.map(elem => elem.trim());
+    return array.map(elem => elem.trim());
   }
 
   const arrWithoutEmpy = (removeGap(arr)).filter(elem => elem.length > 0);

@@ -15,16 +15,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  let arr = sourceString.split(/[:;\n]/);
+  const validProperties = sourceString
+    .split(';')
+    .map(property => property.split(':'))
+    .reduce(
+      (properties, property) =>
+        property[0] && property[1]
+          ? {
+            ...properties,
+            [property[0].trim()]: property[1].trim(),
+          }
+          : properties
+      , {});
 
-  arr = arr.filter(item => item && item !== '  ');
-
-  for (let i = 0; i < arr.length; i = i + 2) {
-    obj[arr[i].trim()] = arr[i + 1].trim();
-  }
-
-  return obj;
+  return validProperties;
 }
 
 module.exports = convertToObject;

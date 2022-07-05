@@ -14,15 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.trim().split(';')
-    .map(propertie => propertie.trim().split(':').map(prop => prop.trim()))
-    .filter(propertie => propertie.length > 1)
-    .reduce((obj, propertie) => (
-      {
-        ...obj,
-        [propertie[0]]: propertie[1],
-      }
-    ), {});
+  const trimedArr = sourceString.trim().split(';')
+    .map(propertie => propertie.trim().split(':').map(prop => prop.trim()));
+
+  const arrOfProperties = trimedArr.filter(propertie => propertie.length > 1);
+
+  const objectOfProperties = arrOfProperties.reduce((obj, propertie) => (
+    {
+      ...obj,
+      [propertie[0]]: propertie[1],
+    }
+  ), {});
+
+  return objectOfProperties;
 }
 
 module.exports = convertToObject;

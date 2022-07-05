@@ -2,15 +2,17 @@
 
 function convertToObject(sourceString) {
   const styles = {};
-  const styleArray = sourceString.split('\n')
+  const styleArray = sourceString.split(';')
     .filter(element => element !== '' && element !== '  ;')
     .map(child => child.split('')
-      .filter(grandChild => grandChild !== ';')
+      .filter(grandChild => grandChild !== '\n')
       .join('').split(':')
       .map(grandChild => grandChild.trim()));
 
   for (const char of styleArray) {
-    styles[char[0]] = char[1];
+    if (char.length !== 1) {
+      styles[char[0]] = char[1];
+    }
   }
 
   return styles;

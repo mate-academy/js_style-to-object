@@ -3,7 +3,7 @@
 function convertToObject(sourceString) {
   const styles = {};
   const styleArray = sourceString.split(';')
-    .filter(element => element !== '' && element !== '  ;')
+    .filter(element => element !== '')
     .map(child => child.split('')
       .filter(grandChild => grandChild !== '\n')
       .join('').split(':')

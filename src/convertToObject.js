@@ -1,18 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const cssProperties = {};
-  const styleArr = sourceString
+  const callback = (prev, elem) => ({
+    ...prev, [elem[0].trim()]: elem[1].trim(),
+  });
+
+  const cssProperties = sourceString
     .split(';')
     .map(el => el.trim().split(':'))
-    .filter(arr => arr.length > 1);
-
-  for (const style of styleArr) {
-    const key = style[0].trim();
-    const value = style[1].trim();
-
-    cssProperties[key] = value;
-  }
+    .filter(arr => arr.length > 1)
+    .reduce(callback, {});
 
   return cssProperties;
 }

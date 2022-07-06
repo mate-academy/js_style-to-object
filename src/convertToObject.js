@@ -1,7 +1,7 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const callback = (prev, elem) => ({
+  const getStyle = (prev, elem) => ({
     ...prev, [elem[0].trim()]: elem[1].trim(),
   });
 
@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
     .split(';')
     .map(el => el.trim().split(':'))
     .filter(arr => arr.length > 1)
-    .reduce(callback, {});
+    .reduce(getStyle, {});
 
   return cssProperties;
 }

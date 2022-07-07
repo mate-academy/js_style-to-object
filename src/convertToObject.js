@@ -16,19 +16,18 @@
 function convertToObject(sourceString) {
   // write your code here
   const styles = sourceString.split(';');
-  const obj = {};
+  const stylesObj = {};
 
   styles.map(style => {
     const dividedStyle = style.trim().split(':');
-    const property = dividedStyle[0];
-    const value = dividedStyle[1];
+    const [property, value] = dividedStyle;
 
-    if (property) {
-      obj[property.trim()] = value.trim();
+    if (property && value) {
+      stylesObj[property.trim()] = value.trim();
     }
   });
 
-  return obj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

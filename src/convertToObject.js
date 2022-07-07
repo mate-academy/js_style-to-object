@@ -14,8 +14,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split('\n')
-    .map(string => string.replace(';', '').split(':'))
+  return sourceString.split(';')
+    .map(string => string.replace('\n', '').split(':'))
     .filter(row => row.length > 1)
     .map(([property, value]) => [property.trim(), value.trim()])
     .reduce((CSSObject, [key, value]) => {

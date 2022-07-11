@@ -17,11 +17,11 @@ function convertToObject(sourceString) {
   const convertedString = {};
   const styles = sourceString
     .split(';')
-    .map(i => i.trim())
-    .filter(i => i.length > 0);
+    .map(item => item.trim())
+    .filter(item => item.length > 0);
 
   for (const style of styles) {
-    const key = style.split(':').map(i => i.trim());
+    const key = style.split(':').map(property => property.trim());
 
     convertedString[key[0]] = key[1];
   }

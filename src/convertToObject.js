@@ -19,8 +19,8 @@ function convertToObject(sourceString) {
     .split(';')
     .map(element => element.trim())
     .filter(element => element.includes(':'))
-    .map(element => ([element.split(':')[0].trim(),
-      element.split(':')[1].trim()]));
+    .map(property => ([property.split(':')[0].trim(),
+      property.split(':')[1].trim()]));
 
   styles.forEach(element => {
     convertedStyles[element[0]] = element[1];

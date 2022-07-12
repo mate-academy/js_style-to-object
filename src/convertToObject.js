@@ -18,19 +18,19 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .map(el => el.trim())
-    .filter(el => el.includes(':'))
-    .map(el => el.split(':'))
-    .map(el => {
-      const arr = [];
+    .map(propertyLine => propertyLine.trim())
+    .filter(propertyLine => propertyLine.includes(':'))
+    .map(propertyLine => propertyLine.split(':'))
+    .map(propertyNValue => {
+      const property = [];
 
-      arr.push(el[0].trim());
-      arr.push(el[1].trim());
+      property.push(propertyNValue[0].trim());
+      property.push(propertyNValue[1].trim());
 
-      return arr;
+      return property;
     })
-    .forEach(el => {
-      cssProperties[el[0]] = el[1];
+    .forEach(property => {
+      cssProperties[property[0]] = property[1];
     });
 
   return cssProperties;

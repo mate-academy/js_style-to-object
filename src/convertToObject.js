@@ -24,9 +24,7 @@ function convertToObject(sourceString) {
     .map(el => el.trim().split(':'))
     .filter(arr => arr.length > 1)
     .reduce(callback, {});
-
-    console.log(properties);
-
+    
   return properties;
 }
 

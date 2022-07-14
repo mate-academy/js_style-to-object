@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable */
 
 /**
  * Implement convertToObject function:
@@ -14,18 +13,16 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const callback = (prev, elem ) => ({
-      ...prev, [elem[0].trim()]: elem[1].trim(),
-  });
+const callback = (prev, elem) => ({
+  ...prev, [elem[0].trim()]: elem[1].trim(),
+});
 
-  const properties = sourceString
+function convertToObject(sourceString) {
+  return sourceString
     .split(';')
     .map(el => el.trim().split(':'))
     .filter(arr => arr.length > 1)
     .reduce(callback, {});
-    
-  return properties;
 }
 
 module.exports = convertToObject;

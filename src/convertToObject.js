@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
     .split(';')
     .map(element => element.trim().split(':'))
     .filter(object => object.length > 1)
-    .reduce(appliedStyles, 0);
+    .reduce(appliedStyles, {});
 
   return cssStyles;
 }

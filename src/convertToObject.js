@@ -12,17 +12,17 @@
  * @return {object}
  */
 
+function editStyles(prev, style) {
+  const separatorIndex = style.indexOf(':');
+
+  return {
+    ...prev,
+    [style.slice(0, separatorIndex).trim()]: style.slice(separatorIndex + 1)
+      .trim(),
+  };
+}
+
 function convertToObject(sourceString) {
-  function editStyles(prev, style) {
-    const separatorIndex = style.indexOf(':');
-
-    return {
-      ...prev,
-      [style.slice(0, separatorIndex).trim()]: style.slice(separatorIndex + 1)
-        .trim(),
-    };
-  }
-
   return sourceString
     .split(';')
     .filter(arr => arr.trim() !== '')

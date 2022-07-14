@@ -7,12 +7,15 @@
  */
 function convertToObject(sourceString) {
   const styles = {};
-  const stylesInArray = sourceString.split(';')
+  const stylesInArray = sourceString
+    .split(';')
     .map(item => item.trim())
     .filter(item => item.length !== 0);
 
   for (const property of stylesInArray) {
-    const current = property.split(':').map(item => item.trim());
+    const current = property
+      .split(':')
+      .map(item => item.trim());
 
     const [key, value] = current;
 
@@ -23,3 +26,5 @@ function convertToObject(sourceString) {
 }
 
 module.exports = convertToObject;
+
+// In my opinion, method trim() is better here

@@ -13,22 +13,22 @@
  */
 function convertToObject(sourceString) {
   const stylesObj = {};
-  const stylesAll = sourceString.split(';').map(style => {
-    let styleCut = style;
 
-    while (styleCut.startsWith('\n')) {
-      styleCut = styleCut.slice(1);
-    }
+  sourceString.split(';')
+    .map(style => {
+      let styleCut = style;
 
-    return styleCut;
-  });
-  const pairOfStyles = stylesAll.map(item => item.split(':'));
+      while (styleCut.startsWith('\n')) {
+        styleCut = styleCut.slice(1);
+      }
 
-  const fullfilledStyles = pairOfStyles.filter(el => el.length === 2);
-
-  fullfilledStyles.forEach((element, index, arr) => {
-    stylesObj[arr[index][0].trim()] = arr[index][1].trim();
-  });
+      return styleCut;
+    })
+    .map(item => item.split(':'))
+    .filter(el => el.length === 2)
+    .forEach((element, index, arr) => {
+      stylesObj[arr[index][0].trim()] = arr[index][1].trim();
+    });
 
   return stylesObj;
 }

@@ -18,19 +18,13 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .map(propertyLine => propertyLine.trim())
     .filter(propertyLine => propertyLine.includes(':'))
-    .map(propertyLine => propertyLine.split(':'))
-    .map(propertyNValue => {
-      const property = [];
+    .forEach(propertyLine => {
+      const propertyNValue = propertyLine.trim().split(':');
+      const propertyName = propertyNValue[0].trim();
+      const propertyValue = propertyNValue[1].trim();
 
-      property.push(propertyNValue[0].trim());
-      property.push(propertyNValue[1].trim());
-
-      return property;
-    })
-    .forEach(property => {
-      cssProperties[property[0]] = property[1];
+      cssProperties[propertyName] = propertyValue;
     });
 
   return cssProperties;

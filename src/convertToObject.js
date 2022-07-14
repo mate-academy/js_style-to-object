@@ -14,16 +14,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleList = sourceString.split(';');
-  let styles = {};
+  const styles = {};
+  const itemList = sourceString.split(';\n');
+  const dirtyStyleList = itemList.map(el => el.split(':'));
+  const clearStyleList = dirtyStyleList.filter(el => el.length === 2);
 
-  for (let i = 0; i <= styleList.length - 1; i++) {
-    const [property, value] = styleList[i].trim().split(':');
-
-    if (property) {
-      styles = Object.assign(styles, { [property.trim()]: value.trim() });
-    }
-  }
+  clearStyleList.forEach(([property, value]) => (
+    styles[property.trim()] = value.trim()
+  ));
 
   return styles;
 }

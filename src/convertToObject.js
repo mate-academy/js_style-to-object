@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
     .map(item => item.trim())
     .filter(item => item.length !== 0);
 
-  for (const property of stylesInArray) {
+  stylesInArray.forEach((property) => {
     const current = property
       .split(':')
       .map(item => item.trim());
@@ -20,7 +20,7 @@ function convertToObject(sourceString) {
     const [key, value] = current;
 
     styles[key] = value;
-  }
+  });
 
   return styles;
 }

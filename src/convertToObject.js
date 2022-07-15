@@ -13,19 +13,20 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';')
     .map(element => element.trim().split(':'))
     .filter(arr => arr.length > 1);
 
-  const callback = (acc, element) =>
-    ({
-      ...acc, [element[0].trim()]: element[1].trim(),
-    });
+  return sourceArray.reduce(addToObject, {});
+}
 
-  const style = sourceArray.reduce(callback, {});
-
-  return style;
+function addToObject(acc, element) {
+  return {
+    ...acc,
+    [element[0].trim()]: element[1].trim(),
+  };
 }
 
 module.exports = convertToObject;

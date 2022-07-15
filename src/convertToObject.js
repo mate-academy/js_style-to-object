@@ -14,12 +14,6 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // const styles = sourceString.split(';')
-  //   .map(property => {
-  //     return property.split(':')
-  //       .map(part => part.trim());
-  //   })
-  //   .filter(style => style.length === 2);
   const styles = sourceString.split(';')
     .map(property => {
       return property.split(':')

@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
     .filter(el => el.length !== 1);
   const result = {};
 
-  stylesToArrArr.map(property => {
+  stylesToArrArr.forEach(property => {
     result[property[0].trim()] = property[1].trim();
   });
 

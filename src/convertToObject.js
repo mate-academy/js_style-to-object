@@ -16,19 +16,21 @@
 function convertToObject(sourceString) {
   // write your code here
   const result = {};
-  const words = sourceString
+
+  sourceString
     .split(';')
     .map(word => word.trim())
-    .filter(values => values !== '');
+    .filter(values => values !== '')
+    .forEach(key => {
+      if (key.length > 1) {
+        const word = key
+          .split(':')
+          .map((values) => values.trim())
+          .filter(values => values);
 
-  for (const word of words) {
-    const string = word
-      .split(':')
-      .map(values => values.trim())
-      .filter(values => values);
-
-    result[string[0]] = string[1];
-  }
+        result[word[0]] = word[1];
+      }
+    });
 
   return result;
 }

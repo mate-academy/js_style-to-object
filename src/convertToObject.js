@@ -15,8 +15,8 @@
  */
 function convertToObject(sourceString) {
   const styles = sourceString.split(';')
-    .map(x => x.trim().split(':').map(m => m.trim()))
-    .filter(x => x.length !== 1);
+    .map(rule => rule.trim().split(':').map(statement => statement.trim()))
+    .filter(rule => rule.length !== 1);
 
   return Object.fromEntries(styles);
 }

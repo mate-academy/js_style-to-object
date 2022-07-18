@@ -14,16 +14,17 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
-
-  sourceString.split(';\n')
+  return sourceString.split(';\n')
     .map(item => item.split(':'))
     .filter(el => el.length === 2)
-    .forEach((element, index, arr) => {
-      result[arr[index][0].trim()] = arr[index][1].trim();
-    });
+    .reduce(add, {});
+}
 
-  return result;
+function add(prev, el) {
+  return {
+    ...prev,
+    [el[0].trim()]: el[1].trim(),
+  };
 }
 
 module.exports = convertToObject;

@@ -14,28 +14,14 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const sourceArray = sourceString
-    .split('\n')
-    .filter(x => x !== '' && x !== '  ;')
-    .join('').split(';').filter(x => x !== '');
-
-  const test1 = [];
-  const test2 = [];
   const result = {};
 
-  sourceArray.forEach(element => {
-    test1.push(element.trim().split(':'));
-  });
-
-  test1.forEach(element => {
-    element.forEach(key => {
-      test2.push(key.trim());
+  sourceString.split(';\n')
+    .map(item => item.split(':'))
+    .filter(el => el.length === 2)
+    .forEach((element, index, arr) => {
+      result[arr[index][0].trim()] = arr[index][1].trim();
     });
-  });
-
-  for (let i = 0; i < test2.length; i += 2) {
-    result[test2[i]] = test2[i + 1];
-  }
 
   return result;
 }

@@ -18,7 +18,6 @@ function convertToObject(sourceString) {
     .split(';')
     .map((item) => item.split(':').map(i => i.trim()))
     .filter(keyValArr => keyValArr.length === 2)
-    .sort((a, b) => a[0].localeCompare(b[0]))
     .reduce((object, item) => ({
       ...object,
       [item[0]]: item[1],

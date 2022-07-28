@@ -14,17 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrTotal = sourceString.split(';').filter(
-    elem => elem.trim().length);
-  const obj = {};
+  const arrTotal = sourceString.split(';')
+    .filter(elem => elem.trim().length);
+  const stylesObj = {};
 
   for (const elem of arrTotal) {
     const arrKeyValue = elem.split(':');
 
-    obj[arrKeyValue[0].trim()] = arrKeyValue[1].trim();
+    stylesObj[arrKeyValue[0].trim()] = arrKeyValue[1].trim();
   }
 
-  return obj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

@@ -22,7 +22,6 @@ function convertToObject(sourceString) {
 
   const trimed = withoutEmpty.map(elem => elem.map(item => item.trim()));
 
-
   for (const elem of trimed) {
     result[elem[0]] = elem[1];
   }

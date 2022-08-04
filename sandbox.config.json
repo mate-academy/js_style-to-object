@@ -1,0 +1,8 @@
+{
+  "template": "node",
+  "infiniteLoopProtection": true,
+  "view": "terminal",
+  "container": {
+    "node": "14"
+  }
+}

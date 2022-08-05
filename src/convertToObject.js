@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const lines = sourceString.replaceAll(';', '').split('\n');
+  const lines = sourceString.toString().replaceAll(';', '').split('\n');
 
   return lines
     .filter(n => n.trim() !== '')

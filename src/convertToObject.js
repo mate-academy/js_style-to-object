@@ -17,9 +17,8 @@ function convertToObject(sourceString) {
   const stylesCSS = {};
 
   sourceString
-    .replace(/\r?\n/g, '')
     .split(';')
-    .filter(item => item.length > 2)
+    .filter(item => item.trim())
     .map(item => item.split(':'))
     .forEach(item => (stylesCSS[item[0].trim()] = item[1].trim()));
 

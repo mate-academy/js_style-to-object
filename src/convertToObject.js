@@ -10,9 +10,6 @@ function convertToObject(sourceString) {
   const result = {};
 
   for (let i = 0; i < noSpaceKeys.length; i++) {
-    if (!result[noSpaceKeys[i]]) {
-      result[noSpaceKeys[i]] = '';
-    }
     result[noSpaceKeys[i]] = noSpaceValues[i];
   }
 

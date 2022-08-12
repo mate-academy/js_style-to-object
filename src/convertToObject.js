@@ -1,16 +1,14 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const noSpaceString = sourceString.split(';').map((a) => a.split(':'));
-  const noSpaceKeys = noSpaceString
-    .map((a) => a[0].replace(/[\n]/g, '').trim()).filter((b) => b !== '');
-  const noSpaceValues = noSpaceString
-    .map((a) => a[1] === undefined ? '' : a[1].trim()).filter((b) => b !== '');
+  const entriesArray = sourceString
+    .split(';').map((a) => (a.trim().split(':'))
+      .map((b) => b.trim())).filter((c) => c.length > 1);
 
   const result = {};
 
-  for (let i = 0; i < noSpaceKeys.length; i++) {
-    result[noSpaceKeys[i]] = noSpaceValues[i];
+  for (let i = 0; i < entriesArray.length; i++) {
+    result[entriesArray[i][0]] = entriesArray[i][1];
   }
 
   return result;

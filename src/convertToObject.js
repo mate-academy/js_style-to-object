@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
   const styleArray = sourceArray.map(x => x.split(':'));
 
-  const styleArray2 = styleArray.map(function(y) {
+  const styleArray2 = styleArray.map(y => {
     const trimmedArray = y.map(elem => elem.trim());
 
     return trimmedArray;

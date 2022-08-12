@@ -2,8 +2,8 @@
 
 function convertToObject(sourceString) {
   const entriesArray = sourceString
-    .split(';').map((a) => (a.trim().split(':'))
-      .map((b) => b.trim())).filter((c) => c.length > 1);
+    .split(';').map((a) => a.split(':')
+      .map((b) => b.trim())).filter((c) => c.length === 2);
 
   const result = {};
 

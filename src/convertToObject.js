@@ -17,13 +17,13 @@
 function convertToObject(sourceString) {
   // write your code here
   const arrOfString = sourceString
-    .split('\n')
-    .map(str => str.replace(/;/g, '').trim())
+    .split(';')
+    .map(str => str.trim())
     .filter(str => (str !== ''));
 
-  const obj = arrOfString.reduce((prev, str) => {
+  const stylesObj = arrOfString.reduce((prev, str) => {
     const arr = str.split(':');
-    const [property, value] = arr.map(i => i.trim());
+    const [property, value] = arr.map(elem => elem.trim());
 
     return {
       ...prev,
@@ -31,7 +31,7 @@ function convertToObject(sourceString) {
     };
   }, {});
 
-  return obj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

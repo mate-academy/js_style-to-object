@@ -15,12 +15,11 @@
 
 function convertToObject(sourceString) {
   const array = sourceString.split(';');
-  const formattedArray = array
-    .map(el => el
-      .replace(/\n/g, '')
-      .trim()
-      .split(':')
-    );
+  const formattedArray = array.map(row => (row
+    .replace(/\n/g, '')
+    .trim()
+    .split(':')
+  ));
 
   const formattedObject = formattedArray.reduce((prev, current) => {
     if (current[0].length !== 0 && current[1].length !== 0) {

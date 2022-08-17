@@ -19,10 +19,10 @@ function convertToObject(sourceString) {
   const stylesArray = sourceString
     .split(';').map(style => style.trim())
     .filter(style => style)
-    .map(style => style.split(':').map(value => value.trim()));
+    .map(style => style.split(':'));
 
   stylesArray.forEach(([styleName, styleValue]) => (
-    stylesObject[styleName] = styleValue
+    stylesObject[styleName.trim()] = styleValue.trim()
   ));
 
   return stylesObject;

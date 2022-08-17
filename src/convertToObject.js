@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
   const result = {};
 
   sourceString.split(';')
-    .filter(elem => elem.trim().length !== 0)
+    .filter(elem => elem.trim().length)
     .forEach(elem => {
       const css = elem.split(':');
       const key = css[0].trim();

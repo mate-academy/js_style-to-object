@@ -8,9 +8,9 @@ function convertToObject(sourceString) {
     .filter((part) => part.length === 2)
     .map(([key, value]) => ({ [key]: value }));
 
-  const result = Object.assign({}, ...entriesArray);
+  const cssFile = Object.assign({}, ...entriesArray);
 
-  return result;
+  return cssFile;
 }
 
 module.exports = convertToObject;

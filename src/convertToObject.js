@@ -15,20 +15,16 @@
  */
 function convertToObject(sourceString) {
   const stylesObject = {};
-  const stylesArray = sourceString.split(';');
+  const stylesArray = sourceString
+    .split(';')
+    .filter(e => e.trim());
 
   stylesArray.forEach((styles) => {
     let style = styles.split(':');
 
-    style = style.map(e =>
-      e.toString(e)
-        .trim()
-        .replace(/[\n]/g, ''))
-      .filter(e => e.length !== 0);
+    style = style.map(e => e.trim());
 
-    if (style[0] !== undefined) {
-      stylesObject[style[0]] = style[1];
-    }
+    stylesObject[style[0]] = style[1];
   });
 
   return stylesObject;

@@ -16,13 +16,19 @@
 function convertToObject(sourceString) {
   const array = sourceString.split(';');
   const formattedArray = array
-    .map(el => el.replace(/\n/g, '').trim().split(':'));
+    .map(el => el
+      .replace(/\n/g, '')
+      .trim()
+      .split(':')
+    );
 
-  const object = formattedArray.reduce((prev, current) => {
+  const formattedObject = formattedArray.reduce((prev, current) => {
     if (current[0].length !== 0 && current[1].length !== 0) {
       return {
         ...prev,
-        [current[0].trim()]: current[1].trim().replace(/ +(?= )/g, ''),
+        [current[0].trim()]: current[1]
+          .trim()
+          .replace(/ +(?= )/g, ''),
       };
     }
 
@@ -31,7 +37,7 @@ function convertToObject(sourceString) {
     };
   }, {});
 
-  return object;
+  return formattedObject;
 }
 
 module.exports = convertToObject;

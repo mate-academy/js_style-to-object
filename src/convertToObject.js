@@ -8,16 +8,14 @@
 function convertToObject(sourceString) {
   const cssStyles = {};
 
-  const redactedString = sourceString
+  sourceString
     .split(';')
-    .filter(s => s.trim().length > 0)
-    .join(':')
-    .split(':')
-    .map(s => s.trim());
+    .filter(s => s.trim().length)
+    .forEach(prop => {
+      const [ propName, propValue ] = prop.split(':');
 
-  for (let i = 0; i < redactedString.length; i += 2) {
-    cssStyles[redactedString[i]] = redactedString[i + 1];
-  }
+      cssStyles[propName.trim()] = propValue.trim();
+    });
 
   return cssStyles;
 }

@@ -11,10 +11,10 @@ function convertToObject(sourceString) {
   sourceString
     .split(';')
     .filter(s => s.trim().length)
-    .forEach(prop => {
-      const [ propName, propValue ] = prop.split(':');
+    .forEach(style => {
+      const [ styleName, styleValue ] = style.split(':');
 
-      cssStyles[propName.trim()] = propValue.trim();
+      cssStyles[styleName.trim()] = styleValue.trim();
     });
 
   return cssStyles;

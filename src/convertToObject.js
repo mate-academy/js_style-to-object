@@ -16,12 +16,13 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  sourceString.split(';')
-    .filter(elem => elem.trim().length)
-    .forEach(elem => {
-      const css = elem.split(':');
-      const key = css[0].trim();
-      const value = css[1].trim();
+  sourceString
+    .split(';')
+    .filter(cssString => cssString.trim().length)
+    .forEach(cssString => {
+      const cssArray = cssString.split(':');
+      const key = cssArray[0].trim();
+      const value = cssArray[1].trim();
 
       result[key] = value;
     });

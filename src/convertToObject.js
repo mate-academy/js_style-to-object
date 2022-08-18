@@ -16,26 +16,16 @@
 function convertToObject(sourceString) {
   // write your code here
   const splitString = sourceString.split(';');
-  const obj = {};
+  const stylesObject = {};
 
   splitString.forEach(style => {
     const item = style.split(':');
 
     if (item.length === 2) {
-      obj[item[0].trim()] = item[1].trim();
+      stylesObject[item[0].trim()] = item[1].trim();
     };
   });
 
-  return obj;
+  return stylesObject;
 }
-
-convertToObject(`background-color:      #fff;
-  -webkit-border-radius: 5px;
-    border-radius     : 5px;
-    border: 1px solid #e8e8e8;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    clear   : both       ;
-    cursor: pointer;`);
-
 module.exports = convertToObject;

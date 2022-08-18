@@ -9,14 +9,12 @@
 function convertToObject(sourceString) {
   const cssStyleObject = {};
 
-  const string = sourceString
+  sourceString
     .split(';')
     .filter(value => value.trim())
-    .map(value => value.split(':'));
-
-  for (const element of string) {
-    cssStyleObject[element[0].trim()] = element[1].trim();
-  }
+    .map(value => value.split(':'))
+    .forEach(value => (
+      cssStyleObject[value[0].trim()] = value[1].trim()));
 
   return cssStyleObject;
 }

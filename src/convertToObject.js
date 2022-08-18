@@ -177,30 +177,79 @@
 // console.log(convertToObject(t));
 
 // const t = require('./stylesString');
+// это рабочее решение
+// function convertToObject(sourceString) {
+//   const stringToObject = sourceString.split(';')
+//     .map(a => a.trim())
+//     .filter(a => a !== '')
+//     .join(':')
+//     .split(':')
+//     .map(a => a.trim());
+
+//   const obj = {};
+
+//   // // не понимаю почему куски кавычек слетают
+//   for (let i = 0; i < stringToObject.length; i += 2) {
+//     obj[stringToObject[i]] = stringToObject[i + 1];
+//     // i--
+//   }
+
+//   return obj;
+//   console.log(Object.assign({}, test));
+
+//   console.log(obj);
+// }
+
+// console.log(convertToObject(t));
+// module.exports = convertToObject;
+
+// const t = require('./stylesString');
+
+// function convertToObject(sourceString) {
+//   const stringToObject = sourceString.split(';')
+//     .map(a => a.trim())
+//     .filter(a => a !== '')
+//     .join(':')
+//     .split(':')
+//     .map(a => a.trim())
+//     .reduce((acum, el, i) => {
+//       // console.log(acum, el);
+//       return {
+//         ...acum,
+//         [el]: el[i],
+//       };
+//     }, {});
+//   // идеально со всех сторон почисчено
+//   console.log(stringToObject);
+
+// }
+
+// console.log(convertToObject(t));
+module.exports = convertToObject;
+
+// const t = require('./stylesString');
 
 function convertToObject(sourceString) {
-  const stringToObject = sourceString.split(';')
-    .map(a => a.trim())
-    .filter(a => a !== '')
-    .join(':')
-    .split(':')
-    .map(a => a.trim());
+  const styleCssObject = {};
 
-  // идеально со всех сторон почисчено
-  // console.log(test);
+  const stringToObject = sourceString.split(';');
+  // .map(a => a.trim())
+  // .filter(a => a !== '')
+  // .join(':')
+  // .split(':')
+  // .map(a => a.trim())
 
-  const obj = {};
+  stringToObject.forEach((el) => {
+    // console.log(el);
+    const currentValue = el.split(':');
 
-  // не понимаю почему куски кавычек слетают
-  for (let i = 0; i < stringToObject.length; i += 2) {
-    obj[stringToObject[i]] = stringToObject[i + 1];
-    // i--
-  }
+    if (currentValue[1]) {
+      styleCssObject[currentValue[0].trim()] = currentValue[1].trim();
+    }
+    // console.log(currentValue);
+  });
 
-  return obj;
-  // console.log(Object.assign({}, test));
-
-  // console.log(obj);
+  return styleCssObject;
 }
 
 // console.log(convertToObject(t));

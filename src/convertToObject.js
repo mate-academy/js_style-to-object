@@ -16,10 +16,12 @@
 function convertToObject(sourceString) {
   const sortedObject = {};
 
-  sourceString.split(';')
-    .filter((item) => item.trim())
-    .map((item) => item.split(':'))
-    .forEach((item) => (sortedObject[item[0].trim()] = item[1].trim()));
+  sourceString
+    .split(';')
+    .filter((splitedRule) => splitedRule.trim())
+    .map((splitedPropeties) => splitedPropeties.split(':'))
+    .forEach((properties) =>
+      (sortedObject[properties[0].trim()] = properties[1].trim()));
 
   return sortedObject;
 }

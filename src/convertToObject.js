@@ -15,10 +15,12 @@
  */
 function convertToObject(sourceString) {
   const stylesCSS = {};
-  const arr = sourceString.split(';').filter(item =>
-    item.trim()).map(item => item.split(':'));
+  const arrayOfStyles = sourceString
+    .split(';')
+    .filter(item => item.trim())
+    .map(item => item.split(':'));
 
-  arr.forEach(item => (stylesCSS[item[0].trim()] = item[1].trim()));
+  arrayOfStyles.forEach(item => (stylesCSS[item[0].trim()] = item[1].trim()));
 
   return stylesCSS;
 }

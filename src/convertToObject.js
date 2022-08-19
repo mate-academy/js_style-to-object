@@ -16,10 +16,11 @@
 function convertToObject(sourceString) {
   const cssObject = {};
 
-  sourceString.split(';')
-    .filter((el) => el.trim())
-    .map((el) => el.split(':'))
-    .map((el) => (cssObject[el[0].trim()] = el[1].trim()));
+  sourceString
+    .split(';')
+    .filter((styleKey) => styleKey.trim())
+    .map((styleKey) => styleKey.split(':'))
+    .map((styleKey) => (cssObject[styleKey[0].trim()] = styleKey[1].trim()));
 
   return cssObject;
 }

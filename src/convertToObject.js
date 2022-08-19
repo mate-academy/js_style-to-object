@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
     .split(':')
   ));
 
-  const formattedObject = formattedArray.reduce((prev, current) => {
-    if (current[0].length !== 0 && current[1].length !== 0) {
+  return formattedArray.reduce((formattedObject, current) => {
+    if (current[0].length && current[1].length) {
       return {
-        ...prev,
+        ...formattedObject,
         [current[0].trim()]: current[1]
           .trim()
           .replace(/ +(?= )/g, ''),
@@ -32,11 +32,10 @@ function convertToObject(sourceString) {
     }
 
     return {
-      ...prev,
+      ...formattedObject,
     };
-  }, {});
-
-  return formattedObject;
+  },
+  {});
 }
 
 module.exports = convertToObject;

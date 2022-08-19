@@ -16,11 +16,23 @@
 function convertToObject(sourceString) {
   const cssPropetiesArray = sourceString.split(';');
 
-  const trimedCssArray = cssPropetiesArray.map(el => el.trim());
+  const reduceCallback = (cssPropetiesObject, properties) => {
+    const arr = properties.split(':');
 
-  const cssPropetiesObject = { ...trimedCssArray };
+    if (arr.length < 2) {
+      return cssPropetiesObject;
+    }
 
-  return cssPropetiesObject;
+    const key = arr[0].trim();
+    const value = arr[1].trim();
+
+    return ({
+      ...cssPropetiesObject,
+      [key]: value,
+    });
+  };
+
+  return cssPropetiesArray.reduce(reduceCallback, {});
 }
 
 module.exports = convertToObject;

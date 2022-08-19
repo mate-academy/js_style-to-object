@@ -4,10 +4,13 @@ function convertToObject(sourceString) {
   const sortedSourceArray = sourceString
     .replace(/\s+/g, ' ')
     .trim()
-    .split(';')
-    .map(splitProperty => splitProperty.split(':'));
+    .split(';');
 
-  const createObject = (prev, [ property, value ]) => {
+  const createObject = (prev, propertyString) => {
+    const parametries = propertyString.split(':');
+    const property = parametries[0];
+    const value = parametries[1];
+
     if (!property || !value) {
       return { ...prev };
     }
@@ -18,9 +21,7 @@ function convertToObject(sourceString) {
     };
   };
 
-  const sourceObject = sortedSourceArray.reduce(createObject, {});
-
-  return sourceObject;
+  return sortedSourceArray.reduce(createObject, {});
 }
 
 module.exports = convertToObject;

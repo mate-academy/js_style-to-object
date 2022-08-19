@@ -15,11 +15,11 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arrSourceString = sourceString.split(';');
+  const stylesObject = sourceString.split(';');
   const result = {};
 
-  arrSourceString.forEach(style => {
-    const item = style.split(':');
+  stylesObject.forEach(currentStyleKey => {
+    const item = currentStyleKey.split(':');
 
     if (item[0] && item[1]) {
       result[item[0].trim()] = item[1].trim();

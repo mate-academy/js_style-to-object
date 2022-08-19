@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -12,7 +13,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObj = {};
+  const styleArr = sourceString.split(';')
+    .map(el =>
+      el.split(':')
+        .toString()
+        .trim()
+        .split(','));
+
+  styleArr.forEach(style => {
+    if (style[0]) {
+      styleObj[style[0].toString().trim()]
+      = style[1] !== undefined
+          ? style[1].toString().trim()
+          : '';
+    }
+  });
+
+  return styleObj;
 }
 
 module.exports = convertToObject;

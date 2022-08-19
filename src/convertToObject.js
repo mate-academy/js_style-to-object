@@ -16,18 +16,11 @@
 function convertToObject(sourceString) {
   const sourceObject = {};
 
-  const sourceArr = sourceString
-    .replace(/\n/g, '')
-    .replace(/ +/, '')
-    .replace(/  +/g, '')
+  sourceString
     .split(';')
-    .filter(a => a.length > 0)
-    .map(a => a.split(':'));
-
-  for (const i of sourceArr) {
-    i[1] = i[1].replace(/ +/, '');
-    sourceObject[i[0]] = i[1];
-  }
+    .filter(a => a.trim())
+    .map(a => a.split(':'))
+    .forEach(a => (sourceObject[a[0].trim()] = a[1].trim()));
 
   return sourceObject;
 }

@@ -17,12 +17,13 @@
 function convertToObject(sourceString) {
   const convertedStyles = {};
 
-  sourceString.split(';')
+  sourceString
+    .split(';')
     .filter(item => item.trim().length)
     .forEach(item => {
-      const element = item.split(':');
+      const splited = item.split(':');
 
-      convertedStyles[element[0].trim()] = element[1].trim();
+      convertedStyles[splited[0].trim()] = splited[1].trim();
     });
 
   return convertedStyles;

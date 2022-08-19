@@ -5,10 +5,13 @@ function convertToObject(sourceString) {
     .replace(/\s+/g, ' ')
     .trim()
     .split(';')
-    .map(splitProperty => splitProperty.split(':'))
-    .filter(cleanUp => cleanUp.length > 1);
+    .map(splitProperty => splitProperty.split(':'));
 
   const createObject = (prev, [ property, value ]) => {
+    if (!property || !value) {
+      return { ...prev };
+    }
+
     return {
       ...prev,
       [property.trim()]: value.trim(),

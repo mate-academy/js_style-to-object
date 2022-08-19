@@ -18,9 +18,13 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .filter(a => a.trim())
-    .map(a => a.split(':'))
-    .forEach(a => (sourceObject[a[0].trim()] = a[1].trim()));
+    .filter(styleString => styleString.trim())
+    .map(styleString => styleString.split(':'))
+    .forEach(
+      styleString => (
+        sourceObject[styleString[0].trim()] = styleString[1].trim()
+      )
+    );
 
   return sourceObject;
 }

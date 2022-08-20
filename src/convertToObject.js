@@ -16,13 +16,15 @@
 function convertToObject(sourceString) {
   const sourceInObject = {};
 
-  sourceString.split(';').forEach(element => {
-    const elementSplit = element.split(':');
+  sourceString
+    .split(';')
+    .forEach(element => {
+      const elementSplit = element.split(':');
 
-    if (elementSplit[1]) {
-      sourceInObject[elementSplit[0].trim()] = elementSplit[1].trim();
-    }
-  });
+      if (elementSplit[1]) {
+        sourceInObject[elementSplit[0].trim()] = elementSplit[1].trim();
+      }
+    });
 
   return sourceInObject;
 }

@@ -19,10 +19,10 @@ function convertToObject(sourceString) {
   const stylesObject = {};
 
   splitString.forEach(style => {
-    const item = style.split(':');
+    const styleString = style.split(':');
 
-    if (item.length === 2) {
-      stylesObject[item[0].trim()] = item[1].trim();
+    if (styleString.length === 2) {
+      stylesObject[styleString[0].trim()] = styleString[1].trim();
     };
   });
 

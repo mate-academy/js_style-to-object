@@ -17,14 +17,14 @@ function convertToObject(sourceString) {
   const cssPropetiesArray = sourceString.split(';');
 
   const reduceCallback = (cssPropetiesObject, properties) => {
-    const arr = properties.split(':');
+    const elementOfProperty = properties.split(':');
 
-    if (arr.length < 2) {
+    if (elementOfProperty.length < 2) {
       return cssPropetiesObject;
     }
 
-    const key = arr[0].trim();
-    const value = arr[1].trim();
+    const key = elementOfProperty[0].trim();
+    const value = elementOfProperty[1].trim();
 
     return ({
       ...cssPropetiesObject,

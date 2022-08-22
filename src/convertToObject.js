@@ -21,14 +21,17 @@ function convertToObject(sourceString) {
         .trim()
         .split(','));
 
-  styleArr.forEach(style => {
+  function toObj(style) {
     if (style[0]) {
-      styleObj[style[0].toString().trim()]
-      = style[1] !== undefined
-          ? style[1].toString().trim()
-          : '';
+      const objValue = style[1] !== undefined
+        ? style[1].toString().trim()
+        : '';
+
+      styleObj[style[0].toString().trim()] = objValue;
     }
-  });
+  }
+
+  styleArr.forEach(toObj);
 
   return styleObj;
 }

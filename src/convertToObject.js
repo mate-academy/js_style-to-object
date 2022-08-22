@@ -12,20 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArray = sourceString.split(';');
-  let sourceArrayCleaned = [];
 
-  for (let i = 0; i < sourceArray.length; i++) {
-    if (sourceArray[i].trim().length !== 0) {
-      sourceArrayCleaned.push(sourceArray[i].replace(/\s\s+/g, ' '));
-    }
-  }
+  const sourceClean = sourceString
+    .split(';')
+    .filter(style => style.trim().length !== 0)
+    .map(style => style.replace(/\s\s+/g, ' '))
+    .map(style => style.split(':').map(str => str.trim()));
 
-  sourceArrayCleaned = sourceArrayCleaned.map(el => {
-    return el.split(':').map(str => str.trim());
-  });
-
-  const sourceObject = Object.fromEntries(sourceArrayCleaned);
+  const sourceObject = Object.fromEntries(sourceClean);
 
   return sourceObject;
 }

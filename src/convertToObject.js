@@ -26,6 +26,3 @@ function convertToObject(sourceString) {
   return cssStyles;
 }
 module.exports = convertToObject;
-// for(var key in input){
-//   output[key.replace(/\s+/,'_')] = input[key];
-// }

@@ -14,17 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const firstArr = sourceString.split(/[;:]/);
+  const firstArr = sourceString.split(/[;]/);
   const secondArr = firstArr.map(x => x.trim());
   const result = {};
 
-  for (let i = 0; i < secondArr.length; i += 2) {
-    if (secondArr[i + 1] === undefined || secondArr[i + 1] === '') {
-      continue;
-    }
+  secondArr.forEach(styleRule => {
+    const splitedRule = styleRule.split(':');
 
-    result[secondArr[i]] = secondArr[i + 1];
-  }
+    if (splitedRule[1]) {
+      result[splitedRule[0].trim()] = splitedRule[1].trim();
+    }
+  });
 
   return result;
 }

@@ -30,7 +30,7 @@ function convertToObject(sourceString) {
     })
     .filter((styleType) =>
       (
-        styleType[''] !== 'undefined'
+        !styleType.hasOwnProperty('')
       ));
 
   const arrayCssToObjectCss = Object.assign({}, ...cssArray);

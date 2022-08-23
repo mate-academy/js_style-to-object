@@ -19,10 +19,10 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .filter(item => item.trim())
-    .map(item => item.split(':'))
-    .forEach(item => (obj[item[0].trim()]
-    = item[1].trim()));
+    .filter(styleValue => styleValue.trim())
+    .map(styleValue => styleValue.split(':'))
+    .forEach(styleValue => (obj[styleValue[0].trim()]
+    = styleValue[1].trim()));
 
   return obj;
 }

@@ -14,15 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArr = sourceString.split('\n');
-  const withoutEmpty = stylesArr.filter(element => element !== '');
-  const strWithoutSpaces = withoutEmpty.map(str => str.trim());
-  const withoutSemicolons = strWithoutSpaces.filter(element => element !== ';');
-  const keysAndValues = withoutSemicolons.map(element => element.split(':'));
   const finalObj = {};
 
-  keysAndValues.map(([key, value]) =>
-    (finalObj[key.trim()] = value.replace(/;/g, '').trim()));
+  sourceString
+    .split(';')
+    .filter(element => element.trim().length)
+    .map(element => {
+      const splited = element.split(':');
+
+      finalObj[splited[0].trim()] = splited[1].trim();
+    });
 
   return finalObj;
 }

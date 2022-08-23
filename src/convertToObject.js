@@ -3,9 +3,11 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
+ * Function takes a string with styles (see an example in
+ * [stylesString.js](./stylesString.js))
  * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ * and values are the values of related CSS properties
+ * (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
@@ -17,10 +19,10 @@ function convertToObject(sourceString) {
 
   sourceString
     .split(';')
-    .filter(string => string.trim())
-    .map(string => string.split(':'))
-    .forEach(string => (obj[string[0].trim()]
-    = string[1].trim()));
+    .filter(item => item.trim())
+    .map(item => item.split(':'))
+    .forEach(item => (obj[item[0].trim()]
+    = item[1].trim()));
 
   return obj;
 }

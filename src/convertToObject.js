@@ -14,14 +14,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const res = {};
+  const result = {};
 
   sourceString.split(';')
     .map(item => (item.split(':').map(el => el.trim())))
     .filter(item => item.length > 1)
-    .map(item => (res[item[0]] = item[1]));
+    .map(item => (result[item[0]] = item[1]));
 
-  return res;
+  return result;
 }
 
 module.exports = convertToObject;

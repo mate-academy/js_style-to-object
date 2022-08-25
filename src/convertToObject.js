@@ -13,6 +13,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+
+  const splitedStyles = sourceString.split(';');
+
+  const keysAndValues = splitedStyles.map(value => value.split(':'));
+
+  const onlyWithNeededLength = keysAndValues.filter(
+    value => value.length === 2);
+
+  const deleteSpacesAndAddProperties = (convertedStyles, value) => {
+    convertedStyles[value[0].trim()] = value[1].trim();
+
+    return convertedStyles;
+  };
+
+  return onlyWithNeededLength.reduce(deleteSpacesAndAddProperties, {});
 }
 
 module.exports = convertToObject;

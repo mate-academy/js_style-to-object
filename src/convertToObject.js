@@ -20,7 +20,7 @@ function convertToObject(sourceString) {
     .split(';')
     .filter(e => e.trim().length > 0);
 
-  arrProperties.map(elem => {
+  arrProperties.forEach(elem => {
     const key = elem
       .slice(0, elem.indexOf(':'))
       .trim()

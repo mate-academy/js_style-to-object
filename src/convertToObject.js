@@ -21,8 +21,10 @@ function convertToObject(sourceString) {
     .filter(styleString => styleString.trim())
     .forEach(styleString => {
       const styleArray = styleString.split(':');
+      const styleProp = styleArray[0].trim();
+      const styleValue = styleArray[1].trim();
 
-      result[styleArray[0].trim()] = styleArray[1].trim();
+      result[styleProp] = styleValue;
     });
 
   return result;

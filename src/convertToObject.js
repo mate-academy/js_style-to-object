@@ -15,10 +15,10 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const sourceArray = sourceString.split(';').filter(element => element.trim());
-  const cssProperty = sourceArray.map(item => item.split(':'));
+  const sourceArray = sourceString.split(';').filter(element => element.trim())
+    .map(item => item.split(':'));
 
-  cssProperty.map((property) =>
+  sourceArray.forEach((property) =>
     (result[property[0].trim()] = property[1].trim()));
 
   return result;

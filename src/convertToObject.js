@@ -15,18 +15,18 @@
  */
 function convertToObject(sourceString) {
   const arr = sourceString.split(';');
-  const callback = (prev, key) => {
-    const value = key.split(':');
+  const callback = (accumulator, current) => {
+    const [property, value] = current.split(':');
 
-    if (value[1] === undefined) {
+    if (value === undefined) {
       return {
-        ...prev,
+        ...accumulator,
       };
     };
 
     return {
-      ...prev,
-      [value[0].trim()]: value[1].trim(),
+      ...accumulator,
+      [property.trim()]: value.trim(),
     };
   };
 

@@ -12,7 +12,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  function callback(sum, x) {
+    return sum + x;
+  }
+
+  function sumInObj(sum, a) {
+    return {
+      ...sum,
+      [a[0]]: a[1],
+    };
+  }
+
+  // eslint-disable-next-line max-len
+  const objectOfStyles = sourceString
+    .split('')
+    .filter(x => x !== '\n')
+    .reduce(callback, '')
+    .split(';').map(x => x.split(':'))
+    .map(x => x.map(y => y.trim()))
+    .filter(x => !x.includes(''))
+    .reduce(sumInObj, {});
+
+  return objectOfStyles;
 }
 
 module.exports = convertToObject;

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Implement convertToObject function:
@@ -14,24 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objCSS = {};
+  const objCss = {};
 
-  const convert = sourceString
-    .split(';\n')
-    .filter((word) => word.length > 3)
-    .map((word) => word.trim())
-    .join('\n')
-    .split(':')
-    .map((word) => word.trim())
-    .join(':')
-    .split('\n')
-    .map((word) => word.split(':'));
+  sourceString
+    .split(';')
+    .filter((word) => word.length > 4)
+    .forEach((word) => {
+      const styleString = word.split(':');
 
-  for (const word of convert) {
-    objCSS[word[0]] = word[1];
-  }
+      objCss[styleString[0].trim()] = styleString[1].trim();
+    });
 
-  return objCSS;
+  return objCss;
 }
 
 module.exports = convertToObject;

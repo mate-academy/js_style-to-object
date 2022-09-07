@@ -14,12 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
   const sourceArray = sourceString.split(';').filter(element => element.trim())
     .map(item => item.split(':'));
 
-  sourceArray.forEach((property) =>
-    (result[property[0].trim()] = property[1].trim()));
+  const resultObject = (prev, property) => {
+    const object = {
+      ...prev,
+      [property[0].trim()]: property[1].trim(),
+    };
+
+    return object;
+  };
+
+  const result = sourceArray.reduce(resultObject, {});
 
   return result;
 }

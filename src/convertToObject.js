@@ -14,15 +14,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const CSSproperties = {};
-
-  sourceString.split(';')
+  return sourceString.split(';')
     .map(element => element.split(':')).filter(element => element.length === 2)
-    .forEach(element => {
-      CSSproperties[element[0].trim()] = element[1].trim();
-    });
+    .reduce((prev, current) => {
+      prev[current[0].trim()] = current[1].trim();
 
-  return CSSproperties;
+      return prev;
+    }, {});
 }
 
 module.exports = convertToObject;

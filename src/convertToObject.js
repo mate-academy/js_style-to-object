@@ -19,11 +19,12 @@ function convertToObject(sourceString) {
     .filter(string => string.trim().length !== 0)
     .map(string => string.split(':'));
 
-  const stylesObj = {};
-
-  styleList.forEach(
-    styleString => (stylesObj[styleString[0].trim()] = styleString[1].trim())
-  );
+  const stylesObj = styleList.reduce((prevObj, [styleProp, styleValue]) => (
+    {
+      ...prevObj,
+      [styleProp.trim()]: styleValue.trim(),
+    }
+  ), {});
 
   return stylesObj;
 }

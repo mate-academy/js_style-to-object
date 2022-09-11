@@ -17,12 +17,11 @@ function convertToObject(sourceString) {
   const styleArray = sourceString.split(';').map(el => el.split(':'));
 
   const newObject = styleArray
-    .filter(el => el.length > 1)
-    .map(y => y.map(word => word.trim()))
-    .reduce((a, x) => {
-      a[x[0]] = x[1];
+    .filter(propery => property.length > 1)
+    .reduce((key, value) => {
+      key[value[0].trim()] = value[1].trim();
 
-      return a;
+      return key;
     }, {});
 
   return newObject;

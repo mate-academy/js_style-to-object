@@ -9,20 +9,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
   const strings = sourceString.split(';');
 
-  for (let i = 0; i < strings.length; i++) {
-    const str = strings[i];
-
-    if (str.includes(':')) {
-      const [key, value] = str.split(':');
-
-      result[key.trim()] = value.trim();
+  return strings.reduce((acc, item) => {
+    if (!item.includes(':')) {
+      return acc;
     }
-  }
 
-  return result;
+    const [key, value] = item.split(':');
+
+    return {
+      ...acc,
+      [key.trim()]: value.trim(),
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

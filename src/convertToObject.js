@@ -14,40 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const values = sourceString
-    .split('\n')
-    .map(string => string.replace(';', ''))
-    .filter(string => string.trim() !== '');
+  const values = sourceString.split(';');
 
-  const result = {};
+  return values.reduce((acc, item) => {
+    if (!item.includes(':')) {
+      return acc;
+    }
 
-  const arrKey = values.map(item => item.split(':')[0].trim());
-  const arrValue = values.map(item => item.split(':')[1].trim());
+    const [key, value] = item.split(':');
 
-  for (let i = 0; i < arrKey.length; i++) {
-    result[arrKey[i]] = arrValue[i];
-  }
-
-  return result;
+    return {
+      ...acc,
+      [key.trim()]: value.trim(),
+    };
+  }, {});
 }
 
 module.exports = convertToObject;
-
-// function convertToObject(sourceString) {
-//   // write your code here
-//   const values = sourceString.split(';');
-//   const result = {};
-
-//   for (let i = 0; i < values.length; i++) {
-//     const str = values[i];
-
-//     if (str.includes(':')) {
-//       const [key, value] = str.split(':');
-
-//       result[key.trim()] = value.trim();
-//     }
-//   }
-
-//   return result;
-// }

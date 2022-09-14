@@ -15,20 +15,39 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const values = sourceString.split(';');
+  const values = sourceString
+    .split('\n')
+    .map(string => string.replace(';', ''))
+    .filter(string => string.trim() !== '');
+
   const result = {};
 
-  for (let i = 0; i < values.length; i++) {
-    const str = values[i];
+  const arrKey = values.map(item => item.split(':')[0].trim());
+  const arrValue = values.map(item => item.split(':')[1].trim());
 
-    if (str.includes(':')) {
-      const [key, value] = str.split(':');
-
-      result[key.trim()] = value.trim();
-    }
+  for (let i = 0; i < arrKey.length; i++) {
+    result[arrKey[i]] = arrValue[i];
   }
 
   return result;
 }
 
 module.exports = convertToObject;
+
+// function convertToObject(sourceString) {
+//   // write your code here
+//   const values = sourceString.split(';');
+//   const result = {};
+
+//   for (let i = 0; i < values.length; i++) {
+//     const str = values[i];
+
+//     if (str.includes(':')) {
+//       const [key, value] = str.split(':');
+
+//       result[key.trim()] = value.trim();
+//     }
+//   }
+
+//   return result;
+// }

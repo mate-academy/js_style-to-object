@@ -20,8 +20,9 @@ function convertToObject(sourceString) {
     .map(style => {
       const cssStyle = style.split(':')
         .map(clearStyle => clearStyle.trim());
+
       const cssProperty = cssStyle[0];
-      const cssValue = cssStyle[cssStyle.length - 1];
+      const cssValue = cssStyle[1];
 
       return { [cssProperty]: cssValue };
     })

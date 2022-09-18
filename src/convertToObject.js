@@ -15,12 +15,12 @@
  */
 function convertToObject(sourceString) {
   const stylesObject = {};
-  const splittingStyles = sourceString.split(';');
-  const deletingInvalid = splittingStyles
+  const splittedStyles = sourceString.split(';');
+  const deletedInvalid = splittedStyles
     .map(style => style.split(':'))
     .filter(element => element.length !== 1);
 
-  deletingInvalid.forEach(style => {
+  deletedInvalid.forEach(style => {
     stylesObject[style[0].trim()] = style[1].trim();
   });
 

@@ -14,17 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = {};
-  const splittedStyles = sourceString.split(';');
-  const deletedInvalid = splittedStyles
+  const validatedStyles = sourceString.split(';')
     .map(style => style.split(':'))
-    .filter(element => element.length !== 1);
+    .filter(element => element.length !== 1)
+    .reduce(callback, {});
 
-  deletedInvalid.forEach(style => {
-    stylesObject[style[0].trim()] = style[1].trim();
-  });
+  return validatedStyles;
+}
 
-  return stylesObject;
+function callback(acc, prop) {
+  const styleName = prop[0].trim();
+  const styleValue = prop[1].trim();
+
+  return {
+    ...acc,
+    [styleName]: styleValue,
+  };
 }
 
 module.exports = convertToObject;

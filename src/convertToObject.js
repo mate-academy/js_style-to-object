@@ -16,8 +16,11 @@
 function convertToObject(sourceString) {
   const cssStyles = sourceString
     .split(';')
-    .filter(style => style.trim())
     .map(style => {
+      if (!style.trim()) {
+        return {};
+      }
+
       const cssStyle = style.split(':')
         .map(clearStyle => clearStyle.trim());
 

@@ -8,20 +8,20 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const stringArray = sourceString
+  const properties = sourceString
     .split(';')
     .map(element => element.trim())
     .filter(element => element !== '');
 
   const newObj = {};
 
-  for (let i = 0; i < stringArray.length; i++) {
-    const arrayProperty = stringArray[i].split(':');
+  properties.forEach((element) => {
+    const property = element.split(':');
 
-    if (arrayProperty[0]) {
-      newObj[arrayProperty[0].trim()] = arrayProperty[1].trim();
+    if (property[0]) {
+      newObj[property[0].trim()] = property[1].trim();
     }
-  }
+  });
 
   return newObj;
 }

@@ -5,7 +5,7 @@
 //  * @return {object}
 //  *
 function convertToObject(sourceString) {
-  const StyleList = {};
+  const styleList = {};
   const styles = sourceString.split(';');
 
   styles.forEach((style) => {
@@ -13,11 +13,11 @@ function convertToObject(sourceString) {
       const properties = style.slice(0, style.indexOf(':'));
       const values = style.slice(style.indexOf(':') + 1, style.length);
 
-      StyleList[properties.trim()] = values.trim();
+      styleList[properties.trim()] = values.trim();
     }
   });
 
-  return StyleList;
+  return styleList;
 }
 
 module.exports = convertToObject;

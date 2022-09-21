@@ -14,19 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';')
+  const styles = sourceString
+    .split(';')
     .map((style) => style.split(':'))
     .filter(style => style[1] !== undefined);
-
-  for (const style of styles) {
-    style[0] = style[0].trim();
-    style[1] = style[1].trim();
-  }
 
   return styles.reduce((prev, style) => {
     return {
       ...prev,
-      [style[0]]: style[1],
+      [style[0].trim()]: style[1].trim(),
     };
   }, 0);
 }

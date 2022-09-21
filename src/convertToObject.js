@@ -15,9 +15,8 @@
  */
 function convertToObject(sourceString) {
   const styledObj = sourceString.split(';')
-    .map(prop => prop.trim())
     .map(prop => {
-      return prop.split(':').map(elem => elem.trim());
+      return prop.trim().split(':').map(elem => elem.trim());
     })
     .filter(prop => prop.length === 2)
     .reduce((prev, prop) => {

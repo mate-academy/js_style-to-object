@@ -14,18 +14,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styledObj = sourceString.split(';').map(prop => prop.slice(2).trim())
+  const styledObj = sourceString.split(';')
+    .map(prop => prop.trim())
     .map(prop => {
       return prop.split(':').map(elem => elem.trim());
     })
     .filter(prop => prop.length === 2)
-    .map(prop => {
-      if (prop[0].startsWith('webkit')) {
-        prop[0] = '-' + prop[0];
-      }
-
-      return prop;
-    })
     .reduce((prev, prop) => {
       prev[prop[0]] = prop[1];
 

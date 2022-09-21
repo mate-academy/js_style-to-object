@@ -21,18 +21,12 @@ function convertToObject(sourceString) {
   stylesArray = stylesArray.filter(style => style.length > 3);
 
   stylesArray.forEach(element => {
-    let newElement = element
+    const newElement = element
       .substring(0, element.length - 1)
       .split(':');
 
-    newElement[0] = newElement[0].trim();
-    newElement[1] = newElement[1].trim();
-
-    newElement = newElement.join(':');
-
-    const index = newElement.indexOf(':');
-    const property = newElement.slice(0, index);
-    const propertyValue = newElement.slice(index + 1);
+    const property = newElement[0].trim();
+    const propertyValue = newElement[1].trim();
 
     stylesObject[property] = propertyValue;
   });

@@ -18,13 +18,10 @@ function convertToObject(sourceString) {
   const stylesFormatting = sourceString
     .split(';')
     .map(element => element.split(':')
-      .map(char => char.trim()));
+      .map(char => char.trim()))
+    .filter(element => element.length > 1);
 
-  stylesFormatting.map(style => {
-    if (style.length > 1) {
-      correctStyles[style[0]] = style[1];
-    }
-  });
+  stylesFormatting.map(style => (correctStyles[style[0]] = style[1]));
 
   return correctStyles;
 }

@@ -1,17 +1,14 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const stylesObj = {};
-  const stylesArr = sourceString.split(';')
-    .map(prop => prop.trim().split(':'));
+  const styles = {};
+  const stylesFormat = sourceString.split(';')
+    .map(prop => prop.split(':').map(char => char.trim()))
+    .filter(elem => elem.length > 1);
 
-  for (const style of stylesArr) {
-    if (style[0] && style[1]) {
-      stylesObj[style[0].trim()] = style[1].trim();
-    }
-  }
+  stylesFormat.map(style => (styles[style[0]] = style[1]));
 
-  return stylesObj;
+  return styles;
 }
 
 module.exports = convertToObject;

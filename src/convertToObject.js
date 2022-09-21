@@ -14,17 +14,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  return sourceString.split(';')
+    .map(element => element.split(':')).filter(element => element.length === 2)
+    .reduce((prev, current) => {
+      prev[current[0].trim()] = current[1].trim();
 
-  const temporality = sourceString.split(`;`).map((a) => a.split(':'));
-
-  for (const ch of temporality) {
-    if (ch[1] !== undefined) {
-      result[ch[0].trim()] = ch[1].trim();
-    }
-  }
-
-  return result;
+      return prev;
+    }, {});
 }
 
 module.exports = convertToObject;

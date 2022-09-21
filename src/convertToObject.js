@@ -19,8 +19,8 @@ function convertToObject(sourceString) {
       .split(':')
       .map(item => item.trim()))
     .filter(style => style.length > 1)
-    .reduce((prev, [ property, propertyValue ]) => ({
-      ...prev,
+    .reduce((acc, [property, propertyValue]) => ({
+      ...acc,
       [property]: propertyValue,
     }), {});
 

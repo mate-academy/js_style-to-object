@@ -22,11 +22,11 @@ function convertToObject(sourceString) {
 
   const resultObject = {};
 
-  for (let i = 0; i < transformedToArr.length; i++) {
-    const rule = transformedToArr[i].split(':');
+  transformedToArr.forEach(item => {
+    const rule = item.split(':');
 
     resultObject[rule[0].trim()] = rule[1].trim();
-  }
+  });
 
   return resultObject;
 }

@@ -15,17 +15,16 @@
  */
 function convertToObject(sourceString) {
   const propsList = sourceString.split(';');
-  const propsObject = {};
 
-  propsList.forEach(property => {
+  return propsList.reduce((propsObject, property) => {
     const currentProp = property.split(':');
 
     if (currentProp[0] && currentProp[1]) {
       propsObject[currentProp[0].trim()] = currentProp[1].trim();
     }
-  });
 
-  return propsObject;
+    return propsObject;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = {};
+  const styles = {};
 
   sourceString
     .split(';\n')
@@ -30,10 +30,10 @@ function convertToObject(sourceString) {
         });
     })
     .forEach(prop => {
-      styleObject[prop[0]] = prop[1];
+      styles[prop[0]] = prop[1];
     });
 
-  return styleObject;
+  return styles;
 }
 
 module.exports = convertToObject;

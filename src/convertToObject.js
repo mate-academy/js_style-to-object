@@ -1,7 +1,8 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  return sourceString.split(/[:;]/)
+  return sourceString
+    .split(/[:;]/)
     .map((property) => property.trim())
     .filter((str) => str.length > 0)
     .reduce((styleObj, property, index, styleArr) => {

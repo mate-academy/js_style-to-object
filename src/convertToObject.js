@@ -17,7 +17,8 @@ function convertToObject(sourceString) {
   const correctStyles = {};
   const stylesFormatting = sourceString
     .split(';')
-    .map(element => element.split(':')
+    .map(element => element
+      .split(':')
       .map(char => char.trim()))
     .filter(element => element.length > 1);
 

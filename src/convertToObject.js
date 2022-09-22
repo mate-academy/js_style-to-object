@@ -15,25 +15,17 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const styles = sourceString
-    .split(';')
-    .map(element => element.trim())
-    .filter(element => element !== '');
+  const styledObj = sourceString.split(';')
+    .map(prop => {
+      return prop.trim().split(':').map(elem => elem.trim());
+    })
+    .filter(prop => prop.length === 2)
+    .reduce((acc, prop) => ({
+      ...acc,
+      [prop[0]]: prop[1],
+    }), {});
 
-  const correctStyles = {};
-
-  for (let i = 0; i < styles.length; i++) {
-    const keys = styles[i]
-      .slice(0, styles[i]
-        .indexOf(':')).trim();
-    const values = styles[i]
-      .slice(styles[i]
-        .indexOf(':') + 1).trim();
-
-    correctStyles[keys] = values;
-  }
-
-  return correctStyles;
+  return styledObj;
 }
 
 module.exports = convertToObject;

@@ -22,10 +22,10 @@ function convertToObject(sourceString) {
 
   for (let i = 0; i < styleArray.length; i++) {
     if (styleArray[i].length !== 0 && styleArray[i][1] !== undefined) {
-      const first = styleArray[i][0].trim();
-      const second = styleArray[i][1].trim();
+      const styleName = styleArray[i][0].trim();
+      const styleProperty = styleArray[i][1].trim();
 
-      styleObject[first] = second;
+      styleObject[styleName] = styleProperty;
     }
   }
 

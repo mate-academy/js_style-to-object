@@ -15,28 +15,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let sourceArray = sourceString.split(';').join(':').split(':');
+  const cssArray = sourceString
+    .split(';')
+    .join(':')
+    .split(':')
+    .map(element => (element.trim()))
+    .filter(element => (element.length > 0));
 
-  sourceArray = sourceArray.map(element => (element.trim()));
+  const cssKeys = cssArray.filter((_, i) => (i % 2 === 0));
+  const cssValues = cssArray.filter((_, i) => !(i % 2 === 0));
 
-  sourceArray = sourceArray.filter(element => (element.length > 0));
-
-  const keyArray = [];
-  const valuesArray = [];
-
-  for (let i = 1; i < sourceArray.length; i += 2) {
-    valuesArray.push(sourceArray[i]);
-    keyArray.push(sourceArray[i - 1]);
-  }
-
-  const object = keyArray.reduce((prev, key, index) => {
+  const cssTurnedObject = cssKeys.reduce((prev, key, index) => {
     return {
       ...prev,
-      [`${key}`]: valuesArray[index],
+      [`${key}`]: cssValues[index],
     };
   }, {});
 
-  return object;
+  return cssTurnedObject;
 }
 
 module.exports = convertToObject;

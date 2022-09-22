@@ -1,7 +1,7 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const objectAsStyles = {};
+  const stylesAsObject = {};
 
   sourceString
     .split(';')
@@ -11,11 +11,11 @@ function convertToObject(sourceString) {
         .trim()))
     .forEach(item => {
       if (item[0]) {
-        objectAsStyles[item[0]] = item[1];
+        stylesAsObject[item[0]] = item[1];
       }
     });
 
-  return objectAsStyles;
+  return stylesAsObject;
 }
 
 module.exports = convertToObject;

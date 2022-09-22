@@ -15,7 +15,6 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const convertedObj = {};
   const arr = sourceString.split(';').map((item) =>
     item
       .trim()
@@ -23,13 +22,22 @@ function convertToObject(sourceString) {
       .filter((element) => element !== '')
   );
 
-  for (const name of arr) {
-    if (name[0] && name[1]) {
-      convertedObj[name[0].trim()] = name[1].trim();
-    }
-  }
+  const convertedObj = arr.reduce((currentObj, item) => {
+    if (item && item.length) {
+      currentObj[item[0].trim()] = item[1].trim();
+    };
+
+    return currentObj;
+  }, {});
 
   return convertedObj;
+  // for (const name of arr) {
+  //   if (name[0] && name[1]) {
+  //     convertedObj[name[0].trim()] = name[1].trim();
+  //   }
+  // }
+
+  // return convertedObj;
 }
 
 module.exports = convertToObject;

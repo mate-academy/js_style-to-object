@@ -14,22 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let arrOfProperties = sourceString.replace(/\n/g, '').split(';');
-  const objOfProperties = {};
+  const properties = {};
 
-  arrOfProperties = arrOfProperties
+  sourceString.replace(/\n/g, '')
+    .split(';')
     .map(property => property.trim())
     .filter(property => property !== '')
     .map(property => property.split(':'))
     .map(property => {
-      return property.map(item => item.trim());
+      properties[property[0].trim()] = property[1].trim();
+
+      return property;
     });
 
-  for (const property of arrOfProperties) {
-    objOfProperties[property[0]] = property[1];
-  }
-
-  return objOfProperties;
+  return properties;
 }
 
 module.exports = convertToObject;

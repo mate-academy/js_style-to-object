@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfStyles = sourceString.split(';')
+  const listOfStyles = sourceString.split(';')
     .map(element => element.trim())
     .filter(element => element !== '')
     .map(line => {
@@ -22,13 +22,13 @@ function convertToObject(sourceString) {
 
       return [temp[0].trim(), temp[1].trim()];
     });
-  const styleObject = {};
+  const style = {};
 
-  arrayOfStyles.forEach(item => {
-    styleObject[item[0]] = item[1];
+  listOfStyles.forEach(item => {
+    style[item[0]] = item[1];
   });
 
-  return styleObject;
+  return style;
 }
 
 module.exports = convertToObject;

@@ -14,23 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleLines = sourceString
+  return sourceString
     .split(';')
-    .filter(line => line.trim().length > 0);
+    .filter(line => line.trim().length > 0)
+    .map(line => {
+      const rule = line.split(':');
 
-  const rules = styleLines.map(line => {
-    const rule = line.split(':');
-
-    return {
-      property: rule[0].trim(),
-      value: rule[1].trim(),
-    };
-  });
-
-  return rules.reduce((total, current) => ({
-    ...total,
-    [current.property]: current.value,
-  }), {});
+      return {
+        property: rule[0].trim(),
+        value: rule[1].trim(),
+      };
+    })
+    .reduce((total, current) => ({
+      ...total,
+      [current.property]: current.value,
+    }), {});
 }
 
 module.exports = convertToObject;

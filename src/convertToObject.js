@@ -16,8 +16,7 @@
 function convertToObject(sourceString) {
   const styleLines = sourceString
     .split(';')
-    .map(line => line.trim())
-    .filter(line => line.length > 0);
+    .filter(line => line.trim().length > 0);
 
   const rules = styleLines.map(line => {
     const rule = line.split(':');

@@ -21,13 +21,12 @@ function convertToObject(sourceString) {
       const rule = line.split(':');
 
       return {
-        property: rule[0].trim(),
-        value: rule[1].trim(),
+        [rule[0].trim()]: rule[1].trim(),
       };
     })
     .reduce((total, current) => ({
       ...total,
-      [current.property]: current.value,
+      ...current,
     }), {});
 }
 

@@ -13,17 +13,13 @@ function convertToObject(sourceString) {
     .map(element => element.trim())
     .filter(element => element !== '');
 
-  const newObj = {};
-
-  properties.reduce((prev, currentValue) => {
+  return properties.reduce((prev, currentValue) => {
     const property = currentValue.split(':');
 
-    newObj[property[0].trim()] = property[1].trim();
+    prev[property[0].trim()] = property[1].trim();
 
-    return currentValue;
-  }, 0);
-
-  return newObj;
+    return { ...prev };
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -16,15 +16,13 @@
 function convertToObject(sourceString) {
   const properties = {};
 
-  sourceString.replace(/\n/g, '')
+  sourceString
     .split(';')
     .map(property => property.trim())
     .filter(property => property !== '')
     .map(property => property.split(':'))
     .map(property => {
       properties[property[0].trim()] = property[1].trim();
-
-      return property;
     });
 
   return properties;

@@ -14,14 +14,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const classes = sourceString.split(';');
+  let classes = sourceString.split(';');
   const classObject = {};
 
-  classes.forEach(style => {
-    const currentStyle = style.split(':');
+  classes.map(style => {
+    classes = style.split(':');
 
-    if (currentStyle[0] && currentStyle[1]) {
-      classObject[currentStyle[0].trim()] = currentStyle[1].trim();
+    if (classes[0] && classes[1]) {
+      classObject[classes[0].trim()] = classes[1].trim();
     }
   });
 

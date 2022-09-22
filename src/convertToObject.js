@@ -14,23 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssObject = {};
-
   const modifiedString = sourceString
-    .replace(/[\n]*/g, '')
     .split(';')
     .map(el => el.trim())
-    .filter(el => el !== '');
+    .filter(el => el !== '')
+    .map(el => el.split(':'))
+    .reduce((elA, elB) => ({
+      ...elA, [elB[0].trim()]: elB[1].trim(),
+    }), {});
 
-  for (let i = 0; i < modifiedString.length; i++) {
-    const singleStyle = modifiedString[i].split(':');
-    const key = singleStyle[0].trim();
-    const value = singleStyle[1].trim();
-
-    cssObject[key] = value;
-  }
-
-  return cssObject;
+  return modifiedString;
 }
 
 module.exports = convertToObject;

@@ -10,8 +10,9 @@
 function convertToObject(sourceString) {
   const styles = {};
 
-  const stylePairs = sourceString.split(';').map(pair => pair
-    .split(':').map(el => el.trim()));
+  const stylePairs = sourceString
+    .split(';')
+    .map(pair => pair.split(':').map(el => el.trim()));
 
   stylePairs.forEach(pair => {
     if (pair.length >= 2) {

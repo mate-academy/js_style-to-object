@@ -19,8 +19,9 @@ function convertToObject(sourceString) {
     .map(el => el.trim())
     .filter(el => el !== '')
     .map(el => el.split(':'))
-    .reduce((elA, elB) => ({
-      ...elA, [elB[0].trim()]: elB[1].trim(),
+    .reduce((accumulator, currentElement) => ({
+      ...accumulator,
+      [currentElement[0].trim()]: currentElement[1].trim(),
     }), {});
 
   return modifiedString;

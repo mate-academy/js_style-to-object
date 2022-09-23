@@ -14,19 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const obj = {};
-
-  sourceString
+  return sourceString
     .split(';')
     .filter(style => style.trim())
-    .forEach(keyVsValue => {
-      const [key, value] = keyVsValue.split(':');
+    .reduce((totalProperties, property) => {
+      const [key, value] = property.split(':');
 
-      obj[key.trim()] = value.trim();
-    });
+      totalProperties[key.trim()] = value.trim();
 
-  return obj;
+      return totalProperties;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -18,9 +18,6 @@ const stylesString = `
   outline: 0;
   padding-left    : 18px;
   padding-right: 30px;
-  ;
-
-  ;
   position: relative;
 
 

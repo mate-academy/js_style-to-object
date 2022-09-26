@@ -14,18 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultStyles = {};
   const sortedMess = sourceString
     .split(';')
     .map(a => a.split(':')
       .map(b => b.trim()))
     .filter(element => element[0] !== '' && element[1] !== '');
 
-  sortedMess.reduce(function(previousValue, item, index, arr) {
-    resultStyles[item[0]] = item[1];
-  }, 0);
-
-  return resultStyles;
+  return sortedMess.reduce((prev, list) => ({
+    ...prev,
+    [list[0]]: list[1],
+  }), {});
 }
 
 module.exports = convertToObject;

@@ -18,13 +18,12 @@ function convertToObject(sourceString) {
   const sortedMess = sourceString
     .split(';')
     .map(a => a.split(':')
-      .map(b => b.trim()));
+      .map(b => b.trim()))
+    .filter(element => element[0] !== '' && element[1] !== '');
 
-  for (const element of sortedMess) {
-    if (element[0] && element[1]) {
-      resultStyles[element[0]] = element[1];
-    }
-  }
+  sortedMess.reduce(function(previousValue, item, index, arr) {
+    resultStyles[item[0]] = item[1];
+  }, 0);
 
   return resultStyles;
 }

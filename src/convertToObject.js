@@ -18,17 +18,17 @@ function convertToObject(sourceString) {
     .split(';')
     .map(element => element.split(':').map(el => el.trim()));
 
-  const convertedStyles = stylesToArray.reduce((result, pair) => {
+  const convertedStyles = stylesToArray.reduce((styles, pair) => {
     const [property, value] = pair;
 
     if (pair.length >= 2) {
       return {
-        ...result,
+        ...styles,
         [property]: value,
       };
     }
 
-    return result;
+    return styles;
   }, {});
 
   return convertedStyles;

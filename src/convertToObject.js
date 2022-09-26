@@ -14,15 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splited = sourceString.split(';').map(item => item.trim().split(':'));
+  const splited = sourceString
+    .split(';')
+    .map(item => item.trim().split(':'));
+
   const result = {};
 
   for (let i = 0; i < splited.length; i++) {
-    if (splited[i][0] && splited[i][1]) {
-      const key = splited[i][0].trim();
-      const value = splited[i][1].trim();
+    const key = splited[i][0];
+    const value = splited[i][1];
 
-      result[key] = value;
+    if (key && value) {
+      result[key.trim()] = value.trim();
     }
   }
 

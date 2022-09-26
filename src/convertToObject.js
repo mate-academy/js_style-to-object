@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
   const stylesObjects = {};
   const stylesArray = sourceString
     .split(';')
-    .map(trim1 => trim1.trim()
+    .map(trim1 => trim1
       .split(':')
       .map(trim2 => trim2.trim()))
     .filter(trim3 => trim3.length > 1);

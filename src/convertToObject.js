@@ -14,21 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
   const splitArr = sourceString.split(';');
 
-  splitArr.sort((a, b) => a.localeCompare(b));
+  const cleanArr = splitArr.filter(key => key.length > 5);
 
-  for (const key of splitArr) {
-    const i = key.split(':');
+  return cleanArr.reduce((total, prop) => {
+    const key = prop.split(':');
 
-    if (i[1] !== undefined) {
-      result[i[0].trim()] = (i[1].trim());
-    }
-  }
+    total[key[0].trim()] = (key[1].trim());
 
-  return result;
+    return total;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
   const styles = sourceString.split(';');
   const styleObj = {};
 
-  for (const style of styles) {
+  styles.forEach(style => {
     const property = style.trim().split(':');
 
     if (property.length === 2) {
@@ -27,7 +27,7 @@ function convertToObject(sourceString) {
 
       styleObj[propertyName] = propertyValue;
     }
-  }
+  });
 
   return styleObj;
 }

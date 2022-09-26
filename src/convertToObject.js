@@ -20,9 +20,9 @@ function convertToObject(sourceString) {
       .map(b => b.trim()))
     .filter(element => element[0] !== '' && element[1] !== '');
 
-  return sortedMess.reduce((prev, list) => ({
+  return sortedMess.reduce((prev, [key, value]) => ({
     ...prev,
-    [list[0]]: list[1],
+    [key]: value,
   }), {});
 }
 

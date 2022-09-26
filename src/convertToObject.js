@@ -20,8 +20,14 @@ function convertToObject(sourceString) {
     .split(';')
     .filter(elem => elem.trim().length > 1)
     .map(property => {
-      convertedStyles[property.split(':')[0].trim()]
-      = property.split(':')[1].trim();
+      const objKey = property
+        .split(':')[0]
+        .trim();
+      const objValue = property
+        .split(':')[1]
+        .trim();
+
+      convertedStyles[objKey] = objValue;
     });
 
   return convertedStyles;

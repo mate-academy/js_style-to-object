@@ -15,7 +15,7 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = sourceString.split(';')
+  const properties = sourceString.split(';')
     .map(el => el.trim().split(':').map(item => item.trim()))
     .filter(el => el.length > 1)
     .reduce((prev, [property, propertyValue]) => {
@@ -24,7 +24,7 @@ function convertToObject(sourceString) {
       };
     }, {});
 
-  return result;
+  return properties;
 }
 
 module.exports = convertToObject;

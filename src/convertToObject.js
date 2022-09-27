@@ -34,13 +34,13 @@ function convertToObject(sourceString) {
 
   value = value.map(element => element.trim());
 
-  const ConvertedOBject = {};
+  const convertedOBject = {};
 
   style.forEach((element, index) => {
-    ConvertedOBject[element] = value[index];
+    convertedOBject[element] = value[index];
   });
 
-  return ConvertedOBject;
+  return convertedOBject;
 }
 
 module.exports = convertToObject;

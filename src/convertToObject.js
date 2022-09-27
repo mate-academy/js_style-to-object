@@ -16,7 +16,10 @@
 function convertToObject(sourceString) {
   // write your code here
   const properties = sourceString.split(';')
-    .map(el => el.trim().split(':').map(item => item.trim()))
+    .map(el => el
+      .trim()
+      .split(':')
+      .map(item => item.trim()))
     .filter(el => el.length > 1)
     .reduce((prev, [property, propertyValue]) => {
       return {

@@ -15,7 +15,8 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const properties = sourceString.split(';')
+  const properties = sourceString
+    .split(';')
     .map(el => el
       .trim()
       .split(':')

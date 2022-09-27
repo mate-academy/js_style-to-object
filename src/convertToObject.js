@@ -21,13 +21,10 @@ function convertToObject(sourceString) {
   const styles = sourceString
     .split(';')
     .map(style => style.split(':')
-      .map(styleEl => styleEl.trim()));
+      .map(styleEl => styleEl.trim()))
+    .filter(elem => elem.length > 1 && elem !== undefined);
 
-  styles.forEach(style => {
-    if (style.length !== 0 && style[1] !== undefined) {
-      styleSet[style[0]] = style[1];
-    }
-  });
+  styles.map(style => (styleSet[style[0]] = style[1]));
 
   return styleSet;
 }

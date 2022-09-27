@@ -20,7 +20,7 @@ function convertToObject(sourceString) {
     .filter(style => style.trim() !== '');
   const cssCode = {};
 
-  styles.every((style, index) => {
+  styles.every(style => {
     const keyValuePair = style.split(':');
 
     cssCode[keyValuePair[0].trim()] = keyValuePair[1].trim();

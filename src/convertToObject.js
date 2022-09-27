@@ -14,19 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArray = sourceString
+  const styles = sourceString
     .replace(/\n|\r /g, '')
     .split(';')
     .filter(style => style.trim() !== '');
-  const result = {};
+  const cssCode = {};
 
-  for (let i = 0; i < stylesArray.length; i++) {
-    const keyValuePair = stylesArray[i].split(':');
+  styles.every((style, index) => {
+    const keyValuePair = style.split(':');
 
-    result[keyValuePair[0].trim()] = keyValuePair[1].trim();
-  }
+    cssCode[keyValuePair[0].trim()] = keyValuePair[1].trim();
 
-  return result;
+    return true;
+  });
+
+  return cssCode;
 }
 
 module.exports = convertToObject;

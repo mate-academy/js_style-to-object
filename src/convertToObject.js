@@ -14,19 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const rulesSplit = sourceString.split(';');
-  const rulesTrimAndSplit = rulesSplit.map(elem => elem.trim().split(':'));
+  const styles = {};
+  const rulesTrimAndSplit = sourceString
+    .split(';')
+    .map(elem => elem.trim().split(':'));
 
-  rulesTrimAndSplit.pop();
-
-  for (const rule of rulesTrimAndSplit) {
+  rulesTrimAndSplit.forEach(rule => {
     if (rule[0] && rule[1]) {
-      result[rule[0].trim()] = rule[1].trim();
+      styles[rule[0].trim()] = rule[1].trim();
     }
-  }
+  });
 
-  return result;
+  return styles;
 }
 
 module.exports = convertToObject;

@@ -10,7 +10,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject
+     = {};
   const cleanedEntries = sourceString
     .replace(/\s\s+/g, '')
     .replace('\n', '')
@@ -19,10 +20,10 @@ function convertToObject(sourceString) {
     .slice(0, -1);
 
   cleanedEntries.forEach(el => {
-    result[el.split(':')[0].trim()] = el.split(':')[1].trim();
+    styleObject[el.split(':')[0].trim()] = el.split(':')[1].trim();
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

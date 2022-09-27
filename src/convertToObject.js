@@ -17,19 +17,19 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const styleObject = {};
-  const styleArray = sourceString.split(';').map(style => style.split(':'));
+  const styleSet = {};
+  const styles = sourceString
+    .split(';')
+    .map(style => style.split(':')
+      .map(styleEl => styleEl.trim()));
 
-  for (let i = 0; i < styleArray.length; i++) {
-    if (styleArray[i].length !== 0 && styleArray[i][1] !== undefined) {
-      const styleName = styleArray[i][0].trim();
-      const styleProperty = styleArray[i][1].trim();
-
-      styleObject[styleName] = styleProperty;
+  styles.forEach(style => {
+    if (style.length !== 0 && style[1] !== undefined) {
+      styleSet[style[0]] = style[1];
     }
-  }
+  });
 
-  return styleObject;
+  return styleSet;
 }
 
 module.exports = convertToObject;

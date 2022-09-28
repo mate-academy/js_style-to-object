@@ -15,20 +15,20 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const properties = sourceString
+  const cssStyles = sourceString
     .split(';')
-    .map(el => el
+    .map(styles => styles
       .trim()
       .split(':')
-      .map(item => item.trim()))
-    .filter(el => el.length > 1)
+      .map(style => style.trim()))
+    .filter(style => style.length > 1)
     .reduce((prev, [property, propertyValue]) => {
       return {
         ...prev, [property]: propertyValue,
       };
     }, {});
 
-  return properties;
+  return cssStyles;
 }
 
 module.exports = convertToObject;

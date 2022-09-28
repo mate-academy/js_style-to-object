@@ -19,15 +19,13 @@ function convertToObject(sourceString) {
     .map(property => property.split(':'));
 
   const deleteGap = arrayStyles
-    .map(items => items.map(element => element.trim()))
+    .map(property => property.map(element => element.trim()))
     .filter(item => item.length > 1);
 
-  return deleteGap.reduce((item, style) => {
-    return {
-      ...item,
-      [style[0]]: style[1],
-    };
-  }, {});
+  return deleteGap.reduce((item, [key, value]) => ({
+    ...item,
+    [key]: value,
+  }), {});
 }
 
 module.exports = convertToObject;

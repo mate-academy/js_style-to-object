@@ -14,21 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const classes = sourceString
+  const styles = sourceString
     .split(';')
     .map(el => el.trim()
       .split(':')
       .map(i => i.trim()))
     .filter(style => style.length > 1);
 
-  const result = classes
+  const convertedStyles = styles
     .reduce((data, [property, propertyValue]) => ({
       ...data,
       [property]: propertyValue,
     }),
     {});
 
-  return result;
+  return convertedStyles;
 }
 
 module.exports = convertToObject;

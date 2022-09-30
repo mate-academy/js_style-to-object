@@ -1,15 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  let strings = sourceString.split(';');
+  let classes = sourceString.split(';');
   const resultObj = {};
 
-  strings.map(str => {
-    strings = str.trim().split(':');
+  classes.map(str => {
+    classes = str.trim().split(':');
 
-    if (strings[0] && strings[1]) {
-      resultObj[strings[0].trim()] = strings[1].trim();
-    }
+    classes.reduce((prev, current) => {
+      resultObj[prev.trim()] = current.trim();
+    });
   });
 
   return resultObj;

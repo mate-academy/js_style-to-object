@@ -16,15 +16,15 @@
  */
 function convertToObject(sourceString) {
   const styles = {};
-  const cssProperties = sourceString
-    .split(';')
-    .map(el => el.trim().split(':'));
+  const cssProperties = sourceString.split(';').map(part => part.split(':'));
 
-  for (const prop of cssProperties) {
-    if (prop[0] && prop[1]) {
-      styles[prop[0].trim()] = prop[1].trim();
+  cssProperties.forEach(part => {
+    if (part.length === 2) {
+      const [key, value] = part;
+
+      styles[key.trim()] = value.trim();
     }
-  }
+  });
 
   return styles;
 }

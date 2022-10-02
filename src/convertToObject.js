@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const properties = sourceString.split(';').reduce((accumulator, property) => {
+   return sourceString.split(';').reduce((accumulator, property) => {
     const [key, value] = property.split(':');
 
     if (!key.trim()) {
@@ -28,8 +28,6 @@ function convertToObject(sourceString) {
       [key.trim()]: value.trim(),
     };
   }, {});
-
-  return properties;
 }
 
 module.exports = convertToObject;

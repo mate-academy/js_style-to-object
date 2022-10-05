@@ -15,11 +15,11 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const arr = sourceString.split(';');
-  const arrTochks = arr.map(x => x.split(':').map(y => y.trim()));
-  const arrFiltre = arrTochks.filter(x => x.length > 1);
 
-  arrFiltre.forEach((x, index) => {
+  const arr = sourceString.split(';').map(
+    x => x.split(':').map(y => y.trim())).filter(x => x.length > 1);
+
+  arr.forEach(x => {
     result[x[0]] = x[1];
   });
 

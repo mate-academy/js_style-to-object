@@ -15,17 +15,17 @@
  */
 
 function convertToObject(sourceString) {
-  const str = sourceString.split(';').map(x => x.trim()).filter(x => x)
-    .map(x => x.split(':').map(word => word.trim()).join(':'));
+  const convertStyles = sourceString
+    .split(';').map(x => x.trim()).filter(x => x)
+    .map(x => x.split(':').map(word => word.trim()).join(':'))
+    .reduce((prev, x) => {
+      return {
+        ...prev,
+        [x.slice(0, x.indexOf(':'))]: x.slice(x.indexOf(':') + 1),
+      };
+    }, {});
 
-  const obj = str.reduce((prev, x) => {
-    return {
-      ...prev,
-      [x.slice(0, x.indexOf(':'))]: x.slice(x.indexOf(':') + 1),
-    };
-  }, {});
-
-  return obj;
+  return convertStyles;
 }
 
 module.exports = convertToObject;

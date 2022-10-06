@@ -16,12 +16,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let arr = sourceString.split(';');
-
-  arr = arr.map(row => row.trim('\n'));
-  arr = arr.filter(row => row.length > 0);
-  arr = arr.map(row => row.split(':'));
-  arr = arr.map(miniArr => miniArr.map(item => item.trim()));
+  let arr = sourceString.split(';')
+       .map(row => row.trim('\n'))
+       .filter(row => row.length > 0)
+       .map(row => row.split(':'))
+       .map(miniArr => miniArr.map(item => item.trim()));
 
   const obj = {};
 

@@ -16,11 +16,12 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const arr = sourceString.split(';').map(
-    x => x.split(':').map(y => y.trim())).filter(x => x.length > 1);
+  const arr = sourceString.split(';')
+    .map(str => str.split(':').map(property => property.trim()))
+    .filter(string => string.length > 1);
 
-  arr.forEach(x => {
-    result[x[0]] = x[1];
+  arr.forEach(element => {
+    result[element[0]] = element[1];
   });
 
   return result;

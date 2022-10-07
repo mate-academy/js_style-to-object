@@ -15,13 +15,12 @@
  */
 function convertToObject(sourceString) {
   const obj = {}
-  const arr = sourceString.replace(/\s\s+/g, '')
-  .replace('\n', '')
+  const arr = sourceString
   .split(';')
-  .slice(0, -1)
-  .filter(item => !!item).map(string => { 
-    return obj[`${string.split(':')[0]}`] = string.split(':')[1].trim()
-  })
+  .map(item => item.split(':').map(string => string.trim()))
+  .filter(item => item.length > 1);
+  arr.forEach(item => (obj[item[0]] = item[1]))
+
  return obj
 }
 

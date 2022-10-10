@@ -19,11 +19,16 @@ function convertToObject(sourceString) {
     .map(prop => {
       return prop.trim().split(':').map(elem => elem.trim());
     })
-    .filter(prop => prop.length === 2)
-    .reduce((acc, prop) => ({
-      ...acc,
-      [prop[0]]: prop[1],
-    }), {});
+    .reduce((acc, prop) => {
+      if (prop.length !== 2) {
+        return acc;
+      }
+
+      return ({
+        ...acc,
+        [prop[0]]: prop[1],
+      });
+    }, {});
 
   return styledObj;
 }

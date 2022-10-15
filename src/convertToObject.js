@@ -14,20 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = {};
-  let result = sourceString.split(';');
+  return sourceString.split(';')
+    .map(str => str.trim()
+      .split(':')
+      .map(unit => unit.trim()))
+    .filter(str => str.length === 2)
+    .reduce((str, cur) => {
+      str[cur[0]] = cur[1];
 
-  result = result.map(str => str.trim()
-    .split(':')
-    .map(unit => unit.trim()));
-
-  result = result.filter(str => str.length > 1);
-
-  for (const item of result) {
-    stylesObject[item[0]] = item[1];
-  }
-
-  return stylesObject;
+      return str;
+    }, {});
 }
 
 module.exports = convertToObject;

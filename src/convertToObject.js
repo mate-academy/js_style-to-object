@@ -16,28 +16,27 @@
 
 function convertToObject(sourceString) {
   // write your code here
-  const temp = sourceString.split(';\n');
-
-  const trimmed = temp.map(element => {
-    if (typeof element === 'string') {
-      return element.trim();
-    }
-  });
-
-  const noEmpty = trimmed.filter(element => {
-    return element !== '';
-  });
+  const properties = sourceString
+    .split(';')
+    .map(element => {
+      if (typeof element === 'string') {
+        return element.trim();
+      }
+    })
+    .filter(element => {
+      return element !== '';
+    });
 
   const obj = {};
 
-  for (let i = 0; i < noEmpty.length; i++) {
-    const splitItem = noEmpty[i].split(':');
+  for (let i = 0; i < properties.length; i++) {
+    const splitItem = properties[i]
+      .split(':')
+      .map(element => {
+        return element.trim();
+      });
 
-    const trimmedSplit = splitItem.map(element => {
-      return element.trim();
-    });
-
-    obj[trimmedSplit[0]] = trimmedSplit[1];
+    obj[splitItem[0]] = splitItem[1];
   }
 
   return obj;

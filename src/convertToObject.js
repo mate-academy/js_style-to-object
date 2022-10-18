@@ -14,9 +14,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const tidiedArray = sourceString.split(';')
-    .map(pair => pair.split(':').map(elem => elem.trim())
-      .filter(arr => arr.length !== 0)).filter(arr => arr.length !== 0);
+  const tidiedArray = sourceString
+    .split(';')
+    .map(pair => pair.split(':').map(elem => elem.trim()))
+    .filter(arr => arr.length === 2);
 
   return Object.fromEntries(tidiedArray);
 }

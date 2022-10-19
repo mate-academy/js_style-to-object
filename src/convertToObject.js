@@ -14,27 +14,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const strArr = sourceString.split(';');
+  const arrayItemsFromString = sourceString.split(';');
 
-  const obj = strArr.reduce((acc, i) => {
-    if (!i) {
-      return acc;
+  const resultObject = arrayItemsFromString.reduce((accumulator, item) => {
+    if (!item) {
+      return accumulator;
     }
 
-    const str = i.replace('\n', '').trim();
+    const stringItem = item.replace('\n', '').trim();
 
-    if (!str) {
-      return acc;
+    if (!stringItem) {
+      return accumulator;
     }
 
-    const itemArr = str.split(':');
+    const itemArray = stringItem.split(':');
 
     return {
-      ...acc, [itemArr[0].trim()]: itemArr[1].trim(),
+      ...accumulator,
+      [itemArray[0].trim()]: itemArray[1].trim(),
     };
   }, {});
 
-  return obj;
+  return resultObject;
 }
 
 module.exports = convertToObject;

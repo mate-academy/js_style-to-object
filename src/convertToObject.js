@@ -33,9 +33,12 @@ function convertToObject(sourceString) {
   const resultObj = {};
 
   for (let i = 0; i < resultArr.length; i++) {
-    resultObj[resultArr[i].substring(0, resultArr[i].indexOf(':'))]
-      = resultArr[i].substring(resultArr[i].indexOf(':') + 1,
-        resultArr[i].length);
+    const separator = resultArr[i].indexOf(':');
+    const key = resultArr[i].substring(0, separator);
+    const cssProperty
+      = resultArr[i].substring(separator + 1, resultArr[i].length);
+
+    resultObj[key] = cssProperty;
   }
 
   return resultObj;

@@ -23,18 +23,14 @@ function convertToObject(sourceString) {
         return element.trim();
       }
     })
-    .filter(element => {
-      return element !== '';
-    });
+    .filter(element => element !== '');
 
   const obj = {};
 
   for (let i = 0; i < properties.length; i++) {
     const splitItem = properties[i]
       .split(':')
-      .map(element => {
-        return element.trim();
-      });
+      .map(element => element.trim());
 
     obj[splitItem[0]] = splitItem[1];
   }

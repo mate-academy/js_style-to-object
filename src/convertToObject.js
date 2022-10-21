@@ -14,10 +14,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newArr = [];
   const result = {};
-  const arrStyles = sourceString.split('').filter(element => element !== ''
-   && element !== '\n');
+  const arrStyles = sourceString
+    .split('')
+    .filter(element => element !== '' && element !== '\n');
 
   for (let index = 0; index < arrStyles.length; index++) {
     const checkElement = arrStyles[index];
@@ -27,17 +27,13 @@ function convertToObject(sourceString) {
       const addElement = arrStyles.slice(0, position);
 
       if (addElement.length > 2) {
-        newArr.push(addElement.join(''));
+        const element = addElement.join('').split(':');
+
+        result[element[0].trim()] = element[1].trim();
       }
       arrStyles.splice(0, position + 1);
       index = 0;
     };
-  }
-
-  for (let index = 0; index < newArr.length; index++) {
-    const element = newArr[index].split(':');
-
-    result[element[0].trim()] = element[1].trim();
   }
 
   return result;

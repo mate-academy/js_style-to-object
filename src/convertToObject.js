@@ -13,6 +13,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const arrayString = sourceString.split(';');
+  const newObject = {};
+
+  for (let i = 0; i < arrayString.length; i++) {
+    if (arrayString[i].trim()) {
+      const style = arrayString[i].split(':');
+
+      newObject[style[0].trim()] = style[1].trim();
+    };
+  }
+
+  return newObject;
 }
 
 module.exports = convertToObject;

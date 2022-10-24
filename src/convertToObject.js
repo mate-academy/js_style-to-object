@@ -14,15 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const text = sourceString.split(';');
+  const sourceStringInArray = sourceString.split(';');
 
-  const callback = (prev, word) => {
-    const textarr = word.split(':');
+  const callback = (prev, string) => {
+    const stringArray = string.split(':');
 
-    if (textarr.length === 2) {
+    if (stringArray.length === 2) {
       return {
         ...prev,
-        [textarr[0].trim()]: textarr[1].trim(),
+        [stringArray[0].trim()]: stringArray[1].trim(),
       };
     } else {
       return {
@@ -30,7 +30,7 @@ function convertToObject(sourceString) {
       };
     }
   };
-  const resalt = text.reduce(callback, {});
+  const resalt = sourceStringInArray.reduce(callback, {});
 
   return resalt;
 }

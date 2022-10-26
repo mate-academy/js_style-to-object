@@ -13,20 +13,19 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const strings
-  = sourceString.replace(/\n/g, '')
+  return sourceString.replace(/\n/g, '')
     .split(';')
     .filter(item => item.includes(':'))
     .map(str => str.split(':')
       .map(array => array.trim()))
-    .reduce((object, cur) => {
-      return {
-        ...object,
-        [cur[0]]: cur[1],
-      };
-    }, {});
-
-  return strings;
+    .reduce(createObj, {});
 }
+
+const createObj = (object, cur) => {
+  return {
+    ...object,
+    [cur[0]]: cur[1],
+  };
+};
 
 module.exports = convertToObject;

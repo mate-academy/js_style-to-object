@@ -9,15 +9,13 @@
 function convertToObject(sourceString) {
   const propObj = {};
 
-  let propArr = sourceString.split(';');
+  sourceString.split(';')
+    .filter(prop => prop.includes(':'))
+    .forEach(prop => {
+      const propSplited = prop.split(':');
 
-  propArr = propArr.filter(prop => prop.includes(':'));
-
-  propArr.forEach(prop => {
-    const propSplited = prop.split(':');
-
-    propObj[propSplited[0].trim()] = propSplited[1].trim();
-  });
+      propObj[propSplited[0].trim()] = propSplited[1].trim();
+    });
 
   return propObj;
 }

@@ -20,7 +20,6 @@ function convertToObject(sourceString) {
   const stylePropWithValuesTrimmed = stylePropWithValues
     .map(string => string
       .slice(0, -1)
-      .trim()
       .split(':')
       .map(
         entries => entries.trim()))

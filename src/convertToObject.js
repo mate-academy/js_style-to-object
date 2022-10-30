@@ -21,8 +21,7 @@ function convertToObject(sourceString) {
     .map(string => string
       .slice(0, -1)
       .split(':')
-      .map(
-        entries => entries.trim()))
+      .map(entries => entries.trim()))
     .filter(element => element.length > 1);
 
   stylePropWithValuesTrimmed.forEach(item => {

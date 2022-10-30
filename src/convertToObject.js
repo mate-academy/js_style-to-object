@@ -14,43 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const tmpArr = sourceString.split(';');
-  const tmpArr2 = [];
-  const keys = [];
-  const value = [];
-  const objKey = [];
-  const obj = {};
+  const strStyle = sourceString.split(';').map(item => item.trim())
+    .filter(item => item !== '');
 
-  for (let i = 0; i < tmpArr.length; i++) {
-    if (tmpArr[i].length > 5) {
-      tmpArr2.push(tmpArr[i].trim());
-    }
-  }
+  const objStyle = strStyle.reduce((acc, item) => {
+    const arrStyle = item.split(':');
+    const key = arrStyle[0].trimEnd();
+    const value = arrStyle[1].trimStart();
 
-  for (let i = 0; i < tmpArr2.length; i++) {
-    const space = tmpArr2[i].indexOf(' ');
+    return {
+      ...acc, [key]: value,
+    };
+  }, {});
 
-    keys.push(tmpArr2[i].substring(0, space));
-    value.push(tmpArr2[i].substring(space + 1).trim());
-  }
-
-  const objValue = value.map(function(valueItem) {
-    return valueItem.replace(':', '').trimStart();
-  });
-
-  for (let i = 0; i < keys.length; i++) {
-    if (keys[i].slice(-1) === ':') {
-      objKey.push(keys[i].slice(0, -1));
-    } else {
-      objKey.push(keys[i]);
-    }
-  };
-
-  for (let i = 0; i < objKey.length; i++) {
-    obj[objKey[i]] = objValue[i];
-  };
-
-  return obj;
+  return objStyle;
 }
 
 module.exports = convertToObject;

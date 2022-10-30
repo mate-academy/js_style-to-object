@@ -4,7 +4,7 @@ function convertToObject(sourceString) {
   const object = {};
   const sourceArray = sourceString.split(';')
     .map(str => str.trim())
-    .filter(el => el.length > 1);
+    .filter(el => el.length > 0);
 
   for (let i = 0; i < sourceArray.length; i++) {
     const keyAndValue = sourceArray[i].split(':');

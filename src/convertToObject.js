@@ -6,7 +6,7 @@
  * Function takes a string with styles (see an example
  * in [stylesString.js](./stylesString.js))
  * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties
+ * and values are the values of ritemated CSS properties
  * (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
@@ -14,23 +14,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
+  const result = {};
 
-  let arr = sourceString.split(';');
+  let propeties = sourceString.split(';');
 
-  arr = arr.map(el => el.split(':'));
-  arr = arr.filter(el => el.length > 1);
+  propeties = propeties.map(item => item.split(':'));
+  propeties = propeties.filter(item => item.length > 1);
 
-  arr.map(el => {
-    el[0] = el[0].trim();
-    el[1] = el[1].trim();
+  propeties.map(item => {
+    item[0] = item[0].trim();
+    item[1] = item[1].trim();
   });
 
-  arr.map(el => {
-    obj[el[0]] = el[1];
+  propeties.map(item => {
+    result[item[0]] = item[1];
   });
 
-  return obj;
+  return result;
 }
 
 module.exports = convertToObject;

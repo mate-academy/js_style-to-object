@@ -13,23 +13,23 @@
  *
  * @return {object}
  */
+
+const callbackForReduce = (prev, element) => {
+  return {
+    ...prev,
+    [element[0]]: element[1],
+  };
+};
+
 function convertToObject(sourceString) {
-  const stylesWithSpace = sourceString
+  const styles = sourceString
     .split(';')
-    .map(style => style.trim())
-    .filter(style => style.length > 0)
-    .map(style => style.split(':'));
-
-  const stylesNoSpace = stylesWithSpace.map(style =>
-    style.map(key => key.trim()));
-
-  const styles = stylesNoSpace.reduce((prev, style) => {
-    return {
-      ...prev,
-      [style[0]]: style[1],
-    };
-  },
-  {});
+    .map(row => row.trim())
+    .filter(row => row.length > 0)
+    .map(item => item.split(':'))
+    .map(item =>
+      item.map(key => key.trim()))
+    .reduce((prev, element) => callbackForReduce(prev, element), {});
 
   return styles;
 }

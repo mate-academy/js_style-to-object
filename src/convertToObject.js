@@ -14,14 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrWithoutSemi = sourceString.split('').filter(el =>
-    (el !== ';'));
+  const arrWithoutSemi = sourceString
+    .split('')
+    .filter(el => el !== ';');
 
-  const arrOfProp = arrWithoutSemi.join('').split('\n').filter(el => el.trim());
+  const arrOfProp = arrWithoutSemi
+    .join('')
+    .split('\n')
+    .filter(el => el.trim());
 
-  const obj = arrOfProp.reduce(getProperty, {});
+  const convertedObj = arrOfProp.reduce(getProperty, {});
 
-  return obj;
+  return convertedObj;
 }
 
 function getProperty(prev, el) {

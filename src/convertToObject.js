@@ -16,15 +16,14 @@
 function convertToObject(sourceString) {
   const stylesWithSpace = sourceString
     .split(';')
-    .map(key => key
-      .trim())
-    .filter(key => key.length > 0)
-    .map(key => key
-      .split(':'));
+    .map(style => style.trim())
+    .filter(style => style.length > 0)
+    .map(style => style.split(':'));
 
-  const styles = stylesWithSpace.map(key => key.map(kkey => kkey.trim()));
+  const stylesNoSpace = stylesWithSpace.map(style =>
+    style.map(key => key.trim()));
 
-  const result = styles.reduce((prev, style) => {
+  const styles = stylesNoSpace.reduce((prev, style) => {
     return {
       ...prev,
       [style[0]]: style[1],
@@ -32,7 +31,7 @@ function convertToObject(sourceString) {
   },
   {});
 
-  return result;
+  return styles;
 }
 
 module.exports = convertToObject;

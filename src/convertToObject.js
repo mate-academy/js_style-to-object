@@ -17,20 +17,19 @@ function convertToObject(sourceString) {
   const arrWithStyles = sourceString
     .split(';')
     .map(str => str.trim())
-    .filter(str => str.length > 1);
+    .filter(str => str.length > 0);
 
-  const objWithStyles = arrWithStyles.reduce((prev, str) => {
-    const arrWithValues = str.split(':');
-    const key = arrWithValues[0].trim();
-    const value = arrWithValues[1].trim();
-
-    return {
-      ...prev,
-      [key]: value,
-    };
-  }, {});
+  const objWithStyles = arrWithStyles.map(str => str.split(':')
+    .map(word => word.trim()))
+    .reduce(createObj, {});
 
   return objWithStyles;
 }
+
+const createObj = (prev, current) => {
+  return {
+    ...prev, [current[0]]: current[1],
+  };
+};
 
 module.exports = convertToObject;

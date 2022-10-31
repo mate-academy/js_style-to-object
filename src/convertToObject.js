@@ -20,14 +20,11 @@ function convertToObject(sourceString) {
     .map(el => el.split(':')
       .map(halfEl => halfEl.trim()));
 
-  return properties.reduce(getProperty, {});
-}
-
-function getProperty(prev, el) {
-  return {
-    ...prev,
-    [el[0]]: el[1],
-  };
+  return properties.reduce((prev, el) =>
+    ({
+      ...prev,
+      [el[0]]: el[1],
+    }), {});
 }
 
 module.exports = convertToObject;

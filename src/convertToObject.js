@@ -15,20 +15,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleStorageObj = {};
-  const stylePropWithValues = sourceString.split('\n');
-  const stylePropWithValuesTrimmed = stylePropWithValues
-    .map(string => string
-      .slice(0, -1)
-      .split(':')
-      .map(entries => entries.trim()))
-    .filter(element => element.length > 1);
+  const stylePropWithValuesTrimmed = sourceString
+    .split(';')
+    .filter(propString => propString.includes(':'))
+    .map(propString => propString.split(':')
+      .map(item => item.trim()));
 
-  stylePropWithValuesTrimmed.forEach(item => {
-    styleStorageObj[item[0]] = item[1];
-  });
-
-  return styleStorageObj;
+  return stylePropWithValuesTrimmed.reduce((accum, item) =>
+    ({
+      ...accum,
+      [item[0]]: item[1],
+    }), {});
 }
 
 module.exports = convertToObject;

@@ -14,27 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrWithoutSemi = sourceString
-    .split('')
-    .filter(el => el !== ';');
+  const propArr = sourceString
+    .split(';')
+    .filter(el => el.includes(':'))
+    .map(el => el.split(':')
+      .map(halfEl => halfEl.trim()));
 
-  const arrOfProp = arrWithoutSemi
-    .join('')
-    .split('\n')
-    .filter(el => el.trim());
-
-  const convertedObj = arrOfProp.reduce(getProperty, {});
-
-  return convertedObj;
+  return propArr.reduce(getProperty, {});
 }
 
 function getProperty(prev, el) {
-  const index = el.indexOf(':');
-
   return {
     ...prev,
-    [el.slice(0, index).trim()]: el.slice(index + 1).trim(),
-
+    [el[0]]: el[1],
   };
 }
 

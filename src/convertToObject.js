@@ -14,13 +14,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propArr = sourceString
+  const properties = sourceString
     .split(';')
     .filter(el => el.includes(':'))
     .map(el => el.split(':')
       .map(halfEl => halfEl.trim()));
 
-  return propArr.reduce(getProperty, {});
+  return properties.reduce(getProperty, {});
 }
 
 function getProperty(prev, el) {

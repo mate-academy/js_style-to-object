@@ -13,15 +13,17 @@
  * @return {object}
  */
 
+const createObject = (prev, elem) => ({
+  ...prev,
+  [elem[0].trim()]: elem[1].trim(),
+});
+
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(row => row.split(':'))
-    .filter(notEmptyRow => notEmptyRow.length === 2)
-    .reduce((prev, elem) => ({
-      ...prev,
-      [elem[0].trim()]: elem[1].trim(),
-    }), {});
+    .map(item => item.split(':'))
+    .filter(item => item.length === 2)
+    .reduce(createObject, {});
 }
 
 module.exports = convertToObject;

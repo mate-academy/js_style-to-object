@@ -12,8 +12,8 @@ function convertToObject(sourceString) {
   const mapedString = sourceString.split(';').map(row => row.trim());
   const filteredString = mapedString.filter(row => row !== '');
 
-  const convertedString = filteredString.reduce((prev, user) => {
-    const arrForObj = user.split(':');
+  const convertedString = filteredString.reduce((prev, property) => {
+    const arrForObj = property.split(':');
 
     return {
       ...prev,

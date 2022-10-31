@@ -15,13 +15,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylePropWithValuesTrimmed = sourceString
+  const getPropWithValuesTrimmed = sourceString
     .split(';')
     .filter(propString => propString.includes(':'))
     .map(propString => propString.split(':')
       .map(item => item.trim()));
 
-  return stylePropWithValuesTrimmed.reduce((accum, item) =>
+  return getPropWithValuesTrimmed.reduce((accum, item) =>
     ({
       ...accum,
       [item[0]]: item[1],

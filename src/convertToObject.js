@@ -17,9 +17,9 @@ function convertToObject(sourceString) {
     stylesItem.push(string.trim().split(':'));
   });
 
-  stylesItem.forEach(el => {
-    if (el[1] !== undefined) {
-      stylesObj[el[0].trim()] = el[1].trim();
+  stylesItem.forEach(element => {
+    if (element[1] !== undefined) {
+      stylesObj[element[0].trim()] = element[1].trim();
     }
   });
 

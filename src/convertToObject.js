@@ -17,10 +17,12 @@ function convertToObject(sourceString) {
   const strStyle = sourceString.split(';').map(item => item.trim())
     .filter(item => item !== '');
 
+  let arrStyle, key, value;
+
   const objStyle = strStyle.reduce((acc, item) => {
-    const arrStyle = item.split(':');
-    const key = arrStyle[0].trimEnd();
-    const value = arrStyle[1].trimStart();
+    arrStyle = item.split(':');
+    key = arrStyle[0].trimEnd();
+    value = arrStyle[1].trimStart();
 
     return {
       ...acc, [key]: value,

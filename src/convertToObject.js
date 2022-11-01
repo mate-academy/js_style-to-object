@@ -14,22 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const strStyle = sourceString.split(';').map(item => item.trim())
-    .filter(item => item !== '');
-
-  let arrStyle, key, value;
-
-  const objStyle = strStyle.reduce((acc, item) => {
-    arrStyle = item.split(':');
-    key = arrStyle[0].trimEnd();
-    value = arrStyle[1].trimStart();
-
-    return {
-      ...acc, [key]: value,
-    };
-  }, {});
-
-  return objStyle;
+  return sourceString
+    .split(';')
+    .map(str => str.trimEnd())
+    .filter(str => str.length !== 0)
+    .map(str => str.split(':')
+      .map(word => word.trim()))
+    .reduce(callback, {});
 }
+
+const callback = (accumulator, currentItem) => {
+  return {
+    ...accumulator, [currentItem[0]]: currentItem[1],
+  };
+};
 
 module.exports = convertToObject;

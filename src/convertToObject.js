@@ -12,7 +12,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const newObject = {};
+
+  const filterString = sourceString.split(';');
+
+  for (let i = 0; i < filterString.length; i++) {
+    let propertyAndValue = filterString[i].trim();
+
+    if (propertyAndValue === '') {
+      continue;
+    }
+
+    propertyAndValue = propertyAndValue.split(':');
+    newObject[propertyAndValue[0].trim()] = propertyAndValue[1].trim();
+  }
+
+  return newObject;
 }
 
 module.exports = convertToObject;

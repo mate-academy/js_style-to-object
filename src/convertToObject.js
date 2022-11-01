@@ -15,10 +15,10 @@
  */
 
 const callbackForReduce = (prev, element) => {
-  return {
+  return ({
     ...prev,
     [element[0]]: element[1],
-  };
+  });
 };
 
 function convertToObject(sourceString) {
@@ -29,7 +29,7 @@ function convertToObject(sourceString) {
     .map(item => item.split(':'))
     .map(item =>
       item.map(key => key.trim()))
-    .reduce((prev, element) => callbackForReduce(prev, element), {});
+    .reduce(callbackForReduce, {});
 
   return styles;
 }

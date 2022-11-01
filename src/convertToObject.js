@@ -14,27 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let stringStyles = '';
   const newStr = sourceString.replace(/\n/g, '');
   const objectStyles = {};
 
-  for (let i = 0; i < newStr.length; i++) {
-    if (newStr[i] !== ' ') {
-      stringStyles += newStr[i];
-    } else if (newStr[i] === ' ' && newStr[i - 1] === ':') {
-      stringStyles += newStr[i];
-    } else if (newStr[i] === ' ' && newStr[i + 1] !== ' '
-      && newStr[i - 1] !== ' ') {
-      stringStyles += newStr[i];
-    }
-  }
-
-  const arrayStyles = stringStyles.split(';').filter(part => part.length > 1);
+  const arrayStyles = newStr.split(';').filter(part => part.length > 2);
 
   for (let i = 0; i < arrayStyles.length; i++) {
     const styles = arrayStyles[i].split(':');
 
-    objectStyles[styles[0]] = styles[1].slice(1);
+    objectStyles[styles[0].trim()] = styles[1].slice(1).trim();
   }
 
   return objectStyles;

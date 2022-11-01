@@ -16,16 +16,19 @@
 function convertToObject(sourceString) {
   const arr = sourceString.split(';');
 
-  return arr.reduce((acc, el) => {
+  return arr.reduce((previousValue, el) => {
     const splitArr = el.split(':');
 
     if (splitArr.length !== 2) {
-      return acc;
+      return previousValue;
     }
 
+    const keys = splitArr[0].trim();
+    const values = splitArr[1].trim();
+
     return {
-      ...acc,
-      [splitArr[0].trim()]: splitArr[1].trim(),
+      ...previousValue,
+      [keys]: values,
     };
   }, {});
 }

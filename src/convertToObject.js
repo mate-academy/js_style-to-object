@@ -21,7 +21,9 @@ function convertToObject(sourceString) {
   );
 
  const assignProperty = (param) => {
-  const property = param.split(':').map(prop => prop.trim())
+  const property = param
+  .split(':')
+  .map(prop => prop.trim())
   convertedObject[property[0]] = property[1];
 
   return convertedObject;

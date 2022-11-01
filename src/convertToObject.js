@@ -14,16 +14,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrWithStyles = sourceString
+  return sourceString
     .split(';')
     .map(str => str.trim())
-    .filter(str => str.length > 0);
-
-  const objWithStyles = arrWithStyles.map(str => str.split(':')
-    .map(word => word.trim()))
+    .filter(str => str.length > 0)
+    .map(str => str.split(':')
+      .map(word => word.trim()))
     .reduce(createObj, {});
-
-  return objWithStyles;
 }
 
 const createObj = (prev, current) => {

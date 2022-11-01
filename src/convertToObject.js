@@ -1,7 +1,5 @@
 'use strict';
 
-const stylesString = require('./stylesString');
-
 /**
  *
  * @param {string} sourceString
@@ -9,18 +7,17 @@ const stylesString = require('./stylesString');
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArr = stylesString.split(';');
-  const stylesItem = [];
+  const stylesArr = sourceString.split(';');
   const stylesObj = {};
 
-  stylesArr.forEach(string => {
-    stylesItem.push(string.trim().split(':'));
-  });
+  const stylesItem = stylesArr
+    .map(item => item
+      .trim()
+      .split(':'))
+    .filter(element => (element[1] !== undefined));
 
   stylesItem.forEach(element => {
-    if (element[1] !== undefined) {
-      stylesObj[element[0].trim()] = element[1].trim();
-    }
+    stylesObj[element[0].trim()] = element[1].trim();
   });
 
   return stylesObj;

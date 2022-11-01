@@ -15,15 +15,17 @@
  */
 function convertToObject(sourceString) {
   const values = sourceString.split(';');
-  const stylesObj = {};
+  const styles = {};
 
   values.filter(value => value.includes(':')).forEach(value => {
     const key = value.split(':');
+    const trimmedName = key[0].trim();
+    const trimmedProperty = key[1].trim();
 
-    stylesObj[key[0].trim()] = key[1].trim();
+    styles[trimmedName] = trimmedProperty;
   });
 
-  return stylesObj;
+  return styles;
 }
 
 module.exports = convertToObject;

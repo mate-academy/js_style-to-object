@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
   // write your code here
   const convertedStyles = {};
 
-  const listStyles = sourceString.trim().split(';');
+  const listStyles = sourceString.split(';');
 
   listStyles.map(style => {
     const keysValues = style.split(':');

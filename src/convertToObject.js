@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultObject = {};
+  const resultPropertyObject = {};
 
   const sourceStringArray = sourceString
     .replace(/\s+/g, ' ')
@@ -14,18 +14,18 @@ function convertToObject(sourceString) {
     .filter(str => str !== ' ');
 
   sourceStringArray.forEach(elem => {
-    const resObjKey = elem
+    const resPropObjKey = elem
       .slice(0, elem.indexOf(':'))
       .trim();
 
-    const resObjValue = elem
+    const resPropObjValue = elem
       .slice(elem.indexOf(':') + 1)
       .trim();
 
-    resultObject[resObjKey] = resObjValue;
+    resultPropertyObject[resPropObjKey] = resPropObjValue;
   });
 
-  return resultObject;
+  return resultPropertyObject;
 }
 
 module.exports = convertToObject;

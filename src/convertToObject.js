@@ -14,24 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssItems = sourceString.split(';');
+  const cssItems = sourceString
+    .split(';')
+    .filter(removedBlankLines => removedBlankLines.includes(':'))
+    .map(item => item.split(':'));
 
-  const styles = {};
+  return cssItems.reduce((value, entries) => {
+    const trimmedProperty = entries[0].trim();
+    const trimmedClass = entries[1].trim();
 
-  cssItems.map(item => {
-    const entries = item.split(':');
-    const key = entries[0];
-    const value = entries[1];
-
-    if (value !== undefined) {
-      const trimmedProperty = value.trim();
-      const trimmedClass = key.trim();
-
-      styles[trimmedClass] = trimmedProperty;
-    }
-  });
-
-  return styles;
+    return {
+      ...value,
+      [trimmedProperty]: trimmedClass,
+    };
+  }, 0);
 }
 
 module.exports = convertToObject;

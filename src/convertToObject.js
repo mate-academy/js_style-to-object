@@ -16,8 +16,8 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const modifiedStr = sourceString.split(';');
-  const mod2 = modifiedStr.map(x => x.split(':'));
+  const modifiedStr = sourceString.split(';')
+    .map(x => x.split(':'));
 
   for (const array of mod2) {
     if (array[1]) {

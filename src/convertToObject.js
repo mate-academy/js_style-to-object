@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
 
   for (const array of mod2) {
     if (array[1]) {
-      result[array[0].trim(0)] = array[1].trim();
+      result[array[0].trim()] = array[1].trim();
     }
   }
 

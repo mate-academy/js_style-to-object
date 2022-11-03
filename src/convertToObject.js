@@ -13,22 +13,19 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const object = {};
-  const filtered = sourceString.split(';');
+const convertToObject = (sourceString) => {
+  return sourceString.split(';')
+    .filter(item => item.includes(':'))
+    .map(str => str.split(':')
+      .map(array => array.trim()))
+    .reduce(createObject, {});
+};
 
-  filtered.map(element => {
-    const splited = element.split(':');
-
-    if (splited.length === 2) {
-      const key = splited[0].trim();
-      const value = splited[1].trim();
-
-      object[key] = value;
-    }
-  });
-
-  return object;
-}
+const createObject = (object, current) => {
+  return {
+    ...object,
+    [current[0]]: current[1],
+  };
+};
 
 module.exports = convertToObject;

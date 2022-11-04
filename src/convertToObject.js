@@ -14,15 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObj = {};
-
   const stylesArray = sourceString.split(';')
     .filter(style => style.includes(':'));
 
-  stylesArray.forEach((property) => {
-    stylesObj[property.split(':')[0].trim()]
-  = property.split(':')[1].trim();
-  });
+  const stylesObj
+  = stylesArray.reduce((prev, curr) => {
+    const property = curr.split(':');
+
+    prev[property[0].trim()] = property[1].trim();
+
+    return prev;
+  }, {});
 
   return stylesObj;
 }

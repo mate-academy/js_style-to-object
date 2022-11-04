@@ -12,7 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssArray = sourceString.split(';').map(element => element.split(':'));
+
+  return cssArray.reduce((previous, current) => {
+    if (current.length > 1) {
+      return {
+        ...previous,
+        [current[0].trim()]: current[1].trim(),
+      };
+    }
+
+    return { ...previous };
+  }, {});
 }
 
 module.exports = convertToObject;

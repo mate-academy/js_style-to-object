@@ -14,22 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const convertedStyles = {};
+  const stylestring = sourceString.split(';')
+    .map(style => style.trim().split(':'))
+    .filter(style => style.length > 1)
+    .reduce((prev, current) => {
+      const key = current[0].trim();
+      const value = current[1].trim();
 
-  const listStyles = sourceString.split(';');
+      return {
+        ...prev,
+        [key]: value,
+      };
+    }, {});
 
-  listStyles.map(style => {
-    const keysValues = style.split(':');
-    const key = keysValues[0].trim().replace(/ /gi, '');
-    const value = keysValues[1];
-
-    if (value !== undefined) {
-      convertedStyles[key] = value.trim();
-    }
-  });
-
-  return convertedStyles;
+  return stylestring;
 }
 
 module.exports = convertToObject;

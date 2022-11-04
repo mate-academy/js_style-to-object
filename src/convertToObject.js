@@ -15,7 +15,7 @@
  */
 function convertToObject(sourceString) {
   const styledString = sourceString.split(';')
-    .map(style => style.trim().split(':'))
+    .map(style => style.split(':'))
     .filter(style => style.length > 1)
     .reduce((prev, current) => {
       const key = current[0].trim();

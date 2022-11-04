@@ -15,23 +15,14 @@
  */
 function convertToObject(sourceString) {
   const stylesObj = {};
-  const keyValueArray = [];
-  const stylesArray = sourceString.split(';');
 
-  function fillObj(obj, e) {
-    obj[e[0]] = e[1];
-  }
+  const stylesArray = sourceString.split(';')
+    .filter(style => style.includes(':'));
 
-  stylesArray.forEach(
-    x => x.trim().length > 2
-      ? keyValueArray.push(x.split(':'))
-      : null);
-
-  for (let i = 0; i < keyValueArray.length; i++) {
-    keyValueArray[i][0] = keyValueArray[i][0].trim();
-    keyValueArray[i][1] = keyValueArray[i][1].trim();
-    fillObj(stylesObj, keyValueArray[i]);
-  }
+  stylesArray.forEach((property) => {
+    stylesObj[property.split(':')[0].trim()]
+  = property.split(':')[1].trim();
+  });
 
   return stylesObj;
 }

@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylestring = sourceString.split(';')
+  const styledString = sourceString.split(';')
     .map(style => style.trim().split(':'))
     .filter(style => style.length > 1)
     .reduce((prev, current) => {
@@ -27,7 +27,7 @@ function convertToObject(sourceString) {
       };
     }, {});
 
-  return stylestring;
+  return styledString;
 }
 
 module.exports = convertToObject;

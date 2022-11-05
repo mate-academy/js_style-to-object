@@ -25,21 +25,20 @@ function convertToObject(sourceString) {
   const splittedArr = str.split(';');
   const tempArr = [];
 
-  for (const ch of splittedArr) {
-    const splittedElem = ch.split(':');
+  for (const item of splittedArr) {
+    const splittedElem = item.split(':');
 
     if (splittedElem.length > 1) {
       tempArr.push(splittedElem);
     }
   }
 
-  const getProp = (prev, elem) => ({
-
+  const getPropsFromArr = (prev, elem) => ({
     ...prev,
     [elem[0].trim()]: elem[1].trim(),
   });
 
-  return tempArr.reduce(getProp, {});
+  return tempArr.reduce(getPropsFromArr, {});
 }
 
 module.exports = convertToObject;

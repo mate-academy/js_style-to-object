@@ -16,17 +16,15 @@
 function convertToObject(sourceString) {
   const originString = sourceString.replace(/\s\s+/g, ' ');
   const styles = originString.split(';');
-  const stylesToObject = {};
-  const validStyles = styles
-    .filter(style => style
-      .split('')
-      .find(symbol => symbol === ':'));
+  const validStyles = styles.filter(style => style.includes(':'));
 
-  validStyles.map((style) => {
+  const stylesToObject = validStyles.reduce((prev, style) => {
     const copyStyle = style.split(':');
 
-    stylesToObject[copyStyle[0].trim()] = copyStyle[1].trim();
-  });
+    prev[copyStyle[0].trim()] = copyStyle[1].trim();
+
+    return prev;
+  }, {});
 
   return stylesToObject;
 }

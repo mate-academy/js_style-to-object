@@ -3,16 +3,42 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
+ * Function takes a string with styles (see an example
+ * in [stylesString.js](./stylesString.js))
  * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ * and values are the values of related CSS properties
+ * (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  let str = '';
+
+  for (let i = 0; i < sourceString.length; i++) {
+    if (sourceString[i] !== '\n') {
+      str += sourceString[i];
+    }
+  }
+
+  const splittedArr = str.split(';');
+  const tempArr = [];
+
+  for (const item of splittedArr) {
+    const splittedElem = item.split(':');
+
+    if (splittedElem.length > 1) {
+      tempArr.push(splittedElem);
+    }
+  }
+
+  const getPropsFromArr = (prev, elem) => ({
+    ...prev,
+    [elem[0].trim()]: elem[1].trim(),
+  });
+
+  return tempArr.reduce(getPropsFromArr, {});
 }
 
 module.exports = convertToObject;

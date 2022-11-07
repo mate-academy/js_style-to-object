@@ -15,15 +15,15 @@
  */
 function convertToObject(sourceString) {
   const arrSourceString = sourceString.split(';');
-  const keyVelue = arrSourceString.map(value =>
+  const keyValue = arrSourceString.map(value =>
     value.trim().split(':').map(key => key.trim())
   );
 
   const newStr = {};
 
-  keyVelue.forEach(velue => {
-    if (velue.length > 1) {
-      newStr[velue[0]] = velue[1];
+  keyValue.forEach(value => {
+    if (value.length > 1) {
+      newStr[value[0]] = value[1];
     }
   });
 

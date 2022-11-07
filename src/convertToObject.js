@@ -14,24 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertiesArray = sourceString.split(';');
-  let cssProperties = {};
-
-  for (const property of propertiesArray) {
-    const pairOfInternals = property.split(':');
-
-    if (pairOfInternals[0] && pairOfInternals[1]) {
-      const prop = pairOfInternals[0].trim();
-      const value = pairOfInternals[1].trim();
-      const objOfInternals = {
-        [prop]: value,
+  return sourceString
+    .split(';')
+    .map(string => string.trim())
+    .filter(string => string.length > 0)
+    .map(string => string.split(':')
+      .map(word => word.trim()))
+    .reduce((prev, current) => {
+      return {
+        ...prev, [current[0]]: current[1],
       };
-
-      cssProperties = Object.assign(cssProperties, objOfInternals);
-    }
-  }
-
-  return cssProperties;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -14,19 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const originString = sourceString.replace(/\s\s+/g, ' ');
-  const styles = originString.split(';');
-  const validStyles = styles.filter(style => style.includes(':'));
-
-  const stylesToObject = validStyles.reduce((prev, style) => {
-    const copyStyle = style.split(':');
-
-    prev[copyStyle[0].trim()] = copyStyle[1].trim();
-
-    return prev;
-  }, {});
-
-  return stylesToObject;
+  return sourceString
+    .replace(/\s\s+/g, ' ')
+    .split(';')
+    .filter(style => style.includes(':'))
+    .reduce(createObject, {});
 }
+
+const createObject = (prev, style) => {
+  const copyStyle = style.split(':');
+
+  prev[copyStyle[0].trim()] = copyStyle[1].trim();
+
+  return prev;
+};
 
 module.exports = convertToObject;

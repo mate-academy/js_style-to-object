@@ -20,11 +20,18 @@ function convertToObject(sourceString) {
   const fillterAllProp = styleArray.filter((item) => {
     return item !== '\n' && item !== '';
   });
-  const styleObject = Object.fromEntries(fillterAllProp.map((item) => {
+  const styleObject = fillterAllProp.map((item) => {
     return item.split(':').map(el => el.trim());
-  }));
+  }).reduce(createObject, {});
 
   return styleObject;
 }
+
+const createObject = (object, current) => {
+  return {
+    ...object,
+    [current[0]]: current[1],
+  };
+};
 
 module.exports = convertToObject;

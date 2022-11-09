@@ -14,16 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const StylesObject = {};
-
-  sourceString.split(';')
+  const StylesObject = sourceString.split(';')
     .map(style =>
       style.trim()).filter(style => style)
-    .forEach(style => {
-      const styleValue = style.split(':');
+    .reduce((previous, current) => {
+      const keyValue = current.split(':');
+      const key = keyValue[0].trim();
+      const val = keyValue[1].trim();
 
-      StylesObject[styleValue[0].trim()] = styleValue[1].trim();
-    });
+      return {
+        ...previous,
+        [key]: val,
+      };
+    }, {});
 
   return StylesObject;
 }

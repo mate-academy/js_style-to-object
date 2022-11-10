@@ -18,14 +18,14 @@ function convertToObject(sourceString) {
 
   const fromString = {};
 
-  for (const property of propertyList) {
+  propertyList.forEach(function(property) {
     const key = property.split(':')[0];
     const value = property.split(':')[1];
 
     if (key && value) {
       fromString[key.trim()] = value.trim();
     }
-  }
+  });
 
   return fromString;
 }

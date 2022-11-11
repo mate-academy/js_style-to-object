@@ -14,20 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const res = sourceString
+  const result = sourceString
     .split(';')
     .filter(item => item.includes(':'))
     .map(keyVal => {
       return keyVal
         .split(':')
-        .map(val => val.trim());
+        .map(value => value.trim());
     })
-    .reduce((acc, elem) => ({
+    .reduce((acc, element) => ({
       ...acc,
-      [elem[0]]: elem[1],
+      [element[0]]: element[1],
     }), {});
 
-  return res;
+  return result;
 }
 
 module.exports = convertToObject;

@@ -14,18 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const createObj = (prev, current) => {
+    const key = current[0].trim();
+    const value = current[1].trim();
+
+    return {
+      ...prev,
+      [key]: value,
+    };
+  };
+
   const styledString = sourceString.split(';')
     .map(style => style.split(':'))
     .filter(style => style.length > 1)
-    .reduce((prev, current) => {
-      const key = current[0].trim();
-      const value = current[1].trim();
-
-      return {
-        ...prev,
-        [key]: value,
-      };
-    }, {});
+    .reduce(createObj, {});
 
   return styledString;
 }

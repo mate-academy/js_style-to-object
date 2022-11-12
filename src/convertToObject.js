@@ -24,12 +24,10 @@ function convertToObject(sourceString) {
     };
   };
 
-  const styledString = sourceString.split(';')
+  return sourceString.split(';')
     .map(style => style.split(':'))
     .filter(style => style.length > 1)
     .reduce(createObj, {});
-
-  return styledString;
 }
 
 module.exports = convertToObject;

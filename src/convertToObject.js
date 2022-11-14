@@ -14,9 +14,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const StylesObject = sourceString.split(';')
-    .map(style =>
-      style.trim()).filter(style => style)
+  const stylesObject = sourceString.split(';')
+    .map(style => style.trim())
+    .filter(style => style)
     .reduce((previous, current) => {
       const keyValue = current.split(':');
       const key = keyValue[0].trim();
@@ -28,7 +28,7 @@ function convertToObject(sourceString) {
       };
     }, {});
 
-  return StylesObject;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

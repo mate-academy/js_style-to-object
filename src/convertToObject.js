@@ -24,9 +24,9 @@ function convertToObject(sourceString) {
     }
   });
 
-  const splitProperties = [];
-
-  noBlanks.forEach(property => splitProperties.push(property.split(':')));
+  const splitProperties = noBlanks.map(
+    property => property.split(':')
+  );
 
   const propertiesObject = {};
 

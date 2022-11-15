@@ -17,13 +17,7 @@
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
   const noWhitespace = properties.map(property => property.trim());
-  const noBlanks = [];
-
-  noWhitespace.forEach(property => {
-    if (property) {
-      noBlanks.push(property);
-    }
-  });
+  const noBlanks = noWhitespace.filter(property => property);
 
   const splitProperties = noBlanks.map(
     property => property.split(':')

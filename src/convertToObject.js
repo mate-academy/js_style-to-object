@@ -13,6 +13,7 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
   const noWhitespace = properties.map(property => property.trim());

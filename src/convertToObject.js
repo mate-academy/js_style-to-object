@@ -16,12 +16,6 @@
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
 
-  for (const prop of properties) {
-    if (prop.includes('\n')) {
-      prop.replace('\n', '');
-    }
-  }
-
   return properties
     .filter((prop) => prop.includes(':'))
     .reduce((accum, item) => {

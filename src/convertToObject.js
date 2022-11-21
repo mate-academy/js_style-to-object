@@ -3,10 +3,10 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles 
+ * Function takes a string with styles
  * (see an example in [stylesString.js](./stylesString.js))
  * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties 
+ * and values are the values of related CSS properties
  * (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
@@ -16,13 +16,11 @@
 function convertToObject(sourceString) {
   // write your code here
   const propertiesArr = sourceString.replace(/[\r\n]/gm, '').split(';');
-  const propObj = propertiesArr.reduce((acc, item) => {
-    const splitIndex = item.indexOf(':');
-    const key = item.slice(0, splitIndex).trim();
-    const value = item.slice(splitIndex + 1).trim();
+  const propObj = propertiesArr.reduce((acc, cssProperty) => {
+    const [key, value] = cssProperty.split(':');
 
-    if (key) {
-      acc[key] = value;
+    if (key && value) {
+      acc[key.trim()] = value.trim();
     }
 
     return { ...acc };

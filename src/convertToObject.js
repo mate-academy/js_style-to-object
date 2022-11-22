@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
 
     const [key, value] = styleToArr;
 
-    styleObj[(key.trim())] = (value.trim());
+    styleObj[key.trim()] = value.trim();
   });
 
   return styleObj;

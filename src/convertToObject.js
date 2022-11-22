@@ -1,20 +1,14 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const stringArray = sourceString.split(';');
-
-  const keysAndMean = stringArray.map((item) => item.split(':'));
-
+  const a = sourceString.split(';');
   const stylesObject = {};
 
-  for (const line of keysAndMean) {
-    for (let i = 0; i < line.length; i++) {
-      const key = line[0];
-      const meaning = line[1];
+  const properties = a.map((item) => item.split(':'));
 
-      if (line[i + 1] !== undefined) {
-        stylesObject[key.trim()] = meaning.trim();
-      }
+  for (const line of properties) {
+    if (line[1] !== undefined) {
+      stylesObject[line[0].trim()] = line[1].trim();
     }
   }
 

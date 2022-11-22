@@ -15,11 +15,11 @@ function convertToObject(sourceString) {
   const styleObj = {};
   const stylesToArr = sourceString
     .split(';')
-    .map(el => el.trim())
-    .filter(el => el.length > 0);
+    .map(rules => rules.trim())
+    .filter(rules => rules.length > 0);
 
-  stylesToArr.forEach((el) => {
-    const styleToArr = el.split(':');
+  stylesToArr.forEach((rules) => {
+    const styleToArr = rules.split(':');
 
     const [key, value] = styleToArr;
 

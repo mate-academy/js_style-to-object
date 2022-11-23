@@ -15,22 +15,22 @@
  */
 function convertToObject(sourceString) {
   const arr = sourceString.split(';');
-  let colonPos;
-  let leftPart;
-  let rightPart;
-  const returnedObj = {};
-  const filteredArr = arr.filter((elem, index) => {
+  let colonIndex;
+  let beforeColon;
+  let afterColon;
+  const result = {};
+  const filteredArr = arr.filter((elem) => {
     return elem.includes(':');
   });
 
-  for (let i = 0; i < filteredArr.length; i++) {
-    colonPos = filteredArr[i].indexOf(':');
-    leftPart = filteredArr[i].slice(0, colonPos);
-    rightPart = filteredArr[i].slice(colonPos + 1);
-    returnedObj[leftPart.trim()] = rightPart.trim();
-  }
+  filteredArr.forEach((elem) => {
+    colonIndex = elem.indexOf(':');
+    beforeColon = elem.slice(0, colonIndex);
+    afterColon = elem.slice(colonIndex + 1);
+    result[beforeColon.trim()] = afterColon.trim();
+  });
 
-  return returnedObj;
+  return result;
 }
 
 module.exports = convertToObject;

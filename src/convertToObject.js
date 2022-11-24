@@ -14,25 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  let runningStr = '';
+  return sourceString.split('\n') // splitting the lines to an array format
+    .filter(el => el.length)
+    .reduce((compilation, current) => {
+      const [key, value] = current
+        .substring(0, current.length - 1)
+        .split(':')
+        .map(side => side.trim());
+      // cleaned data stored in key and value variables
 
-  sourceString.split(/\r?\n/).forEach(el => {
-    runningStr = '';
-
-    if (el.length) {
-      runningStr = el.split(':');
-
-      if (runningStr.length < 2) {
-        return;
+      if (value) { // if data was found on this line
+        compilation[key] = value;
       }
 
-      result[runningStr[0].trim()] = runningStr[1]
-        .substring(0, runningStr[1].length - 1).trim();
-    }
-  });
-
-  return result;
+      return compilation;
+    }, {});
 }
 
 module.exports = convertToObject;

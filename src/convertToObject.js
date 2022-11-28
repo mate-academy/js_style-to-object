@@ -10,11 +10,11 @@ function convertToObject(sourceString) {
   const stylesCss = sourceString.split(';');
 
   stylesCss.forEach(style => {
-    const propertie = style.split(':');
-    const key = propertie[0].replace(/[\n\r]/g, ' ').trim();
-    const value = propertie[1];
+    const properties = style.split(':');
+    const key = properties[0].replace(/[\n\r]/g, ' ').trim();
+    const value = properties[1];
 
-    if (propertie[1] !== undefined) {
+    if (value !== undefined) {
       stylesProperties[key] = value.trim();
     }
   });

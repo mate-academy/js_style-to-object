@@ -1,7 +1,8 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';')
+  const styles = sourceString
+    .split(';')
     .map(style => style.trim())
     .filter(style => style !== '')
     .map(style => style.split(':').map(word => word.trim()))

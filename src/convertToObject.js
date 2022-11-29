@@ -15,20 +15,27 @@
  */
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
-  const pairs = {};
 
   const getPairs = (pair) => {
-    const key = pair.slice(0, pair.indexOf(':')).trim();
-    const value = pair.slice(pair.indexOf(':') + 1).trim();
-
-    if (key.length && value.length) {
-      pairs[key] = value;
-    }
+    return pair
+      .split(':')
+      .map((entry) => entry.trim())
+      .filter((entry) => entry);
   };
 
-  properties.map(getPairs);
+  const makeObject = (prev, pair) => {
+    const [key, value] = pair;
 
-  return pairs;
+    return {
+      ...prev,
+      [key]: value,
+    };
+  };
+
+  return properties
+    .map(getPairs)
+    .filter((pair) => pair.length)
+    .reduce(makeObject, {});
 }
 
 module.exports = convertToObject;

@@ -28,14 +28,3 @@ function convertToObject(sourceString) {
 }
 
 module.exports = convertToObject;
-// const iteration = splitedString.forEach(string => {
-//   const filteredString = string.trim().split(' ').filter(letter => (
-//     letter !== ' '
-//   )).join(' ');
-
-//   const firstPart = filteredString.slice(0, filteredString.indexOf(':') + 1);
-//   const secondPart
-//     = filteredString.slice(filteredString.indexOf(':') + 1).trim();
-
-//   stylesObject[firstPart] = secondPart;
-// });

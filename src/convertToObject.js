@@ -1,7 +1,7 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const styles = sourceString
+  return sourceString
     .split(';')
     .map(style => style.trim())
     .filter(style => style !== '')
@@ -12,8 +12,6 @@ function convertToObject(sourceString) {
         [style[0]]: style[1],
       };
     }, {});
-
-  return styles;
 }
 
 module.exports = convertToObject;

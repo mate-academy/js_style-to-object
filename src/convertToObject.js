@@ -16,20 +16,15 @@
 function convertToObject(sourceString) {
   const properties = sourceString
     .split(';')
-    .map(property => property.trim())
-    .filter(property => property.length > 0);
-
-  const callback = (prev, property) => {
-    return {
+    .map(style => style.trim())
+    .filter(style => style.length > 0)
+    .map(style => style.split(':'))
+    .reduce((prev, style) => ({
       ...prev,
-      [property.slice(0, property.indexOf(':')).trim()]:
-        property.slice(property.indexOf(':') + 1).trim(),
-    };
-  };
+      [style[0].trim()]: style[1].trim(),
+    }), {});
 
-  const stylesObject = properties.reduce(callback, {});
-
-  return stylesObject;
+  return properties;
 }
 
 module.exports = convertToObject;

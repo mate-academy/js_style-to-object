@@ -10,13 +10,16 @@
 function convertToObject(sourceString) {
   // write your code here
 
-  const cleanedUpString = sourceString.split('\n').join('').trim().split(';');
-
-  const seperatedIntoArrays = cleanedUpString.map(el => el.split(':'));
+  const cleanedUpString = sourceString
+    .split('\n')
+    .join('')
+    .trim()
+    .split(';')
+    .map(el => el.split(':'));
 
   const result = {};
 
-  seperatedIntoArrays.map(element => {
+  cleanedUpString.forEach(element => {
     if (element.length > 1) {
       const [cssProperty, cssValue] = element;
 

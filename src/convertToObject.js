@@ -22,9 +22,8 @@ function convertToObject(sourceString) {
   const stylesObj = {};
 
   stylesArray.map(style => {
-    let eachPair = style.split(':');
-
-    eachPair = eachPair.map(pair => pair.trim());
+    const eachPair = style.split(':')
+      .map(piece => piece.trim());
 
     stylesObj[eachPair[0]] = eachPair[1];
   });

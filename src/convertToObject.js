@@ -10,7 +10,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesString = sourceString.split(';')
+  const stylesString = sourceString
+    .split(';')
     .filter(value => value.includes(':'))
     .map(property => property.trim());
 

@@ -23,9 +23,9 @@ function convertToObject(sourceString) {
       .split(`:`)
       .map(item => item.trim())
     )
-    .reduce((pv, css) => {
+    .reduce((acc, css) => {
       return {
-        ...pv,
+        ...acc,
         [css[0]]: css[1],
       };
     }, {});

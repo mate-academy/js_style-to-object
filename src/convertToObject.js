@@ -12,7 +12,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const minPropertyLength = 5;
+  const splittedStyle = sourceString.split('\n');
+  const formatedStyle = {};
+
+  splittedStyle
+    .filter(property => property.length > minPropertyLength)
+    .map(property => {
+      const splitted = property.trim().split(':');
+
+      return splitted.map(key => {
+        return key.replace(';', '').trim();
+      });
+    })
+    .forEach(property => {
+      formatedStyle[property[0]] = property[1];
+    });
+
+  return formatedStyle;
 }
 
 module.exports = convertToObject;

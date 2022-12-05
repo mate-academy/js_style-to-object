@@ -13,12 +13,13 @@ function convertToObject(sourceString) {
   const stylesContainer = {};
 
   sourceString
-    .split('\n')
-    .map((property) => property.trim())
-    .filter(property => property.length !== 1 && property)
-    .map(property => {
-      stylesContainer[property.slice(0, property.indexOf(':')).trim()]
-        = property.slice(property.indexOf(':') + 1, -1).trim();
+    .split(';')
+    .forEach(element => {
+      const property = element.split(':');
+
+      if (property.length !== 1) {
+        stylesContainer[property[0].trim()] = property[1].trim();
+      }
     });
 
   return stylesContainer;

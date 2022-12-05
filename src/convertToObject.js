@@ -15,17 +15,18 @@ function convertToObject(sourceString) {
     .filter(value => value.includes(':'))
     .map(property => property.trim());
 
-  const callback = (allItems, item) => {
-    return {
-      ...allItems,
+  const createStylesKeyPairs = (allItems, item) => {
+    const key = {
       [item.slice(0, item.indexOf(':')).trim()]:
-        item.slice(item.indexOf(':') + 1).trim(),
+      item.slice(item.indexOf(':') + 1).trim(),
     };
+
+    Object.assign(allItems, key);
+
+    return allItems;
   };
 
-  const stylesObject = stylesString.reduce(callback, {});
-
-  return stylesObject;
+  return stylesString.reduce(createStylesKeyPairs, {});
 }
 
 module.exports = convertToObject;

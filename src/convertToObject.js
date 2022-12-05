@@ -15,8 +15,8 @@
  */
 function convertToObject(sourceString) {
   return sourceString.split(';').map(pair =>
-    pair.split(':').map(tok => tok.trim()).filter(tok => tok.length !== 0))
-    .filter(pair => pair.length !== 0)
+    pair.split(':').map(token => token.trim()))
+    .filter(pair => pair.length > 1)
     .reduce((prev, [property, value]) => ({
       ...prev, [property]: value,
     }), {});

@@ -7,17 +7,14 @@
  */
 function convertToObject(sourceString) {
   const styles = {};
-  const sourceStringArr = sourceString.split(';');
 
-  for (const rule of sourceStringArr) {
-    if (!rule.includes(':')) {
-      continue;
-    }
+  sourceString.split(';')
+    .filter(rule => rule.includes(':'))
+    .forEach(rule => {
+      const parts = rule.split(':');
 
-    const parts = rule.split(':');
-
-    styles[parts[0].trim()] = parts[1].trim();
-  }
+      styles[parts[0].trim()] = parts[1].trim();
+    });
 
   return styles;
 }

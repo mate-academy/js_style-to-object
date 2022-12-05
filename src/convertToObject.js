@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
     .split(';')
     .map(elem => elem.split(':'))
     .filter(value => value.length === 2)
-    .map(value => {
+    .forEach(value => {
       cssStyles[value[0].trim()] = value[1].trim();
     });
 

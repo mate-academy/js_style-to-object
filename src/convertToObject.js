@@ -1,15 +1,19 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  return sourceString
-    .split(';')
-    .filter(property => property.includes(':'))
-    .map(property => property.split(':').map(word => word.trim()))
-    .reduce((key, value) => {
-      key[value[0]] = value[1];
+  const splittedSourceString = sourceString.split(';');
 
-      return key;
-    }, {});
+  return splittedSourceString.reduce((finalCss, currentCssProperty) => {
+    if (currentCssProperty.trim().length) {
+      const splittedCssProperty = currentCssProperty.split(':');
+      const key = splittedCssProperty[0].trim();
+      const value = splittedCssProperty[1].trim();
+
+      finalCss[key] = value;
+    }
+
+    return finalCss;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -19,16 +19,14 @@ function convertToObject(sourceString) {
     .map(el => el.trim())
     .filter(el => el.length > 0);
 
-  const stylesObj = {};
-
-  stylesArray.map(style => {
-    const eachPair = style.split(':')
+  return stylesArray.reduce((stylesObj, style) => {
+    const [styleKey, styleValue] = style.split(':')
       .map(piece => piece.trim());
 
-    stylesObj[eachPair[0]] = eachPair[1];
-  });
+    stylesObj[styleKey] = styleValue;
 
-  return stylesObj;
+    return stylesObj;
+  }, {});
 }
 
 module.exports = convertToObject;

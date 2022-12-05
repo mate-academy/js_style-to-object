@@ -16,13 +16,18 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(elem => elem.trim())
-    .filter(elem => elem)
-    .map(elem => elem.split(':'))
-    .reduce((objWithCSS, [property, value]) => {
+    .reduce((objWithCSS, style) => {
+      const [property, value] = style.trim().split(':');
+
+      if (value) {
+        return {
+          ...objWithCSS,
+          [property.trim()]: value.trim(),
+        };
+      }
+
       return {
         ...objWithCSS,
-        [property.trim()]: value.trim(),
       };
     }, {});
 }

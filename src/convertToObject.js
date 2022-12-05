@@ -18,15 +18,15 @@ function convertToObject(sourceString) {
     .replace(/\n/g, '')
     .split(`;`)
     .map(style => style.trim())
-    .filter(style => style)
+    .filter(Boolean)
     .map(style => style
       .split(`:`)
       .map(item => item.trim())
     )
-    .reduce((acc, css) => {
+    .reduce((acc, [key, value]) => {
       return {
         ...acc,
-        [css[0]]: css[1],
+        [key]: value,
       };
     }, {});
 }

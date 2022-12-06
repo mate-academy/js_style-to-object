@@ -13,11 +13,11 @@
  *
  * @return {object}
  */
-const makeAnObject = (prev, style) => {
-  const separated = style.split(':');
-  const [key, value] = separated;
+const makeTheStylePairs = (prev, style) => {
+  const [key, value] = style.split(':');
+  const styleSeparated = style.split(':');
 
-  return separated.length > 1
+  return styleSeparated.length > 1
     ? {
       ...prev,
       [key.trim()]: value.trim(),
@@ -27,9 +27,8 @@ const makeAnObject = (prev, style) => {
 
 function convertToObject(sourceString) {
   const strings = sourceString.split(';');
-  const formattedStyles = strings.reduce(makeAnObject, {});
 
-  return formattedStyles;
+  return strings.reduce(makeTheStylePairs, {});
 }
 
 module.exports = convertToObject;

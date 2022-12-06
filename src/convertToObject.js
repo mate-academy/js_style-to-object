@@ -2,6 +2,7 @@
 
 /**
  *
+ * 
  * @param {string} sourceString
  *
  * @return {object}

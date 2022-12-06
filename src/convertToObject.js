@@ -14,16 +14,16 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .filter(property => property.includes(':'))
-    .map(property => property.split(':'))
     .reduce((prev, property) => {
-      const propertyName = property[0].trim();
-      const propertyValue = property[1].trim();
+      const splitProperty = property.split(':');
+      const propertyName = splitProperty[0];
+      const propertyValue = splitProperty[1];
 
-      return {
-        ...prev,
-        [propertyName]: propertyValue,
-      };
+      if (propertyName.length > 0 && propertyValue) {
+        prev[propertyName.trim()] = propertyValue.trim();
+      }
+
+      return prev;
     }, {});
 }
 

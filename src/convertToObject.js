@@ -14,17 +14,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newArray = sourceString.split(';')
-    .map((element) => element.split(':'))
+  return sourceString.split(';')
+    .map(element => element.split(':').map(parametr => parametr.trim()))
     .filter((word) => (word.length > 1))
-    .reduce((key, value) => {
-      // eslint-disable-next-line no-unused-expressions
-      key[value[0].trim()] = value[1].trim();
-
-      return key;
-    }, {});
-
-  return newArray;
+    .reduce((prev, [key, value]) => ({
+      ...prev, [key]: value,}), {});
 }
 
 module.exports = convertToObject;

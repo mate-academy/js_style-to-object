@@ -20,9 +20,9 @@ function convertToObject(sourceString) {
     .split(';')
     .map(elem => elem.split(':'))
     .filter(value => value.length === 2)
-    .reduce((prev, curr) => ({
+    .reduce((prev, [key, value]) => ({
       ...prev,
-      [curr[0].trim()]: curr[1].trim(),
+      [key.trim()]: value.trim(),
     }), {});
 }
 

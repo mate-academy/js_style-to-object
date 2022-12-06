@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
 
   sourceString.split(';').map(line =>
     line.trim()).filter(line => line)
-    .forEach(lns => {
+    .map(lns => {
       const [property, value] = lns.split(':');
 
       styles[property.trim()] = value.trim();

@@ -15,11 +15,14 @@
  */
 function convertToObject(sourceString) {
   return sourceString.split(';')
-    .map(property => property.trim().split(':'))
-    .filter(property => property.length === 2)
-    .map(([property, value]) => [property.trim(), value.trim()])
-    .reduce((cssObject, [key, value]) => {
-      cssObject[key] = value;
+    .reduce((cssObject, style) => {
+      const splittedStyle = style.trim().split(':');
+      const key = splittedStyle[0];
+      const value = splittedStyle[1];
+
+      if (value) {
+        cssObject[key.trim()] = value.trim();
+      }
 
       return cssObject;
     }, {});

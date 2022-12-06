@@ -13,19 +13,20 @@
  *
  * @return {object}
  */
-const makeAnObject = (prev, [key, ...value]) => (
-  {
-    ...prev,
-    [key]: value.join(' '),
-  }
-);
+const makeAnObject = (prev, style) => {
+  const separated = style.split(':');
+  const [key, value] = separated;
+
+  return separated.length > 1
+    ? {
+      ...prev, [key.trim()]: value.trim(), 
+    }
+    : prev;
+};
 
 function convertToObject(sourceString) {
   const styles = sourceString.split(';');
-  const objectOfClasses = styles
-    .map(style => style.split(':').map(el => el.trim()))
-    .filter(style => style.length >= 2)
-    .reduce(makeAnObject, {});
+  const objectOfClasses = styles.reduce(makeAnObject, {});
 
   return objectOfClasses;
 }

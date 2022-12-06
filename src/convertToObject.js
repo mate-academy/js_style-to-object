@@ -15,17 +15,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const cssStyles = {};
 
-  sourceString
+  return sourceString
     .split(';')
     .map(elem => elem.split(':'))
     .filter(value => value.length === 2)
-    .forEach(value => {
-      cssStyles[value[0].trim()] = value[1].trim();
-    });
-
-  return cssStyles;
+    .reduce((prev, curr) => ({
+      ...prev,
+      [curr[0].trim()]: curr[1].trim(),
+    }), {});
 }
 
 module.exports = convertToObject;

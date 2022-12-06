@@ -19,7 +19,8 @@ const makeAnObject = (prev, style) => {
 
   return separated.length > 1
     ? {
-      ...prev, [key.trim()]: value.trim(),
+      ...prev,
+      [key.trim()]: value.trim(),
     }
     : prev;
 };

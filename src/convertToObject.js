@@ -21,15 +21,11 @@ function convertToObject(sourceString) {
 
   const result = {};
 
-  separateElements.map(elem => {
-    if (elem.length > 1) {
-      createObjectProp(elem[0], elem[1], result);
+  separateElements.map(([cssKey, cssValue]) => {
+    if (cssKey && cssValue) {
+      result[cssKey] = cssValue;
     }
   });
-
-  function createObjectProp(key, value, obj) {
-    obj[key] = value;
-  }
 
   return result;
 }

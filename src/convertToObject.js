@@ -19,16 +19,16 @@ const makeAnObject = (prev, style) => {
 
   return separated.length > 1
     ? {
-      ...prev, [key.trim()]: value.trim(), 
+      ...prev, [key.trim()]: value.trim(),
     }
     : prev;
 };
 
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';');
-  const objectOfClasses = styles.reduce(makeAnObject, {});
+  const strings = sourceString.split(';');
+  const formattedStyles = strings.reduce(makeAnObject, {});
 
-  return objectOfClasses;
+  return formattedStyles;
 }
 
 module.exports = convertToObject;

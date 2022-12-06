@@ -6,18 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-
-  sourceString.split(';')
-    .forEach(rule => {
+  return sourceString.split(';')
+    .reduce((accumulator, rule) => {
       if (rule.includes(':')) {
-        const parts = rule.split(':');
+        const [key, value] = rule.split(':');
 
-        styles[parts[0].trim()] = parts[1].trim();
+        accumulator[key.trim()] = value.trim();
       }
-    });
 
-  return styles;
+      return accumulator;
+    }, {});
 }
 
 module.exports = convertToObject;

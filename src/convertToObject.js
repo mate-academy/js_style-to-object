@@ -15,9 +15,8 @@
  */
 const makeTheStylePairs = (prev, style) => {
   const [key, value] = style.split(':');
-  const styleSeparated = style.split(':');
 
-  return styleSeparated.length > 1
+  return value !== undefined
     ? {
       ...prev,
       [key.trim()]: value.trim(),

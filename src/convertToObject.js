@@ -10,11 +10,10 @@ function convertToObject(sourceString) {
     .split(';')
     .map(item => item.trim())
     .filter(item => item !== '')
-    .map(item => item.split(':')
-      .map(value => value.trim()))
+    .map(item => item.split(':'))
     .reduce((prev, curr) => ({
       ...prev,
-      [curr[0]]: curr[1],
+      [curr[0].trim()]: curr[1].trim(),
     }), {});
 
   return convertedStyles;

@@ -17,9 +17,9 @@ function convertToObject(sourceString) {
     .map((style) => style.trim())
     .filter((style) => style.length > 0)
     .forEach((style) => {
-      const splitedArr = style.split(':');
+      const [cssName, cssValue] = style.split(':');
 
-      result[splitedArr[0].trim()] = splitedArr[1].trim();
+      result[cssName.trim()] = cssValue.trim();
     });
 
   return result;

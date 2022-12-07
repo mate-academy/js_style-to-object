@@ -15,10 +15,12 @@ function convertToObject(sourceString) {
   // write your code here
   const styles = {};
 
-  sourceString.split(';').map(line =>
-    line.trim()).filter(line => line)
-    .map(lns => {
-      const [property, value] = lns.split(':');
+  sourceString
+    .split(';')
+    .map(line => line.trim())
+    .filter(line => line)
+    .forEach(line => {
+      const [property, value] = line.split(':');
 
       styles[property.trim()] = value.trim();
     });

@@ -14,17 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssStyles = sourceString
-    .split(';')
-    .map(el => el.trim())
-    .filter(el => el.length > 0)
-    .map(el => el.split(':'))
-    .reduce((prev, el) => ({
-      ...prev,
-      [el[0].trim()]: el[1].trim(),
-    }), {});
+  const stylesCss = sourceString.split(';');
 
-  return cssStyles;
+  return stylesCss.reduce((css, styles) => {
+    const props = styles.split(':');
+    const key = props[0];
+    const value = props[1];
+
+    if (value) {
+      css[key.trim()] = value.trim();
+    }
+
+    return css;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -14,21 +14,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString
-    .split('\n')
-    .map(properties =>
-      properties
-        .split(':')
-        .map(str => (str
-          .split(';')
-          .join('')
-          .trim()
-        )))
-    .filter(item => item.length !== 1)
-    .reduce((newObject, [property, value]) => ({
-      ...newObject,
-      [property]: value,
-    }), {});
+  return sourceString.split(';')
+    .filter(rule => rule.includes(':'))
+    .map(rule => rule.split(':'))
+    .reduce((result, [key, value]) => {
+      result[key.trim()] = value.trim();
+    }, {});
 };
 
 module.exports = convertToObject;

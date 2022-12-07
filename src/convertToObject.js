@@ -24,9 +24,7 @@ function convertToObject(sourceString) {
     .map((x) => x.split(':'))
     .filter((x) => x.length > 1)
     .forEach(x => {
-      x[keyObject] = x[keyObject].trim();
-      x[valueObject] = x[valueObject].trim();
-      finalObject[x[keyObject]] = x[valueObject];
+      finalObject[x[keyObject].trim()] = x[valueObject].trim();
     });
 
   return finalObject;

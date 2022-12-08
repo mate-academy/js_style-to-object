@@ -17,9 +17,10 @@ function convertToObject(sourceString) {
   return sourceString.split(';')
     .filter(rule => rule.includes(':'))
     .map(rule => rule.split(':'))
-    .reduce((result, [key, value]) => {
-      result[key.trim()] = value.trim();
-    }, {});
+    .reduce((result, [property, value]) => ({
+      ...result,
+      [property.trim()]: value.trim(),
+    }), {});
 };
 
 module.exports = convertToObject;

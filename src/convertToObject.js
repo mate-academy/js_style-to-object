@@ -20,9 +20,9 @@ function convertToObject(sourceString) {
     .split(';')
     .filter(style => style.includes(':'))
     .map(style => style.split(':'))
-    .reduce((prev, style) => ({
+    .reduce((prev, [key, value]) => ({
       ...prev,
-      [style[0].trim()]: style[1].trim(),
+      [key.trim()]: value.trim(),
     }), {});
 
   return settings;

@@ -16,11 +16,13 @@
 
 function convertToObject(sourceString) {
   const finalObject = {};
+
   sourceString.split(';')
-    .map((x) => x.trim().split(':'))
-    .filter((x) => x.length)
-    .forEach(([key, value]) => {
-      finalObject[key.trim()] = value.trim();
+    .map(properties => properties.trim())
+    .filter(properties => properties.length > 1)
+    .map(properties => properties.split(':'))
+    .forEach(([property, value]) => {
+      finalObject[property.trim()] = value.trim();
     });
 
   return finalObject;

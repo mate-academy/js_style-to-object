@@ -16,9 +16,6 @@
 
 function convertToObject(sourceString) {
   const finalObject = {};
-  const keyObject = 0;
-  const valueObject = 1;
-
   sourceString.split(';')
     .map((x) => x.trim())
     .map((x) => x.split(':'))

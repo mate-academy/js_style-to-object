@@ -12,24 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const minPropertyLength = 5;
-  const splittedStyle = sourceString.split('\n');
-  const formatedStyle = {};
+  return sourceString
+    .split(';')
+    .reduce((accumulator, property) => {
+      const splittedString = property.split(':');
+      const propertyName = splittedString[0];
+      const propertyValue = splittedString[1];
 
-  splittedStyle
-    .filter(property => property.length > minPropertyLength)
-    .map(property => {
-      const splitted = property.trim().split(':');
+      if (propertyName.length > 0 && propertyValue) {
+        accumulator[propertyName.trim()] = propertyValue.trim();
+      }
 
-      return splitted.map(key => {
-        return key.replace(';', '').trim();
-      });
-    })
-    .forEach(property => {
-      formatedStyle[property[0]] = property[1];
-    });
-
-  return formatedStyle;
+      return accumulator;
+    }, {});
 }
 
 module.exports = convertToObject;

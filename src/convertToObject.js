@@ -13,6 +13,26 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  let final = sourceString
+  .split('\n')
+  .filter(string => string.length > 1)
+  .map(string => string.split(':'))
+  .map(string =>
+    string.map((string, i) => i === 0
+    ? string.trim()
+    : string.slice(0, -1)
+    )
+  )
+  .filter(string => string.length > 1)
+  .map(string => string.map(string => string.trim()))
+  .reduce((a, x) =>
+  {
+    a[x[0]] = x[1]
+    return a;
+  }, {}
+  )
+
+  return final;
 }
 
 module.exports = convertToObject;

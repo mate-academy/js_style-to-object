@@ -15,12 +15,10 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .reduce((accumulator, property) => {
-      const splittedString = property.split(':');
-      const propertyName = splittedString[0];
-      const propertyValue = splittedString[1];
+      const [key, value] = property.split(':');
 
-      if (propertyName.length > 0 && propertyValue) {
-        accumulator[propertyName.trim()] = propertyValue.trim();
+      if (key.length > 0 && value) {
+        accumulator[key.trim()] = value.trim();
       }
 
       return accumulator;

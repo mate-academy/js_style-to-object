@@ -19,14 +19,14 @@ function convertToObject(sourceString) {
   const splitedPart = sourceString
     .split(';')
     .map(space => space.trim())
-    .filter(element => element.length !== 0)
+    .filter(Boolean)
     .map(part => part.split(':'));
 
   const createdObject = splitedPart
-    .reduce((prev, value) => {
+    .reduce((prev, [key, value]) => {
       return {
         ...prev,
-        [value[0].trim()]: value[1].trim(),
+        [key.trim()]: value.trim(),
       };
     }, {});
 

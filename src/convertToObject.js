@@ -14,18 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringToCSS = sourceString
-    .split(';')
-    .map(elem => elem.trim())
-    .filter(elem => elem !== '')
-    .map(elem => elem.split(':').map(property => property.trim()))
-    .reduce((prev, elem) => {
-      return {
-        ...prev, [elem[0]]: elem[1],
-      };
-    }, {});
+  const stringToCss = (prev, elem) => {
+    const [key, value] = elem.split(':');
 
-  return stringToCSS;
+    if (value !== undefined) {
+      return {
+        ...prev,
+        [key.trim()]: value.trim(),
+      };
+    } else {
+      return prev;
+    }
+  };
+
+  const cssString = sourceString.split(';');
+
+  return cssString.reduce(stringToCss, {});
 }
 
 module.exports = convertToObject;

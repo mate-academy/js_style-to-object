@@ -14,6 +14,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const cssString = sourceString.split(';');
+
   const stringToCss = (prev, elem) => {
     const [key, value] = elem.split(':');
 
@@ -26,8 +28,6 @@ function convertToObject(sourceString) {
       return prev;
     }
   };
-
-  const cssString = sourceString.split(';');
 
   return cssString.reduce(stringToCss, {});
 }

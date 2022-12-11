@@ -17,7 +17,6 @@ function convertToObject(sourceString) {
   // write your code here
   const final = sourceString
     .split(';')
-  // .filter(string => string.length > 1)
     .map(string => string.split(':'))
     .map(string => string.map(string2 => string2.trim()))
     .filter(string => string.length > 1)

@@ -9,12 +9,19 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(item => item.split(':'))
-    .filter(item => item.length > 1)
-    .reduce((acc, current) => {
-      acc[current[0].trim()] = current[1].trim();
+    .reduce((css, style) => {
+      const [property, value] = style.trim().split(':');
 
-      return acc;
+      if (value) {
+        return {
+          ...css,
+          [property.trim()]: value.trim(),
+        };
+      }
+
+      return {
+        ...css,
+      };
     }, {});
 }
 

@@ -17,16 +17,12 @@ function convertToObject(sourceString) {
   const resultObject = sourceString.split(';')
     .map(x => x.split(':').map(y => y.trim()))
     .reduce((a, x) => {
-      a[x[0]] = x[1];
+      if (x[0] && x[1]) {
+        a[x[0]] = x[1];
+      }
 
       return a;
     }, {});
-
-  for (const item in resultObject) {
-    if (!item.length) {
-      delete resultObject[item];
-    }
-  }
 
   return resultObject;
 }

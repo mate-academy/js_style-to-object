@@ -21,12 +21,10 @@ function convertToObject(sourceString) {
     .map(element => element.split(':')
       .map(property => property.trim()));
 
-  const callback = (prev, property) => ({
+  return sourceArray.reduce((prev, property) => ({
     ...prev,
     [property[0]]: property[1],
-  });
-
-  return sourceArray.reduce(callback, {});
+  }), {});
 }
 
 module.exports = convertToObject;

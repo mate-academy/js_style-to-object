@@ -23,9 +23,9 @@ function convertToObject(sourceString) {
   const result = {};
 
   trimmedString.map((style) => {
-    const propertyAndValue = style.split(':');
+    const [cssName, cssValue] = style.split(':');
 
-    return (result[propertyAndValue[0].trim()] = propertyAndValue[1].trim());
+    return (result[cssName.trim()] = cssValue.trim());
   });
 
   return result;

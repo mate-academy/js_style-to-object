@@ -14,13 +14,9 @@ function convertToObject(sourceString) {
     .filter(removeEmptyString => removeEmptyString.length > 1)
     .map(element => element.split(':'));
 
-  const result = {};
-
-  for (const value of propertiesArr) {
-    result[value[0].trim()] = value[1].trim();
-  }
-
-  return result;
+  return propertiesArr.reduce((prev, properties) => ({
+    ...prev, [properties[0].trim()]: properties[1].trim(),
+  }), {});
 }
 
 module.exports = convertToObject;

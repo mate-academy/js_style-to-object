@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Implement convertToObject function:
@@ -18,17 +18,17 @@
 
 function convertToObject(sourceString) {
   const styleObject = {};
-  const arrayOfProperties = sourceString.split(';');
+  const arrayOfProperties = sourceString.split(";");
   const arrayWithoutWhitespaces = arrayOfProperties.filter((property) =>
-    property.includes(':')
+    property.includes(":")
   );
 
   arrayWithoutWhitespaces.forEach((element) => {
-    const splittedPair = element.split(':');
+    const splittedPair = element.split(":");
     const pairProperty = splittedPair[0].trim();
     const pairValue = splittedPair[1].trim();
 
-    styleObject[pairProperty] = pairValue.trim();
+    styleObject[pairProperty] = pairValue;
   });
 
   return styleObject;

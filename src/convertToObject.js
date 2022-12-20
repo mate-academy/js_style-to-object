@@ -15,8 +15,7 @@
  */
 function convertToObject(sourceString) {
   const strToArr = sourceString.split(';');
-  const arrModified = strToArr.map(string => string.trim());
-  const arrOfArrays = arrModified.map(string => string.split(':'));
+  const arrModified = strToArr.map(string => string.trim().split(':'));
 
   function callback(prev, arr) {
     return {
@@ -25,7 +24,7 @@ function convertToObject(sourceString) {
     };
   }
 
-  const result = arrOfArrays.filter(a => a.length === 2).reduce(callback, {});
+  const result = arrModified.filter(a => a.length === 2).reduce(callback, {});
 
   return result;
 }

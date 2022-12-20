@@ -14,15 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newStr = sourceString.replace(/\n/g, '');
+  const styleString = sourceString.replace(/\n/g, '');
 
-  const arr = newStr.split(';');
+  const styleArray = styleString.split(';');
 
-  const arrNew = arr.filter(x => x.length > 2);
+  const styleArrayCorrect = styleArray.filter(x => x.length > 2);
 
   const result = {};
 
-  arrNew.map(style => {
+  styleArrayCorrect.map(style => {
     const index = style.indexOf(':');
     const key = style.slice(0, index).trim();
     const value = style.slice(index + 1).trim();

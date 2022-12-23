@@ -15,17 +15,20 @@
  */
 function convertToObject(sourceString) {
   const props = sourceString.split(';');
-  const propsAsObject = {};
+  let cssPropsObj = {};
 
-  for (const prop of props) {
-    const entry = prop.split(':');
+  props.forEach(prop => {
+    const propDyad = prop.split(':');
 
-    if (entry[1]) {
-      Object.assign(propsAsObject, { [entry[0].trim()]: entry[1].trim() });
+    if (propDyad[1]) {
+      cssPropsObj = {
+        ...cssPropsObj,
+        [propDyad[0].trim()]: propDyad[1].trim(),
+      };
     }
-  }
+  });
 
-  return propsAsObject;
+  return cssPropsObj;
 }
 
 module.exports = convertToObject;

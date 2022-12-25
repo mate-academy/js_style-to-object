@@ -11,7 +11,7 @@ function convertToObject(sourceString) {
   const words = sourceString.split(';');
   const result = {};
 
-  for (const word of words) {
+  words.map(word => {
     const splitedWord = word.split(':');
 
     if (splitedWord.length === 2) {
@@ -19,9 +19,26 @@ function convertToObject(sourceString) {
 
       result[key.trim()] = value.trim();
     }
-  }
+  });
 
   return result;
 };
+
+// function convertToObject(sourceString) {
+//   const words = sourceString.split(';');
+//   const result = {};
+
+//   for (const word of words) {
+//     const splitedWord = word.split(':');
+
+//     if (splitedWord.length === 2) {
+//       const [key, value] = splitedWord;
+
+//       result[key.trim()] = value.trim();
+//     }
+//   }
+
+//   return result;
+// };
 
 module.exports = convertToObject;

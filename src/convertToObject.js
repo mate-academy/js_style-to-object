@@ -12,7 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const convertedStyle = {};
+  const styles = sourceString.replace(/(\r\n|\n|\r)/gm, '').split(';');
+  const newStyles = styles.map(a => a.trim()).filter(a => a !== '');
+
+  for (const style of newStyles) {
+    convertedStyle[style.split(':')[0].trim()] = style.split(':')[1].trim();
+  }
+
+  return convertedStyle;
 }
 
 module.exports = convertToObject;

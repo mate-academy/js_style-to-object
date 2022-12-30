@@ -1,5 +1,4 @@
 'use strict';
-// no max-len
 
 /**
  * Implement convertToObject function:

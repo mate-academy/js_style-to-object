@@ -14,8 +14,8 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  return sourceString
+const convertToObject = sourceString => (
+  sourceString
     .split(';')
     .map(e => e.trim())
     .reduce((stylesObject, styleString) => {
@@ -28,7 +28,7 @@ function convertToObject(sourceString) {
       }
 
       return stylesObject;
-    }, {});
-}
+    }, {})
+);
 
 module.exports = convertToObject;

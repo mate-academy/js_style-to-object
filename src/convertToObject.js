@@ -8,7 +8,7 @@ function convertToObject(sourceString) {
 
   const result = {};
 
-  keyValuePairs.map(([key, value]) => {
+  keyValuePairs.forEach(([key, value]) => {
     result[key.trim()] = value.trim();
   });
 

@@ -15,9 +15,7 @@
  */
 function convertToObject(sourceString) {
   const cssStyles = {};
-  let keysWithValues = [];
-
-  keysWithValues = sourceString.split(';').map(item =>
+  const keysWithValues = sourceString.split(';').map(item =>
     item.slice(item.lastIndexOf('\n') + 1)
   ).filter(item =>
     item.indexOf(':') !== -1

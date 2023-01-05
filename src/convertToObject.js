@@ -15,11 +15,10 @@
  */
 function convertToObject(sourceString) {
   const cssStyles = {};
-  const keysWithValues = sourceString.split(';').map(item =>
-    item.slice(item.lastIndexOf('\n') + 1)
-  ).filter(item =>
-    item.indexOf(':') !== -1
-  );
+  const keysWithValues = sourceString
+    .split(';')
+    .map(item => item.slice(item.lastIndexOf('\n') + 1))
+    .filter(item => item.indexOf(':') !== -1);
 
   for (const item of keysWithValues) {
     const colonIndex = item.indexOf(':');

@@ -15,18 +15,16 @@
  */
 function convertToObject(sourceString) {
   const cssStyles = {};
-  const keysWithValues = sourceString
+
+  sourceString
     .split(';')
-    .map(item => item.slice(item.lastIndexOf('\n') + 1))
-    .filter(item => item.indexOf(':') !== -1);
+    .map(item => item.trim())
+    .filter(item => item.indexOf(':') !== -1)
+    .forEach(item => {
+      const [key, value] = item.split(':');
 
-  for (const item of keysWithValues) {
-    const colonIndex = item.indexOf(':');
-    const key = item.slice(0, colonIndex).trim();
-    const value = item.slice(colonIndex + 1).trim();
-
-    cssStyles[key] = value;
-  }
+      cssStyles[key.trim()] = value.trim();
+    });
 
   return cssStyles;
 }

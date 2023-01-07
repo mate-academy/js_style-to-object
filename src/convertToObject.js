@@ -14,19 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesProperties = sourceString
+  return sourceString
     .split(';')
     .filter(propertie => propertie.toLocaleLowerCase()
       !== propertie.toLocaleUpperCase())
-    .map(propertie => propertie.split(':'));
+    .map(propertie => propertie.split(':'))
+    .reduce((stylesPropertiesObj, propertie) => {
+      const [keys, values] = propertie;
 
-  return stylesProperties.reduce((stylesPropertiesObj, propertie) => {
-    const [keys, values] = propertie;
+      stylesPropertiesObj[keys.trim()] = values.trim();
 
-    stylesPropertiesObj[keys.trim()] = values.trim();
-
-    return stylesPropertiesObj;
-  }, {});
+      return stylesPropertiesObj;
+    }, {});
 }
 
 module.exports = convertToObject;

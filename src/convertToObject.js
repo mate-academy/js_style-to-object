@@ -14,22 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultObject = {};
+  const styleObject = {};
   const styleArr = sourceString.split(';');
 
   styleArr.forEach(property => {
     const [key, value] = property.split(':');
 
     if (!key) {
-      return resultObject;
+      return styleObject;
     }
 
     if (key && value) {
-      resultObject[key.trim()] = value.trim();
+      styleObject[key.trim()] = value.trim();
     }
   });
 
-  return resultObject;
+  return styleObject;
 }
 
 module.exports = convertToObject;

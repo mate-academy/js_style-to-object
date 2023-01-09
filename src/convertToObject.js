@@ -14,21 +14,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesSorted = {};
-
+  // const stylesSorted = {};
   const sorting = sourceString
     .trim()
-    .split(';');
+    .split(';')
+    .filter(items => items.length > 1 && items.includes(':'));
 
-  sorting.map(elements => {
+  // sorting.map(elements => {
+  //   const [key, element] = elements.split(':');
+
+  //   if (key && element) {
+  //     stylesSorted[key.trim()] = element.trim();
+  //   },
+  // });
+  return sorting.reduce((stylesSorted, elements) => {
     const [key, element] = elements.split(':');
 
-    if (key && element) {
-      stylesSorted[key.trim()] = element.trim();
-    }
-  });
+    stylesSorted[key.trim()] = element.trim();
 
-  return stylesSorted;
+    return stylesSorted;
+  }, {});
 }
 
 module.exports = convertToObject;

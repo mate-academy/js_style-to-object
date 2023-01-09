@@ -18,20 +18,16 @@ function convertToObject(sourceString) {
   const stringArray = sourceString.split(';');
   const keysAndValues = stringArray.map(element => element.split(':'));
 
-  for (let i = 0; i < keysAndValues.length; i++) {
-    const element = keysAndValues[i];
-
-    const key = element[0].trim();
-    const value = String(element[1]).trim();
-
-    if (value === 'undefined') {
-      continue;
-    }
+  const getProp = (str) => {
+    const key = str[0].trim();
+    const value = String(str[1]).trim();
 
     result[key] = value;
-  }
+  };
+
+  keysAndValues.forEach(prop => prop.length > 1 ? getProp(prop) : result);
 
   return result;
-}
+};
 
 module.exports = convertToObject;

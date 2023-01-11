@@ -14,19 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesResult = {};
-
-  sourceString
+  const sourceArray = sourceString
     .split(';')
-    .map(style => style.trim())
-    .filter(style => style.includes(':'))
-    .forEach(style => {
-      const [key, value] = style.split(':');
+    .filter(style => style.includes(':') && style.length > 1);
 
-      stylesResult[key.trim()] = value.trim();
-    });
+  return sourceArray.reduce((resultObject, style) => {
+    const [key, value] = style.split(':');
 
-  return stylesResult;
+    resultObject[key.trim()] = value.trim();
+
+    return resultObject;
+  }, {});
 }
 
 module.exports = convertToObject;

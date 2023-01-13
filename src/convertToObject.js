@@ -19,13 +19,15 @@ function convertToObject(sourceString) {
   const keysAndValues = stringArray.map(element => element.split(':'));
 
   const getProp = (str) => {
-    const key = str[0].trim();
-    const value = String(str[1]).trim();
+    if (str.length > 1) {
+      const key = str[0].trim();
+      const value = str[1].trim();
 
-    result[key] = value;
+      result[key] = value;
+    }
   };
 
-  keysAndValues.forEach(prop => prop.length > 1 ? getProp(prop) : result);
+  keysAndValues.forEach(prop => getProp(prop));
 
   return result;
 };

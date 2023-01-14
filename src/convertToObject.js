@@ -18,7 +18,7 @@
 function convertToObject(sourceString) {
   const words = sourceString.split(';');
 
-  const myObj = {};
+  const Obj = {};
 
   for (const word of words) {
     const splitedWord = word.split(':');
@@ -26,11 +26,11 @@ function convertToObject(sourceString) {
     if (splitedWord.length === 2) {
       const [key, value] = splitedWord;
 
-      myObj[key.trim()] = value.trim();
+      Obj[key.trim()] = value.trim();
     }
   }
 
-  return myObj;
+  return Obj;
 }
 
 module.exports = convertToObject;

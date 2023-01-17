@@ -18,19 +18,19 @@
 function convertToObject(sourceString) {
   const words = sourceString.split(';');
 
-  const Obj = {};
+  const obj = {};
 
-  for (const word of words) {
+  words.forEach(function(word) {
     const splitedWord = word.split(':');
 
     if (splitedWord.length === 2) {
       const [key, value] = splitedWord;
 
-      Obj[key.trim()] = value.trim();
+      obj[key.trim()] = value.trim();
     }
-  }
+  });
 
-  return Obj;
+  return obj;
 }
 
 module.exports = convertToObject;

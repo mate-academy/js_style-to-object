@@ -15,11 +15,12 @@
  */
 function convertToObject(sourceString) {
   return sourceString.split(';')
-    .filter((element) => element.includes(':'))
     .reduce((accum, curr) => {
-      const [key, value] = curr.split(':');
+      if (curr.includes(':')) {
+        const [key, value] = curr.split(':');
 
-      accum[key.trim()] = value.trim();
+        accum[key.trim()] = value.trim();
+      }
 
       return accum;
     }, {});

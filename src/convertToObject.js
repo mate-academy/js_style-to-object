@@ -20,9 +20,11 @@ function convertToObject(sourceString) {
   stringToArray.forEach(element => {
     const keyAndValueInObj = element.split(':');
     const keyInObj = keyAndValueInObj[0]
-      ? keyAndValueInObj[0].trim() : keyAndValueInObj[0];
+      ? keyAndValueInObj[0].trim()
+      : keyAndValueInObj[0];
     const valueInObj = keyAndValueInObj[1]
-      ? keyAndValueInObj[1].trim() : keyAndValueInObj[1];
+      ? keyAndValueInObj[1].trim()
+      : keyAndValueInObj[1];
 
     if (keyInObj && valueInObj) {
       resObj[keyInObj] = valueInObj;

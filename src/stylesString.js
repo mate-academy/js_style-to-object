@@ -19,19 +19,14 @@ const stylesString = `
   padding-left    : 18px;
   padding-right: 30px;
   ;
-
   ;
   position: relative;
-
-
   text-align: left !important;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-
   white-space: nowrap;
   width: auto;
 `;

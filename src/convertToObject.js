@@ -14,19 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const sourceObj = {};
   const sourceArr = sourceString.split(';')
     .map(el => el.trim())
     .filter(el => el.length > 0);
 
-  for (let i = 0; i < sourceArr.length; i++) {
-    const index = sourceArr[i].indexOf(':');
-    const key = sourceArr[i].slice(0, index).trim();
-    const value = sourceArr[i].slice(index + 1).trim();
+  const callback = (obj, el) => {
+    const index = el.indexOf(':');
+    const key = el.slice(0, index).trim();
+    const value = el.slice(index + 1).trim();
 
-    sourceObj[key] = value;
-  }
+    obj[key] = value;
+
+    return obj;
+  };
+
+  const sourceObj = sourceArr.reduce(callback, {});
 
   return sourceObj;
 }

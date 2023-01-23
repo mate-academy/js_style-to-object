@@ -16,16 +16,22 @@
 function convertToObject(sourceString) {
   const styleObj = {};
 
-  const stylesArr = sourceString.split(';');
-
-  for (const style in stylesArr) {
-    const keyAndValueTogether = stylesArr[style].split(':');
-    const [key, value] = keyAndValueTogether;
+  sourceString.split(';').map((style) => {
+    const [key, value] = style.split(':');
 
     if (key.length >= 1 && value) {
       styleObj[key.trim()] = value.trim();
     }
-  }
+  });
+
+  // for (const style in stylesArr) {
+  //   const keyAndValueTogether = stylesArr[style].split(':');
+  //   const [key, value] = keyAndValueTogether;
+
+  //   if (key.length >= 1 && value) {
+  //     styleObj[key.trim()] = value.trim();
+  //   }
+  // }
 
   return styleObj;
 }

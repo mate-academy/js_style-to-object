@@ -19,11 +19,9 @@ function convertToObject(sourceString) {
     .filter(el => el.length > 0);
 
   const callback = (obj, el) => {
-    const index = el.indexOf(':');
-    const key = el.slice(0, index).trim();
-    const value = el.slice(index + 1).trim();
+    const elArr = el.split(':');
 
-    obj[key] = value;
+    obj[elArr[0].trim()] = elArr[1].trim();
 
     return obj;
   };

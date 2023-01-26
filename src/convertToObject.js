@@ -14,15 +14,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObj = {};
+  const styleArr = sourceString.split(';');
 
-  sourceString.split(';').map((style) => {
-    const [key, value] = style.split(':');
+  const styleObj = styleArr
+    .reduce((previousValue, currentValue, currentIndex, array) => {
+      const [key, value] = styleArr[currentIndex].split(':');
 
-    if (key.length >= 1 && value) {
-      styleObj[key.trim()] = value.trim();
-    }
-  });
+      if (key.length > 1 && value) {
+        return {
+          ...previousValue,
+          [key.trim()]: value.trim(),
+        };
+      }
+
+      return {
+        ...previousValue,
+      };
+    }, {});
 
   return styleObj;
 }

@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
 
   const filteredArr = trimmedArr.filter(n => n);
 
-  const maped = filteredArr.map((a, index, elements) =>
+  const mapedArr = filteredArr.map((a, index, elements) =>
     [a, elements[index + 1]]);
 
-  const finalArray = maped.filter(function(element, index, array) {
+  const finalArray = mapedArr.filter(function(element, index, array) {
     return (index % 2 === 0);
   });
 

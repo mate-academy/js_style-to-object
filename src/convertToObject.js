@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
   const styleArr = sourceString.split(';');
 
   return styleArr
-    .reduce((previousValue, currentValue, currentIndex,) => {
+    .reduce((previousValue, currentValue, currentIndex) => {
       const [key, value] = styleArr[currentIndex].split(':');
 
       if (key.length > 1 && value) {

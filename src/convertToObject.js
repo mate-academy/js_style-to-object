@@ -16,8 +16,8 @@
 function convertToObject(sourceString) {
   const styleArr = sourceString.split(';');
 
-  const styleObj = styleArr
-    .reduce((previousValue, currentValue, currentIndex, array) => {
+  return styleArr
+    .reduce((previousValue, currentValue, currentIndex,) => {
       const [key, value] = styleArr[currentIndex].split(':');
 
       if (key.length > 1 && value) {
@@ -31,8 +31,6 @@ function convertToObject(sourceString) {
         ...previousValue,
       };
     }, {});
-
-  return styleObj;
 }
 
 module.exports = convertToObject;

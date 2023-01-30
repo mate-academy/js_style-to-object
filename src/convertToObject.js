@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const filterArr = sourceString.split(';').filter(value => value.length > 4);
+  const filterArr = sourceString.split(';').filter(value => !!value.trim());
 
   return filterArr.reduce((prevElem, currentElem) => {
     const [key, value] = currentElem.split(':');

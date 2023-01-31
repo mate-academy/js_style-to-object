@@ -33,7 +33,7 @@ function convertToObject(sourceString) {
     return acc;
   }, {});
 
-  // if we have some empty key we need to delete it
+  // if we have some empty key we need to delete  it
   delete object[''];
 
   return object;

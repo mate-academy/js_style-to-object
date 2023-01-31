@@ -14,8 +14,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArray = sourceString.split(';').map(style => style.split(':')
-    .map(property => property.trim())).filter(el => !''.includes(el));
+  const stylesArray = sourceString.split(';')
+    .map(style => style
+      .split(':')
+      .map(property => property.trim()))
+    .filter(el => el.length > 1);
 
   const stylesObject = {};
 

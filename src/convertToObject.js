@@ -10,18 +10,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const str = sourceString.split(';').filter(
-    item => item.includes(':') && item.length > 1
-  );
+  const cssArray = sourceString.split(';')
+    .map(line => line.trim())
+    .filter(line => line.match('.+:.+') !== null)
+    .map(line => line.split(':'))
+    .reduce((acc, arr) => {
+      acc[arr[0].trim()] = arr[1].trim();
 
-  for (let i = 0; i < str.length; i++) {
-    const [key, value] = str[i].split(':');
+      return acc;
+    }, {});
 
-    result[key.trim()] = value.trim();
-  }
-
-  return result;
+  return cssArray;
 }
 
 module.exports = convertToObject;

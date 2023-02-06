@@ -17,16 +17,18 @@ function convertToObject(sourceString) {
   const arr = sourceString.split(';');
 
   const obj = arr.reduce((accumulator, element) => {
-    const separator = element.indexOf(':');
-    const key = element.slice(0, separator).trim();
-    const value = element.slice(separator + 1).trim();
+    // const separator = element.indexOf(':');
+    // const key = element.slice(0, separator).trim();
+    // const value = element.slice(separator + 1).trim();
 
-    accumulator[key] = value;
+    const [key, value] = element.split(':').map(text => text.trim());
+
+    if (key) {
+      accumulator[key] = value;
+    }
 
     return accumulator;
   }, {});
-
-  delete obj[''];
 
   return obj;
 }

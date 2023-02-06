@@ -19,8 +19,8 @@ function convertToObject(sourceString) {
     .filter(remove => remove.length > 1)
     .map(element => element.split(':'));
 
-  return (prortiesArr.reduce((prev, properties) => ({
-    ...prev, [properties[0].trim()]: properties[1].trim(),
+  return (prortiesArr.reduce((obj, properties) => ({
+    ...obj, [properties[0].trim()]: properties[1].trim(),
   }), {}));
 }
 

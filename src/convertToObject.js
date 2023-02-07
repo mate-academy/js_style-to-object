@@ -17,10 +17,9 @@ function convertToObject(sourceString) {
   const cssStyles = {};
 
   sourceString.split(';')
-    .map(eachString => eachString.trim().split(':'))
-    .map(eachArray => eachArray.map(eachString => eachString.trim()))
+    .map(eachString => eachString.split(':').map(str => str.trim()))
     .filter(eachArray => eachArray.length === 2)
-    .map(eachArray => {
+    .forEach(eachArray => {
       cssStyles[eachArray[0]] = eachArray[1];
     });
 

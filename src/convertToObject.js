@@ -15,8 +15,10 @@ function convertToObject(sourceString) {
   const newArr = sourceString.split(';');
 
   return newArr.reduce((object, value) => {
-    if (value.split(':')[0].trim().length > 1) {
-      object[value.split(':')[0].trim()] = value.split(':')[1].trim();
+    const [key, val] = value.split(':');
+
+    if (key.trim().length > 1) {
+      object[key.trim()] = val.trim();
     }
 
     return object;

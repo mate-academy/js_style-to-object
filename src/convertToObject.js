@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const callback = (accu, current) => ({
+    ...accu, [current[0]]: current[1],
+  });
+
+  return sourceString
+    .split(';')
+    .map(item => item
+      .replace(/\n./g, '')
+      .trim())
+    .filter(item => item !== '')
+    .map(item => item.split(':'))
+    .map(item => [item[0].trim(), item[1].trim()])
+    .reduce(callback, {});
 }
 
 module.exports = convertToObject;

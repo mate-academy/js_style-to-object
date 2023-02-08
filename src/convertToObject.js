@@ -3,9 +3,6 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
@@ -13,6 +10,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const result = {};
+  const str = sourceString.split(';').filter(
+    item => item.includes(':') && item.length > 1
+  );
+
+  for (let i = 0; i < str.length; i++) {
+    const [key, value] = str[i].split(':');
+
+    result[key.trim()] = value.trim();
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

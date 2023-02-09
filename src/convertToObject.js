@@ -4,7 +4,7 @@ function convertToObject(sourceString) {
   const resultObj = {};
   const createdArray = sourceString.split(';');
 
-  createdArray.map((element) => {
+  createdArray.forEach((element) => {
     const [key, value] = element.split(':');
 
     if (key && value) {

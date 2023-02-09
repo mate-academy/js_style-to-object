@@ -15,14 +15,13 @@
  */
 function convertToObject(sourceString) {
   const arrayOfProperties = sourceString.split(';');
-  let tempArr = [];
   const resultObj = {};
 
   arrayOfProperties.forEach(item => {
-    tempArr = item.split(':');
+    const [key, value] = item.split(':');
 
-    if (tempArr.length === 2) {
-      resultObj[tempArr[0].trim()] = tempArr[1].trim();
+    if (key && value) {
+      resultObj[key.trim()] = value.trim();
     }
   });
 

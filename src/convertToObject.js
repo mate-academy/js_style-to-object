@@ -12,18 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const callback = (accu, current) => ({
-    ...accu, [current[0]]: current[1],
-  });
-
-  return sourceString
+  const arrayFromString = sourceString
     .split(';')
-    .map(item => item
-      .trim())
-    .filter(item => item !== '')
-    .map(item => item.split(':'))
-    .map(item => [item[0].trim(), item[1].trim()])
-    .reduce(callback, {});
+    .filter(item => item.trim() !== '')
+    .map(item => {
+      const [key, value] = item.split(':');
+
+      return [key.trim(), value.trim()];
+    })
+
+  return Object.fromEntries(arrayFromString);
 }
 
 module.exports = convertToObject;

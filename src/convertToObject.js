@@ -1,18 +1,17 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const resultObj = {};
-  const createdArray = sourceString.split(';');
+  return sourceString.split(';')
+  .reduce((acc, current) => {
+    if (current.includes(':')) {
+      const [key, value] = current.split(':');
 
-  createdArray.forEach((element) => {
-    const [key, value] = element.split(':');
-
-    if (key && value) {
-      resultObj[key.trim()] = value.trim();
+      acc[key.trim()] = value.trim();
     }
-  });
 
-  return resultObj;
-};
+    return acc;
+  }, {});
+}
+
 
 module.exports = convertToObject;

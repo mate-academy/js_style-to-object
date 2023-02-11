@@ -19,12 +19,10 @@ function convertToObject(sourceString) {
   const resultObject = {};
 
   property.forEach(item => {
-    const element = item.split(':');
-    const key = element[0] ? element[0].trim() : element[0];
-    const value = element[1] ? element[1].trim() : element[1];
+    const [key, value] = item.split(':');
 
     if (key && value) {
-      resultObject[key] = value;
+      resultObject[key.trim()] = value.trim();
     }
   });
 

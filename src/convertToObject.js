@@ -17,13 +17,13 @@ function convertToObject(sourceString) {
   // write your code here
   const splitSourceString = sourceString
     .split(';')
-    .map(a => a.split(':'));
+    .map(keyValuePair => keyValuePair.split(':'));
 
   const sourceStringToObj = {};
 
-  for (const style of splitSourceString) {
-    if (style[0].toUpperCase() !== style[0].toLowerCase()) {
-      sourceStringToObj[style[0].trim()] = style[1].trim();
+  for (const [propertyName, styleValue] of splitSourceString) {
+    if (styleValue && propertyName) {
+      sourceStringToObj[propertyName.trim()] = styleValue.trim();
     }
   }
 

@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
     };
   };
   const arrayOfProperties = sourceString.split(';').map(prop => {
-    prop.trim();
+    return prop.trim();
   }).filter(prop => {
     return prop.length !== 0;
   }).map(prop => prop.split(':'));

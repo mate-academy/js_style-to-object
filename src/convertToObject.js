@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
   const stylesObject = {};
   const stylesArray = sourceString.split(';');
 
-  stylesArray.map(style => {
+  stylesArray.forEach(style => {
     const [key, value] = style.split(':');
 
     if (key && value) {

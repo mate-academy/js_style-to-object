@@ -1,11 +1,7 @@
 'use strict';
 
 /**
- * Implement convertToObject function:
- *
- *
  * @param {string} sourceString
- *
  * @return {object}
  */
 function convertToObject(sourceString) {

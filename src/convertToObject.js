@@ -16,9 +16,9 @@
 function convertToObject(sourceString) {
   const attrArray = sourceString.split(';').map(str => str.trim());
   const result = attrArray.filter(el => el !== '').reduce((target, key) => {
-    const item = key.split(':');
+    const [newKey, newValue] = key.split(':');
 
-    target[item[0].trim()] = item[1].trim();
+    target[newKey.trim()] = newValue.trim();
 
     return target;
   }, {});

@@ -14,23 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // eslint-disable-next-line max-len, no-unused-vars
-  let object = {};
   const callback = (prev, property) => {
     return {
       ...prev,
       [property[0].trim()]: property[1].trim(),
     };
   };
-  const arrayOfProperties = sourceString.split(';').map(prop => {
-    return prop.trim();
-  }).filter(prop => {
-    return prop.length !== 0;
-  }).map(prop => prop.split(':'));
+  const arrayOfProperties = sourceString.split(';')
+    .map(prop => prop.trim())
+    .filter(prop => prop.length !== 0)
+    .map(prop => prop.split(':'));
 
-  object = arrayOfProperties.reduce(callback, object);
-
-  return object;
+  return arrayOfProperties.reduce(callback, {});
 }
 
 module.exports = convertToObject;

@@ -15,12 +15,9 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const formattedArray
-    = sourceString.split(';')
-      .map(line => line.trim())
-      .filter(line => line.length > 1);
+  const formArray = sourceString.split(';').filter(line => line.trim().length);
 
-  for (const line of formattedArray) {
+  for (const line of formArray) {
     const [key, value] = line.split(':');
 
     result[key.trim()] = value.trim();

@@ -21,12 +21,12 @@ function convertToObject(sourceString) {
     const key = item.slice(0, separatorIndex).trim();
     const value = item.slice(separatorIndex + 1).trim();
 
-    prev[key] = value;
+    if (key !== '' && value !== '') {
+      prev[key] = value;
+    }
 
     return prev;
   }, {});
-
-  delete stylesObject[''];
 
   return stylesObject;
 }

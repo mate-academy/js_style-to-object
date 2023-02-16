@@ -13,32 +13,6 @@
  *
  * @return {object}
  */
-// function convertToObject(sourceString) {
-//   const str = sourceString;
-//   let resultStr = '';
-//   const obj = {};
-
-//   for (const ch of str) {
-//     resultStr += ch.trim();
-//   }
-
-//   const arr = resultStr.split(';');
-
-//   arr.pop();
-
-//   const resultArray = arr.map(item => item.split(':'));
-
-//   const result = [].concat(...resultArray);
-
-//   for (let i = 0; i < result.length; i += 2) {
-//     if (result[i] === '') {
-//       continue;
-//     }
-//     obj[result[i]] = result[i + 1];
-//   }
-
-//   return obj;
-// }
 
 function convertToObject(sourceString) {
   const obj = {};

@@ -20,7 +20,6 @@ const stylesString = `
   padding-right: 30px;
   ;
 
-  ;
   position: relative;
 
 

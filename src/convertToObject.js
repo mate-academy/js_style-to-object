@@ -14,15 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssPropertyRegex = new RegExp(/(\S.+\s*):(\s*.+);/g);
-  const matches = sourceString.matchAll(cssPropertyRegex);
-  const stylesObject = {};
+  const properties = sourceString
+    .split('\n')
+    .map(prop => prop.trim())
+    .filter(prop => prop.length > 1);
 
-  for (const [, property, value] of matches) {
-    stylesObject[property.trim()] = value.trim();
-  }
+  const entries = properties.map((prop) => (
+    prop
+      .slice(0, prop.length - 1)
+      .split(/\s*:\s*/g)
+      .map(value => value.trim())
+  ));
 
-  return stylesObject;
+  return Object.fromEntries(entries);
 }
 
 module.exports = convertToObject;

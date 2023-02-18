@@ -18,16 +18,12 @@ function convertToObject(sourceString) {
   const mapWorking = newString
     .map(line => line.split(':'))
     .filter(arr => arr.length === 2);
-  const result = {};
+  const deleteSpaces = mapWorking.reduce((newObject, result) => ({
+    ...newObject,
+    [result[0].trim()]: result[1].trim(),
+  }), {});
 
-  mapWorking.forEach(arr => {
-    const obj = {};
-
-    obj[arr[0].trim()] = arr[1].trim();
-    Object.assign(result, obj);
-  });
-
-  return result;
+  return deleteSpaces;
 }
 
 module.exports = convertToObject;

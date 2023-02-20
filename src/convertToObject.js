@@ -4,13 +4,13 @@ function convertToObject(sourceString) {
   const styleDeclarations = sourceString.split(';');
   const stylesObject = {};
 
-  for (const style of styleDeclarations) {
-    if (style.trim()) {
+  styleDeclarations
+    .filter((style) => style.trim())
+    .forEach(style => {
       const [key, value] = style.split(':');
 
       stylesObject[key.trim()] = value.trim();
-    }
-  }
+    });
 
   return stylesObject;
 }

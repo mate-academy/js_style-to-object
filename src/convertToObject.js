@@ -14,28 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // let's divide the whole rule into group of properties
-  const ruleSplitted = sourceString.split(';');
-
-  // 1) let's divide each property into property-name and property-value
-  // 2) we don't save blank elements (they are not correct properties)
-  const propertiesSplitted = ruleSplitted
+  const stylesSplitted = sourceString
+    .split(';')
     .map(property => property.split(':'))
-    .filter(property => (property.length === 2));
+    .filter(property => (property.length === 2))
+    .map(property => (
+      property.map(propertyPart => propertyPart.trim())
+    ))
+    .reduce((objectifiedStyles, property) => {
+      objectifiedStyles[property[0]] = property[1];
 
-  // let's remove side spaces (we need property name and value only)
-  const propertiesSplittedFormatted = propertiesSplitted.map(property => (
-    property.map(propertyPart => propertyPart.trim())
-  ));
+      return objectifiedStyles;
+    }, {});
 
-  const styles = {};
-
-  // each property-name is a key and property-value is the key's value
-  propertiesSplittedFormatted.forEach(property => {
-    styles[property[0]] = property[1];
-  });
-
-  return styles;
+  return stylesSplitted;
 }
 
 module.exports = convertToObject;

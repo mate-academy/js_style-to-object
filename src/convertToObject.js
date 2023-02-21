@@ -31,9 +31,9 @@ function convertToObject(sourceString) {
   const styles = {};
 
   // each property-name is a key and property-value is the key's value
-  for (const property of propertiesSplittedFormatted) {
+  propertiesSplittedFormatted.forEach(property => {
     styles[property[0]] = property[1];
-  }
+  });
 
   return styles;
 }

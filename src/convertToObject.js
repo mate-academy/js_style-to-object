@@ -6,7 +6,7 @@ function convertToObject(sourceString) {
 
   styleDeclarations
     .filter((style) => style.trim())
-    .forEach(style => {
+    .map(style => {
       const [key, value] = style.split(':');
 
       stylesObject[key.trim()] = value.trim();

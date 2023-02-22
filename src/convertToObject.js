@@ -14,9 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesProperties = sourceString.split(';');
-
-  return stylesProperties.reduce((styles, style) => {
+  return sourceString.split(';').reduce((styles, style) => {
     const [property, value] = style.split(':');
 
     if (value) {

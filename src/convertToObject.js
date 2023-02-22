@@ -14,7 +14,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const properties = sourceString.replace(/\n/g, '').split(';');
+  const properties = sourceString
+    .replace(/\n/g, '')
+    .split(';');
   const result = {};
 
   properties.forEach((element) => {

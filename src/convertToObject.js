@@ -14,20 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesSplitted = sourceString
+  return sourceString
     .split(';')
     .map(property => property.split(':'))
     .filter(property => (property.length === 2))
-    .map(property => (
-      property.map(propertyPart => propertyPart.trim())
-    ))
-    .reduce((objectifiedStyles, property) => {
-      objectifiedStyles[property[0]] = property[1];
+    .reduce((objectifiedStyles, [key, value]) => {
+      objectifiedStyles[key.trim()] = value.trim();
 
       return objectifiedStyles;
     }, {});
-
-  return stylesSplitted;
 }
 
 module.exports = convertToObject;

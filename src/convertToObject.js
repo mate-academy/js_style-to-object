@@ -14,18 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitted = sourceString.split('\n');
-  const obj = {};
+  const splittedString = sourceString.split('\n');
+  const objWithStyles = {};
 
-  for (const string of splitted) {
+  splittedString.forEach(string => {
     const [prop, value] = string.split(':');
 
     if (prop && value) {
-      obj[prop.trim()] = value.replace(/;/g, '').trim();
+      objWithStyles[prop.trim()] = value.replace(/;/g, '').trim();
     }
-  }
+  });
 
-  return obj;
+  return objWithStyles;
 }
 
 module.exports = convertToObject;

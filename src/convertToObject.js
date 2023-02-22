@@ -5,7 +5,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = sourceString.split(';').reduce((newObject, element) => {
+  return sourceString.split(';').reduce((newObject, element) => {
     const [key, value] = element.split(':');
 
     if (value) {
@@ -14,8 +14,6 @@ function convertToObject(sourceString) {
 
     return newObject;
   }, {});
-
-  return styleObject;
 }
 
 module.exports = convertToObject;

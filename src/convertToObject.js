@@ -16,7 +16,7 @@
 function convertToObject(sourceString) {
   return sourceString
     .split('\n')
-    .filter(item => item.length > 3)
+    .filter(item => item.replace(/[ ;:]/g, '').length > 0)
     .reduce((acc, current) => {
       const [key, value] = current.replace(';', '').split(':');
 

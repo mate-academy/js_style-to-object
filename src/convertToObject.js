@@ -14,26 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayWithoutSpaces = [];
+  const resultingObject = {};
 
   sourceString
-    .replace(/\n/g, '')
     .split(';')
-    .forEach(element => arrayWithoutSpaces.push(element.trim()));
+    .filter(element => element.trim())
+    .forEach(element => {
+      const [key, value] = element.trim().split(':');
 
-  const clearArray = [];
+      resultingObject[key.trim()] = value.trim();
+    });
 
-  arrayWithoutSpaces
-    .filter(elem => elem.length > 0)
-    .forEach(element => clearArray.push(element.trim().split(':')));
-
-  const result = {};
-
-  for (const item of clearArray) {
-    result[item[0].trim()] = item[1].trim();
-  }
-
-  return result;
+  return resultingObject;
 }
 
 module.exports = convertToObject;

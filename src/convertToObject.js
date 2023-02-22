@@ -1,22 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const sourceArray = sourceString
+  return sourceString
     .split(';\n')
-    .map(element => element.split(':'));
+    .map(element => element.split(':'))
+    .filter(property => property.length === 2)
+    .reduce((stylesObject, [key, value]) => {
+      stylesObject[key.trim()] = value.trim();
 
-  const stylesObject = {};
-
-  sourceArray.forEach(property => {
-    if (property.length === 2) {
-      const key = property[0].trim();
-      const value = property[1].trim();
-
-      stylesObject[key] = value;
-    }
-  });
-
-  return stylesObject;
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

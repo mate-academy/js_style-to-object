@@ -2,15 +2,15 @@
 
 function convertToObject(sourceString) {
   const styleDeclarations = sourceString.split(';');
-  const stylesObject = {};
-
-  styleDeclarations
+  const stylesObject = styleDeclarations
     .filter((style) => style.trim())
-    .map(style => {
+    .reduce((styleObject, style) => {
       const [key, value] = style.split(':');
 
-      stylesObject[key.trim()] = value.trim();
-    });
+      styleObject[key.trim()] = value.trim();
+
+      return styleObject;
+    }, {});
 
   return stylesObject;
 }

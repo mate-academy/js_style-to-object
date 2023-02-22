@@ -14,36 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.trim().split('\n');
-  const stylesObject = {};
+  return sourceString
+    .split('\n')
+    .filter(item => item.length > 3)
+    .reduce((acc, current) => {
+      const [key, value] = current.replace(';', '').split(':');
 
-  for (const item of styles) {
-    const stylesPart = item.trim().split(/[ ]+/);
-    const validParametrs = [];
-    const [property, ...rest] = stylesPart;
+      acc[key.trim()] = value.trim();
 
-    if (property.length <= 1) {
-      continue;
-    }
-
-    for (const parametr of rest) {
-      if (parametr !== ';' && parametr !== ':') {
-        validParametrs.push(parametr);
-      }
-    }
-
-    const joinedParametrs = validParametrs.join(' ');
-    const lastChar = joinedParametrs.charAt(joinedParametrs.length - 1);
-    const validProperty = property.charAt(property.length - 1) === ':'
-      ? property.slice(0, -1)
-      : property;
-
-    stylesObject[validProperty] = lastChar === ';'
-      ? joinedParametrs.slice(0, -1)
-      : joinedParametrs;
-  }
-
-  return stylesObject;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

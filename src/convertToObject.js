@@ -10,16 +10,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newStyle = {};
-  const sourceStringArr = sourceString.split(';');
-
-  sourceStringArr.filter(item => item.trim())
-    .map(style => {
+  return sourceString
+    .split(';')
+    .filter(style => style.trim())
+    .reduce((acym, style) => {
       const [key, value] = style.split(':');
 
-      newStyle[key.trim()] = value.trim();
-    });
+      acym[key.trim()] = value.trim();
 
-  return newStyle;
+      return acym;
+    }, {});
 }
 module.exports = convertToObject;

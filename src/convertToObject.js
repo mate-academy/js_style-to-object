@@ -16,16 +16,18 @@
 function convertToObject(sourceString) {
   // write your code here
 
-  return sourceString.split(';').reduce((accumulator, style) => {
-    const [key, value] = style.split(':');
+  return sourceString
+    .split(';')
+    .reduce((accumulator, style) => {
+      const [key, value] = style.split(':');
 
-    if (value) {
-      accumulator[key.trim()] = value.trim();
-    }
+      if (value) {
+        accumulator[key.trim()] = value.trim();
+      }
 
-    return accumulator;
-  },
-  {});
+      return accumulator;
+    },
+    {});
 }
 
 module.exports = convertToObject;

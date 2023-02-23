@@ -20,9 +20,10 @@ function convertToObject(sourceString) {
     .reduce((acc, current) => {
       const [key, value] = current.split(':');
 
-      acc[key.trim()] = value.trim();
-
-      return acc;
+      return {
+        ...acc,
+        [key.trim()]: value.trim(),
+      };
     }, {});
 }
 

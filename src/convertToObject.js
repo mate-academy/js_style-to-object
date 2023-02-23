@@ -14,7 +14,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';')
+  return sourceString
+    .split(';')
     .filter(property => property.includes(':'))
     .map(el => el.split(':'))
     .reduce((styleObj, [key, value]) => {

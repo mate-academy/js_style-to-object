@@ -14,18 +14,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.trim().split(';');
-  const styleObj = {};
+  const styles = sourceString.trim().split(';').filter(style => style.trim());
 
-  for (let i = 0; i < styles.length; i++) {
-    const style = styles[i].trim();
-
-    if (style) {
-      const [property, value] = style.split(':');
-
-      styleObj[property.trim()] = value.trim();
-    }
-  }
+  const styleObj = Object.fromEntries(
+    styles.map(style => style.split(':').map(str => str.trim()))
+  );
 
   return styleObj;
 }

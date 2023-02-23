@@ -15,10 +15,10 @@
  */
 function convertToObject(sourceString) {
   return sourceString
-    .split('\n')
-    .filter(item => item.replace(/[ ;:]/g, '').length > 0)
+    .split(';')
+    .filter(item => item.match(/[a-z]/gi))
     .reduce((acc, current) => {
-      const [key, value] = current.replace(';', '').split(':');
+      const [key, value] = current.split(':');
 
       acc[key.trim()] = value.trim();
 

@@ -17,11 +17,13 @@ function convertToObject(sourceString) {
   const splittedString = sourceString.split('\n');
   const objWithStyles = {};
 
-  splittedString.forEach(string => {
+  splittedString.map(string => {
     const [prop, value] = string.split(':');
 
     if (prop && value) {
-      objWithStyles[prop.trim()] = value.replace(/;/g, '').trim();
+      objWithStyles[prop.trim()] = value
+        .replace(/;/g, '')
+        .trim();
     }
   });
 

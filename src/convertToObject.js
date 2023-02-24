@@ -8,7 +8,9 @@
 function convertToObject(sourceString) {
   return sourceString.split(';')
     .reduce((acc, style) => {
-      const [key, value] = style.split(':').map(part => part.trim());
+      const [key, value] = style
+        .split(':')
+        .map(part => part.trim());
 
       if (key && value) {
         acc[key] = value;

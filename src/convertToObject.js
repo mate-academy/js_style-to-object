@@ -15,13 +15,14 @@
  */
 function convertToObject(sourceString) {
   const splittedSource = sourceString.trim()
-    .split(';').filter(style => style.trim());
+    .split(';')
+    .filter(style => style.trim());
 
-  const styleObj = Object.fromEntries(
-    splittedSource.map(style => style.split(':').map(str => str.trim()))
+  return Object.fromEntries(
+    splittedSource.map(style => style
+      .split(':')
+      .map(str => str.trim()))
   );
-
-  return styleObj;
 }
 
 module.exports = convertToObject;

@@ -16,8 +16,8 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .reduce((stylesObject, el) => {
-      const [key, value] = el.split(':');
+    .reduce((stylesObject, property) => {
+      const [key, value] = property.split(':');
 
       if (value) {
         stylesObject[key.trim()] = value.trim();

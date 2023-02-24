@@ -20,10 +20,7 @@ function convertToObject(sourceString) {
     .reduce((acc, styleRule) => {
       const [property, value] = styleRule.split(':');
 
-      const cleanProperty = property.trim();
-      const cleanValue = value.trim();
-
-      acc[cleanProperty] = cleanValue;
+      acc[property.trim()] = value.trim();
 
       return acc;
     }, {});

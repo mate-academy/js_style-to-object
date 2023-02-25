@@ -19,10 +19,10 @@ function convertToObject(sourceString) {
   const splitedStyles = styles.map(x => x.split(':'));
 
   const trimedStyles = splitedStyles.map(property => {
-    return property.map(x => x.trim());
+    return property.map(value => value.trim());
   });
 
-  const filteredStyles = trimedStyles.filter(prop => prop[0] !== '');
+  const filteredStyles = trimedStyles.filter(property => property[0] !== '');
 
   const result = filteredStyles.reduce((acc, property) => {
     return {

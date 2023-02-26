@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -12,7 +13,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = {};
+  const arr = sourceString.split('\n');
+
+  arr.forEach(line => {
+    const trimmedLine = line.trim();
+
+    if (trimmedLine.startsWith('//') || trimmedLine.startsWith('/*') || trimmedLine === '') {
+      return;
+    }
+
+    const properties = trimmedLine.split(';');
+
+    properties.forEach(property => {
+      const [key, value] = property.split(':').map(str => str.trim());
+
+      if (key && value) {
+        styles[key] = value;
+      }
+    });
+  });
+
+  return styles;
 }
 
 module.exports = convertToObject;

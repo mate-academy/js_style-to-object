@@ -17,8 +17,8 @@ function convertToObject(sourceString) {
   const result = {};
   const styleArr = sourceString.split(';');
 
-  for (let i = 0; i < styleArr.length; i++) {
-    const trim = styleArr[i].trim();
+  styleArr.forEach(element => {
+    const trim = element.trim();
     const firstIndex = trim.indexOf(':');
     const key = trim.slice(0, firstIndex).trim();
     const value = trim.slice(firstIndex + 1).trim();
@@ -26,7 +26,7 @@ function convertToObject(sourceString) {
     if (key !== '') {
       result[key] = value.toString();
     }
-  }
+  });
 
   return result;
 }

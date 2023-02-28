@@ -19,9 +19,7 @@ function convertToObject(sourceString) {
     .map(item => item
       .trim()
       .split(':')
-      .map(el => el.trim()));
-
-  const filterAndAddKeys = stringWithOutSpases
+      .map(el => el.trim()))
     .filter(item => item.length > 1)
     .reduce((obj, [key, value]) => {
       obj[key] = value;
@@ -29,7 +27,7 @@ function convertToObject(sourceString) {
       return obj;
     }, {});
 
-  return filterAndAddKeys;
+  return stringWithOutSpases;
 }
 
 module.exports = convertToObject;

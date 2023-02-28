@@ -21,7 +21,8 @@ function convertToObject(sourceString) {
 
   const objectOfStyles = arrayOfStyles
     .reduce((acc, [styles, value]) => ({
-      ...acc, [styles.trim()]: value.trim(),
+      ...acc,
+      [styles.trim()]: value.trim(),
     }), {});
 
   return objectOfStyles;

@@ -12,7 +12,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';').filter(clear => clear.trim())
+  return sourceString
+    .split(';')
+    .filter(clear => clear.trim())
     .reduce((acc, string) => {
       const [command, value] = string.split(':');
 

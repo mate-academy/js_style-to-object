@@ -14,20 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringWithOutSpases = sourceString
+  return sourceString
     .split(';')
     .map(item => item
-      .trim()
       .split(':')
       .map(el => el.trim()))
     .filter(item => item.length > 1)
     .reduce((obj, [key, value]) => {
       obj[key] = value;
 
-      return obj;
+      return {
+        ...obj,
+        [key]: value,
+      };
     }, {});
-
-  return stringWithOutSpases;
 }
 
 module.exports = convertToObject;

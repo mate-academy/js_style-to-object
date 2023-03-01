@@ -6,7 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';')
+  return sourceString
+    .split(';')
     .reduce((acc, style) => {
       const [key, value] = style
         .split(':')

@@ -19,15 +19,7 @@ function convertToObject(sourceString) {
 
   propertiesArray.forEach(property => {
     const arr = property.split(':');
-    let nameOfProperty = arr[0].split(' ').join();
-
-    do {
-      nameOfProperty = nameOfProperty.replace(',', '');
-    } while (nameOfProperty.includes(','));
-
-    do {
-      nameOfProperty = nameOfProperty.replace('\n', '');
-    } while (nameOfProperty.includes('\n'));
+    const nameOfProperty = arr[0].trim().split(' ').join();
 
     if (nameOfProperty && arr[1]) {
       result[nameOfProperty] = arr[1].trim();

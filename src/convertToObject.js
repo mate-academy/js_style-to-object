@@ -15,26 +15,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normalizedString = sourceString
-    .replace(',', '')
-    .replace('  ', '');
-
-  const complexProperties = normalizedString
+  const styleObject = {};
+  const propertyPairs = sourceString
     .split(';')
-    .map(element => {
-      const returnedElement = element.split(':');
+    .map(propPair => propPair.split(':'))
+    .filter(propPair => propPair.length > 1);
 
-      return returnedElement;
-    }).filter(element => element.length > 1);
+  propertyPairs.forEach(propPair => {
+    const [key, value] = propPair;
 
-  const computedProperies = complexProperties.reduce((prev, [key, value]) => {
-    return {
-      ...prev,
-      [key.trim()]: value.trim(),
-    };
-  }, {});
+    styleObject[key.trim()] = value.trim();
+  });
 
-  return computedProperies;
+  return styleObject;
 }
 
 module.exports = convertToObject;

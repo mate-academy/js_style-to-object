@@ -14,21 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const styleArr = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .filter(prop => prop.includes(':'))
+    .map(el => el.split(':'))
+    .reduce((prettyObject, [key, value]) => {
+      prettyObject[key.trim()] = value.trim();
 
-  styleArr.forEach(element => {
-    const trim = element.trim();
-    const firstIndex = trim.indexOf(':');
-    const key = trim.slice(0, firstIndex).trim();
-    const value = trim.slice(firstIndex + 1).trim();
-
-    if (key !== '') {
-      result[key] = value.toString();
-    }
-  });
-
-  return result;
+      return prettyObject;
+    }, {});
 }
 
 module.exports = convertToObject;

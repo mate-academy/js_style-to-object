@@ -15,21 +15,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arrayOfStrings = sourceString.split(';')
-    .filter(item => item && item !== '\n')
-    .map(item => item.replace('\n', ''));
 
-  const stringToObject = arrayOfStrings.reduce((prev, element) => {
-    return {
-      ...prev,
-      [element.slice(0, element.indexOf(':')).trim()]:
-      (element.slice(element.indexOf(':') + 1).trim()),
-    };
-  }, {});
+  const stringToObject = sourceString
+    .split(';')
+    .reduce((acc, element) => {
+      const [property, value] = element.split(':');
 
-  const key = '';
+      if (property.trim()) {
+        acc[property.trim()] = value.trim();
+      }
 
-  delete (stringToObject[key]);
+      return acc;
+    }, {});
 
   return stringToObject;
 }

@@ -12,17 +12,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const makingArrays = sourceString
+  return sourceString
     .split(';')
-    .filter(element => element.trim());
+    .filter(element => element.trim())
+    .reduce((acc, element) => {
+      const [key, value] = element.split(':');
 
-  return makingArrays.reduce((acc, element) => {
-    const [key, value] = element.split(':');
+      acc[key.trim()] = value.trim();
 
-    acc[key.trim()] = value.trim();
-
-    return acc;
-  }, {});
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

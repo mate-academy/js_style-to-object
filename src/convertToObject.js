@@ -18,12 +18,10 @@ function convertToObject(sourceString) {
     .split(';')
     .filter(element => element.trim())
     .reduce((acc, item) => {
-      const style = item.trim();
-      const cuted = style
+      const [prop, value] = item
+        .trim()
         .split(':')
         .map(element => element.trim());
-      const prop = cuted[0];
-      const value = cuted[1];
 
       return {
         ...acc,

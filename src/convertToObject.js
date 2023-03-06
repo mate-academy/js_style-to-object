@@ -14,25 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString
+  return sourceString
     .split(';')
-    .filter(element => element.trim());
+    .filter(element => element.trim())
+    .reduce((acc, item) => {
+      const style = item.trim();
+      const cuted = style
+        .split(':')
+        .map(element => element.trim());
+      const prop = cuted[0];
+      const value = cuted[1];
 
-  const stylesResult = styles.reduce((acc, item) => {
-    const style = item.trim();
-    const cuted = style
-      .split(':')
-      .map(element => element.trim());
-    const prop = cuted[0];
-    const value = cuted[1];
-
-    return {
-      ...acc,
-      [prop]: value,
-    };
-  }, {});
-
-  return stylesResult;
+      return {
+        ...acc,
+        [prop]: value,
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -13,15 +13,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-  const arr = sourceString.split('\n');
-
-  arr.forEach(line => {
+  return sourceString.split('\n').reduce((styles, line) => {
     const trimmedLine = line.trim();
-
-    if (trimmedLine.startsWith('//') || trimmedLine.startsWith('/*') || trimmedLine === '') {
-      return;
-    }
 
     const properties = trimmedLine.split(';');
 
@@ -32,9 +25,9 @@ function convertToObject(sourceString) {
         styles[key] = value;
       }
     });
-  });
 
-  return styles;
+    return styles;
+  }, {});
 }
 
 module.exports = convertToObject;

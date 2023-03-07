@@ -15,21 +15,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringCleared = sourceString.replace(/ /g, '').split('\n').join('');
-  const finalString = stringCleared
-    .replace(/1pxsolid#e8e8e8/g, '1px solid #e8e8e8')
-    .replace(/left!important/g, 'left !important')
-    .replace(/all.2sease-in-out/g, 'all .2s ease-in-out');
+  const object = sourceString.split(';').reduce((obj, el) => {
+    const arr = el.split(':');
 
-  const array = finalString.split(';');
+    if (arr.length === 2) {
+      obj[arr[0].trim()] = arr[1].trim();
+    }
 
-  const filtered = array.filter(element => element !== '');
-  const object = filtered.reduce(function(target, key) {
-    const a = key.indexOf(':');
-
-    target[key.slice(0, a)] = key.slice(a + 1);
-
-    return target;
+    return obj;
   }, {});
 
   return object;

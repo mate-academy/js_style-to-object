@@ -18,10 +18,11 @@ function convertToObject(sourceString) {
   const arrSplit = sourceString.split(';');
 
   for (const char of arrSplit) {
-    const arrSplitSplit = char.split(':');
+    const charSplit = char.split(':');
+    const charTrim = charSplit[0].trim();
 
-    if (arrSplitSplit[0].trim()) {
-      object[arrSplitSplit[0].trim()] = arrSplitSplit[1].trim();
+    if (charTrim) {
+      object[charTrim] = charSplit[1].trim();
     }
   }
 

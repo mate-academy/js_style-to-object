@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
   // write your code here
   return sourceString
     .split(';')
-    .map(x => x.trim().replaceAll('"', ''))
+    .map(x => x.trim().replace('/"/', ''))
     .filter(x => x.length > 0)
     .map(x =>
       x.split(':').map(y => y.trim())

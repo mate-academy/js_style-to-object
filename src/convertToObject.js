@@ -3,16 +3,31 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
+ * Function takes a string with styles
+ * (see an example in [stylesString.js](./stylesString.js))
  * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ * and values are the values of
+ * related CSS properties (see an exampl
+ * in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const splitBySem = sourceString.split(';');
+  const trimed = splitBySem.map(element => element.trim());
+  const splitByColon = trimed.map(element => element.split(':'));
+
+  const trimAgain = splitByColon.map(element => element.map(el => el.trim()));
+
+  const converted = {};
+
+  trimAgain.filter(el => el[0] !== '').forEach(el => {
+    converted[el[0]] = el[1];
+  });
+
+  return converted;
 }
 
 module.exports = convertToObject;

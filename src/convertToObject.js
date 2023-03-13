@@ -16,15 +16,14 @@
  */
 function convertToObject(sourceString) {
   const splitBySem = sourceString.split(';');
-  const trimed = splitBySem.map(element => element.trim());
-  const splitByColon = trimed.map(element => element.split(':'));
-
-  const trimAgain = splitByColon.map(element => element.map(el => el.trim()));
-
+  const trimed = splitBySem.map(
+    element => element.trim().split(':').map(el => el.trim()));
   const converted = {};
 
-  trimAgain.filter(el => el[0] !== '').forEach(el => {
-    converted[el[0]] = el[1];
+  trimed.forEach(([key, value]) => {
+    if (value) {
+      converted[key] = value;
+    }
   });
 
   return converted;

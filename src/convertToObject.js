@@ -17,7 +17,10 @@
 function convertToObject(sourceString) {
   const splitBySem = sourceString.split(';');
   const trimed = splitBySem.map(
-    element => element.trim().split(':').map(el => el.trim()));
+    element => element
+      .trim()
+      .split(':')
+      .map(el => el.trim()));
   const converted = {};
 
   trimed.forEach(([key, value]) => {

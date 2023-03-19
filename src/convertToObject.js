@@ -14,27 +14,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const mainObj = {};
+  const styles = {};
 
   sourceString
     .split('\n')
     .filter(string => string.length > 5)
     .map((el) => {
-      const string = el.split(':');
-
-      return string
+      return el.split(':')
         .map(part => part.trim())
-        .reduce((key, vlues) => {
+        .reduce((key, values) => {
           const obj = {};
 
-          obj[key] = vlues.slice(0, -1).trim();
+          obj[key] = values.slice(0, -1).trim();
 
           return obj;
         });
     })
-    .map(obj => Object.assign(mainObj, obj));
+    .forEach(obj => Object.assign(styles, obj));
 
-  return mainObj;
+  return styles;
 }
 
 module.exports = convertToObject;

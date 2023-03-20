@@ -17,22 +17,15 @@ function convertToObject(sourceString) {
   const styles = {};
 
   sourceString
-    .split('\n')
-    .filter(string => string.length > 5)
-    .map((el) => {
-      return el.split(':')
-        .map(part => part.trim())
-        .reduce((key, values) => {
-          const obj = {};
+    .split(';')
+    .filter(part => part.length > 5)
+    .forEach(part => {
+      const [key, values] = part.split(':');
 
-          obj[key] = values.slice(0, -1).trim();
-
-          return obj;
-        });
-    })
-    .forEach(obj => Object.assign(styles, obj));
+      styles[key.trim()] = values.trim();
+    });
 
   return styles;
-}
+};
 
 module.exports = convertToObject;

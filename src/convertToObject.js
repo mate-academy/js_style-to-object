@@ -22,12 +22,12 @@ function convertToObject(sourceString) {
 
   const filteredStrings = strings.filter(el => el.length === 2);
 
-  for (const string of filteredStrings) {
-    const property = string[0].trim();
-    const value = string[1].trim();
+  filteredStrings.forEach(el => {
+    const property = el[0].trim();
+    const value = el[1].trim();
 
     properties[property] = value;
-  }
+  });
 
   return properties;
 }

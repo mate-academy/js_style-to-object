@@ -17,16 +17,14 @@
 function convertToObject(sourceString) {
   const properties = {};
   const strings = sourceString
-    .split('\n')
+    .split(';')
     .map(el => el.split(':'));
 
   const filteredStrings = strings.filter(el => el.length === 2);
 
   for (const string of filteredStrings) {
     const property = string[0].trim();
-    const value = string[1]
-      .replace(';', '')
-      .trim();
+    const value = string[1].trim();
 
     properties[property] = value;
   }

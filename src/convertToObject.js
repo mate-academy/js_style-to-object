@@ -15,14 +15,18 @@
  */
 function convertToObject(sourceString) {
   const withoutSideSpaces = sourceString.trim();
-  const withoutNewLines = withoutSideSpaces.split('\n').join(' ').split(';');
+  const withoutNewLines = withoutSideSpaces
+    .split('\n')
+    .join(' ')
+    .split(';');
 
   const withoutEmptyStrings = withoutNewLines
     .filter(elem => elem && elem.length > 5)
     .map(elem => elem.trim());
 
-  const finalFormatting = withoutEmptyStrings.map(elem => elem.split(':')
-    .map(subElem => subElem.trim()));
+  const finalFormatting = withoutEmptyStrings
+    .map(elem => elem.split(':')
+      .map(subElem => subElem.trim()));
 
   const formattedObj = finalFormatting.reduce((acc, elem) => {
     acc[elem[0]] = elem[1];

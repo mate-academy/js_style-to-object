@@ -23,9 +23,13 @@ function convertToObject(sourceString) {
 
   separateStyle.forEach(style => {
     const formattedStyles = style.trim();
-    const key = formattedStyles.slice(0, formattedStyles.indexOf(':')).trim();
+    const key = formattedStyles
+      .slice(0, formattedStyles
+        .indexOf(':')).trim();
     const value = formattedStyles
-      .slice(formattedStyles.indexOf(':') + 1).trim();
+      .slice(formattedStyles
+        .indexOf(':') + 1)
+      .trim();
 
     if (key.length !== 0 && value.length !== 0) {
       styles[[`${key}`]] = value;

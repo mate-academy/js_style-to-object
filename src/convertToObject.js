@@ -43,17 +43,17 @@ function convertToObject(sourceString) {
 // I have another solution of the task, is it better than main?
 
 // return sourceString
-// .trim()
-// .split('\n')
-// .join(' ')
-// .split(';')
-// .filter(elem => elem && elem.length > 5)
-// .map(elem => elem.trim())
-// .map(elem => elem.split(':')
-// .map(elem => elem.trim()))
-// .reduce((acc, elem) => {
-//   acc[elem[0]] = elem[1];
-//   return acc;
-// }, {})
+//   .trim()
+//   .split('\n')
+//   .join(' ')
+//   .split(';')
+//   .filter(elem => elem && elem.length > 5)
+//   .map(elem => elem.trim())
+//   .map(elem => elem.split(':')
+//   .map(elem => elem.trim()))
+//   .reduce((acc, elem) => {
+//     acc[elem[0]] = elem[1];
+//     return acc;
+//   }, {})
 
 module.exports = convertToObject;

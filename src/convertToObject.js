@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -12,7 +13,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const normalized = sourceString.split(':').map(x => x.trim()).join(': ');
+
+  normalized.split(';').map(x => x.trim()).filter(y => y !== '').forEach(z => {
+    const [key, value] = z.split(': ');
+
+    result[key] = value;
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

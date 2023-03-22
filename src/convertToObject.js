@@ -19,9 +19,9 @@ function convertToObject(sourceString) {
   }
 
   const styles = {};
-  const dividedStyles = sourceString.split(';');
+  const separateStyle = sourceString.split(';');
 
-  dividedStyles.forEach(style => {
+  separateStyle.forEach(style => {
     const formattedStyles = style.trim();
     const key = formattedStyles.slice(0, formattedStyles.indexOf(':')).trim();
     const value = formattedStyles

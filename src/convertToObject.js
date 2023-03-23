@@ -26,13 +26,22 @@ function convertToObject(sourceString) {
     .map(style => stylesNormalize(style))
     .filter(element => element !== '');
 
-  const stylesObject = {};
+  // const stylesObject = {};
 
-  stylesArray.forEach(property => {
-    const [value, key] = property.split(': ');
+  const stylesObject = stylesArray.reduce((collectedStyles, style) => {
+    const [propertyName, ptopertyValue] = style.split(': ');
 
-    stylesObject[value] = key;
-  });
+    return {
+      ...collectedStyles,
+      [propertyName]: ptopertyValue,
+    };
+  }, {});
+
+  // stylesArray.forEach(property => {
+  //   const [value, key] = property.split(': ');
+
+  //   stylesObject[value] = key;
+  // });
 
   return stylesObject;
 }

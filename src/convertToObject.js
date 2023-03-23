@@ -1,7 +1,6 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  // write your code here
   const sourceObject = {};
 
   sourceString

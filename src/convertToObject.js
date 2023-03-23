@@ -14,14 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const array = sourceString
+  const objectStyles = {};
+
+  sourceString
     .split(';')
-    .map(style => style.split(':').map(word => word.trim()));
+    .map(style => style.split(':').map(partStyle => partStyle.trim()))
+    .map(style => (style[0] !== '')
+      ? (objectStyles[style[0]] = style[1])
+      : style);
 
-  array.forEach(arr => (arr[0] !== '') ? (result[arr[0]] = arr[1]) : arr);
-
-  return result;
+  return objectStyles;
 }
 
 module.exports = convertToObject;

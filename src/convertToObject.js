@@ -13,25 +13,25 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   const arrayOfStrings = sourceString.split(';');
-  const objectWithStyles = {};
 
-  for (const el of arrayOfStrings) {
-    const currentKey = el
-      .slice(0, el.indexOf(':'))
+  return arrayOfStrings.reduce((objectWithStyles, item) => {
+    const currentKey = item
+      .slice(0, item.indexOf(':'))
       .trim()
       .replace(/_/g, '-');
-    const currentValue = el
-      .slice(el.indexOf(':') + 1)
+    const currentValue = item
+      .slice(item.indexOf(':') + 1)
       .trim();
 
-    if (currentValue !== '' && currentValue !== null) {
-      objectWithStyles[currentKey] = currentValue;
-    }
-  }
-
-  return objectWithStyles;
+    return (currentValue !== '' && currentValue !== null)
+      ? {
+        ...objectWithStyles, [currentKey]: currentValue,
+      }
+      : objectWithStyles;
+  }, {});
 }
 
 module.exports = convertToObject;

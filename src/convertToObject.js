@@ -13,16 +13,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const normalized = sourceString.split(':').map(x => x.trim()).join(': ');
+  const normalitermedCss = {};
+  const normalitermed = sourceString
+    .split(':')
+    .map(word => word.trim())
+    .join(': ');
 
-  normalized.split(';').map(x => x.trim()).filter(y => y !== '').forEach(z => {
-    const [key, value] = z.split(': ');
+  normalitermed
+    .split(';')
+    .map(word => word.trim())
+    .filter(word => word !== '')
+    .forEach(term => {
+      const [key, value] = term.split(': ');
 
-    result[key] = value;
-  });
+      normalitermedCss[key] = value;
+    });
 
-  return result;
+  return normalitermedCss;
 }
 
 module.exports = convertToObject;

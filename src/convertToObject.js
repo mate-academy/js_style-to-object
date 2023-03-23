@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -12,7 +13,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const normalitermedCss = {};
+  const normalitermed = sourceString
+    .split(':')
+    .map(word => word.trim())
+    .join(': ');
+
+  normalitermed
+    .split(';')
+    .map(word => word.trim())
+    .filter(word => word !== '')
+    .forEach(term => {
+      const [key, value] = term.split(': ');
+
+      normalitermedCss[key] = value;
+    });
+
+  return normalitermedCss;
 }
 
 module.exports = convertToObject;

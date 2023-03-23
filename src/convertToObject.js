@@ -19,9 +19,7 @@ function convertToObject(sourceString) {
   const data = {};
 
   stringArr.forEach(elem => {
-    const source = elem.split(':');
-    const key = source[0];
-    const value = source[1];
+    const [key, value] = elem.split(':');
 
     if (key && value) {
       data[key.trim()] = value.trim();

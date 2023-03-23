@@ -20,8 +20,10 @@ function convertToObject(sourceString) {
     .join(' ')
     .split(';');
 
+  const minLengthOfElement = 5;
+
   const withoutEmptyStrings = withoutNewLines
-    .filter(elem => elem && elem.length > 5)
+    .filter(elem => elem && elem.length > minLengthOfElement)
     .map(elem => elem.trim());
 
   const finalFormatting = withoutEmptyStrings

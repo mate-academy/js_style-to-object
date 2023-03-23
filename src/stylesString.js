@@ -11,7 +11,7 @@ const stylesString = `
   cursor: pointer;
   float: left;
   font-family: inherit;
-      font-size: 14px;
+  font-size: 14px;
   font-weight: 400;
   height: 42px;
   line-height:    40px;

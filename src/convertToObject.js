@@ -1,5 +1,5 @@
 'use strict';
-
+/* eslint-disable */
 /**
  * Implement convertToObject function:
  *
@@ -11,8 +11,31 @@
  *
  * @return {object}
  */
+/* eslint-enable */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const cssProperties = sourceString
+    .split(';')
+    .map(property => property
+      .replace(/['\n']/g, '')
+      .replace(/ /g, ' ')
+      .trim())
+    .filter(property => property !== '');
+
+  return cssProperties.reduce((prev, item) => {
+    const indexOfDats = item.indexOf(':');
+    const key = item
+      .slice(0, indexOfDats)
+      .trim();
+    const value = item
+      .slice(indexOfDats + 1)
+      .trim();
+
+    return {
+      ...prev,
+      [key]: value,
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

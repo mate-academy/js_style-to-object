@@ -10,9 +10,9 @@ function convertToObject(sourceString) {
 
   sourceString
     .split('\n')
-    .filter(prop => prop.trim().length > 2)
-    .forEach(prop => {
-      const keyVal = prop.split(':');
+    .filter(keyValStr => keyValStr.trim().length > 2)
+    .forEach(keyValStr => {
+      const keyVal = keyValStr.split(':');
 
       cssStyles[keyVal[0].trim()] = keyVal[1].slice(0, -1).trim();
     });

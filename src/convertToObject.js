@@ -23,11 +23,12 @@ function convertToObject(sourceString) {
     .filter(property => property !== '');
 
   return cssProperties.reduce((prev, item) => {
+    const indexOfDats = item.indexOf(':');
     const key = item
-      .slice(0, item.indexOf(':'))
+      .slice(0, indexOfDats)
       .trim();
     const value = item
-      .slice(item.indexOf(':') + 1)
+      .slice(indexOfDats + 1)
       .trim();
 
     return {

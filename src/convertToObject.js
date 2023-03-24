@@ -22,10 +22,9 @@ function convertToObject(sourceString) {
     .filter(style => style.length >= 2);
 
   styles.map(item => {
-    const key = item[0].trim();
-    const value = item[1].trim();
+    const [key, value] = item;
 
-    styledObject[key] = value;
+    styledObject[key.trim()] = value.trim();
   });
 
   return styledObject;

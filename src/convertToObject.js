@@ -18,9 +18,9 @@ function convertToObject(sourceString) {
   const obj = {};
 
   for (const string of separatedString) {
-    const index1 = string.indexOf(':');
-    const key = string.slice(0, index1).trim();
-    const value = string.slice(index1 + 2).trim();
+    const index = string.indexOf(':');
+    const key = string.slice(0, index).trim();
+    const value = string.slice(index + 2).trim();
 
     if (key.length <= 0) {
       continue;

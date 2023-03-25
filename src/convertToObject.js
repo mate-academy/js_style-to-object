@@ -14,20 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const separatedString = sourceString.split(';');
   const obj = {};
+  const separatedString = sourceString
+    .split(';')
+    .map(string => string
+      .trim());
 
-  for (const string of separatedString) {
-    const index = string.indexOf(':');
-    const key = string.slice(0, index).trim();
-    const value = string.slice(index + 2).trim();
+  separatedString.forEach(el => {
+    const [key, value] = el.split(':');
 
-    if (key.length <= 0) {
-      continue;
-    } else {
-      obj[key] = value;
+    if (key && value) {
+      obj[key.trim()] = value.trim();
     }
-  }
+  });
 
   return obj;
 }

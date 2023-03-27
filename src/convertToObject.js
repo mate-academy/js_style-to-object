@@ -15,11 +15,15 @@
  */
 function convertToObject(sourceString) {
   // now my dreams consist only of split, map, map, filter, filter and reduce...
-  const strToObject = sourceString
-    .split(';')
-    .map(el => el.split(':')
-      .map(space => space.trim())
-      .filter(zeroValue => zeroValue !== ''))
+  const destcructurizedStr = sourceString.split(';').map(el => el.split(':')
+    .map(
+      space => space.trim()
+    )
+    .filter(
+      zeroValue => zeroValue !== ''
+    ));
+
+  const strToObj = destcructurizedStr
     .filter(space => space.length > 0)
     .reduce((accumulator, [key, value]) => {
       accumulator[key] = value;
@@ -27,7 +31,7 @@ function convertToObject(sourceString) {
       return accumulator;
     }, {});
 
-  return strToObject;
+  return strToObj;
 }
 
 module.exports = convertToObject;

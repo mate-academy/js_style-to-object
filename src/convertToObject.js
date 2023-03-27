@@ -22,12 +22,11 @@ function convertToObject(sourceString) {
 
   const stylesObj = {};
 
-  for (const style of stylesMas) {
-    const key = style.slice(0, style.indexOf(':')).trim();
-    const value = style.slice(style.indexOf(':') + 1).trim();
+  stylesMas.forEach(style => {
+    const [key, value] = style.split(':');
 
-    stylesObj[key] = value;
-  }
+    stylesObj[key.trim()] = value.trim();
+  });
 
   return stylesObj;
 }

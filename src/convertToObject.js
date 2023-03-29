@@ -16,21 +16,18 @@
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
 
-  const css = {};
-
-  properties.forEach(propertie => {
-    const key = propertie.split(':')[0];
-    const value = propertie.split(':')[1];
+  return properties.reduce((cssPairs, property) => {
+    const [key, value] = property.split(':');
 
     if (key && value) {
-      const keyClear = propertie.split(':')[0].replace(/\s/g, '');
-      const valueClear = propertie.split(':')[1].replace(/^\s+|\s+$/g, '');
+      const keyClear = key.replace(/\s/g, '');
+      const valueClear = value.replace(/^\s+|\s+$/g, '');
 
-      css[`${keyClear}`] = `${valueClear}`;
+      cssPairs[keyClear] = valueClear;
     }
-  });
 
-  return css;
+    return cssPairs;
+  }, {});
 }
 
 module.exports = convertToObject;

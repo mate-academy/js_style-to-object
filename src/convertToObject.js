@@ -17,16 +17,16 @@ function convertToObject(sourceString) {
   const styles = sourceString.split('\n').filter(Boolean);
   const obj = {};
 
-  for (const style of styles) {
+  styles.forEach(style => {
     const [key, value] = style
       .replace(';', '')
       .split(':')
       .map(str => str.trim());
 
-    if (key !== '') {
+    if (key && value) {
       obj[key] = value;
     }
-  }
+  });
 
   return obj;
 }

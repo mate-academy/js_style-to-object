@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.split('\n').filter(Boolean);
+  const styles = sourceString.split('\n');
   const obj = {};
 
   styles.forEach(style => {

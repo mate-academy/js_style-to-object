@@ -14,11 +14,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let styles = sourceString.split(';');
-
-  styles = styles.map(line => line.split(':'));
-
-  styles = styles.filter(line => line.length === 2);
+  const styles = sourceString
+    .split(';')
+    .map(line => line.split(':'))
+    .filter(line => line.length === 2);
 
   const styleBlock = {};
 

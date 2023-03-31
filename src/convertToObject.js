@@ -13,19 +13,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let title = '';
-  let property = '';
-  let num = 0;
   const objectResult = {};
   const additional = sourceString.split(';');
 
   for (const key of additional) {
+    let title = '';
+
     title = key.trim();
 
     if (title !== '') {
-      num = title.indexOf(':');
-      property = (title.slice(num + 1, title.length)).trim();
+      const num = title.indexOf(':');
+      const property = (title.slice(num + 1, title.length)).trim();
+
       title = (title.slice(0, num)).trim();
+
       objectResult[title] = property;
     }
   }

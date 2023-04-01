@@ -15,17 +15,15 @@
  */
 function convertToObject(sourceString) {
   const properties = sourceString
-    .split('\n')
-    .filter(prop => prop.length > 5);
+    .split(';')
+    .filter(prop => prop.trim().length > 5);
 
   const propList = {};
 
   for (const char of properties) {
-    const index1 = char.indexOf(':');
-    const index2 = char.indexOf(';');
+    const miniArray = char.split(':');
 
-    propList[char.slice(0, index1).trim()]
-      = char.slice(index1 + 1, index2).trim();
+    propList[miniArray[0].trim()] = miniArray[1].trim();
   }
 
   return propList;

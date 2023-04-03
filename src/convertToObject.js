@@ -16,11 +16,11 @@
 function convertToObject(sourceString) {
   const objectCss = {};
 
-  sourceString.split(';').forEach(key => {
-    const element = key.split(':').map(value => value.trim());
+  sourceString.split(';').forEach(line => {
+    const [key, value] = line.split(':').map(values => values.trim());
 
-    if (element[0] !== '') {
-      objectCss[element[0]] = element[1];
+    if (key) {
+      objectCss[key] = value;
     }
   });
 

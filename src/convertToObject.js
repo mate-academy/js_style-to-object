@@ -2,22 +2,22 @@
 
 /*
  * @param {string} sourceString
- * @return {objectOfValueect}
+ * @return {object}
  */
 
-function convertToobjectOfValuect(sourceString) {
+function convertToObject(sourceString) {
   const arraySourcesString = sourceString.split(';');
-  const objectOfValue = {};
+  const objectOfValues = {};
 
   arraySourcesString.forEach(element => {
     const arrayKeyValue = element.split(':');
 
     if (arrayKeyValue.length === 2) {
-      objectOfValue[arrayKeyValue[0].trim()] = arrayKeyValue[1].trim();
+      objectOfValues[arrayKeyValue[0].trim()] = arrayKeyValue[1].trim();
     }
   });
 
-  return objectOfValue;
+  return objectOfValues;
 }
 
-module.exports = convertToobjectOfValuect;
+module.exports = convertToObject;

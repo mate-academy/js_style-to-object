@@ -12,11 +12,16 @@
 function convertToObject(sourceString) {
   const array = sourceString.split(`\n`).filter(x => x.length > 4);
 
-  const object = array.reduce((prev, oneElement) => ({
-    ...prev,
-    [oneElement.slice(0, oneElement.indexOf(':')).trim()]:
-    oneElement.slice(oneElement.indexOf(':') + 1, oneElement.length - 1).trim(),
-  }), {});
+  const object = array.reduce((prev, oneElement) => {
+    const name = oneElement.slice(0, oneElement.indexOf(':')).trim();
+    const value = oneElement.slice(
+      oneElement.indexOf(':') + 1, oneElement.length - 1).trim();
+
+    return {
+      ...prev,
+      [name]: value,
+    };
+  }, {});
 
   return object;
 }

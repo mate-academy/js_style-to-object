@@ -4,17 +4,13 @@ function convertToObject(sourceString) {
   const object = {};
   const arrString = sourceString.split(';');
 
-  const arrKeyValue = arrString.map(item => {
-    const normalized = (item.trim().split(':')).map(items => items.trim());
-
-    return normalized;
-  });
-
-  const resultKeyvalue = arrKeyValue.filter(item => item[0] !== '');
+  const arrKeyValue = arrString.map(item =>
+    item.trim().split(':').map(items => items.trim())
+  );
+  const resultKeyvalue = arrKeyValue.filter(item => item[0]);
 
   resultKeyvalue.forEach(item => {
-    const key = item[0];
-    const value = item[1];
+    const [key, value] = item;
 
     return Object.assign(object, { [key]: value });
   });

@@ -14,15 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayProperties = sourceString.split(';');
+  const arrayProperties = sourceString
+    .split(';')
+    .filter(word => word.trim() !== '');
+
   const objectProperties = {};
 
   arrayProperties.forEach(element => {
-    const keyValue = element.split(':');
+    const [key, value] = element.split(':').map(word => word.trim());
 
-    if (keyValue.length === 2) {
-      objectProperties[keyValue[0].trim()] = keyValue[1].trim();
-    }
+    objectProperties[key] = value;
   });
 
   return objectProperties;

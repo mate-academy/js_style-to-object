@@ -14,18 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const array = sourceString.split(';');
-  const object = {};
+  const arrayProperties = sourceString.split(';');
+  const objectProperties = {};
 
-  array.forEach(element => {
+  arrayProperties.forEach(element => {
     const keyValue = element.split(':');
 
     if (keyValue.length === 2) {
-      object[keyValue[0].trim()] = keyValue[1].trim();
+      objectProperties[keyValue[0].trim()] = keyValue[1].trim();
     }
   });
 
-  return object;
+  return objectProperties;
 }
 
 module.exports = convertToObject;

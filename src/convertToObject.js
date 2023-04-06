@@ -14,17 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const toDoArray = sourceString.split(';');
-  const convertedObject = {};
-
-  toDoArray
+  return sourceString.split(';')
     .map(item => item.trim())
-    .filter(value => value !== '').map(element => element.split(':'))
-    .map(function(value) {
-      convertedObject[value[0].trim()] = value[1].trim();
-    });
+    .filter(value => value !== '')
+    .map(element => element.split(':'))
+    .reduce(function(stylesCss, property) {
+      const keyStyles = property[0].trim();
+      const propertyStyles = property[1].trim();
 
-  return convertedObject;
+      return {
+        ...stylesCss, [keyStyles]: propertyStyles,
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

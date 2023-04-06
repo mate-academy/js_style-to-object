@@ -14,12 +14,12 @@ function convertToObject(sourceString) {
 
   const object = array.reduce((prev, oneElement) => {
     const helperSlice = (element, start, end) => (
-      element.slice(start, end).trim()
+      element.slice(start, end)
     );
 
-    const name = helperSlice(oneElement, 0, oneElement.indexOf(':'));
+    const name = helperSlice(oneElement, 0, oneElement.indexOf(':')).trim();
     const value = helperSlice(oneElement, oneElement.indexOf(':') + 1,
-      oneElement.length - 1);
+      oneElement.length - 1).trim();
 
     return {
       ...prev,

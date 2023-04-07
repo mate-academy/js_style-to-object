@@ -21,13 +21,12 @@ function convertToObject(sourceString) {
       return property
         .split(':')
         .map(element => element.trim())
-        .filter(element => element !== '');
+        .filter(Boolean);
     })
     .filter(empty => empty.length)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .reduce((styles, currentProperty) => {
+    .reduce((styles, [key, value]) => {
       return ({
-        ...styles, [currentProperty[0]]: currentProperty[1],
+        ...styles, [key]: value,
       });
     }, {});
 }

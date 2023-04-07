@@ -16,18 +16,14 @@
 function convertToObject(sourceString) {
   const styleProperties = sourceString
     .split(';')
-    .join('')
-    .split('\n')
     .filter(style => style.trim().length);
 
   const cssFormatProperties = {};
 
   for (const styleProperty of styleProperties) {
-    const entries = styleProperty.split(':');
-    const key = entries[0].trim();
-    const value = entries[1].trim();
+    const [key, value] = styleProperty.split(':');
 
-    cssFormatProperties[key] = value;
+    cssFormatProperties[key.trim()] = value.trim();
   }
 
   return cssFormatProperties;

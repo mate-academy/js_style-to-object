@@ -16,19 +16,18 @@
 function convertToObject(sourceString) {
   const lines = sourceString.split(';').map(line => {
     const splittedLine = line.split(':');
-    const lineName = splittedLine[0].trim() || '_____toRemove';
+    const lineName = splittedLine[0].trim();
     let lineValue = splittedLine[1] || '';
 
     lineValue = lineValue.trim();
 
     return [lineName, lineValue];
-  });
+  })
+    .filter(line => line[0] !== '');
 
   const style = {};
 
   lines.forEach(styleLine => (style[styleLine[0]] = styleLine[1]));
-
-  delete style._____toRemove;
 
   return style;
 }

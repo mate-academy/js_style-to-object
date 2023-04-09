@@ -18,12 +18,14 @@ function convertToObject(sourceString) {
   const res = {};
 
   styleArr.forEach((element) => {
-    const colon = element.indexOf(':');
-    const el1 = element.slice(0, colon).trim();
-    const el2 = element.slice(colon + 1).trim();
+    // const colon = element.indexOf(':');
+    // const el1 = element.slice(0, colon).trim();
+    // const el2 = element.slice(colon + 1).trim();
 
-    if (el1 && el2) {
-      res[el1] = el2;
+    const [key, value] = element.split(':', 2).map(el => el.trim());
+
+    if (key && value) {
+      res[key] = value;
     }
   });
 

@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
 
   sourceString.split(';')
     .map(item => item.split(':').map(el => el.trim()))
-    .filter(item => item[0].length)
+    .filter(item => item.length === 2)
     .map(item => {
       res[item[0]] = item[1];
     });

@@ -16,9 +16,9 @@
 function convertToObject(sourceString) {
   return sourceString.split(';')
     .map(item => item.trim())
-    .filter(value => value !== '')
+    .filter(Boolean)
     .map(element => element.split(':'))
-    .reduce(function(stylesCss, property) {
+    .reduce((stylesCss, property) => {
       const keyStyles = property[0].trim();
       const propertyStyles = property[1].trim();
 

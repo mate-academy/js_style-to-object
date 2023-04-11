@@ -22,7 +22,9 @@ function convertToObject(sourceString) {
     .filter(el => el.length > 1);
 
   for (const subArray of sourceArray) {
-    sourceObject[subArray[0]] = subArray[1];
+    const [key, value] = subArray;
+
+    sourceObject[key] = value;
   }
 
   return sourceObject;

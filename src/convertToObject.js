@@ -17,22 +17,22 @@
 function convertToObject(sourceString) {
   const styles = sourceString.split(';');
 
-  const result = {};
+  const total = {};
 
-  for (let i = 0; i < styles.length; i++) {
-    const parts = styles[i].split(':');
+  styles.forEach(style => {
+    const parts = style.split(':');
 
     if (parts.length === 2) {
       const key = parts[0].trim();
       const value = parts[1].trim();
 
       if (key !== '' && value !== '') {
-        result[key] = value;
+        total[key] = value;
       }
     }
-  }
+  });
 
-  return result;
+  return total;
 }
 
 module.exports = convertToObject;

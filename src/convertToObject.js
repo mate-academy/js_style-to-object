@@ -18,10 +18,10 @@ function convertToObject(sourceString) {
   const styles = sourceString
     .split(';')
     .map(style => style.split(':'))
-    .filter(style => style.length === 2);
+    .filter(([property, value]) => property && value);
 
-  return styles.reduce((acc, style) => {
-    acc[style[0].trim()] = style[1].trim();
+  return styles.reduce((acc, [property, value]) => {
+    acc[property.trim()] = value.trim();
 
     return acc;
   }

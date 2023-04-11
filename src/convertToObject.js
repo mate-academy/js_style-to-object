@@ -16,8 +16,8 @@
 function convertToObject(sourceString) {
   // write your code here
   const styles = sourceString
-    .split('\n')
-    .filter((style) => style !== '' && style.trim() !== ';');
+    .split(';')
+    .filter((style) => style.trim() !== '');
 
   const convertedString = {};
 
@@ -26,9 +26,7 @@ function convertToObject(sourceString) {
       .split(':')
       .map((item) => item.trim());
 
-    convertedString[key] = value
-      .split('')
-      .filter(char => char !== ';').join('').trim();
+    convertedString[key] = value;
   }
 
   return convertedString;

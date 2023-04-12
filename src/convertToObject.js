@@ -14,8 +14,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const declarations = sourceString.split(';').reduce((acc, current) => {
-    const [key, value] = current.split(':').map(curr => curr.trim());
+  const declarations = sourceString.split(';').reduce((acc, property) => {
+    const [key, value] = property.split(':').map(prop => prop.trim());
 
     return key && value
       ? {

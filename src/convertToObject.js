@@ -23,12 +23,13 @@ function convertToObject(sourceString) {
     .split(';')
     .map(item => item.split(':'))
     .map(arr => arr.map(item => item.trim()))
-    .filter(item => item[0] !== '')
-    .forEach(arr => {
-      cssObj[arr[0]] = arr[1];
+    .forEach(([key, value]) => {
+      if (key !== '') {
+        cssObj[key] = value;
+      }
     });
 
   return cssObj;
-}
+};
 
 module.exports = convertToObject;

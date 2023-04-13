@@ -15,18 +15,16 @@
  */
 function convertToObject(sourceString) {
   const arrFromString = sourceString.split(';');
-  const result = {};
 
-  arrFromString.map(item => item.trim())
-    .filter(item => item !== '')
-    .map(item => item.split(':'))
-    .forEach(item => {
-      const [key, value] = item;
+  return arrFromString.reduce((result, item) => {
+    const [key, value] = item.trim().split(':');
 
+    if (key && value) {
       result[key.trim()] = value.trim();
-    });
+    }
 
-  return result;
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

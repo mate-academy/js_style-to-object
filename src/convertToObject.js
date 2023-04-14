@@ -17,9 +17,7 @@ function convertToObject(sourceString) {
   const objectFromCss = {};
 
   const cssLines = sourceString.split(';').map(line => {
-    const lineArray = line.split(':');
-    const lineKey = lineArray[0];
-    const lineValue = lineArray[1];
+    const [lineKey, lineValue] = line.split(':');
 
     if (lineKey && lineValue) {
       return { [lineKey.trim()]: lineValue.trim() };

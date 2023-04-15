@@ -7,11 +7,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesTab = sourceString.split(';').filter(el => el.trim() !== '');
+  const stylesArr = sourceString
+    .split(';')
+    .filter(style => style.trim() !== '');
   const resultObj = {};
 
-  stylesTab.forEach(style => {
-    const [property, value] = style.split(':').map(el => el.trim());
+  stylesArr.forEach(style => {
+    const [property, value] = style
+      .split(':')
+      .map(styleRule => styleRule.trim());
 
     resultObj[property] = value;
   });

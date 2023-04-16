@@ -16,15 +16,10 @@
 function convertToObject(sourceString) {
   // write your code here
   const resultStyle = {};
-  const propertiesSplited = [];
 
   sourceString.split(';').filter(
     pair => pair.trim().length > 3
-  ).forEach(
-    fixedPair => propertiesSplited.push(fixedPair.split(':'))
-  );
-
-  propertiesSplited.filter(
+  ).map(fixedPair => fixedPair.split(':')).filter(
     cssPair => cssPair[1] !== undefined
   ).forEach(
     validPair => (resultStyle[validPair[0].trim()] = validPair[1].trim())

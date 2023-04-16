@@ -6,7 +6,7 @@ function convertToObject(sourceString) {
   const properties = styles.map(style => {
     const [key, value] = style.split(':');
 
-    if (key !== undefined && value !== undefined) {
+    if (key && value) {
       return { [key.trim()]: value.trim() };
     }
   });

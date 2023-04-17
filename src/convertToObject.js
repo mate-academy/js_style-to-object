@@ -1,7 +1,7 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesInObject = {};
   const newSourseString = sourceString.trim().split(';');
 
   newSourseString
@@ -9,10 +9,10 @@ function convertToObject(sourceString) {
     .forEach(elem => {
       const [property, value] = elem.split(':');
 
-      result[property.trim()] = value.trim();
+      stylesInObject[property.trim()] = value.trim();
     });
 
-  return result;
+  return stylesInObject;
 }
 
 module.exports = convertToObject;

@@ -16,13 +16,13 @@
 
 function convertToObject(sourceString) {
   const styleObj = {};
-  let newStr = sourceString.replace(/[\r\n]+/g, '').split(';');
+  let arrOfStyles = sourceString.replace(/[\r\n]+/g, '').split(';');
 
-  newStr = newStr.map((str) => str.trim().split(':'));
+  arrOfStyles = arrOfStyles.map((str) => str.trim().split(':'));
 
-  newStr.forEach((str) => {
-    if (str[0] !== '') {
-      styleObj[str[0].trim()] = `${str[1]}`.trim();
+  arrOfStyles.forEach(([key, value]) => {
+    if (key !== '') {
+      styleObj[key.trim()] = value.trim();
     }
   });
 

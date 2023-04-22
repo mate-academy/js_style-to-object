@@ -2,12 +2,12 @@
 
 function convertToObject(sourceString) {
   const styles = sourceString.split(';').reduce((start, line) => {
-    const [key, value] = line.split(':').map(lines => lines.trim());
+    const [property, value] = line.split(':').map(lines => lines.trim());
 
-    return key && value
+    return property && value
       ? {
         ...start,
-        [key]: value,
+        [property]: value,
       }
       : start;
   }, {});

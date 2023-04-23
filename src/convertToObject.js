@@ -18,9 +18,10 @@ function convertToObject(sourceString) {
 
   sourceString.split(';').forEach(element => {
     const str = element.split(':');
+    const [porerty, value] = str;
 
-    if (str[0] !== undefined && str[1] !== undefined) {
-      obj[str[0].trim()] = str[1].trim();
+    if (porerty && value) {
+      obj[porerty.trim()] = value.trim();
     }
   });
 

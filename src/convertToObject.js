@@ -11,8 +11,16 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const regexp = /([a-z-]+)\s*:\s*([a-z0-9!\-.()# ]+);/g;
+  const converted = {};
+
+  for (const i of sourceString.matchAll(regexp)) {
+    converted[i[1]] = i[2].trim();
+  }
+
+  return converted;
 }
 
 module.exports = convertToObject;

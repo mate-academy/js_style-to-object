@@ -15,16 +15,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const makeRawArray = sourceString.replace(/(\n|\r)/gm, '')
+    .split(';');
   const cssObject = {};
-  const makeArray = sourceString.replace(/(\n|\r)/gm, '')
-    .split(':').map(item => item.trim()).join(':').split(';')
-    .map(item => item.trim()).filter(item => item !== '');
 
-  for (const item of makeArray) {
-    const index = item.indexOf(':');
+  makeRawArray.map((item) => {
+    const itemArr = item.split(':').map(elem => elem.trim());
 
-    cssObject[item.slice(0, index)] = item.slice(index + 1);
-  }
+    if (itemArr[0] !== '') {
+      cssObject[itemArr[0]] = itemArr[1];
+    }
+  });
 
   return cssObject;
 }

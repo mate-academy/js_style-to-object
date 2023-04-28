@@ -26,13 +26,11 @@ function convertToObject(sourceString) {
 
   // return cssObject;
 
-  const stringToarray = sourceString.replace(/\s\s+/g, ' ').split(';');
-
-  const cleaned = stringToarray.filter(action => action.length > 1);
-  const cssArray = cleaned.map(item => item.split(':'));
-
-  const cssObject = cssArray.reduce((o, array) =>
-    Object.assign(o, { [array[0].trim()]: String(array[1]).trim() }), {});
+  const cssObject = sourceString.replace(/\s\s+/g, ' ').split(';')
+    .filter(action => action.length > 1)
+    .map(item => item.split(':'))
+    .reduce((ob, array) =>
+      Object.assign(ob, { [array[0].trim()]: String(array[1]).trim() }), {});
 
   return cssObject;
 }

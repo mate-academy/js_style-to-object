@@ -16,22 +16,21 @@
 function convertToObject(sourceString) {
   const splitExpressions = sourceString
     .split(';')
-    .join('$')
+    .join(',')
     .split(':')
-    .join('$')
-    .split('$');
+    .join(',')
+    .split(',');
 
-  const trimmedExpressions = splitExpressions.map(x => x.trim());
+  const trimmedExpressions = splitExpressions
+    .map(x => x.trim())
+    .filter(x => x.length > 0);
 
-  const codeExpressions = trimmedExpressions.filter(x => x.length > 0);
+  const entries = trimmedExpressions
+    .reduce((rows, key, index) => (index % 2 === 0
+      ? rows.push([key])
+      : rows[rows.length - 1].push(key)) && rows, []);
 
-  const entries = codeExpressions.reduce((rows, key, index) => (index % 2 === 0
-    ? rows.push([key])
-    : rows[rows.length - 1].push(key)) && rows, []);
-
-  const sortedEntries = entries.sort((a, b) => (a[0].localeCompare(b[0])));
-
-  const styleObject = Object.fromEntries(sortedEntries);
+  const styleObject = Object.fromEntries(entries);
 
   return styleObject;
 }

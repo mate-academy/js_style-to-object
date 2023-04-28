@@ -1,15 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const styles = sourceString.split(';').reduce((start, line) => {
+  const styles = sourceString.split(';').reduce((styleObject, line) => {
     const [property, value] = line.split(':').map(lines => lines.trim());
 
     return property && value
       ? {
-        ...start,
+        ...styleObject,
         [property]: value,
       }
-      : start;
+      : styleObject;
   }, {});
 
   return styles;

@@ -15,19 +15,16 @@
  */
 function convertToObject(sourceString) {
   const cssStyle = sourceString
-    .split('\n')
-    .filter(el => el.includes(':'))
-    .map(el => {
-      const index = el.indexOf(':');
-      const key = el.slice(0, index).trim();
-      const value = el.slice(index + 1, -1).trim();
+    .split(';')
+    .reduce((prev, el) => {
+      const [ key, value ] = el.split(':');
 
-      return { [key]: value };
-    })
-    .reduce((prev, el) => ({
-      ...prev,
-      ...el,
-    }), {});
+      if (key && value) {
+        prev[key.trim()] = value.trim();
+      }
+
+      return prev;
+    }, {});
 
   return cssStyle;
 }

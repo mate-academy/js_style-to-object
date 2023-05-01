@@ -20,10 +20,11 @@ function convertToObject(sourceString) {
   const filterArr = splitArr.map(item => item.filter(word => word !== ''));
   const joinArr = filterArr.map(item => item.join(' '));
   const cleanArr = joinArr.filter(item => item !== '');
+  const newArr = cleanArr.map(str => str.replace(' :', ':'));
 
   const obj = {};
 
-  cleanArr.forEach((item) => {
+  newArr.forEach((item) => {
     const [key, value] = item.split(': ');
 
     obj[key] = value;

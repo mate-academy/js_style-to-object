@@ -6,13 +6,13 @@ function convertToObject(sourceString) {
     .map(style => style.trim())
     .filter(style => style !== '');
 
-  const styleObject = {};
-
-  styles.forEach(style => {
+  const styleObject = styles.reduce((acc, style) => {
     const [key, value] = style.split(':').map(str => str.trim());
 
-    styleObject[key] = value;
-  });
+    acc[key] = value;
+
+    return acc;
+  }, {});
 
   return styleObject;
 }

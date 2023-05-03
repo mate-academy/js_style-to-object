@@ -1,13 +1,26 @@
+/* eslint-disable max-len */
 'use strict';
 
+/**
+ * Implement convertToObject function:
+ *
+ * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
+ * and returns an object where CSS properties are keys
+ * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ *
+ * @param {string} sourceString
+ *
+ * @return {object}
+ */
+
 const stylesString = `
-  background-color:      #fff;
+  background-color: #fff;
 -webkit-border-radius: 5px;
-  border-radius     : 5px;
+  border-radius: 5px;
   border: 1px solid #e8e8e8;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  clear   : both       ;
+  clear: both ;
   cursor: pointer;
   float: left;
   font-family: inherit;

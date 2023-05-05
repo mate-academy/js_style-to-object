@@ -41,11 +41,8 @@ function convertToObject(sourceString) {
 
       acc[key] = value;
 
-      return {
-        ...acc,
-        [key]: value,
-      };
-    });
+      return acc;
+    }, {});
 
   return styles;
 }

@@ -14,29 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesString = sourceString.split(';');
-  const styles = stylesString.filter(style => style.trim())
-    .map(style => style.trim())
-    .map(style => style.split(':'))
-    .map(style => style.join(''))
-    .map(style => style.split(' '))
-    .map(style => style.filter(style1 => style1 !== ''));
+  const styles = sourceString.split(';')
+    .filter(style => style.trim())
+    .map(style => style.trim().split(':'));
 
   const obj = {};
 
-  styles.forEach((style) => {
-    const name = style[0];
-    let value = style[1];
+  styles.forEach(([name, ...values]) => {
+    const names = `${name}`.trim();
 
-    if (style[2]) {
-      value = `${style[1]} ${style[2]}`;
-    }
-
-    if (style[2] && style[3]) {
-      value = `${style[1]} ${style[2]} ${style[3]}`;
-    }
-
-    obj[name] = `${value}`;
+    obj[names] = `${values}`.trim();
   });
 
   return obj;

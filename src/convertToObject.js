@@ -14,20 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString
-    .split(';')
-    .reduce((css, style) => {
-      const [property, value] = style.split(':');
+  const rules = sourceString.split(';');
 
-      if (value) {
-        return {
-          ...css,
-          [property.trim()]: value.trim(),
-        };
-      }
+  return rules.reduce((css, style) => {
+    const [property, value] = style.split(':');
 
-      return { ...css };
-    }, {});
+    if (value) {
+      return {
+        ...css,
+        [property.trim()]: value.trim(),
+      };
+    }
+
+    return { ...css };
+  }, {});
 }
 
 module.exports = convertToObject;

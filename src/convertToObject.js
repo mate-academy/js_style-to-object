@@ -6,10 +6,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(';').map(item => item.trim()).filter(Boolean);
+  const styles = sourceString.split(';').map(item =>
+    item.trim()).filter(Boolean);
 
-  return arr.reduce((acc, element) => {
-    const [key, value] = element.split(':').map(item => item.trim());
+  return styles.reduce((acc, element) => {
+    const [key, value] = element.split(':').map(item =>
+      item.trim());
 
     return {
       ...acc,

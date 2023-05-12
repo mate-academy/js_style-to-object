@@ -15,16 +15,18 @@
  */
 function convertToObject(sourceString) {
   const valueStyles = sourceString.split(';')
-    .map(style => style.split(':')
-      .map(data => data.trim()))
-    .filter(style => style.length > 1);
+    .filter(string => string.trim() !== '')
+    .reduce((total, data) => {
+      const [key, value] = data.split(':')
+        .map(string => string.trim());
 
-  return valueStyles.reduce((total, style) => {
-    return {
-      ...total,
-      [style[0]]: style[1],
-    };
-  }, {});
+      return {
+        ...total,
+        [key]: value,
+      };
+    }, {});
+
+  return valueStyles;
 }
 
 module.exports = convertToObject;

@@ -15,24 +15,23 @@
  */
 function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
-  const filtered = sourceArray.filter(item => item.includes(':'));
+  const result = sourceArray.reduce((prev, styles) => {
+    if (!styles.includes(':')) {
+      return prev;
+    }
 
-  const arr = filtered.map((item) => {
-    const [key, value] = item.split(':');
+    const [key, value] = styles.split(':');
 
-    return [key.trim(), value.trim()];
-  });
+    if (key) {
+      return {
+        ...prev, [key.trim()]: value.trim(),
+      };
+    }
 
-  const callback = (prev, item) => {
-    return {
-      ...prev,
-      [item[0]]: item[1],
-    };
-  };
+    return prev;
+  }, {});
 
-  const obj = arr.reduce(callback, {});
-
-  return obj;
+  return result;
 }
 
 module.exports = convertToObject;

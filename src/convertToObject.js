@@ -22,13 +22,9 @@ function convertToObject(sourceString) {
 
     const [key, value] = styles.split(':');
 
-    if (key) {
-      return {
-        ...prev, [key.trim()]: value.trim(),
-      };
-    }
-
-    return prev;
+    return {
+      ...prev, [key.trim()]: value.trim(),
+    };
   }, {});
 
   return result;

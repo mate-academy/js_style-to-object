@@ -14,22 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const eachString = sourceString.split(';');
+  const eachStyle = sourceString.split(';');
 
-  const callback = (newObject, stringStyle) => {
+  const result = eachStyle.reduce((newObject, stringStyle) => {
     const [key, value] = stringStyle.split(':');
 
-    if (key.trim().length !== 0) {
+    if (value) {
       return {
         ...newObject,
-        [key.toString().trim()]: [value].toString().trim(),
+        [key.trim()]: value.trim(),
       };
     }
 
     return { ...newObject };
-  };
-
-  const result = eachString.reduce(callback, {});
+  }, {});
 
   return result;
 }

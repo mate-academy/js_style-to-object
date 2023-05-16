@@ -16,19 +16,18 @@
 
 function convertToObject(stylesString) {
   const stylesArray = stylesString.split(';');
-  const stylesObject = {};
 
-  for (let i = 0; i < stylesArray.length; i++) {
-    const style = stylesArray[i].trim();
+  const stylesObject = stylesArray.reduce((obj, style) => {
+    const trimmedStyle = style.trim();
 
-    if (style !== '') {
-      const [property, value] = style.split(':');
-      const propertyName = property.trim();
-      const propertyValue = value.trim();
+    if (trimmedStyle !== '') {
+      const [property, value] = trimmedStyle.split(':');
 
-      stylesObject[propertyName] = propertyValue;
+      obj[property.trim()] = value.trim();
     }
-  }
+
+    return obj;
+  }, {});
 
   return stylesObject;
 }

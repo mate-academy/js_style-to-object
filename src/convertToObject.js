@@ -29,8 +29,9 @@ function convertToObject(sourceString) {
   const cssObject = sourceString.replace(/\s\s+/g, ' ').split(';')
     .filter(action => action.length > 1)
     .map(item => item.split(':'))
-    .reduce((ob, array) =>
-      Object.assign(ob, { [array[0].trim()]: String(array[1]).trim() }), {});
+    .reduce((result, [property, value]) =>
+      Object.assign(result, { [property.trim()]: String(value).trim() }),
+    {});
 
   return cssObject;
 }

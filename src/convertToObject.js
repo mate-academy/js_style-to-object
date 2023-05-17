@@ -20,18 +20,20 @@ function convertToObject(sourceString) {
   const emptyCheck = value => value !== '';
 
   for (const str of input) {
-    current.push(str.trim('\n'));
+    current.push(str.trim());
   }
 
   current = current.filter(emptyCheck);
 
-  for (let i = 0; i < current.length; i++) {
-    current[i] = current[i]
+  for (let cur of current) {
+    cur = cur
       .split(':')
       .filter(emptyCheck)
-      .map(value => value.trim());
+      .map(values => values.trim());
 
-    result[current[i][0]] = current[i][1];
+    const [property, value] = cur;
+
+    result[property] = value;
   }
 
   return result;

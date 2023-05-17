@@ -11,13 +11,15 @@
 function convertToObject(sourceString) {
   const stylesObject = {};
 
-  sourceString.split(';').map(string =>
-    string.trim()).filter(string =>
-    string !== '').map(string => string.split(':')).forEach(string => {
-    const [key, value] = string;
+  sourceString.split(';')
+    .map(string => string.trim())
+    .filter(string => string !== '')
+    .map(string => string.split(':'))
+    .forEach(string => {
+      const [key, value] = string;
 
-    stylesObject[key.trim()] = value.trim();
-  });
+      stylesObject[key.trim()] = value.trim();
+    });
 
   return stylesObject;
 }

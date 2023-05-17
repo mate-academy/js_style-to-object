@@ -16,19 +16,17 @@
 function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
 
-  const createdObj = {};
-
-  for (let i = 0; i < sourceArray.length; i++) {
-    const sourceDesc = sourceArray[i].split(':');
+  return sourceArray.reduce((obj, item) => {
+    const sourceDesc = item.split(':');
 
     if (sourceDesc.length === 2) {
       const [key, value] = sourceDesc;
 
-      createdObj[key.trim()] = value.trim();
+      obj[key.trim()] = value.trim();
     }
-  }
 
-  return createdObj;
+    return obj;
+  }, {});
 }
 
 module.exports = convertToObject;

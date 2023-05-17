@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 'use strict';
-
 /**
  * Implement convertToObject function:
  *
@@ -11,8 +11,20 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const cssObject = {};
+  const propertiesArray = sourceString.split(';');
+
+  propertiesArray.map(property => {
+    const arrayProperties = property.split(':').map(element => element.trim());
+
+    if (arrayProperties.length >= 2) {
+      cssObject[arrayProperties[0]] = arrayProperties[1];
+    }
+  });
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

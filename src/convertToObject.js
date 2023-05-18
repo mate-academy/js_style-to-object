@@ -14,9 +14,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const values = sourceString.split(';').map(style =>
-    style.split(':').map(elem =>
-      elem.trim())).filter(value => value[0] && value[1]);
+  const values = sourceString
+    .split(';')
+    .map(style =>
+      style.split(':').map(elem => elem.trim()))
+    .filter(value => value[0] && value[1]);
 
   const stylesObject = values.reduce((acc, key) => ({
     ...acc, [key[0]]: key[1],

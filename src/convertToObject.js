@@ -13,7 +13,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splittedString = sourceString.split('\n');
+  const splittedString = sourceString.split(';');
   const styleProperties = splittedString.filter((row) => {
     return row && row.includes(':');
   });
@@ -22,7 +22,7 @@ function convertToObject(sourceString) {
   styleProperties.forEach((property) => {
     const [key, value] = property.split(':');
 
-    styleAsObject[key.trim()] = value.slice(0, -1).trim();
+    styleAsObject[key.trim()] = value.trim();
   });
 
   return styleAsObject;

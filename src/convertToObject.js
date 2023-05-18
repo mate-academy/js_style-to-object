@@ -20,7 +20,8 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  sourceString.split(';')
+  sourceString
+    .split(';')
     .filter(item => {
       const delimeterIndex = item.indexOf(':');
 

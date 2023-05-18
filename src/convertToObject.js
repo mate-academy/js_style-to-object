@@ -16,15 +16,11 @@
 function convertToObject(sourceString) {
   let properties = sourceString.split(';');
 
-  properties = properties.slice(0, properties.length - 1);
-
   properties = properties
+    .slice(0, properties.length - 1)
     .map(property => property.trim())
-    .filter(property => property.length !== 0);
-
-  properties = properties.map(property => {
-    return property.split(':');
-  });
+    .filter(property => property.length !== 0)
+    .map(property => property.split(':'));
 
   const propertyObject = {};
 

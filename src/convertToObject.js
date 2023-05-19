@@ -16,18 +16,13 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const trimIt = sourceString.trim();
-
-  const splitIt = trimIt.split(';');
-
-  const removeSpaces = splitIt
-    .map(prop => prop.split(':').map(item => item.trim()));
-
-  const removeEmpty = removeSpaces.filter(item => item[0] !== '');
-
-  removeEmpty.forEach((item) => {
-    result[item[0]] = item[1];
-  });
+  sourceString.trim()
+    .split(';')
+    .map(prop => prop.split(':').map(item => item.trim()))
+    .filter(item => item[0] !== '')
+    .forEach((item) => {
+      result[item[0]] = item[1];
+    });
 
   return result;
 }

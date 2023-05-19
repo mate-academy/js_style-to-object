@@ -14,19 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitStr = new Set(sourceString.split(';'));
-  const result = {};
+  const stylesObject = {};
 
-  splitStr.forEach(function(param) {
+  new Set(sourceString.split(';')).forEach(function(param) {
     let paramNormalized = param.split(':');
 
     if (paramNormalized.length === 2) {
       paramNormalized = paramNormalized.map(element => element.trim());
-      result[paramNormalized[0]] = paramNormalized[1];
+      stylesObject[paramNormalized[0]] = paramNormalized[1];
     }
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

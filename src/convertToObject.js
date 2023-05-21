@@ -20,8 +20,8 @@ function convertToObject(sourceString) {
     .split(';')
     .map(prop => prop.split(':').map(item => item.trim()))
     .filter(item => item[0] !== '')
-    .forEach((item) => {
-      result[item[0]] = item[1];
+    .forEach(([key, value]) => {
+      result[key] = value;
     });
 
   return result;

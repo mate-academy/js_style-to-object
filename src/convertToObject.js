@@ -14,18 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = {};
   const styleProperties = sourceString
-    .replace(/;/g, '').split('\n')
-    .filter(i => i.includes(':')).map(i => i.split(':')
-      .map(j => j.trim()).join(': '));
+    .replace(/;/g, '')
+    .split('\n')
+    .filter(i => i.includes(':'))
+    .map(i => i.split(':')
+      .map(j => j.trim())
+      .join(': '));
 
-  styleProperties.forEach(i => {
-    const element = i.split(':');
+  const styleObject = styleProperties.reduce((obj, style) => {
+    const element = style.split(':');
     const [key, value] = element;
 
-    styleObject[key] = value.trim();
-  });
+    obj[key] = value.trim();
+
+    return obj;
+  }, {});
 
   return styleObject;
 }

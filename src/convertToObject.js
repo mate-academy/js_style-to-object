@@ -21,9 +21,7 @@ function convertToObject(sourceString) {
 
   const stylesObject = [...properties].reduce((obj, currentProperty) => {
     const key = currentProperty[0].trim();
-    let value = currentProperty[1].trim();
-
-    value = value.split(':').join('');
+    const value = currentProperty[1].trim();
 
     return {
       ...obj, [key]: value,

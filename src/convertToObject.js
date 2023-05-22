@@ -24,7 +24,8 @@ function convertToObject(sourceString) {
     const value = currentProperty[1].trim();
 
     return {
-      ...obj, [key]: value,
+      ...obj,
+      [key]: value,
     };
   }, {});
 

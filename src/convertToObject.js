@@ -15,12 +15,15 @@
  */
 function convertToObject(sourceString) {
   const result = sourceString
-    .replace(/\n/gi, '')
-    .split(';')
-    .map(element => element.split(':')
+    .replace(/\n/gi, '') // first we remove all line breaks
+    .split(';') // create an array of properties
+    .map(element => element.split(':') // split each property into key-values
       .map(item => item.trim()))
+    // for each element, remove the spaces on the sides
     .filter(item => item.length > 1)
+    // filter from empty values (could have appeared after splitting)
     .reduce((prev, [key, value]) =>
+    // we create an object where for each property we write its key and value
       ({
         ...prev,
         [key]: value,

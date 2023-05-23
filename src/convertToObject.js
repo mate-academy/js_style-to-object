@@ -16,7 +16,7 @@
 function convertToObject(sourceString) {
   const stylesObject = {};
 
-  new Set(sourceString.split(';')).forEach(function(param) {
+  new Set(sourceString.split(';')).forEach((param) => {
     let paramNormalized = param.split(':');
 
     if (paramNormalized.length === 2) {

@@ -19,15 +19,16 @@ function convertToObject(sourceString) {
     .map(string => string.trim())
     .filter(string => string);
 
-  const stylesObject = {};
+  const stylesObject = stylesArray.reduce((acc, string) => {
+    const [propertyName, propertyValue] = string
+      .split(':')
+      .map(stringPart => stringPart.trim());
 
-  stylesArray.forEach(string => {
-    const property = string.split(':');
-    const propertyName = property[0].trim();
-    const propertyValue = property[1].trim();
-
-    stylesObject[propertyName] = propertyValue;
-  });
+    return {
+      ...acc,
+      [propertyName]: propertyValue,
+    };
+  }, {});
 
   return stylesObject;
 }

@@ -14,22 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = sourceString
-    .replace(/\n/gi, '') // first we remove all line breaks
-    .split(';') // create an array of properties
-    .map(element => element.split(':') // split each property into key-values
-      .map(item => item.trim()))
-    // for each element, remove the spaces on the sides
-    .filter(item => item.length > 1)
-    // filter from empty values (could have appeared after splitting)
-    .reduce((prev, [key, value]) =>
-    // we create an object where for each property we write its key and value
-      ({
-        ...prev,
-        [key]: value,
-      }), {});
+  const stylesSource = sourceString;
+  const stylesWithoutLineBreaks = stylesSource.replace(/\n/gi, '');
+  const styleArray = stylesWithoutLineBreaks.split(';');
+  const styleProperties = styleArray.map(element => element.split(':')
+    .map(item => item.trim())
+  );
+  const stylesFiltered = styleProperties.filter(item => item.length > 1);
+  const styles = stylesFiltered.reduce((prev, [key, value]) =>
+    ({
+      ...prev,
+      [key]: value,
+    }), {}
+  );
 
-  return result;
+  return styles;
 }
 
 module.exports = convertToObject;

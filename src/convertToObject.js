@@ -2,15 +2,14 @@
 
 function convertToObject(sourceString) {
   const result = {};
-  const stringSplit = sourceString.split(';');
+  const sourceStringTrimmed = sourceString.trim();
+  const stringSplit = sourceStringTrimmed.split(';');
 
   for (const entry of stringSplit) {
-    const clean = entry.trim();
-
-    if (clean.includes(':')) {
-      const index = clean.indexOf(':');
-      const name = clean.slice(0, index).trim();
-      const value = clean.slice(index + 1, entry.length).trim();
+    if (entry.includes(':')) {
+      const index = entry.indexOf(':');
+      const name = entry.slice(0, index).trim();
+      const value = entry.slice(index + 1, entry.length).trim();
 
       result[name] = value;
     }

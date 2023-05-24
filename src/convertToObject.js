@@ -14,17 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
+  const propertyLines = sourceString
+    .split(';')
+    .map(item => item.trim());
 
-  const propertyLines = sourceString.trim().split(';');
-
-  for (const line of propertyLines) {
-    const [key, value] = line.split(':').map(prop => prop.trim());
+  const styles = propertyLines.reduce((result, line) => {
+    const [key, value] = line
+      .split(':')
+      .map(prop => prop.trim());
 
     if (key && value) {
-      styles[key] = value;
+      result[key] = value;
     }
-  }
+
+    return result;
+  }, {});
 
   return styles;
 }

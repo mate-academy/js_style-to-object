@@ -14,13 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesSource = sourceString;
-  const stylesWithoutLineBreaks = stylesSource.replace(/\n/gi, '');
+  const stylesWithoutLineBreaks = sourceString.replace(/\n/gi, '');
+
   const styleArray = stylesWithoutLineBreaks.split(';');
+
   const styleProperties = styleArray.map(element => element.split(':')
     .map(item => item.trim())
   );
+
   const stylesFiltered = styleProperties.filter(item => item.length > 1);
+
   const styles = stylesFiltered.reduce((prev, [key, value]) =>
     ({
       ...prev,

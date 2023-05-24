@@ -1,22 +1,22 @@
 'use strict';
 
 const stylesString = `
-  background-color:      #fff;
+  background-color: #fff;
   -webkit-border-radius: 5px;
-  border-radius     : 5px;
+  border-radius: 5px;
   border: 1px solid #e8e8e8;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  clear   : both       ;
+  clear: both;
   cursor: pointer;
   float: left;
   font-family: inherit;
   font-size: 14px;
   font-weight: 400;
   height: 42px;
-  line-height:    40px;
+  line-height: 40px;
   outline: 0;
-  padding-left    : 18px;
+  padding-left: 18px;
   padding-right: 30px;
   ;
 

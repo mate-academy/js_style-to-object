@@ -19,11 +19,15 @@ function convertToObject(sourceString) {
     .map(property => property.split(':'))
     .filter(item => item.length > 1);
 
-  const obj = styles.reduce(function(objec, property) {
-    objec[property[0].trim()] = property[1].trim();
+  const obj = styles.reduce((object, property) => {
+    const key = property[0];
+    const value = property[1];
 
-    return objec;
-  }, {});
+    object[key.trim()] = value.trim();
+
+    return object;
+  }, {}
+  );
 
   return obj;
 }

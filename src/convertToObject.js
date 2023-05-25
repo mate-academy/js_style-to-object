@@ -20,14 +20,11 @@ function convertToObject(sourceString) {
     .filter(string => string);
 
   const stylesObject = stylesArray.reduce((acc, string) => {
-    const [propertyName, propertyValue] = string
-      .split(':')
-      .map(stringPart => stringPart.trim());
+    const [propertyName, propertyValue] = string.split(':');
 
-    return {
-      ...acc,
-      [propertyName]: propertyValue,
-    };
+    acc[propertyName.trim()] = propertyValue.trim();
+
+    return acc;
   }, {});
 
   return stylesObject;

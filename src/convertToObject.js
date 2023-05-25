@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
     .filter(style => style.length > 0);
   const splitedStyles = arrayOfStyles.map(style => splitAndTrim(style, ':'));
 
-  splitedStyles.map(function makeObj(style) {
+  splitedStyles.forEach(function makeObj(style) {
     objectOfStyles[style[0]] = style[1];
   });
 

@@ -16,11 +16,12 @@
 function convertToObject(sourceString) {
   const objectOfStyles = {};
   const arrayOfStyles = splitAndTrim(sourceString, ';')
-    .filter(style => style.length > 0);
-  const splitedStyles = arrayOfStyles.map(style => splitAndTrim(style, ':'));
+    .filter(style => style);
 
-  splitedStyles.forEach(function makeObj(style) {
-    objectOfStyles[style[0]] = style[1];
+  arrayOfStyles.forEach(style => {
+    const [key, value] = style.split(':');
+
+    objectOfStyles[key.trim()] = value.trim();
   });
 
   return objectOfStyles;

@@ -14,21 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const cssProperties = {};
   const processedArray = sourceString.split(';');
 
-  for (let i = 0; i < processedArray.length; i++) {
-    const indexColon = processedArray[i].indexOf(':');
+  processedArray.forEach((x) => {
+    const indexColon = x.indexOf(':');
 
     if (indexColon > 0) {
-      const key = processedArray[i].slice(0, indexColon).trim();
-      const values = processedArray[i].slice(indexColon + 1).trim();
+      const key = x.slice(0, indexColon).trim();
+      const values = x.slice(indexColon + 1).trim();
 
-      result[key] = values;
+      cssProperties[key] = values;
     }
-  }
+  });
 
-  return result;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

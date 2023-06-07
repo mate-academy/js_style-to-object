@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
   const resultObj = {};
 
   for (const pair of pairsArr) {
-    const pairArr = pair.split(':');
+    const [key, value] = pair.split(':');
 
-    if (pairArr[0] && pairArr[1]) {
-      resultObj[pairArr[0].trim()] = pairArr[1].trim();
+    if (key && value) {
+      resultObj[key.trim()] = value.trim();
     }
   }
 

@@ -25,11 +25,11 @@ function convertToObject(sourceString) {
     .filter((item) => item.length > 0);
 
   const result = array.reduce((prev, item) => {
-    const itemArr = item.split(':');
+    const [property, value] = item.split(':');
 
     return {
       ...prev,
-      [itemArr[0]]: itemArr[1],
+      [property]: value,
     };
   }, {});
 

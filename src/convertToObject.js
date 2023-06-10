@@ -7,7 +7,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
+  const correctStyles = {};
 
   const sourceStringSplit = sourceString.split(';');
 
@@ -15,11 +15,11 @@ function convertToObject(sourceString) {
     if (properties.includes(':')) {
       const [property, value] = properties.split(':');
 
-      obj[property.trim()] = value.trim();
+      correctStyles[property.trim()] = value.trim();
     }
   });
 
-  return obj;
+  return correctStyles;
 }
 
 module.exports = convertToObject;

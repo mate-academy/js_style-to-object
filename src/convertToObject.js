@@ -7,19 +7,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const obj = {};
 
   const sourceStringSplit = sourceString.split(';');
 
-  for (const key of sourceStringSplit) {
-    if (key.includes(':')) {
-      const [property, value] = key.split(':');
+  sourceStringSplit.map((properties) => {
+    if (properties.includes(':')) {
+      const [property, value] = properties.split(':');
 
-      result[property.trim()] = value.trim();
+      obj[property.trim()] = value.trim();
     }
-  }
+  });
 
-  return result;
+  return obj;
 }
 
 module.exports = convertToObject;

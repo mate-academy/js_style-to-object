@@ -17,14 +17,14 @@ function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
   const styles = {};
 
-  sourceArray.forEach((item) => {
-    const [key, value] = item.split(':');
+  sourceArray.forEach((declaration) => {
+    const [property, value] = declaration.split(':');
 
-    if (!key || !value) {
+    if (!property || !value) {
       return;
     }
 
-    styles[normalized(key)] = normalized(value);
+    styles[normalized(property)] = normalized(value);
   });
 
   return styles;

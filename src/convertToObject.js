@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const convertedObject = {};
 
   const arr = sourceString
     .split(';')
@@ -22,10 +22,10 @@ function convertToObject(sourceString) {
     .map(prop => prop.split(':'));
 
   for (const [prop, value] of arr) {
-    result[prop.trim()] = value.trim();
+    convertedObject[prop.trim()] = value.trim();
   }
 
-  return result;
+  return convertedObject;
 }
 
 module.exports = convertToObject;

@@ -25,6 +25,5 @@ function convertToObject(sourceString) {
 
   return obj;
 }
-// eslint-disable-next-line no-console
-// console.log(itemIndex.forEach(elem => elem.trim()));
+
 module.exports = convertToObject;

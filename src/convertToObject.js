@@ -16,7 +16,7 @@
 function convertToObject(sourceString) {
   const strings = sourceString.split('\n')
     .filter(string => string.includes(':'))
-    .map(string => string.trim().split(':'));
+    .map(string => string.split(':'));
 
   const object = {};
 

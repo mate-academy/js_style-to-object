@@ -13,16 +13,48 @@
  *
  * @return {object}
  */
+// function convertToObject(sourceString) {
+//   const stylesArray = sourceString
+//     .split(';')
+//     .map(style => style.trim())
+//     .map(style => style.split(':'))
+//     .map(style => style.map(st => st.trim()))
+//     .filter(style => style.length === 2);
+
+//   const styleObject = Object.fromEntries(stylesArray);
+
+//   return styleObject;
+// }
+
 function convertToObject(sourceString) {
   const stylesArray = sourceString
     .split(';')
-    .map(style => style.trim())
-    .map(style => style.split(':'))
-    .map(style => style.map(st => st.trim()))
-    .map(style => style.filter(Boolean))
-    .filter(style => style.length === 2);
+    .map(style => style.trim());
 
-  const styleObject = Object.fromEntries(stylesArray);
+  // const styleObject = stylesArray
+  //   .reduce((obj, style) => {
+  //     const [key, value] = style
+  //       .split(':')
+  //       .map(st => st.trim());
+
+  //     if (key && value) {
+  //       obj[key] = value;
+  //     }
+
+  //     return obj;
+  //   }, {});
+
+  const styleObject = {};
+
+  for (const style of stylesArray) {
+    const [key, value] = style
+      .split(':')
+      .map(st => st.trim());
+
+    if (key && value) {
+      styleObject[key] = value;
+    }
+  }
 
   return styleObject;
 }

@@ -31,19 +31,6 @@ function convertToObject(sourceString) {
     .split(';')
     .map(style => style.trim());
 
-  // const styleObject = stylesArray
-  //   .reduce((obj, style) => {
-  //     const [key, value] = style
-  //       .split(':')
-  //       .map(st => st.trim());
-
-  //     if (key && value) {
-  //       obj[key] = value;
-  //     }
-
-  //     return obj;
-  //   }, {});
-
   const styleObject = {};
 
   for (const style of stylesArray) {

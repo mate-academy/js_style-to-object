@@ -10,7 +10,7 @@ function convertToObject(sourceString) {
   for (let i = 0; i < array.length; i++) {
     const [key, value] = array[i];
 
-    if (value !== undefined) {
+    if (value) {
       result[key] = value;
     }
   }

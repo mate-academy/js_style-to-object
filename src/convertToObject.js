@@ -21,11 +21,9 @@ function convertToObject(sourceString) {
     .map(item => item.split(':'));
 
   keysAndProperties
-    .forEach(keyAndProperty => {
-      if (keyAndProperty[1] !== undefined) {
-        keyAndProperty[0] = keyAndProperty[0].trim();
-        keyAndProperty[1] = keyAndProperty[1].trim();
-        cssProperties[keyAndProperty[0]] = keyAndProperty[1];
+    .forEach(([key, property]) => {
+      if (property !== undefined) {
+        cssProperties[key.trim()] = property.trim();
       }
     });
 

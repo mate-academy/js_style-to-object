@@ -18,16 +18,16 @@ function convertToObject(sourceString) {
 
   const STYLE_OBJECT = {};
   const STYLE_ARRAY = sourceString
-    .replaceAll('\n', '')
-    .split(';')
+    .split(';\n')
     .map(item => item
       .split(':')
       .map(element => element
-        .trim()))
-    .filter(item => item[0] !== '');
+        .trim()));
 
-  for (const index of STYLE_ARRAY) {
-    STYLE_OBJECT[index[0]] = index[1];
+  for (const [key, value] of STYLE_ARRAY) {
+    if (key !== undefined && value !== undefined) {
+      STYLE_OBJECT[key] = value;
+    }
   }
 
   return STYLE_OBJECT;

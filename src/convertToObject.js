@@ -14,15 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.trim()
+  const result = {};
+
+  sourceString.trim()
     .split(';')
     .map(item => item.split(':'))
     .filter(el => el.length > 1)
-    .reduce((acc, [property, value]) => {
-      acc[property.trim()] = value.trim();
+    .forEach(([property, value]) => {
+      result[property.trim()] = value.trim();
+    });
 
-      return acc;
-    }, {});
+  return result;
 }
 
 module.exports = convertToObject;

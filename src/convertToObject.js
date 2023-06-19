@@ -1,7 +1,5 @@
 'use strict';
 
-// const stylesString = require('./stylesString');
-
 /**
  * Implement convertToObject function:
  *
@@ -17,18 +15,17 @@
  */
 function convertToObject(sourceString) {
   const stylesObj = {};
-  const properties = sourceString.split('\n').filter((str) => str.length > 3);
+  const properties = sourceString.split('\n');
 
-  properties.forEach((str) => {
-    const property = str.split(':');
-    const key = property[0].trim();
-    const value = property[1].slice(0, -1).trim();
+  properties.forEach((property) => {
+    const [key, value] = property.split(':');
 
-    stylesObj[key] = value;
+    if (key && value) {
+      stylesObj[key.trim()] = value.slice(0, -1).trim();
+    }
   });
 
   return stylesObj;
 }
 
-// console.log(convertToObject(stylesString));
 module.exports = convertToObject;

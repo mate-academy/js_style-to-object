@@ -1,4 +1,5 @@
-'use strict';
+/*eslint-disable*/
+"use strict";
 
 /**
  * Implement convertToObject function:
@@ -12,7 +13,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const splitedString = sourceString.split(";");
+
+  const divide = splitedString.map((prop) => {
+    const dividedArr = prop.trim().split(":");
+
+    return dividedArr.map((prop) => prop.trim()).filter((prop) => prop !== "");
+  });
+
+  const styledObj = divide
+    .filter((prop) => prop.length > 0)
+    .reduce((prev, item) => {
+      return { ...prev, [item[0]]: item[1] };
+    }, {});
+
+  return styledObj;
 }
 
 module.exports = convertToObject;

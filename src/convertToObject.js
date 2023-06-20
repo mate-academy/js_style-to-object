@@ -17,7 +17,6 @@ function convertToObject(sourceString) {
   const filteredSourseString = sourceString
     .split(';')
     .map(style => style
-      .trim()
       .split(':')
       .map(styleElement => styleElement
         .trim()))

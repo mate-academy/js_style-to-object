@@ -12,7 +12,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const resultObjectOfRules = {};
+  const arrOfRules = sourceString.split(';');
+  const arrOfFormatedRules = arrOfRules
+    .map(rule => rule
+      .split(':')
+      .map(item => item.replace('\n', '').trim()))
+    .filter(el => el.length > 1);
+
+  arrOfFormatedRules.forEach(rule => (
+    resultObjectOfRules[rule[0]] = rule[1]
+  ));
+
+  return resultObjectOfRules;
+};
 
 module.exports = convertToObject;

@@ -15,19 +15,16 @@
  */
 function convertToObject(sourceString) {
   const lines = sourceString.split(';');
-  const convertedObject = {};
 
-  lines.forEach((item) => {
-    const line = item.split(':');
-    const key = line[0].trim();
-    const value = line[1];
+  return lines.reduce((convertedObject, line) => {
+    const [key, value] = line.split(':');
 
     if (value) {
-      convertedObject[key] = value.trim();
+      convertedObject[key.trim()] = value.trim();
     }
-  });
 
-  return convertedObject;
+    return convertedObject;
+  }, {});
 }
 
 module.exports = convertToObject;

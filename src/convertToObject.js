@@ -23,8 +23,8 @@ function convertToObject(sourceString) {
 
   const styledObj = divide
     .filter((prop) => prop.length > 0)
-    .reduce((prev, item) => {
-      return { ...prev, [item[0]]: item[1] };
+    .reduce((prev, [key, value]) => {
+      return { ...prev, [key]: value };
     }, {});
 
   return styledObj;

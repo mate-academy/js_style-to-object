@@ -14,7 +14,8 @@
  */
 
 function convertToObject(sourceString) {
-  const sourceObj = sourceString.split(';')
+  const sourceObj = sourceString
+    .split(';')
     .map(source => source.trim())
     .filter(source => source.length > 1)
     .map(source => source.split(':'))

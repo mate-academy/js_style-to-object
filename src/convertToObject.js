@@ -14,18 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sortedArray = sourceString.split(';')
+  return sourceString
+    .split(';')
     .map(element => trimStr(element))
     .filter((word) => word !== '')
     .reduce((styles, stringPart) => {
-      const [key, value] = stringPart.split(':').map((part) => trimStr(part));
+      const [key, value] = stringPart
+        .split(':')
+        .map((part) => trimStr(part));
 
       styles[key] = value;
 
       return styles;
-    }, {});
-
-  return sortedArray;
+    }, {}); ;
 }
 
 function trimStr(string) {

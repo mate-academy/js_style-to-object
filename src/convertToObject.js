@@ -15,11 +15,11 @@
  */
 function convertToObject(sourceString) {
   const resultObjectOfRules = {};
-  const arrOfRules = sourceString.split(';');
-  const arrOfFormatedRules = arrOfRules
+  const arrOfFormatedRules = sourceString
+    .split(';')
     .map(rule => rule
       .split(':')
-      .map(item => item.replace('\n', '').trim()))
+      .map(item => item.trim()))
     .filter(el => el.length > 1);
 
   arrOfFormatedRules.forEach(([key, value]) => (

@@ -18,9 +18,9 @@ function convertToObject(sourceString) {
     .map(source => source.trim())
     .filter(source => source.length > 1)
     .map(source => source.split(':'))
-    .reduce((obj, curr) => {
+    .reduce((obj, [key, value]) => {
       return {
-        ...obj, [curr[0].trim()]: curr[1].trim(),
+        ...obj, [key.trim()]: value.trim(),
       };
     }, {});
 

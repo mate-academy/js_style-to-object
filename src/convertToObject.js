@@ -15,7 +15,7 @@
  */
 function convertToObject(sourceString) {
   const stylesObj = {};
-  
+
   const formattedStyles = sourceString
     .split(';')
     .map(str => str.split(':').map(word => word.trim()))

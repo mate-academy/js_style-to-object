@@ -22,8 +22,8 @@ function convertToObject(sourceString) {
       .map(item => item.replace('\n', '').trim()))
     .filter(el => el.length > 1);
 
-  arrOfFormatedRules.forEach(rule => (
-    resultObjectOfRules[rule[0]] = rule[1]
+  arrOfFormatedRules.forEach(([key, value]) => (
+    resultObjectOfRules[key] = value
   ));
 
   return resultObjectOfRules;

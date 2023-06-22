@@ -16,18 +16,14 @@
 function convertToObject(sourceString) {
   const result = {};
   const stringToArray = sourceString.split(';');
+  const separator = ':';
 
-  for (let i = 0; i < stringToArray.length; i++) {
-    const arrayTrim = stringToArray[i].trim();
-    const index = arrayTrim.indexOf(':');
-
-    if (index !== -1) {
-      const key = arrayTrim.slice(0, index).trim();
-      const value = arrayTrim.slice(index + 1).trim();
+  stringToArray.filter(items => items.includes(separator))
+    .forEach(items => {
+      const [key, value] = items.split(separator).map(item => item.trim());
 
       result[key] = value;
-    }
-  }
+    });
 
   return result;
 }

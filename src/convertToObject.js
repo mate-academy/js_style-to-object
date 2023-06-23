@@ -14,23 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const cssObject = {};
 
-  let pairs = sourceString.split(';');
+  const pairs = sourceString
+    .split(';')
+    .map((x) => x.trim())
+    .filter((x) => x.length > 0)
+    .map((x) => x.split(':'))
+    .map((x) => x.map((y) => y.trim()));
 
-  pairs = pairs.map((x) => x.trim()).filter((x) => x.length > 0);
-
-  const toCss = function(x) {
-    let pair = x.split(':');
-
-    pair = pair.map((a) => a.trim());
-
-    result[pair[0]] = pair[1];
-  };
+  const toCss = (x) => (cssObject[x[0]] = x[1]);
 
   pairs.forEach(toCss);
 
-  return result;
+  return cssObject;
 }
 
 module.exports = convertToObject;

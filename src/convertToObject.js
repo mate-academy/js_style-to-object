@@ -10,17 +10,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newObj = {};
-  const newArr = sourceString.split(';')
-    .map(item => item.split(':').map(str => str.trim()));
+  const resultObj = {};
+  const replaceStyle = sourceString.split(';')
+    .map(item => item.split(':').map(str => str.trim()))
+    .filter(item => item.length === 2);
 
-  newArr.map((item, index) => {
-    if (item.length === 2) {
-      newObj[item[0]] = item[1];
-    }
+  replaceStyle.forEach(item => {
+    resultObj[item[0]] = item[1];
   });
 
-  return newObj;
+  return resultObj;
 }
 
 module.exports = convertToObject;

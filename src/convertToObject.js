@@ -1,7 +1,4 @@
 'use strict';
-
-const stylesString = require('./stylesString');
-
 /**
  * Implement convertToObject function:
  *

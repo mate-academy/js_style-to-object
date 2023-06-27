@@ -4,7 +4,7 @@ All instances of the `Animal` class must have properties `health` and a `name`.
 Health is 100 by default.
 
 Create a `Herbivore` class.
-Herbivore has a method of `hide`, which changes the hidden property of the beast and helps to hide from carnivores.
+Herbivore has a method of `hide`, which changes the `hidden` property of the beast and helps to hide from carnivores.
 
 Create a `Сarnivore` class.
 Carnivore has a `bite` method, which takes a herbivore object and decreases the object's health by 50. The method does not work if it is another сarnivore, or the herbivore is currently hiding.

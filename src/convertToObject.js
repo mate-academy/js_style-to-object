@@ -17,13 +17,8 @@ function convertToObject(sourceString) {
   const modifiedString = sourceString
     .split(/:|;/)
     .map(word => word.replace(/\n/g, '')
-      .trim());
-
-  modifiedString.forEach(word => {
-    if (word === '') {
-      delete modifiedString[modifiedString.indexOf(word)];
-    }
-  });
+      .trim())
+    .filter(x => x !== '');
 
   return modifiedString.reduce((prev, word, index, words) =>
     (index % 2 === 0 || index === 0 ? {

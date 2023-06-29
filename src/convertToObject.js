@@ -14,12 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const clearString = sourceString.trim()
-    .replace(/\s+/g, ' ').replace(/;+/g, ';');
-  const stylesArray = clearString.split(';');
-
-  stylesArray.pop();
-
+  const stylesArray = sourceString.trim().replace(/\s+/g, ' ').split(';');
   const stylesObject = {};
 
   stylesArray.forEach((style) => {

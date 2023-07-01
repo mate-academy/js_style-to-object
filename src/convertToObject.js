@@ -23,13 +23,14 @@ function convertToObject(sourceString) {
     .sort((value1, value2) =>
       value1.toString().localeCompare(value2.toString()));
 
-  const objectOfCssValues = styleSheetsArray.reduce((objectOfCssValues, value) => {
-    const [key, val] = value;
+  const objectOfCssValues = styleSheetsArray.reduce(
+    (obj, value) => {
+      const [key, val] = value;
 
-    objectOfCssValues[key.trim()] = val.trim();
+      obj[key.trim()] = val.trim();
 
-    return objectOfCssValues;
-  }, {});
+      return obj;
+    }, {});
 
   return objectOfCssValues;
 }

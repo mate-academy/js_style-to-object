@@ -12,7 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const lines = sourceString.split(';').filter(a => a.includes(':'));
+
+  return lines.reduce((obj, line) => {
+    const params = line.split(':');
+
+    return {
+      ...obj, [params[0].trim()]: params[1].trim(),
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

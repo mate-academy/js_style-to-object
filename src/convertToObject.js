@@ -15,17 +15,14 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const resObj = {};
-  const changeStr = sourceString
-    .split(';')
+  const changeStr = sourceString.split(';')
     .filter((item) => item.trim())
-    .map((item) => item.split(':'));
+    .map((item) => item.split(':'))
+    .reduce((prev, item, i) => (
+      Object.assign(prev, { [item[0].trim()]: item[1].trim() })), {}
+    );
 
-  for (let i = 0; i < changeStr.length; i++) {
-    resObj[changeStr[i][0].trim()] = changeStr[i][1].trim();
-  }
-
-  return resObj;
+  return changeStr;
 }
 
 module.exports = convertToObject;

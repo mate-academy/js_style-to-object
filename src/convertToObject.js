@@ -14,43 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitStrings = sourceString.split(';');
+  const convertToObject = sourceString => 
+  sourceString.split(';').reduce((acc, nextEL) {
+    const trimmed = nextEl.trim();
 
-  const splitLongStrings = splitStrings.filter(x => x.length > 4);
-
-  const stringsSplitedColon = [];
-
-  splitLongStrings.forEach(x => {
-    const arrayCopy = x.split(':');
-
-    stringsSplitedColon.push(arrayCopy[0]);
-    stringsSplitedColon.push(arrayCopy[1]);
-  });
-
-  const stringsWithoutSpaces = stringsSplitedColon.map(x => {
-    let i = 0;
-
-    while (x.charAt(i) === ' ' || x.charAt(i) === '\n') {
-      i++;
+    if (trimmed === '') {
+      return acc;
     }
 
-    const y = x.slice(i);
-    let j = y.length;
+    const [key, val] = trimmed.split(':');
 
-    while (y.charAt(j - 1) === ' ') {
-      j--;
-    }
-
-    return y.slice(0, j);
-  });
-
-  const result = {};
-
-  for (let i = 0; i < stringsWithoutSpaces.length - 1; i += 2) {
-    result[stringsWithoutSpaces[i]] = stringsWithoutSpaces[i + 1];
-  }
-
-  return result;
+    return {
+      ...acc,
+      [key.trim()]: val.trim(),
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -25,6 +25,10 @@ function convertToObject(sourceString) {
 
     const propertyAndValue = item.split(':').map(i => i.trim());
 
+    if (propertyAndValue.length !== 2) {
+      continue;
+    }
+
     result[propertyAndValue[0]] = propertyAndValue[1];
   }
 

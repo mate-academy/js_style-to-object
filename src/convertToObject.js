@@ -16,14 +16,14 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const properties = sourceString.trim().split(/\s*;\s*/);
+  const properties = sourceString.split(';').map(i => i.trim());
 
   for (const item of properties) {
     if (item === '') {
       continue;
     }
 
-    const propertyAndValue = item.split(/\s*:\s*/);
+    const propertyAndValue = item.split(':').map(i => i.trim());
 
     result[propertyAndValue[0]] = propertyAndValue[1];
   }

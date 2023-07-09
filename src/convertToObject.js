@@ -5,8 +5,8 @@
  * Implement convertToObject function:
  *
  * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ * and returns an object where CSS propertys are keys
+ * and values are the values of related CSS propertys (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
@@ -18,12 +18,12 @@ function convertToObject(sourceString) {
   sourceString
     .replace(/\s+/g, ' ')
     .split(';')
-    .map(propertie => propertie.trim())
-    .filter(propertie => propertie)
-    .map(propertie => {
-      const [ propertieName, propertieValue ] = propertie.split(': ');
+    .map(property => property.trim())
+    .filter(Boolean)
+    .forEach(property => {
+      const [ propertyName, propertyValue ] = property.split(': ');
 
-      styles[propertieName.trim()] = propertieValue;
+      styles[propertyName.trim()] = propertyValue;
     });
 
   return styles;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -12,7 +13,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styles = {};
+
+  sourceString
+    .replace(/\s+/g, ' ')
+    .split(';')
+    .map(propertie => propertie.trim())
+    .filter(propertie => propertie)
+    .map(propertie => {
+      const [ propertieName, propertieValue ] = propertie.split(': ');
+
+      styles[propertieName.trim()] = propertieValue;
+    });
+
+  return styles;
 }
 
 module.exports = convertToObject;

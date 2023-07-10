@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const splitedProperty = sourceString.split(';');
+  const propertiesList = splitedProperty.map(property => {
+    let [key, value] = property.split(':');
+
+    key = key.replace(/\n| /g, '');
+    value && (value = value.trim());
+
+    if (key === '') {
+      return;
+    }
+
+    return { [key]: value };
+  });
+
+  return Object.assign({}, ...propertiesList);
 }
 
 module.exports = convertToObject;

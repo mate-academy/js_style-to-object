@@ -14,8 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const convertToObject = sourceString => 
-  sourceString.split(';').reduce((acc, nextEL) {
+ return sourceString.split(';').reduce((acc, nextEl) => {
     const trimmed = nextEl.trim();
 
     if (trimmed === '') {

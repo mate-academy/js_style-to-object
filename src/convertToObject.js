@@ -6,19 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const finalResult = {};
   const separator = /\s*(?:;|$)\s*/;
 
   const tempResult1 = sourceString.split(separator)
     .filter(element => element.length > 0);
 
-  for (const a of tempResult1) {
-    const tempElement = a.replace(/(\r\n|\n|\r)/gm, '').trim();
-    const indexOfDD = tempElement.indexOf(':');
-
-    finalResult[`${tempElement.slice(0, indexOfDD).trim()}`]
-    = tempElement.slice(indexOfDD + 1, tempElement.length).trim();
-  }
+  const finalResult = tempResult1.reduce((prev, current) => {
+    return {
+      ...prev, [current.split(':')[0].trim()]: current.split(':')[1].trim(),
+    };
+  }, {});
 
   return finalResult;
 }

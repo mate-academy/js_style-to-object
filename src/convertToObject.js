@@ -5,9 +5,7 @@ function convertToObject(sourceString) {
 
   const styles = sourceString.split(';');
 
-  for (let i = 0; i < styles.length; i++) {
-    const style = styles[i];
-
+  for (const style of styles) {
     const colonIndex = style.indexOf(':');
 
     if (colonIndex !== -1) {

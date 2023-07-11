@@ -14,20 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  const newArry = sourceString
+  const styleObject = {};
+
+  const properties = sourceString
     .split(';')
-    .map((item) => item.trim()
-      .split(':'))
-    .filter((item) => item.length !== 1);
+    .map((elem) => elem.trim())
+    .filter((elem) => elem.length > 0)
+    .map((elem) => elem.split(':'))
+    .map((elem) => elem.map((n) => n.trim()));
 
-  const association = newArry.map((item) => item.map((elem) => elem.trim()));
+  properties.forEach(([property, value]) => (styleObject[property] = value));
 
-  association.map(function(item) {
-    obj[item[0]] = item[1];
-  });
-
-  return obj;
+  return styleObject;
 }
 
 module.exports = convertToObject;

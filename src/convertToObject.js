@@ -14,9 +14,9 @@
  * @return {object}
  */
 
-function convertToObject(stylesString) {
+function convertToObject(sourceString) {
   const resultObj = {};
-  const clearProperties = stylesString
+  const clearProperties = sourceString
     .replaceAll('\n', '')
     .split(';')
     .map(

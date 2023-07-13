@@ -17,9 +17,7 @@ function convertToObject(sourceString) {
   return sourceString.split(';')
     .map(block => block.split(':'))
     .filter(block => block.length === 2)
-    .map(([prop, val]) => {
-      return [prop.trim(), val.trim()];
-    })
+    .map(([prop, val]) => [prop.trim(), val.trim()])
     .reduce((Obj, [prop, val]) => ({
       ...Obj, [prop]: val,
     }), {});

@@ -19,8 +19,9 @@ function convertToObject(sourceString) {
   const clearProperties = sourceString
     .replaceAll('\n', '')
     .split(';')
-    .map(rule => rule.split(':'))
-    .filter(([key, value]) => key.trim() !== '');
+    .map(rule => rule.trim())
+    .filter(rule => rule !== '')
+    .map(rule => rule.split(':'));
 
   clearProperties
     .map(([key, value]) => {

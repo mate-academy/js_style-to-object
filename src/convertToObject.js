@@ -19,14 +19,13 @@ function convertToObject(sourceString) {
   const clearProperties = sourceString
     .replaceAll('\n', '')
     .split(';')
-    .map(
-      rule => rule.split(':'))
-    .filter(
-      rule => rule.length === 2);
+    .map(rule => rule.split(':'))
+    .filter(([key, value]) => key.trim() !== '');
 
-  clearProperties.map(rule => {
-    resultObj[rule[0].trim()] = rule[1].trim();
-  });
+  clearProperties
+    .map(([key, value]) => {
+      resultObj[key.trim()] = value.trim();
+    });
 
   return resultObj;
 }

@@ -15,26 +15,19 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const one = sourceString.split(';');
-  const two = one
-    .map(char => char.trim())
-    .filter(char => char !== '');
+  const stylesArray = sourceString.split(';');
 
-  const three = two.map(char => char.split(':'));
+  const stylesObject = stylesArray.reduce((obj, style) => {
+    const [property, value] = style.split(':').map(str => str.trim());
 
-  const threeTrim = three.map(char => {
-    return char.map(item => item.trim());
-  });
+    if (property && value) {
+      obj[property] = value;
+    }
 
-  const four = threeTrim.reduce((prev, item) => {
-    return {
-      ...prev, [item[0]]: item[1],
-    };
-  },
-  {}
-  );
+    return obj;
+  }, {});
 
-  return four;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

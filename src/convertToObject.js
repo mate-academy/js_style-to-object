@@ -14,17 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-
   const arr = sourceString.split(';');
 
-  arr.forEach((line) => {
-    const [key, value] = line.split(':');
+  const styles = arr.reduce((acc, elem) => {
+    const [key, value] = elem.split(':');
 
     if (key && value) {
-      styles[key.trim()] = value.trim();
+      acc[key.trim()] = value.trim();
     }
-  });
+
+    return acc;
+  }, {});
 
   return styles;
 }

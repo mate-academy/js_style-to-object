@@ -1,10 +1,5 @@
 'use strict';
 
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
 function convertToObject(sourceString) {
   const getStyle = (styleString, sep) => styleString.split(`${sep}`);
   const styles = getStyle(sourceString, ';');

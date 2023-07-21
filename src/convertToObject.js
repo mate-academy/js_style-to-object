@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
       .split(':')
       .map(part => part.trim());
 
-    if (name !== '') {
+    if (name && value) {
       styles[name] = value;
     }
   });

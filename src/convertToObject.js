@@ -16,7 +16,7 @@
 function convertToObject(sourceString) {
   // write your code here
   const styles = {};
-  const properties = sourceString.split(';\n');
+  const properties = sourceString.split(';');
 
   properties.forEach(property => {
     const [name, value] = property

@@ -15,17 +15,18 @@
  */
 function convertToObject(sourceString) {
   const newArr = sourceString.split('\n')
-    .filter((element) => element.length >= 5)
-    .map((element) => element.replace(';', ''));
-  const styleObj = {};
+    .filter((element) => element.trim() !== '')
+    .map((element) => element.replace(/;/g, '').trim());
 
-  newArr.forEach((element) => {
-    const [ prop, val ] = element.split(':');
+  return newArr.reduce((styleObj, element) => {
+    const [prop, val] = element.split(':');
 
-    styleObj[prop.trim()] = val.trim();
-  });
+    if (prop && val) {
+      styleObj[prop.trim()] = val.trim();
+    }
 
-  return styleObj;
+    return styleObj;
+  }, {});
 }
 
 module.exports = convertToObject;

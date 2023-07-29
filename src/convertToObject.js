@@ -14,33 +14,30 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  const mass = [];
+  const objectForStyles = {};
+  const array = [];
   const arrSplitFirstLevel = sourceString.split(';');
 
   for (const words of arrSplitFirstLevel) {
     const arrSplitSecondLevel = words.split(':');
 
-    for (const values of arrSplitSecondLevel) {
-      const cut = values.trim();
+    if (arrSplitSecondLevel[0] !== undefined
+      && arrSplitSecondLevel[1] !== undefined) {
+      const propertyName = arrSplitSecondLevel[0].trim();
+      const propertyValue = arrSplitSecondLevel[1].trim();
 
-      mass.push(cut);
+      array.push(propertyName);
+      array.push(propertyValue);
     }
   }
 
-  const filtered = mass.filter(function(elem) {
-    if (elem !== '') {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  const filtered = array.filter(Boolean);
 
   for (let i = 0; i < filtered.length; i += 2) {
-    obj[filtered[i]] = filtered[i + 1];
+    objectForStyles[filtered[i]] = filtered[i + 1];
   }
 
-  return obj;
+  return objectForStyles;
 }
 
 module.exports = convertToObject;

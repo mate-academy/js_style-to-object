@@ -15,23 +15,21 @@
  */
 function convertToObject(sourceString) {
   const objectForStyles = {};
-  const array = [];
+  const elements = [];
   const arrSplitFirstLevel = sourceString.split(';');
 
   for (const words of arrSplitFirstLevel) {
-    const arrSplitSecondLevel = words.split(':');
+    const [name, value] = words.split(':');
 
-    if (arrSplitSecondLevel[0] !== undefined
-      && arrSplitSecondLevel[1] !== undefined) {
-      const propertyName = arrSplitSecondLevel[0].trim();
-      const propertyValue = arrSplitSecondLevel[1].trim();
+    if (name !== undefined && value !== undefined) {
+      const propertyName = name.trim();
+      const propertyValue = value.trim();
 
-      array.push(propertyName);
-      array.push(propertyValue);
+      elements.push(propertyName, propertyValue);
     }
   }
 
-  const filtered = array.filter(Boolean);
+  const filtered = elements.filter(Boolean);
 
   for (let i = 0; i < filtered.length; i += 2) {
     objectForStyles[filtered[i]] = filtered[i + 1];

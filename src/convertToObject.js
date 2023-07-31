@@ -15,12 +15,12 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const formattedString = sourceString
-    .replace(/(?:\r\n|\r|\n)/g, '') // del new line
-    .replace(/ +/g, ' ') // del extra sp.
-    .replace(/ *: */g, ':') // del sp. after and before :
-    .replace(/ *; */g, ';') // -||- ;
-    .trim(); // del sp. on the beginning and end
+  const formattedString = sourceString;
+  // .replace(/(?:\r\n|\r|\n)/g, '') // del new line
+  // .replace(/ +/g, ' ') // del extra sp.
+  // .replace(/ *: */g, ':') // del sp. after and before :
+  // .replace(/ *; */g, ';') // -||- ;
+  // .trim(); // del sp. on the beginning and end
 
   const splitted = formattedString.split(';');
   const objCss = {};

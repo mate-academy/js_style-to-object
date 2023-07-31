@@ -14,16 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const separatedPairs = sourceString.split(';');
   const propertiesObject = {};
 
-  sourceString
-    .split(';')
-    .map(line => line.split(':').map(element => element.trim()))
-    .forEach(propertyPair => {
-      if (propertyPair[0]) {
-        propertiesObject[propertyPair[0]] = propertyPair[1];
-      }
-    });
+  separatedPairs.forEach(pair => {
+    const [ property, value ] = pair
+      .split(':')
+      .map(str => str.trim());
+
+    if (property && value) {
+      propertiesObject[property] = value;
+    }
+  });
 
   return propertiesObject;
 }

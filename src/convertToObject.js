@@ -6,7 +6,7 @@ function convertToObject(sourceString) {
     .reduce((prev, next) => {
       const [key, value] = next.split(':');
 
-      return (value)
+      return (key && value)
         ? {
           ...prev,
           [key.trim()]: value.trim(),

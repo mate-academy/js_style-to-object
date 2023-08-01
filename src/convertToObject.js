@@ -14,19 +14,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // const obj = {};
   const properties = sourceString.split(';');
 
-  // for (let i = 0; i < properties.length; i++) {
-  //   const [key, value] = properties[i].split(':');
-
-  //   if (!value) {
-  //     continue;
-  //   }
-  //   obj[key.trim()] = value.trim();
-  // }
-
-  const obj = properties.reduce((prev, item) => {
+  const stylesObj = properties.reduce((prev, item) => {
     const [key, value] = item.split(':').map(x => x.trim());
 
     if (value) {
@@ -36,7 +26,7 @@ function convertToObject(sourceString) {
     return prev;
   }, {});
 
-  return obj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

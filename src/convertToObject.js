@@ -2,7 +2,6 @@
 
 /**
  * @param {string} sourceString
- *
  * @return {object}
  */
 function convertToObject(sourceString) {

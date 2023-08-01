@@ -5,11 +5,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleLines = sourceString.split(';');
-
-  const styleObject = {};
-
-  styleLines.forEach((styleLine) => {
+  const styleObject = sourceString.split(';').reduce((acc, styleLine) => {
     const [property, value] = styleLine.split(':');
 
     if (property && value) {
@@ -17,10 +13,12 @@ function convertToObject(sourceString) {
       const propertyValue = value.trim();
 
       if (propertyName && propertyValue) {
-        styleObject[propertyName] = propertyValue;
+        acc[propertyName] = propertyValue;
       }
     }
-  });
+
+    return acc;
+  }, {});
 
   return styleObject;
 }

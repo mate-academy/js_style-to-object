@@ -14,20 +14,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  let current;
+  // const obj = {};
   const properties = sourceString.split(';');
 
-  for (let i = 0; i < properties.length; i++) {
-    current = properties[i].split(':');
+  // for (let i = 0; i < properties.length; i++) {
+  //   const [key, value] = properties[i].split(':');
 
-    if (!current[1]) {
-      continue;
+  //   if (!value) {
+  //     continue;
+  //   }
+  //   obj[key.trim()] = value.trim();
+  // }
+
+  const obj = properties.reduce((prev, item) => {
+    const [key, value] = item.split(':').map(x => x.trim());
+
+    if (value) {
+      prev[key] = value;
     }
-    current[0] = current[0].trim();
-    current[1] = current[1].trim();
-    obj[current[0]] = current[1];
-  }
+
+    return prev;
+  }, {});
 
   return obj;
 }

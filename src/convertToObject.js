@@ -21,12 +21,12 @@ function convertToObject(sourceString) {
     .map((element) => [element[0].trim(), element[1].trim()]);
   const styles = {};
 
-  for (let i = 0; i < splittedString.length; i++) {
-    const key = splittedString[i][0];
-    const value = splittedString[i][1];
+  splittedString.forEach((element) => {
+    const key = element[0];
+    const value = element[1];
 
     styles[key] = value;
-  }
+  });
 
   return styles;
 }

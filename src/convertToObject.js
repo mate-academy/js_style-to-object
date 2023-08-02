@@ -24,9 +24,7 @@ function convertToObject(sourceString) {
     const finaleKey = filteredKey.join(' ').trim();
 
     if (array[1] !== undefined && finaleKey.length > 0) {
-      const value = array[1].trim();
-
-      result[finaleKey] = value;
+      result[finaleKey] = array[1].trim();
     }
   }
 

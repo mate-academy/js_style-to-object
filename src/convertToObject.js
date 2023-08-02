@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Implement convertToObject function:
@@ -17,12 +17,12 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const singleLineString = sourceString.replace(/\n/g, "");
+  const singleLineString = sourceString.replace(/\n/g, '');
 
-  const styleLine = singleLineString.split(";");
+  const styleLine = singleLineString.split(';');
 
   for (const style of styleLine) {
-    const [key, value] = style.split(":");
+    const [key, value] = style.split(':');
 
     if (key && value) {
       result[key.trim()] = value.trim();

@@ -15,20 +15,38 @@
  */
 
 function convertToObject(stylesString) {
-  const stylesArray = stylesString
-    .split(';').filter(Boolean);
+  const stylesArray = stylesString.split(';').filter(Boolean);
 
   const stylesObject = stylesArray
     .reduce((acc, styleDeclaration) => {
       const [property, value] = styleDeclaration
         .split(':').map((item) => item.trim());
 
-      acc[property] = value;
+      if (property && value) {
+        acc[property] = value;
+      }
 
       return acc;
     }, {});
 
   return stylesObject;
 }
+
+// function convertToObject(stylesString) {
+//   const stylesArray = stylesString
+//     .split(';').filter(Boolean);
+
+//   const stylesObject = stylesArray
+//     .reduce((acc, styleDeclaration) => {
+//       const [property, value] = styleDeclaration
+//         .split(':').map((item) => item.trim());
+
+//       acc[property] = value;
+
+//       return acc;
+//     }, {});
+
+//   return stylesObject;
+// }
 
 module.exports = convertToObject;

@@ -14,15 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObj = {};
-
-  sourceString.split(';').forEach((prop) => {
+  const styleObj = sourceString.split(';').reduce((prev, prop) => {
     const [key, value] = prop.split(':');
 
-    if (value !== undefined) {
-      styleObj[key.trim()] = value.trim();
+    if (key !== undefined && value !== undefined) {
+      prev[key.trim()] = value.trim();
     }
-  });
+
+    return prev;
+  }, {});
 
   return styleObj;
 }

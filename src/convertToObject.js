@@ -20,8 +20,7 @@ function convertToObject(sourceString) {
     .map((element) => element.split(':'));
 
   const result = splittedString
-    .map(([key, value]) =>
-      [key.trim(), value.trim()])
+    .map(([key, value]) => [key.trim(), value.trim()])
     .reduce((acc, currentValue) => {
       const [key, value] = currentValue;
 

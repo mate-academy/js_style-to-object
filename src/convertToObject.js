@@ -7,10 +7,9 @@
  */
 
 function convertToObject(sourceString) {
-  const styleLines = sourceString.trim().split('\n');
-  const resultCss = {};
+  const styleLines = sourceString.trim().split(';');
 
-  styleLines.forEach(line => {
+  return styleLines.reduce((resultCss, line) => {
     const [key, value] = line.split(':').map(item => item.trim());
 
     if (key && value) {
@@ -20,9 +19,9 @@ function convertToObject(sourceString) {
 
       resultCss[key] = processedValue;
     }
-  });
 
-  return resultCss;
+    return resultCss;
+  }, {});
 }
 
 module.exports = convertToObject;

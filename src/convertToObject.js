@@ -16,19 +16,14 @@
 function convertToObject(sourceString) {
   const stringToArray = sourceString.split(';');
   const arrayWithinArray = stringToArray.map(v => v.split(':'));
-  const result = {};
 
-  for (const array of arrayWithinArray) {
-    const rawKey = array[0].split('\n');
-    const filteredKey = rawKey.filter(v => v.length > 0);
-    const finaleKey = filteredKey.join(' ').trim();
-
-    if (array[1] !== undefined && finaleKey.length > 0) {
-      result[finaleKey] = array[1].trim();
+  return arrayWithinArray.reduce((result, [key, value]) => {
+    if (value !== undefined && key.length > 0) {
+      result[key.trim()] = value.trim();
     }
-  }
 
-  return result;
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

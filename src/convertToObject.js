@@ -17,18 +17,20 @@ function convertToObject(sourceString) {
   const splittedString = sourceString
     .split(';').map((element) => element.trim())
     .filter((element) => element !== '' && element !== ';')
-    .map((element) => element.split(':'))
-    .map((element) => [element[0].trim(), element[1].trim()]);
-  const styles = {};
+    .map((element) => element.split(':'));
 
-  splittedString.forEach((element) => {
-    const key = element[0];
-    const value = element[1];
+  const result = splittedString
+    .map(([key, value]) =>
+      [key.trim(), value.trim()])
+    .reduce((acc, currentValue) => {
+      const [key, value] = currentValue;
 
-    styles[key] = value;
-  });
+      acc[key] = value;
 
-  return styles;
+      return acc;
+    }, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

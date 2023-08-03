@@ -19,11 +19,11 @@ function convertToObject(sourceString) {
   const obj = {};
 
   for (let i = 0; i < array.length; i++) {
-    const arrayIn = array[i].trim().split(':');
+    const arrayIn = array[i].split(':').map(el => el.trim());
 
-    if (arrayIn[0] !== '') {
-      const key = arrayIn[0].trim();
-      const value = arrayIn[1].trim();
+    if (arrayIn[0] && arrayIn[1]) {
+      const key = arrayIn[0];
+      const value = arrayIn[1];
 
       obj[key] = value;
     }

@@ -15,15 +15,15 @@
  */
 function convertToObject(sourceString) {
   const styles = sourceString.split(';');
-  const stylesObj = {};
-
-  styles.forEach((style) => {
+  const stylesObj = styles.reduce((result, style) => {
     const [key, value] = style.split(':');
 
     if (key && value) {
-      stylesObj[key.trim()] = value.trim();
+      result[key.trim()] = value.trim();
     }
-  });
+
+    return result;
+  }, {});
 
   return stylesObj;
 }

@@ -20,20 +20,20 @@ function convertToObject(sourceString) {
     .map(line => line.trim())
     .filter(line => line !== '');
 
-  const stylesObject = {};
-
-  stylesArray.forEach(line => {
+  const stylesObject = stylesArray.reduce((acc, line) => {
     const colonIndex = line.indexOf(':');
 
     if (colonIndex !== -1) {
       const property = line.substring(0, colonIndex);
-      const value = line.substring((colonIndex + 1), (line.length - 1));
+      const value = line.substring(colonIndex + 1, line.length - 1);
       const propertyName = property.trim();
       const propertyValue = value.trim();
 
-      stylesObject[propertyName] = propertyValue;
+      acc[propertyName] = propertyValue;
     }
-  });
+
+    return acc;
+  }, {});
 
   return stylesObject;
 }

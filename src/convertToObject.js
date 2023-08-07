@@ -14,8 +14,10 @@ function convertToObject(sourceString) {
     .split(';')
     .map((item) => item.trim().split(':'))
     .filter((item) => item.length > 1)
-    .reduce(function(prev, item) {
-      prev[item[0].trim()] = item[1].trim();
+    .reduce((prev, item) => {
+      const [key, value] = item;
+
+      prev[key.trim()] = value.trim();
 
       return prev;
     }, {});

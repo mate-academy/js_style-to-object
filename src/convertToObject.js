@@ -15,18 +15,16 @@
  */
 function convertToObject(sourceString) {
   const obj = {};
-  const str = sourceString;
-  const stringWithNoBreakLInes = str.replace(/\n*/g, '');
+  const stringWithNoBreakLInes = sourceString.replace(/\n*/g, '');
   const strArr = stringWithNoBreakLInes.split(';');
 
   for (let i = 0; i < strArr.length; i++) {
     if (strArr[i].includes(':')) {
       const keyValue = strArr[i].split(':');
 
-      const forKey = keyValue[0].trim();
-      const forValue = keyValue[1].trim();
+      const [key, value] = keyValue;
 
-      obj[forKey] = forValue;
+      obj[key.trim()] = value.trim();
     }
   }
 

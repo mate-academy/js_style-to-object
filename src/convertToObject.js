@@ -14,16 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objectifiedString = {};
-  const params = sourceString
-    .split('\n')
-    .filter(param => param.length >= 4)
-    .map(param => param.split(':'));
+  const objectifiedString = sourceString
+    .split(';')
+    .map(prop => prop.trim().split(':'))
+    .filter(prop => prop[0] !== '')
+    .reduce((props, prop) => {
+      const propertyKey = prop[0].trim();
+      const propertyValue = prop[1].trim();
 
-  for (const param of params) {
-    objectifiedString[param[0].trim()]
-      = param[1].slice(0, param[1].indexOf(';')).trim();
-  }
+      return {
+        ...props,
+        [propertyKey]: propertyValue,
+      };
+    }, {});
 
   return objectifiedString;
 }

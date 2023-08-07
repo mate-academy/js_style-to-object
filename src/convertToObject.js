@@ -16,18 +16,19 @@
 
 function convertToObject(sourceString) {
   const obj = {};
-  let prop = [];
-  const strToArr = sourceString.split(';').map(key => key.trim());
 
-  for (let i = 0; i < strToArr.length; i++) {
-    prop = strToArr[i].split(':').map(key => key.trim());
+  sourceString
+    .split(';')
+    .map(key => key
+      .trim())
+    .reduce((accumulator, style) => {
+      const [key, value] = style.split(':').map(a => a.trim());
 
-    if (prop[0] && prop[1]) {
-      obj[prop[0]] = prop[1];
-    }
-  }
+      if (key && value) {
+        obj[key] = value;
+      }
+    }, 0);
 
   return obj;
 }
-
 module.exports = convertToObject;

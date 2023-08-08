@@ -6,24 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = {};
   const arrayString = sourceString.split(';');
+
   const styleArray = arrayString
-    .map(style => style.replace('\n\n\n', ''))
-    .map(style => style.replace('\n\n', ''))
-    .map(style => style.replace('\n', ''))
-    .map(style => style.split(':'));
+    .map(style => style.trim());
 
-  const result = styleArray.map(style => {
-    return style.map(v => v.trim()).filter(v => v !== '');
-  }).filter(v => v.length > 1)
-    .map(style => style);
+  const stylesObject = styleArray.reduce((obj, v) => {
+    const [key, value] = v.split(':');
 
-  result.forEach(v => {
-    const [key, value] = v;
+    if (key !== undefined && value !== undefined
+      && key !== '' && value !== '') {
+      obj[key.trim()] = value.trim();
+    }
 
-    stylesObject[key] = value;
-  });
+    return obj;
+  }, {});
 
   return stylesObject;
 }

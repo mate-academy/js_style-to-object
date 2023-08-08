@@ -16,13 +16,9 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(el => el.trim().replace(/[,]/g, ''))
-    .filter(el => el !== '')
-    .map(el => {
-      const temp = el.split(':');
-
-      return [temp[0].trim(), temp[1].trim()];
-    })
+    .map(el => el.trim().split(':'))
+    .filter(el => el[0].length !== 0)
+    .map(el => [el[0].trim(), el[1].trim()])
     .reduce((prev, item) => ({
       ...prev, [item[0]]: item[1],
     }), {});

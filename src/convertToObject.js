@@ -1,16 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const cssObject = {};
   const filteredItems = sourceString.split(';').filter(x => x.includes(':'));
 
-  filteredItems.forEach((element) => {
-    const part = element.split(':');
-    const trimKey = part[0].trim();
-    const trimValue = part[1].trim();
+  const cssObject = filteredItems.reduce((acc, element) => {
+    const [key, value] = element.split(':');
 
-    cssObject[trimKey] = trimValue;
-  });
+    acc[key.trim()] = value.trim();
+
+    return acc;
+  }, {});
 
   return cssObject;
 }

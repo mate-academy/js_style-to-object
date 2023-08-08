@@ -17,9 +17,8 @@ function convertToObject(sourceString) {
   const arrayToStyles = sourceString
     .trim()
     .split(';')
-    .filter(styleProp => {
-      return styleProp.includes(':');
-    }).reduce((stylesList, stylesParameters) => {
+    .filter(styleProp => styleProp.includes(':'))
+    .reduce((stylesList, stylesParameters) => {
       const [property, value] = stylesParameters.split(':');
 
       return {

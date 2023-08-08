@@ -14,23 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-
-  const STYLE_OBJECT = {};
-  const STYLE_ARRAY = sourceString
+  const sourceObject = sourceString
     .split(';\n')
-    .map(item => item
+    .map(element => element
       .split(':')
-      .map(element => element
-        .trim()));
+      .map(property => property
+        .trim()))
+    .reduce((object, [property, value]) => {
+      if (property === '' || value === undefined) {
+        return object;
+      }
+      object[property] = value;
 
-  for (const [key, value] of STYLE_ARRAY) {
-    if (key !== undefined && value !== undefined) {
-      STYLE_OBJECT[key] = value;
-    }
-  }
+      return object;
+    }, {});
 
-  return STYLE_OBJECT;
+  return sourceObject;
 }
 
 module.exports = convertToObject;

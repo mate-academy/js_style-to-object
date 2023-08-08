@@ -19,9 +19,7 @@ function convertToObject(sourceString) {
       style.trim() !== '');
 
   const stylesObject = stylesArray.reduce(function(result, style) {
-    const parts = style.split(':').map(part => part.trim());
-    const property = parts[0];
-    const value = parts[1];
+    const [property, value] = style.split(':').map(part => part.trim());
 
     result[property] = value;
 

@@ -14,21 +14,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringToArray = sourceString.split(';');
-  const arrayWithinArray = stringToArray.map(v => v.split(':'));
-  const result = {};
+  const stringToArray = sourceString.split(';').map(v => v.trim());
+  const arrayWithinArray
+  = stringToArray.map(v => v.split(':').map(s => s.trim()));
 
-  for (const array of arrayWithinArray) {
-    const rawKey = array[0].split('\n');
-    const filteredKey = rawKey.filter(v => v.length > 0);
-    const finaleKey = filteredKey.join(' ').trim();
+  return arrayWithinArray.reduce((result, array) => {
+    const [rawKey, value] = array;
 
-    if (array[1] !== undefined && finaleKey.length > 0) {
-      result[finaleKey] = array[1].trim();
+    if (rawKey && value) {
+      const filteredKey = rawKey.split('\n').filter(v => v.length > 0);
+      const finalKey = filteredKey.join(' ').trim();
+
+      if (finalKey.length > 0) {
+        result[finalKey] = value;
+      }
     }
-  }
 
-  return result;
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -17,8 +17,15 @@
 function convertToObject(sourceString) {
   const arrayOfStyles = sourceString
     .split(';')
-    .map(style => style.trim())
-    .filter(style => style !== '');
+    .reduce((newArr, style) => {
+      if (style.trim() === '') {
+        return newArr;
+      }
+
+      newArr.push(style.trim());
+
+      return newArr;
+    }, []);
 
   const objectOfStyles = arrayOfStyles.reduce((obj, style) => {
     const [key, value] = style.split(':');

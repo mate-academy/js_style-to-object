@@ -20,12 +20,14 @@ function convertToObject(sourceString) {
     .map(style => style.trim())
     .filter(style => style !== '');
 
-  const objectOfStyles = arrayOfStyles.reduce((obj, style) =>
-    (
-      {
-        ...obj, [style.split(':')[0].trim()]: style.split(':')[1].trim(),
-      }
-    ), {});
+  const objectOfStyles = arrayOfStyles.reduce((obj, style) => {
+    const [key, value] = style.split(':');
+
+    return {
+      ...obj,
+      [key.trim()]: value.trim(),
+    };
+  }, {});
 
   return objectOfStyles;
 }

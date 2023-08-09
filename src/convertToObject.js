@@ -14,16 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceObject = sourceString.trim().split(';')
-    .map(property => property.trim().split(':'))
-    .filter(property => property[0] !== '')
-    .reduce((properties, property) => {
-      const keyProperty = property[0].trim();
-      const valueProperty = property[1].trim();
-
+  const sourceObject = sourceString
+    .trim()
+    .split(';')
+    .map(property => property
+      .trim()
+      .split(':'))
+    .filter(property => property[0])
+    .reduce((properties, [keyProperty, valueProperty]) => {
       return {
         ...properties,
-        [keyProperty]: valueProperty,
+        [keyProperty.trim()]: valueProperty.trim(),
       };
     }, {});
 

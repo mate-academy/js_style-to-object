@@ -14,17 +14,13 @@
  * @return {object}
  */
 const convertToObject = sourceString =>
-  sourceString
-    .split('\n')
-    .map(rule => rule.trim()
-      .replace(/[\t;]/g, ''))
-    .filter(rule => rule)
-    .reduce((obj, rule) => {
-      const [key, val] = rule.split(':');
-
-      return {
-        ...obj, [key.trim()]: val.trim(),
-      };
-    }, {});
+  sourceString.split(';')
+    .map((style) => style
+      .split(':')
+      .map((value) => value.replace(/[\n\t]/g, '').trim()))
+    .filter(el => el.length > 1)
+    .reduce((obj, [key, val]) => ({
+      ...obj, [key]: val,
+    }), {});
 
 module.exports = convertToObject;

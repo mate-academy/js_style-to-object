@@ -1,6 +1,6 @@
 'use strict';
 
-const LINE_TERMINATOR = ';';
+const DECLARATION_SEPARATOR = ';';
 const PROP_VALUE_SEPARATOR = ':';
 const EMPTY_STRING = '';
 
@@ -11,7 +11,7 @@ const EMPTY_STRING = '';
  */
 function convertToObject(sourceString) {
   return sourceString
-    .split(LINE_TERMINATOR)
+    .split(DECLARATION_SEPARATOR)
     .map((entry) => entry.trim())
     .filter((entry) => entry !== EMPTY_STRING)
     .reduce((styleObj, entry) => {

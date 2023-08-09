@@ -1,18 +1,26 @@
 'use strict';
 
+const LINE_TERMINATOR = ';';
+const PROP_VALUE_SEPARATOR = ':';
+const EMPTY_STRING = '';
+
 /**
- * Implement convertToObject function:
- *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
- *
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(LINE_TERMINATOR)
+    .map((entry) => entry.trim())
+    .filter((entry) => entry !== EMPTY_STRING)
+    .reduce((styleObj, entry) => {
+      const [property, value] = entry.split(PROP_VALUE_SEPARATOR);
+
+      styleObj[property.trim()] = value.trim();
+
+      return styleObj;
+    }, {});
 }
 
 module.exports = convertToObject;

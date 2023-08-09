@@ -16,12 +16,15 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(el => el.trim().split(':'))
-    .filter(el => el[0].length !== 0)
-    .map(el => [el[0].trim(), el[1].trim()])
-    .reduce((prev, item) => ({
-      ...prev, [item[0]]: item[1],
-    }), {});
+    .reduce((result, el) => {
+      const [key, value] = el.split(':').map(part => part.trim());
+
+      if (key.length !== 0) {
+        result[key] = value;
+      }
+
+      return result;
+    }, {});
 }
 
 module.exports = convertToObject;

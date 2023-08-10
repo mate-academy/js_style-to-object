@@ -16,10 +16,10 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .reduce((result, el) => {
-      const [key, value] = el.split(':').map(part => part.trim());
+    .reduce((result, element) => {
+      const [key, value] = element.split(':').map(part => part.trim());
 
-      if (key.length !== 0) {
+      if (key.length) {
         result[key] = value;
       }
 

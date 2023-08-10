@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
   return propertiesArray.reduce((style, current) => {
     const [key, value] = current.split(':');
 
-    if (!!key.trim() || value) {
+    if (key && value) {
       style[key.trim()] = value.trim();
     }
 

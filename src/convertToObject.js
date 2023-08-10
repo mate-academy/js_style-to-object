@@ -17,11 +17,13 @@ function convertToObject(sourceString) {
   const sourceObject = sourceString
     .trim()
     .split(';')
-    .map(property => property
-      .trim()
-      .split(':'))
-    .filter(property => property[0])
-    .reduce((properties, [keyProperty, valueProperty]) => {
+    .reduce((properties, property) => {
+      if (!property.trim()) {
+        return properties;
+      }
+
+      const [keyProperty, valueProperty] = property.trim().split(':');
+
       return {
         ...properties,
         [keyProperty.trim()]: valueProperty.trim(),

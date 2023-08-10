@@ -12,10 +12,14 @@ const EMPTY_STRING = '';
 function convertToObject(sourceString) {
   return sourceString
     .split(DECLARATION_SEPARATOR)
-    .map((entry) => entry.trim())
-    .filter((entry) => entry !== EMPTY_STRING)
-    .reduce((styleObj, entry) => {
-      const [property, value] = entry.split(PROP_VALUE_SEPARATOR);
+    .reduce((styleObj, styleEntry) => {
+      const declaration = styleEntry.trim();
+
+      if (declaration === EMPTY_STRING) {
+        return styleObj;
+      }
+
+      const [property, value] = declaration.split(PROP_VALUE_SEPARATOR);
 
       styleObj[property.trim()] = value.trim();
 

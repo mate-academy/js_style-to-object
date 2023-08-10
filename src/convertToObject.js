@@ -15,28 +15,20 @@
  */
 
 function convertToObject(sourceString) {
-  const arrayOfStyles = sourceString
+  return sourceString
     .split(';')
-    .reduce((newArr, style) => {
+    .reduce((obj, style) => {
       if (style.trim() === '') {
-        return newArr;
+        return obj;
       }
 
-      newArr.push(style.trim());
+      const [key, value] = style.trim().split(':');
 
-      return newArr;
-    }, []);
-
-  const objectOfStyles = arrayOfStyles.reduce((obj, style) => {
-    const [key, value] = style.split(':');
-
-    return {
-      ...obj,
-      [key.trim()]: value.trim(),
-    };
-  }, {});
-
-  return objectOfStyles;
+      return {
+        ...obj,
+        [key.trim()]: value.trim(),
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

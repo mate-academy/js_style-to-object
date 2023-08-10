@@ -6,16 +6,22 @@
  *
  * @return {object}
  */
+const INITIAL_SEPARATOR = ';';
+const KEY_VALUE_SEPARATOR = ':';
+
 function convertToObject(sourceString) {
   return sourceString
-    .split(';')
-    .map(element => element.trim())
-    .filter(element => element.length !== 0)
-    .map(element => element.split(':'))
+    .split(INITIAL_SEPARATOR)
     .reduce((obj, element) => {
-      return {
-        ...obj, [element[0].trim()]: element[1].trim(),
-      };
+      const [key, value] = element
+        .split(KEY_VALUE_SEPARATOR)
+        .map(elemen => elemen.trim());
+
+      if (key.length) {
+        obj[key] = value;
+      }
+
+      return obj;
     }, {});
 }
 

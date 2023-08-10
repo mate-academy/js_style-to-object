@@ -21,10 +21,14 @@ function convertToObject(sourceString) {
     .reduce((stylesList, stylesParameters) => {
       const [property, value] = stylesParameters.split(':');
 
-      return {
-        ...stylesList,
-        [property.trim()]: value.trim(),
-      };
+      if (property !== undefined && value !== undefined) {
+        return {
+          ...stylesList,
+          [property.trim()]: value.trim(),
+        };
+      }
+
+      return stylesList;
     }, {});
 
   return arrayToStyles;

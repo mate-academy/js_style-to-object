@@ -18,15 +18,9 @@ function convertToObject(sourceString) {
 
   return propertiesArray.reduce((style, current) => {
     const [key, value] = current.split(':');
-    const styleKey = key
-      ? key.trim()
-      : null;
-    const styleValue = value
-      ? value.trim()
-      : null;
 
-    if (!style[styleKey] && styleKey && styleValue) {
-      style[styleKey] = styleValue;
+    if (!!key.trim() || value) {
+      style[key.trim()] = value.trim();
     }
 
     return style;

@@ -20,13 +20,11 @@ function convertToObject(sourceString) {
       }
     });
 
-  const res = {};
+  return resArray.reduce((result, line) => {
+    result[line[0]] = line[1];
 
-  resArray.forEach(line => {
-    res[line[0]] = line[1];
-  });
-
-  return res;
+    return result;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
           vallueArray.push(vallue.trim());
         });
 
-      if (vallueArray.length === 2) {
+      if (vallueArray.length > 1) {
         resArray.push(vallueArray);
       }
     });

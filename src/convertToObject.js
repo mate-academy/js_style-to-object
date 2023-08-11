@@ -6,8 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = {};
-  const formatedStyles
+  const styles = {};
+  const formatedString
   = sourceString
     .split(';')
     .map(style =>
@@ -18,11 +18,11 @@ function convertToObject(sourceString) {
     .filter(style =>
       style.length === 2);
 
-  formatedStyles.forEach(([key, value]) => {
-    stylesObject[key] = value;
+  formatedString.forEach(([key, value]) => {
+    styles[key] = value;
   });
 
-  return stylesObject;
+  return styles;
 }
 
 module.exports = convertToObject;

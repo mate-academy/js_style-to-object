@@ -17,9 +17,12 @@ function convertToObject(sourceString) {
   const objectString = {};
   const splitedEnter = sourceString.split('\n')
     .map((line) => {
-      return line.replace(';', ' ').split(' ').filter((words) => {
-        return words;
-      }).join(' ');
+      return line.replace(';', ' ')
+        .split(' ')
+        .filter((words) => {
+          return words;
+        })
+        .join(' ');
     });
 
   splitedEnter.map(
@@ -27,14 +30,15 @@ function convertToObject(sourceString) {
       const data = element.split(':');
       let value = '';
 
-      const key = data[0].split('').filter((letter) => {
-        return letter !== ' ';
-      }).join('');
+      const key = data[0].split('')
+        .filter((letter) => {
+          return letter !== ' ';
+        })
+        .join('');
 
       if (data.length >= 2) {
         value = data[1].slice(1);
       }
-      // console.log(data[1]);
 
       if (data.length >= 2) {
         objectString[key] = value;
@@ -43,7 +47,6 @@ function convertToObject(sourceString) {
   );
 
   return objectString;
-  // write your code here
 }
 
 module.exports = convertToObject;

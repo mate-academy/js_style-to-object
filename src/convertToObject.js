@@ -5,24 +5,21 @@
  *
  * @return {object}
  */
+/* eslint-disable no-console */
 function convertToObject(sourceString) {
-  const formatedStylesParts
-  = sourceString
+  return sourceString
     .split(';')
-    .map(style =>
-      style
-        .split(':')
-        .map(stylePart => stylePart.trim())
-    )
-    .filter(style =>
-      style.length === 2);
+    .reduce((acc, style) => {
+      const [key, value] = style.split(':').map(part => part.trim());
 
-  const styles = formatedStylesParts.reduce((acc, [key, value]) => ({
-    ...acc,
-    [key]: value,
-  }), {});
+      if (!key || !value) {
+        return acc;
+      }
 
-  return styles;
+      acc[key] = value;
+
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -12,7 +12,6 @@ function convertToObject(sourceString) {
     .split(';')
     .map(style =>
       style
-        .trim()
         .split(':')
         .map(stylePart => stylePart.trim())
     )

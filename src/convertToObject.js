@@ -6,15 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArray = sourceString.trim().split(';');
   const stylesObject = {};
+  const formatedStyles
+  = sourceString
+    .split(';')
+    .map(style =>
+      style
+        .trim()
+        .split(':')
+        .map(stylePart => stylePart.trim())
+    )
+    .filter(style =>
+      style.length === 2);
 
-  stylesArray.forEach(style => {
-    const parts = style.split(':').map(part => part.trim());
-
-    if (parts.length === 2) {
-      stylesObject[parts[0]] = parts[1];
-    }
+  formatedStyles.forEach(([key, value]) => {
+    stylesObject[key] = value;
   });
 
   return stylesObject;

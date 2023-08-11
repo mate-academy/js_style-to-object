@@ -15,17 +15,12 @@
  */
 function convertToObject(sourceString) {
   const arrayToStyles = sourceString
-    .trim()
     .split(';')
-    .filter(styleProp => styleProp.includes(':'))
     .reduce((stylesList, stylesParameters) => {
       const [property, value] = stylesParameters.split(':');
 
-      if (property !== undefined && value !== undefined) {
-        return {
-          ...stylesList,
-          [property.trim()]: value.trim(),
-        };
+      if (value !== undefined) {
+        stylesList[property.trim()] = value.trim();
       }
 
       return stylesList;

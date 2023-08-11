@@ -6,8 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-  const formatedString
+  const formatedStylesParts
   = sourceString
     .split(';')
     .map(style =>
@@ -18,9 +17,10 @@ function convertToObject(sourceString) {
     .filter(style =>
       style.length === 2);
 
-  formatedString.forEach(([key, value]) => {
-    styles[key] = value;
-  });
+  const styles = formatedStylesParts.reduce((acc, [key, value]) => ({
+    ...acc,
+    [key]: value,
+  }), {});
 
   return styles;
 }

@@ -9,17 +9,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringArray = sourceString.trim().split(';');
+  const sourceObj = sourceString
+    .trim()
+    .split(';')
+    .reduce((properties, property) => {
+      if (!property.trim()) {
+        return properties;
+      }
 
-  const sourceObj = {};
+      const [keyProperty, valueProperty] = property.trim().split(':');
 
-  for (const source of stringArray) {
-    const [property, value] = source.split(':');
-
-    if (property && value) {
-      sourceObj[property.trim()] = value.trim();
-    }
-  }
+      return {
+        ...properties,
+        [keyProperty.trim()]: valueProperty.trim(),
+      };
+    }, {});
 
   return sourceObj;
 }

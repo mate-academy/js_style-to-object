@@ -15,25 +15,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const parts = sourceString
-    .replace(/:/g, ';')
-    .split(';')
-    .map(value => value
-      .split('')
-      .filter(symbol => symbol !== '\n')
-      .join('').trim())
-    .filter((element) => element !== '');
-
-  const keys = parts
-    .filter(value => parts.indexOf(value) % 2 === 0);
-  const values = parts
-    .filter(value => parts.indexOf(value) % 2 !== 0);
-
   const convertedObject = {};
 
-  for (let n = 0; n < values.length; n++) {
-    convertedObject[keys[n]] = values[n];
-  }
+  sourceString
+    .split(';')
+    .map(item => item.split(':').map(part => part.trim()))
+    .filter(prop => prop.length > 1)
+    .forEach(style => {
+      convertedObject[style[0]] = style[1];
+    });
 
   return convertedObject;
 }

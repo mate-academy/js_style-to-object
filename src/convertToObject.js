@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
+  const styles = {};
 
   sourceString
     .split(';')
@@ -27,10 +27,10 @@ function convertToObject(sourceString) {
       return rule;
     })
     .forEach(rule => {
-      obj[rule[0]] = rule[1];
+      styles[rule[0]] = rule[1];
     });
 
-  return obj;
+  return styles;
 }
 
 module.exports = convertToObject;

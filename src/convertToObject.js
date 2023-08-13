@@ -16,15 +16,13 @@
 function convertToObject(sourceString) {
   const objectOfProps = {};
   const arrOfProps = sourceString
-    .split('\n')
+    .split(';')
     .filter(item => item.includes(':'));
 
   arrOfProps.forEach((current) => {
     const [key, value] = current.split(':');
 
-    objectOfProps[key.trim()] = value
-      .slice(0, value.length - 1)
-      .trim();
+    objectOfProps[key.trim()] = value.trim();
   });
 
   return objectOfProps;

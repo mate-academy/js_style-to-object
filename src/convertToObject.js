@@ -9,13 +9,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';')
+  return sourceString
+    .split(';')
     .filter((item) => item.trim() !== '')
     .map((item) => item.split(':'))
-    .reduce((acc, item) => {
+    .reduce((acc, [key, value]) => {
       return {
         ...acc,
-        [item[0].trim()]: item[1].trim(),
+        [key.trim()]: value.trim(),
       };
     }, {});
 }

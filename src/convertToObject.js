@@ -16,15 +16,12 @@
 function convertToObject(sourceString) {
   const stylesObject = sourceString
     .split(';')
-    .sort((a, b) => a[0].localeCompare(b[0]))
     .reduce((acc, currentValue) => {
       const [key, value] = currentValue.split(':');
 
-      if (value === undefined) {
-        return acc;
+      if (value) {
+        acc[key.trim()] = value.trim();
       }
-
-      acc[key.trim()] = value.trim();
 
       return acc;
     }, {});

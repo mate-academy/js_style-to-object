@@ -16,12 +16,20 @@
 function convertToObject(sourceString) {
   const styles = sourceString
     .split(';')
-    .map(string => string.trim().split(':'))
-    .filter(el => el.length > 1)
-    .reduce((acc, element, i) => {
-      return {
-        ...acc, [element[0].trim()]: element[1].trim(),
-      };
+    .reduce((acc, element) => {
+      const property = element.split(':');
+
+      if (property[0].trim().length !== 0) {
+        const propertyName = property[0].trim();
+        const propertyValue = property[1].trim();
+
+        return {
+          ...acc,
+          [propertyName]: propertyValue,
+        };
+      }
+
+      return acc;
     }, {});
 
   return styles;

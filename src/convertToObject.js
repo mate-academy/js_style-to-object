@@ -6,21 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objectWithProperties = sourceString
-    .split('\n')
-    .join('')
-    .split(';')
-    .map((propertie) => propertie.split(':').map((word) => word.trim()))
-    .filter((propertie) => propertie.length !== 0)
-    .reduce((accumlator, propertie) => {
-      return {
-        ...accumlator, [propertie[0]]: propertie[1],
-      };
+  return sourceString
+    .split(';\n')
+    .reduce((acc, cssStyle) => {
+      const [key, value] = cssStyle.split(':').map(part => part.trim());
+
+      if (key) {
+        acc[key] = value;
+
+        return acc;
+      }
+
+      return acc;
     }, {});
-
-  delete objectWithProperties[''];
-
-  return objectWithProperties;
 }
 
 module.exports = convertToObject;

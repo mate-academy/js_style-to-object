@@ -14,18 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const separatorSemicolon = ';';
+  const separatorColon = ':';
+
   return sourceString
-    .split(';')
-    .reduce((resultOfReduce, element) => {
-      const [key, value] = element
-        .split(':')
+    .split(separatorSemicolon)
+    .reduce((stringToObject, objectElement) => {
+      const [key, value] = objectElement
+        .split(separatorColon)
         .map(partOfElement => partOfElement.trim());
 
-      if (key.length) {
-        resultOfReduce[key] = value;
+      if (key) {
+        stringToObject[key] = value;
       }
 
-      return resultOfReduce;
+      return stringToObject;
     }, {});
 }
 

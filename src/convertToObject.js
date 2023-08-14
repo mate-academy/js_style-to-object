@@ -14,18 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesOfCss = sourceString.split(';')
+  const stylesOfCss = sourceString
+    .split(';')
     .reduce((accum, elem) => {
-      const pair = elem.split(':');
-      const key = String(pair[0]).trim();
-      const value = String(pair[1]).trim();
-
-      const currentKeyValue = {};
-
-      currentKeyValue[key] = value;
+      const [key, value] = elem
+        .split(':')
+        .map(item => item.trim());
 
       return key ? {
-        ...accum, ...currentKeyValue,
+        ...accum,
+        [key]: value,
       } : accum;
     }, {});
 

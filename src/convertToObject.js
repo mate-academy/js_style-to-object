@@ -9,24 +9,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = {};
-  const sourceArr = sourceString
+  const formatedStyle = {};
+  const removedEmptySpaces = sourceString
     .split(';\n')
     .filter((string) => string.includes(':'));
 
-  sourceArr.forEach((style) => {
-    const styleArray = style.split(':');
-    const key = styleArray[0].trim();
-    const styleValueSet = new Set(styleArray[1].split(' '));
+  removedEmptySpaces.forEach((style) => {
+    const keyAndValue = style.split(':');
+    const key = keyAndValue[0].trim();
+    const clearedStyle = keyAndValue[1]
+      .trim()
+      .split(' ')
+      .map(prop => prop.trim());
 
-    styleValueSet.delete('');
-
-    const styleValueArr = [...styleValueSet];
-
-    styleObject[key] = styleValueArr.join(' ');
+    formatedStyle[key] = clearedStyle.join(' ');
   });
 
-  return styleObject;
+  return formatedStyle;
 }
 
 module.exports = convertToObject;

@@ -15,19 +15,19 @@
  */
 
 function convertToObject(sourceString) {
-  const splittedString = sourceString.split(';');
+  const splittedString = sourceString
+    .split(';');
 
-  return splittedString.reduce((acc, word) => {
-    const [key, value] = word
-      .split(':')
-      .map(item => item.trim());
+  return splittedString
+    .reduce((acc, word) => {
+      const [key, value] = word.split(':');
 
-    if (key && value) {
-      acc[key] = value;
-    }
+      if (key && value) {
+        acc[key.trim()] = value.trim();
+      }
 
-    return acc;
-  }, {});
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

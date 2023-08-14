@@ -21,11 +21,11 @@ function convertToObject(sourceString) {
     .map((element) => element.trim())
     .filter((element) => element.length > 1)
     .map((element) => element.split(':'))
-    .map((innerArray) => {
-      return innerArray.map((element) => element.trim());
+    .map((property) => {
+      return property.map((element) => element.trim());
     })
-    .reduce((acc, innerArray) => {
-      const [key, value] = innerArray;
+    .reduce((acc, property) => {
+      const [key, value] = property;
 
       acc[key] = value;
 

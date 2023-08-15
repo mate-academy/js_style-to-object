@@ -14,13 +14,14 @@
  * @return {object}
  */
 
-function convertToObject(sourceString) {
-  const splittedString = sourceString
-    .split(';');
+const SEMICOLON = ';';
+const COLON = ':';
 
-  return splittedString
+function convertToObject(sourceString) {
+  return sourceString
+    .split(SEMICOLON)
     .reduce((acc, word) => {
-      const [key, value] = word.split(':');
+      const [key, value] = word.split(COLON);
 
       if (key && value) {
         acc[key.trim()] = value.trim();

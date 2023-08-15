@@ -15,20 +15,19 @@
  */
 
 function convertToObject(sourceString) {
-  const separateStylesInArray = sourceString
-    .split(';').map(oneStyle => oneStyle.trim())
-    .filter(oneStyle => oneStyle !== '');
+  const stylesCollection = sourceString.split(';');
 
-  return separateStylesInArray.reduce((acc, oneStyle) => {
-    const styleUpdate = oneStyle
-      .split(' ')
-      .filter(letter => letter !== '' && letter !== ':')
-      .map(stringStyle => stringStyle.split('')
-        .filter(letter => letter !== ':').join(''));
+  return stylesCollection.reduce((acc, styleStringWithValue) => {
+    const oneStyle = styleStringWithValue
+      .split(':')
+      .map(partStyle => partStyle.trim());
 
-    const [style, ...propertyStyle] = styleUpdate;
+    if (oneStyle.length === 2) {
+      const styleName = oneStyle[0];
+      const valueStyle = oneStyle[1];
 
-    acc[style] = propertyStyle.join(' ');
+      acc[styleName] = valueStyle;
+    }
 
     return acc;
   }, {});

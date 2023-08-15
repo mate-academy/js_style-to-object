@@ -14,23 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const separateProperties = sourceString
-    .split(';');
+  const styles = sourceString
+    .split(';')
+    .reduce((acc, currentValue) => {
+      const [key, value] = currentValue
+        .split(':')
+        .map(property => property.trim());
 
-  const separateKeysValues = separateProperties
-    .map(el => el.trim().split(':'));
+      if (key) {
+        acc[key] = value;
+      }
 
-  const convertObject = separateKeysValues.reduce((obj, currentValue) => {
-    const [key, value] = currentValue.map(property => property.trim());
+      return acc;
+    }, {});
 
-    if (key) {
-      obj[key] = value;
-    }
-
-    return obj;
-  }, {});
-
-  return convertObject;
+  return styles;
 }
 
 module.exports = convertToObject;

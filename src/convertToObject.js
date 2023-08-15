@@ -6,15 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const SEMICOLON = ';';
+  const COLON = ':';
+
   return sourceString
-    .split(';\n')
+    .split(SEMICOLON)
     .reduce((acc, cssStyle) => {
-      const [key, value] = cssStyle.split(':').map(part => part.trim());
+      const [key, value] = cssStyle
+        .split(COLON)
+        .map(part => part.trim());
 
       if (key) {
         acc[key] = value;
-
-        return acc;
       }
 
       return acc;

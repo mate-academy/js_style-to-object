@@ -14,6 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  // TEST
   const stylesOfCss = sourceString
     .split(';')
     .reduce((accum, elem) => {

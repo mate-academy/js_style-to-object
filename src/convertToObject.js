@@ -3,16 +3,12 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .join('')
-    .split('\n')
     .reduce((accum, item) => {
       const [key, value] = item.split(':');
 
-      if (key === undefined || value === undefined) {
-        return accum;
+      if (key && value) {
+        accum[key.trim()] = value.trim();
       }
-
-      accum[key.trim()] = value.trim();
 
       return accum;
     }, {});

@@ -5,21 +5,24 @@
  *
  * @return {object}
  */
+const SEMICOLON = ';';
+const COLON = ':';
+
 function convertToObject(sourceString) {
-  const convertedObject = {};
+  const stylesAndProperties = sourceString
+    .split(SEMICOLON)
+    .map((parts) => parts
+      .split(COLON)
+      .map((part) => part.trim()));
 
-  const allStyles = sourceString.split(';');
+  const convertedObject = stylesAndProperties
+    .reduce((resultedObject, keyAndValue) => {
+      if (keyAndValue.length > 1) {
+        resultedObject[keyAndValue[0]] = keyAndValue[1];
+      }
 
-  const stylesAndProperties = allStyles.map((parts) => parts
-    .split(':')
-    .map((part) => part.trim())
-  );
-
-  stylesAndProperties.forEach((keyAndValue) => {
-    if (keyAndValue.length > 1) {
-      convertedObject[keyAndValue[0]] = keyAndValue[1];
-    }
-  });
+      return resultedObject;
+    }, {});
 
   return convertedObject;
 }

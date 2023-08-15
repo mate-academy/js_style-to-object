@@ -9,23 +9,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const formatedStyle = {};
+  const ROW_SPLITTER = ';\n';
+  const KEY_VALUE_SPLITTER = ':';
+  // const formatedStyle = {};
   const removedEmptySpaces = sourceString
-    .split(';\n')
-    .filter((string) => string.includes(':'));
+    .split(ROW_SPLITTER)
+    .filter((string) => string.includes(KEY_VALUE_SPLITTER));
 
-  removedEmptySpaces.forEach((style) => {
-    const keyAndValue = style.split(':');
+  return removedEmptySpaces.reduce((formatedStyle, style) => {
+    const keyAndValue = style.split(KEY_VALUE_SPLITTER);
     const key = keyAndValue[0].trim();
-    const clearedStyle = keyAndValue[1]
-      .trim()
-      .split(' ')
-      .map(prop => prop.trim());
+    const clearedStyle = keyAndValue[1].trim();
 
-    formatedStyle[key] = clearedStyle.join(' ');
-  });
+    formatedStyle[key] = clearedStyle;
 
-  return formatedStyle;
+    return formatedStyle;
+  }, {});
 }
 
 module.exports = convertToObject;

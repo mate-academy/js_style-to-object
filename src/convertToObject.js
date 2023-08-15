@@ -13,11 +13,14 @@
  *
  * @return {object}
  */
+const SEMICOLON_SEPARATOR = ';';
+const COLON_SEPARATOR = ':';
+
 function convertToObject(sourceString) {
   return sourceString
-    .split(';')
+    .split(SEMICOLON_SEPARATOR)
     .reduce((styles, currentStyle) => {
-      const [key, value] = currentStyle.split(':');
+      const [key, value] = currentStyle.split(COLON_SEPARATOR);
 
       if (key && value) {
         styles[key.trim()] = value.trim();

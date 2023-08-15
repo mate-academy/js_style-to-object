@@ -3,16 +3,28 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
- *
+
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const ROW_SPLITTER = ';\n';
+  const KEY_VALUE_SPLITTER = ':';
+  // const formatedStyle = {};
+  const removedEmptySpaces = sourceString
+    .split(ROW_SPLITTER)
+    .filter((string) => string.includes(KEY_VALUE_SPLITTER));
+
+  return removedEmptySpaces.reduce((formatedStyle, style) => {
+    const keyAndValue = style.split(KEY_VALUE_SPLITTER);
+    const key = keyAndValue[0].trim();
+    const clearedStyle = keyAndValue[1].trim();
+
+    formatedStyle[key] = clearedStyle;
+
+    return formatedStyle;
+  }, {});
 }
 
 module.exports = convertToObject;

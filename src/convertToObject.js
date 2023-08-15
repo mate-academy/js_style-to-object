@@ -15,11 +15,13 @@
  */
 
 function convertToObject(sourceString) {
-  const stylesCollection = sourceString.split(';');
+  const STYLES_SEPARATOR = ';';
+  const STYLE_SEPARATOR_FOR_VALUE = ':';
+  const stylesCollection = sourceString.split(STYLES_SEPARATOR);
 
   return stylesCollection.reduce((acc, styleStringWithValue) => {
     const oneStyle = styleStringWithValue
-      .split(':')
+      .split(STYLE_SEPARATOR_FOR_VALUE)
       .map(partStyle => partStyle.trim());
 
     if (oneStyle.length === 2) {

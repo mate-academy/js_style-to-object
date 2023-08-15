@@ -20,13 +20,10 @@ function convertToObject(sourceString) {
   const styles = sourceString
     .split(PROPERTY_SEPARATOR)
     .reduce((prev, styleStr) => {
-      const style = styleStr.split(PROPERTY_VALUE_SEPARATOR);
+      const [styleName, styleValue] = styleStr.split(PROPERTY_VALUE_SEPARATOR);
 
-      if (style[0].trim() && style[1].trim()) {
-        const styleName = style[0].trim();
-        const styleValue = style[1].trim();
-
-        prev[styleName] = styleValue;
+      if (styleName && styleValue) {
+        prev[styleName.trim()] = styleValue.trim();
       }
 
       return prev;

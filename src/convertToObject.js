@@ -7,17 +7,27 @@
  * @param {string} sourceString
  *
  * @return {object}
+ *
+ *
  */
+
+const SEMICOLON = ';';
+const COLON = ':';
+
 function convertToObject(sourceString) {
   return sourceString
-    .split(';')
-    .filter((item) => item.trim() !== '')
-    .map((item) => item.split(':'))
-    .reduce((acc, [key, value]) => {
-      return {
-        ...acc,
-        [key.trim()]: value.trim(),
-      };
+    .split(SEMICOLON)
+    .reduce((acc, item) => {
+      const [key, value] = item.split(COLON);
+
+      if (key.trim() !== '') {
+        return {
+          ...acc,
+          [key.trim()]: value.trim(),
+        };
+      }
+
+      return acc;
     }, {});
 }
 

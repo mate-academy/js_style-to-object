@@ -13,20 +13,20 @@
  *
  * @return {object}
  */
+const PROPERTY_SEPARATOR = ';';
+const PROPERTY_VALUE_SEPARATOR = ':';
+
 function convertToObject(sourceString) {
   const styles = sourceString
-    .split(';')
+    .split(PROPERTY_SEPARATOR)
     .reduce((prev, styleStr) => {
-      const style = styleStr.split(':');
+      const style = styleStr.split(PROPERTY_VALUE_SEPARATOR);
 
-      if (style.length > 1) {
+      if (style[0].trim() && style[1].trim()) {
         const styleName = style[0].trim();
         const styleValue = style[1].trim();
 
-        return {
-          ...prev,
-          [styleName]: styleValue,
-        };
+        prev[styleName] = styleValue;
       }
 
       return prev;

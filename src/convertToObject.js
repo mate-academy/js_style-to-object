@@ -18,8 +18,7 @@ function convertToObject(sourceString) {
   const colon = ':';
   const semilcon = ';';
 
-  sourceString.split(semilcon
-    )
+  sourceString.split(semilcon)
     .reduce((acc, stylePair) => {
       const [property, value] = stylePair.split(colon);
 

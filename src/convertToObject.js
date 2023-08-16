@@ -15,19 +15,18 @@
  *
  * @return {object}
  */
+const PROPERTY_SEPARATOR = ':';
+const LINE_SEPARATOR = ';';
+
 function convertToObject(sourceString) {
   const formatedString = sourceString
-    .split(';')
-    .map((element) => element.trim())
-    .filter((element) => element.length > 1)
-    .map((element) => element.split(':'))
-    .map((property) => {
-      return property.map((element) => element.trim());
-    })
+    .split(LINE_SEPARATOR)
     .reduce((acc, property) => {
-      const [key, value] = property;
+      const [key, value] = property.split(PROPERTY_SEPARATOR);
 
-      acc[key] = value;
+      if (key !== undefined && value !== undefined) {
+        acc[key.trim()] = value.trim();
+      }
 
       return acc;
     }, {});

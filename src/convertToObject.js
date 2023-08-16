@@ -20,7 +20,6 @@ function convertToObject(sourceString) {
 
   for (let i = 0; i < arrayOfKeys.length; i++) {
     arrayOfKeys[i] = arrayOfKeys[i].replace(/^[^\w\d-]*/, '')
-      .slice(0, -1)
       .replace(/[; ]+/g, ' ')
       .replace(/:\s+/g, ':');
 

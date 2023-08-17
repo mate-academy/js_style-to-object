@@ -14,28 +14,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfKeys = sourceString.split('\n');
+  const arrayOfKeys = sourceString.replace(/;/g, '\n').split('\n');
   const removeEmptyKeys = [];
   const resultObject = {};
+  const modifiedArray = [];
 
   for (let i = 0; i < arrayOfKeys.length; i++) {
-    arrayOfKeys[i] = arrayOfKeys[i].replace(/^[^\w\d-]*/, '')
+    modifiedArray[i] = arrayOfKeys[i].replace(/^[^\w\d-]*/, '')
       .replace(/[; ]+/g, ' ')
       .replace(/:\s+/g, ':');
 
-    if (arrayOfKeys[i].length > 2) {
-      removeEmptyKeys.push(arrayOfKeys[i]);
+    if (modifiedArray[i].length > 0) {
+      removeEmptyKeys.push(modifiedArray[i]);
     }
   }
 
   for (let i = 0; i < removeEmptyKeys.length; i++) {
-    removeEmptyKeys[i] = removeEmptyKeys[i].split(':');
+    removeEmptyKeys[i] = removeEmptyKeys[i].split(':', 2);
   }
 
   for (const key of removeEmptyKeys) {
-    key[0] = key[0].trim();
-    key[1] = key[1].trim();
-    resultObject[key[0]] = key[1];
+    resultObject[key[0].trim()] = key[1].trim();
   }
 
   return (resultObject);

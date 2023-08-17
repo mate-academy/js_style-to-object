@@ -13,27 +13,21 @@
  *
  * @return {object}
  */
-const propertySeparator = ';';
-const keySeparator = ':';
+const PROPERTY_SEPARATOR = ';';
+const KEY_SEPARATOR = ':';
 
 function convertToObject(sourceString) {
-  const properties = sourceString
-    .split(propertySeparator)
-    // .map(prop => prop.trim().split(keySeparator))
-    // .filter(prop => prop[0] !== '');
+  const styleList = sourceString
+    .split(PROPERTY_SEPARATOR)
     .reduce((acc, prop) => {
-      const line = prop.trim().split(keySeparator);
+      const line = prop.trim().split(KEY_SEPARATOR);
 
       if (line[0] !== '') {
-        acc.push(line);
+        acc[line[0].trim()] = line[1].trim();
       }
 
       return acc;
-    }, []);
-
-  const styleList = properties.reduce((acc, prop) => {
-    return Object.assign(acc, { [prop[0].trim()]: prop[1].trim() });
-  }, {});
+    }, {});
 
   return styleList;
 }

@@ -14,23 +14,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = {};
+  const space = '\n';
+  const semicolon = ';';
+  const colon = ':';
 
-  const bundlesToCheck = sourceString
-    .replace('\n', '')
-    .split(';');
+  const stylesObject = sourceString
+    .replace(space, '')
+    .split(semicolon)
+    .reduce((result, bundle) => {
+      const trimmedBundle = bundle.trim();
 
-  bundlesToCheck.forEach(bundle => {
-    const trimmedBundle = bundle.trim();
+      if (trimmedBundle) {
+        const [property, value] = trimmedBundle
+          .split(colon)
+          .map(item => item.trim());
 
-    if (trimmedBundle) {
-      const [property, value] = trimmedBundle
-        .split(':')
-        .map(item => item.trim());
+        result[property] = value;
+      }
 
-      stylesObject[property] = value;
-    }
-  });
+      return result;
+    }, {});
 
   return stylesObject;
 }

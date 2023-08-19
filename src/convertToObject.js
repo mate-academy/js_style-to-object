@@ -12,15 +12,17 @@ function convertToObject(sourceString) {
   const sourceStringToObj = sourceString
     .split(';')
     .reduce((styleObject, currentStyle) => {
-      if (currentStyle.trim() === '') {
+      const styleTrim = currentStyle.trim();
+
+      if (styleTrim === '') {
         return styleObject;
       }
 
-      const valueArr = currentStyle.trim().split(':');
+      const [key, value] = styleTrim.split(':');
 
       return {
         ...styleObject,
-        [valueArr[0].trim()]: valueArr[1].trim(),
+        [key.trim()]: value.trim(),
       };
     }, {});
 

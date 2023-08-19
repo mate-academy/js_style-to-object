@@ -1,5 +1,5 @@
 'use strict';
-
+/* eslint max-len: ["error", { "ignoreComments": true }] */
 /**
  * Implement convertToObject function:
  *
@@ -11,8 +11,68 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  if (!sourceString) {
+    return {};
+  }
+
+  const cssObject = {};
+  const BREAK_SYMBOL = '\n';
+
+  let propsArray = [];
+  let cssPropLine = '';
+
+  for (const cssProp of sourceString) {
+    if (cssProp !== BREAK_SYMBOL) {
+      cssPropLine += cssProp;
+    } else {
+      const cssPropTrim = cssPropLine.trimStart().trimEnd();
+
+      if (cssPropTrim !== ';' && cssPropTrim !== '') {
+        propsArray.push(cssPropTrim);
+      }
+
+      cssPropLine = '';
+    }
+  }
+
+  propsArray = propsArray.map(item => {
+    let key = '';
+    let value = '';
+    let fromPosition = 0;
+
+    for (let i = 0; i < item.length; i++) {
+      if (item[i] === ':') {
+        fromPosition = i;
+        break;
+      }
+
+      key += item[i];
+    }
+
+    for (let i = fromPosition + 1; i < item.length; i++) {
+      if (item[i] === ';') {
+        break;
+      }
+
+      value += item[i];
+    }
+
+    key = key.trimStart().trimEnd();
+    value = value.trimStart().trimEnd();
+
+    return [key, value];
+  });
+
+  propsArray.forEach(item => {
+    const key = item[0];
+    const value = item[1];
+
+    cssObject[key] = value;
+  });
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

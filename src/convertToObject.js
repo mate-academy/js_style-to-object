@@ -1,16 +1,25 @@
 'use strict';
 
+const SEMIKOLON = ';';
+const COLON = ':';
+
 function convertToObject(sourceString) {
-  const stylesArr = sourceString.trim().split(';');
-  const styleObject = {};
+  const stylesArr = sourceString
+    .trim()
+    .split(SEMIKOLON);
 
-  stylesArr.forEach((property) => {
-    const [key, value] = property.split(':').map(item => item.trim());
+  const styleObject = stylesArr
+    .reduce((acc, property) => {
+      const [key, value] = property
+        .split(COLON)
+        .map(item => item.trim());
 
-    if (key && value) {
-      styleObject[key] = value;
-    }
-  });
+      if (key && value) {
+        acc[key] = value;
+      }
+
+      return acc;
+    }, {});
 
   return styleObject;
 }

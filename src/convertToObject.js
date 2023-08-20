@@ -1,5 +1,5 @@
 'use strict';
-
+/* eslint max-len: ["error", { "ignoreComments": true }] */
 /**
  * Implement convertToObject function:
  *
@@ -11,8 +11,28 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  if (!sourceString) {
+    return {};
+  }
+
+  const SEMICOLON = ';';
+  const COLON = ':';
+
+  const propsArray = sourceString
+    .split(SEMICOLON)
+    .filter(item => item.trim() !== '');
+
+  const cssObject = propsArray.reduce((acc, item) => {
+    const [key, value] = item.trim().split(COLON);
+
+    acc[key.trim()] = value.trim();
+
+    return acc;
+  }, {});
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

@@ -1,24 +1,24 @@
 'use strict';
 
+const SEMICOLON = ';';
+const COLON = ':';
+
 function convertToObject(sourceString) {
-  const lines = sourceString.split(';').map((line) => line.trim());
-  const cleanLines = lines.map((line) => {
-    const parts = line.split(':').map((subPart) => subPart.trim());
+  return sourceString
+    .split(SEMICOLON)
+    .reduce((acc, style) => {
+      const [key, value] = style
+        .split(COLON)
+        .map((part) => part.trim());
 
-    return parts;
-  });
+      if (key && value) {
+        acc[key] = value;
 
-  const stylesObject = {};
+        return acc;
+      }
 
-  cleanLines.forEach((parts) => {
-    const [key, value] = parts;
-
-    if (key && value) {
-      stylesObject[key] = value;
-    }
-  });
-
-  return stylesObject;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -9,11 +9,7 @@ function convertToObject(sourceString) {
     if (line.trim()) {
       const devidedLine = line.split(':');
 
-      for (let i = 0; i < devidedLine.length; i++) {
-        devidedLine[i] = devidedLine[i].trim();
-      }
-
-      obj[devidedLine[0]] = devidedLine[1];
+      obj[devidedLine[0].trim()] = devidedLine[1].trim();
     }
   }
 

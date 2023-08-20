@@ -17,60 +17,20 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const cssObject = {};
-  const BREAK_SYMBOL = '\n';
+  const SEMICOLON = ';';
+  const COLON = ':';
 
-  let propsArray = [];
-  let cssPropLine = '';
+  const propsArray = sourceString
+    .split(SEMICOLON)
+    .filter(item => item.trim() !== '');
 
-  for (const cssProp of sourceString) {
-    if (cssProp !== BREAK_SYMBOL) {
-      cssPropLine += cssProp;
-    } else {
-      const cssPropTrim = cssPropLine.trimStart().trimEnd();
+  const cssObject = propsArray.reduce((acc, item) => {
+    const [key, value] = item.trim().split(COLON);
 
-      if (cssPropTrim !== ';' && cssPropTrim !== '') {
-        propsArray.push(cssPropTrim);
-      }
+    acc[key.trim()] = value.trim();
 
-      cssPropLine = '';
-    }
-  }
-
-  propsArray = propsArray.map(item => {
-    let key = '';
-    let value = '';
-    let fromPosition = 0;
-
-    for (let i = 0; i < item.length; i++) {
-      if (item[i] === ':') {
-        fromPosition = i;
-        break;
-      }
-
-      key += item[i];
-    }
-
-    for (let i = fromPosition + 1; i < item.length; i++) {
-      if (item[i] === ';') {
-        break;
-      }
-
-      value += item[i];
-    }
-
-    key = key.trimStart().trimEnd();
-    value = value.trimStart().trimEnd();
-
-    return [key, value];
-  });
-
-  propsArray.forEach(item => {
-    const key = item[0];
-    const value = item[1];
-
-    cssObject[key] = value;
-  });
+    return acc;
+  }, {});
 
   return cssObject;
 }

@@ -14,9 +14,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const stringToObject = sourceString.split(';').map(style =>
-    style.trim().split(':')).filter(word => word[0] !== '')
+  const stringToObject = sourceString
+    .split(';')
+    .map(style => style
+      .trim()
+      .split(':'))
+    .filter(word => word[0] !== '')
     .reduce((obj, [key, value]) => {
       obj[key.trim()] = value.trim();
 

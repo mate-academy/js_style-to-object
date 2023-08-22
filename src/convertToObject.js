@@ -13,20 +13,21 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const space = '\n';
-  const semicolon = ';';
-  const colon = ':';
 
+const LF = '\n';
+const SEMICOLON = ';';
+const COLON = ':';
+
+function convertToObject(sourceString) {
   const stylesObject = sourceString
-    .replace(space, '')
-    .split(semicolon)
+    .replace(LF, '')
+    .split(SEMICOLON)
     .reduce((result, bundle) => {
       const trimmedBundle = bundle.trim();
 
       if (trimmedBundle) {
         const [property, value] = trimmedBundle
-          .split(colon)
+          .split(COLON)
           .map(item => item.trim());
 
         result[property] = value;

@@ -18,8 +18,7 @@ function convertToObject(sourceString) {
 
   const clearPairs = dirtyPairs
     .map(pair => {
-      const pairWithoutNewLine = pair.replace(/\n/g, '');
-      const clearEachProp = pairWithoutNewLine.split(':')
+      const clearEachProp = pair.split(':')
         .map(prop => prop.trim());
 
       return clearEachProp;

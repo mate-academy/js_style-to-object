@@ -20,7 +20,7 @@ function convertToObject(sourceString) {
   for (const ch of sourceArr) {
     const [key, value] = ch.split(':');
 
-    if (value !== undefined) {
+    if (value && key) {
       newObj[key.trim()] = value.trim();
     }
   }

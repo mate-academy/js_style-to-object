@@ -16,21 +16,14 @@
 function convertToObject(sourceString) {
   const splittedBySemicolon = sourceString.split(';');
   const resultArr = [];
-  const clearStrings = [];
 
-  for (const string of splittedBySemicolon) {
-    let clearString = '';
+  const trimmedArr = splittedBySemicolon.map(string => string.trim());
 
-    for (const char of string) {
-      clearString += char;
+  for (const string of trimmedArr) {
+    if (string === '') {
+      continue;
     }
 
-    if (clearString.trim() !== '') {
-      clearStrings.push(clearString.trim());
-    }
-  }
-
-  for (const string of clearStrings) {
     const propertyArr = string.split(':');
 
     propertyArr[0] = propertyArr[0].trim();

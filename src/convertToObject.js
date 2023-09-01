@@ -24,7 +24,7 @@ function convertToObject(sourceString) {
     .reduce((acc, property) => {
       const [key, value] = property.split(PROPERTY_SEPARATOR);
 
-      if (key !== undefined && value !== undefined) {
+      if (key && value) {
         acc[key.trim()] = value.trim();
       }
 

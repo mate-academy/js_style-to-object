@@ -14,17 +14,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArrey = sourceString.split(';');
+  const sourceArray = sourceString.split(';');
 
-  return sourceArrey.reduce((result, item) => {
-    const splitedItem = item.split(':');
+  return sourceArray.reduce((result, item) => {
+    const [key, value] = item.split(':');
 
-    if (splitedItem.length !== 2) {
+    if (!key || !value) {
       return result;
     }
 
     return {
-      ...result, [splitedItem[0].trim()]: splitedItem[1].trim(),
+      ...result,
+      [key.trim()]: value.trim(),
     };
   }, {});
 }

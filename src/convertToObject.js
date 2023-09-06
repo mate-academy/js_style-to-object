@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newWords = sourceString.split('\n');
+  const newWords = sourceString.split(';');
   const result = {};
 
   for (let i = 0; i < newWords.length; i++) {
@@ -23,10 +23,7 @@ function convertToObject(sourceString) {
 
     if (current.length === 2) {
       const property = current[0].trim();
-      let value = current[1].trim();
-
-      value = value.slice(0, -1);
-      value = value.trim();
+      const value = current[1].trim();
 
       result[property] = value;
     }

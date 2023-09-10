@@ -16,15 +16,14 @@ function convertToObject(sourceString) {
   const resObj = {};
   const propsAndVals = sourceString
     .split(';')
-    .filter((word) => word.match(/\w+/) !== null);
+    .filter((word) => word.match(/\w+/) !== null)
+    .map(item => item.split(':'));
 
   for (const propAndVal of propsAndVals) {
-    const propAndValArr = propAndVal.split(':');
-    const prop = propAndValArr[0].trim();
-    const val = propAndValArr[1].trim();
+    if (propAndVal.length === 2) {
+      const [prop, val] = propAndVal;
 
-    if (prop.length !== 0) {
-      resObj[prop] = val;
+      resObj[prop.trim()] = val.trim();
     }
   }
 

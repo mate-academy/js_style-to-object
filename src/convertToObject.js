@@ -19,10 +19,11 @@ function convertToObject(sourceString) {
 
   allCommands.forEach((item) => {
     const commandParts = item.split(':');
+    const [firstCommandPart, secondCommandPart] = commandParts;
 
-    if (commandParts[0] !== undefined && commandParts[1] !== undefined) {
-      const key = commandParts[0].trim();
-      const value = commandParts[1].trim();
+    if (firstCommandPart && secondCommandPart) {
+      const key = firstCommandPart.trim();
+      const value = secondCommandPart.trim();
 
       result[key] = value;
     }

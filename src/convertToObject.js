@@ -14,12 +14,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const NEW_LINE = '\n';
   const EMPTY_LINE = '';
   const SEMICOLON = ';';
   const COLON = ':';
 
-  const properties = sourceString.split(NEW_LINE);
+  const properties = sourceString.split(SEMICOLON);
   const result = {};
 
   for (const i in properties) {
@@ -28,7 +27,7 @@ function convertToObject(sourceString) {
     if (properties[i] !== EMPTY_LINE && properties[i] !== SEMICOLON) {
       const temp = properties[i].split(COLON);
 
-      result[temp[0].trim()] = temp[1].substring(0, temp[1].length - 1).trim();
+      result[temp[0].trim()] = temp[1].substring(0, temp[1].length).trim();
     }
   }
 

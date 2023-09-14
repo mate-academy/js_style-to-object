@@ -27,7 +27,7 @@ function convertToObject(sourceString) {
     if (properties[i] !== EMPTY_LINE && properties[i] !== SEMICOLON) {
       const temp = properties[i].split(COLON);
 
-      result[temp[0].trim()] = temp[1].substring(0, temp[1].length).trim();
+      result[temp[0].trim()] = temp[1].trim();
     }
   }
 

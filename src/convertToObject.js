@@ -14,9 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssString = sourceString;
-
-  const cssObject = cssString
+  const cssObject = sourceString
     .split(';')
     .reduce((obj, pair) => {
       const [key, value] = pair

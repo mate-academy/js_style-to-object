@@ -15,20 +15,21 @@
  */
 function convertToObject(sourceString) {
   const cssString = sourceString;
-  const cssObject = {};
 
-  cssString
+  const cssObject = cssString
     .split(';')
-    .map((pair) => {
+    .reduce((obj, pair) => {
       const [key, value] = pair
         .trim()
         .split(':')
-        .map(item => item.trim());
+        .map((item) => item.trim());
 
       if (key && value) {
-        cssObject[key] = value;
+        obj[key] = value;
       }
-    });
+
+      return obj;
+    }, {});
 
   return cssObject;
 }

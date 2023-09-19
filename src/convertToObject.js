@@ -7,8 +7,8 @@ function convertToObject(sourceString) {
       const [key, value] = str.split(':').map(el => el.trim());
 
       if (key && value) {
-        result[key] = value;
-      };
+        return { ...result, [key]: value };
+      }
 
       return result;
     }, {});

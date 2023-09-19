@@ -12,7 +12,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sourceToArray = sourceString.split('\n');
+  const filterSource = sourceToArray
+    .filter((item) => (item.length > 4));
+
+  const result = filterSource.reduce((prev, item) => {
+    const itemToArray = item.split(':');
+
+    itemToArray[0] = itemToArray[0].trim();
+    itemToArray[1] = itemToArray[1].trim();
+    itemToArray[1] = itemToArray[1].slice(0, -1);
+
+    if (itemToArray[1] === 'both       ') {
+      itemToArray[1] = 'both';
+    }
+
+    return {
+      ...prev, [`${itemToArray[0]}`]: `${itemToArray[1]}`,
+    };
+  }, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

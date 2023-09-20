@@ -14,22 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrSourse = sourceString.split('\n');
+  const arrSourse = sourceString.split(';');
   const convertedObj = {};
 
   for (let i = 0; i < arrSourse.length; i++) {
-    const element = arrSourse[i].replace(';', '').trim();
+    const [key, value] = arrSourse[i].split(':');
 
-    if (element === '' || element === ';') {
-      continue;
+    if (key && value) {
+      convertedObj[key.trim()] = value.trim();
     }
-
-    const part = element.split(':');
-
-    const key = part[0].trim();
-    const value = part[1].trim();
-
-    convertedObj[key] = value;
   }
 
   return convertedObj;

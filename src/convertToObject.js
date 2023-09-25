@@ -14,20 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newArr = sourceString
-    .split(';')
-    .map(val => val.trim().split(':'))
-    .filter(val => val.length > 1);
-
-  const newObj = {};
-
-  newArr.forEach((...arr) => {
-    const [[ key, value ]] = arr;
-
-    newObj[key.trim()] = value.trim();
-  });
-
-  return newObj;
+  // write your code here
 }
 
 module.exports = convertToObject;

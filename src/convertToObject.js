@@ -12,7 +12,10 @@ function convertToObject(sourceString) {
     const parts = el.split(':');
     const key = parts[0].trim();
 
-    let value = parts.slice(1).toString().trim();
+    let value = parts
+      .slice(1)
+      .toString()
+      .trim();
 
     if (value.endsWith(';')) {
       value = value.slice(0, -1);

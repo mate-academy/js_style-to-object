@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const peeledStyles = sourceString
+    .replace(/\s+/g, ' ')
+    .replace(/\s:/g, ':')
+    .split(';')
+    .map((prop) => prop.trim())
+    .filter((prop) => prop);
+
+  const STYLES_ARR = [];
+
+  peeledStyles.map(prop => STYLES_ARR.push(prop.split(': ')));
+
+  const STYLES_OBJECT = Object.fromEntries(STYLES_ARR);
+
+  return STYLES_OBJECT;
 }
 
 module.exports = convertToObject;

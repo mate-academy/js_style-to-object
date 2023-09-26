@@ -17,14 +17,14 @@ function convertToObject(sourceString) {
   const solutionObject = {};
   const sourceArray = sourceString
     .split(';') // split the string into an array of names and their values
-    .map(el => el.split(':'))
+    .map(line => line.split(':'))
     // split the elements into arrays of a key and value each
-    .filter(el => el.length > 1) // remove the invalid elements
-    .map(el => [ // clear up line breaks and spaces
-      el[0]
+    .filter(line => line.length > 1) // remove the invalid elements
+    .map(line => [ // clear up line breaks and spaces
+      line[0]
         .replace(/\n/g, '')
         .trim(),
-      el[1].trim(),
+      line[1].trim(),
     ]);
 
   sourceArray.forEach(el => {

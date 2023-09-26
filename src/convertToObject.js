@@ -21,7 +21,8 @@ function convertToObject(sourceString) {
     .map(elem => elem
       .replace('\n', '')
       .split(':')
-      .map(property => property.trim()));
+      .map(property => property.trim())
+    );
 
   for (const [key, value] of stylesArr) {
     if (key) {

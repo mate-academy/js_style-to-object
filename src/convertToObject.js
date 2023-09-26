@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
 
   const newObj = {};
 
-  newArr.forEach(([key, value]) => {
+  newArr.map(([key, value]) => {
     newObj[key.trim()] = value.trim();
   });
 

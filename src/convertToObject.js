@@ -16,9 +16,9 @@
 function convertToObject(sourceString) {
   const lines = sourceString
     .split('\n')
-    .map(el => el.trim())
-    .filter(el => el.length > 1)
-    .map(el => el.replace(';', '').split(':'));
+    .map(line => line.trim())
+    .filter(line => line.length > 1)
+    .map(ch => ch.replace(';', '').split(':'));
 
   const styledProperties = {};
 

@@ -18,7 +18,6 @@ function convertToObject(sourceString) {
     .split(';')
     .reduce((style, val) => {
       const [key, value] = val
-        .trim()
         .split(':')
         .map(x => x.trim());
 

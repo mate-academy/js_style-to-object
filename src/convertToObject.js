@@ -21,12 +21,11 @@ function convertToObject(sourceString) {
     if (item !== '') {
       const [key, value] = (item.trim().split(':'));
 
-      if (key !== undefined && value !== undefined) {
+      if (key && value) {
         result[key.trim()] = value.trim();
       }
     }
-  }
-  );
+  });
 
   return result;
 }

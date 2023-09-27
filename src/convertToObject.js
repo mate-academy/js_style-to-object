@@ -14,20 +14,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const peeledStyles = sourceString
+  const STYLES_OBJECT = sourceString
     .replace(/\s+/g, ' ')
     .replace(/\s:/g, ':')
     .split(';')
     .map((prop) => prop.trim())
-    .filter((prop) => prop);
+    .filter((prop) => prop)
+    .map(prop => prop.split(': '));
 
-  const STYLES_ARR = [];
-
-  peeledStyles.map(prop => STYLES_ARR.push(prop.split(': ')));
-
-  const STYLES_OBJECT = Object.fromEntries(STYLES_ARR);
-
-  return STYLES_OBJECT;
+  return Object.fromEntries(STYLES_OBJECT);
 }
 
 module.exports = convertToObject;

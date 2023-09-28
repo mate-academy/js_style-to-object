@@ -1,21 +1,22 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const SplitdArr = sourceString.split(';').map((str) => (str.split(':')
-    .map((leftStr) => (leftStr.trim()))));
-  const outputObject = SplitdArr.reduce((obj, [key, value]) => {
-    obj[key] = value;
+  return sourceString
+    .split(';')
+    .reduce((objWithStyles, style) => {
+      const [property, value] = style.split(':');
 
-    return obj;
-  }, {});
+      if (value) {
+        return {
+          ...objWithStyles,
+          [property.trim()]: value.trim(),
+        };
+      }
 
-  for (const key in outputObject) {
-    if (outputObject[key] === undefined || outputObject[key] === null) {
-      delete outputObject[key];
-    }
-  }
-
-  return outputObject;
+      return {
+        ...objWithStyles,
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

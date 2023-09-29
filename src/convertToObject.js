@@ -15,51 +15,30 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const copyOfSourceString = sourceString
-    .split('');
-
+  const copyOfSourceString = sourceString.replace(/\n/g, '').trim().split(' ');
   const copyOfSourceStringWithoutSpaces = copyOfSourceString
-    .filter(item => item !== ' ' && item !== '\n')
-    .join('');
-
-  const finalString = copyOfSourceStringWithoutSpaces
+    .filter(item => item !== '')
+    .join(' ').replace(/(\s+)(:)/g, '$2').replace(/\s*;\s*/g, ';')
     .split(';')
-    .join(' ')
-    .split(':')
-    .join(' ')
-    .split(' ');
+    .filter(item => item !== ' ' && item !== '');
+
+  const result = copyOfSourceStringWithoutSpaces.map(item => {
+    const parts = item.split(': ');
+
+    return [parts[0], parts[1]];
+  }).flat();
 
   const key = [];
   const value = [];
   const finalObjectResults = {};
 
-  finalString.reduce((acc, val, i) => {
+  result.reduce((acc, val, i) => {
     i % 2 === 0 ? key.push(val) : value.push(val);
   }, 0);
 
   key.forEach((k, v) => {
     finalObjectResults[k] = value[v];
   });
-
-  function fixPropertyInObject(object, property, currentValue, finalValue) {
-    if (object[property] === currentValue) {
-      object[property] = finalValue;
-    }
-  }
-
-  fixPropertyInObject(finalObjectResults, 'border',
-    '1pxsolid#e8e8e8', '1px solid #e8e8e8');
-
-  fixPropertyInObject(finalObjectResults, 'transition',
-    'all.2sease-in-out', 'all .2s ease-in-out');
-
-  fixPropertyInObject(finalObjectResults, '-webkit-transition',
-    'all.2sease-in-out', 'all .2s ease-in-out');
-
-  fixPropertyInObject(finalObjectResults, 'text-align',
-    'left!important', 'left !important');
-
-  delete finalObjectResults[''];
 
   return finalObjectResults;
 }

@@ -20,11 +20,11 @@ function convertToObject(sourceString) {
     .filter(line => line.length > 1)
     .map(ch => ch.replace(';', '').split(':'));
 
-  const styledProperties = {};
+  const styledProperties = lines.reduce((acc, [key, value]) => {
+    acc[key.trim()] = value.trim();
 
-  for (const line of lines) {
-    styledProperties[line[0].trim()] = line[1].trim();
-  }
+    return acc;
+  }, {});
 
   return styledProperties;
 }

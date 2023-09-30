@@ -25,10 +25,11 @@ function getObject(array) {
 
   array.forEach(element => {
     const colon = element.indexOf(':');
+    const key = element.slice(0, colon).trim();
+    const param = element.slice(colon + 1).trim();
 
     if (colon > 0) {
-      objStyle[element.slice(0, colon).trim()]
-      = element.slice(colon + 1).trim();
+      objStyle[key] = param;
     }
   });
 

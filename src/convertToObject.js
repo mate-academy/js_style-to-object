@@ -16,9 +16,10 @@
 function convertToObject(sourceString) {
   const styles = {};
 
-  sourceString.trim().split(';')
-    .map(item => item.trim().split(':'))
-    .filter(item => item.length > 1)
+  sourceString
+    .split(';')
+    .map(style => style.split(':'))
+    .filter(style => style.length > 1)
     .forEach(([name, property]) => {
       styles[name.trim()] = property.trim();
     });

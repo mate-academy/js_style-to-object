@@ -14,20 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newObj = {};
+  const stylesObj = {};
 
   const arraySource = sourceString.split(';');
 
-  for (let i = 0; i < arraySource.length - 1; i++) {
-    const keysPush = arraySource[i].split(':')
-      .map(str => str.trimEnd().trimStart());
+  for (const key of arraySource) {
+    const [property, value] = key.split(':')
+      .map(str => str.trim());
 
-    if (keysPush.length > 1) {
-      newObj[keysPush[0]] = keysPush[1];
+    if (property && value) {
+      stylesObj[property] = value;
     }
   }
 
-  return newObj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

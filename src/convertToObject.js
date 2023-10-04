@@ -17,16 +17,13 @@ function convertToObject(sourceString) {
   const styleObject = {};
   const styleArray = sourceString.split(';');
 
-  styleArray.forEach(style => {
+  styleArray.reduce((acc, style) => {
     const [property, value] = style.split(':');
 
     if (property && value) {
-      const propertyName = property.trim();
-      const propertyValue = value.trim();
-
-      styleObject[propertyName] = propertyValue;
+      styleObject[property.trim()] = value.trim();
     }
-  });
+  }, {});
 
   return styleObject;
 }

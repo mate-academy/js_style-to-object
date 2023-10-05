@@ -11,8 +11,24 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const newString = sourceString.replace(/\s+/g, ' ').trim();
+  const styleArray = newString.split(';');
+  const styleObject = {};
+
+  for (let i = 0; i < styleArray.length; i++) {
+    const propName = styleArray[i].trim().split(':');
+
+    if (propName.length === 2 && propName[0].trim()) {
+      const property = propName[0].trim();
+      const value = propName[1].trim();
+
+      styleObject[property] = value;
+    }
+  }
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

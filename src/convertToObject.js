@@ -20,15 +20,10 @@ function convertToObject(sourceString) {
     .filter((item) => item !== '')
     .map((item) => item.split(':'));
 
-  arrayRes.forEach((item) => {
-    item[0] = item[0].trim();
-    item[1] = item[1].trim();
-  });
-
   const res = {};
 
   for (let i = 0; i < arrayRes.length; i++) {
-    res[arrayRes[i][0]] = arrayRes[i][1];
+    res[arrayRes[i][0].trim()] = arrayRes[i][1].trim();
   }
 
   return res;

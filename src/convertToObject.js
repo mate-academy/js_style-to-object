@@ -4,15 +4,13 @@ function convertToObject(sourceString) {
   const result = {};
   const sourceArray = sourceString.split(';');
 
-  for (const element of sourceArray) {
-    element.split(':');
-
-    const smallArray = element.split(':');
+  sourceArray.map(elem => {
+    const smallArray = elem.split(':');
 
     if (smallArray.length > 1) {
       result[smallArray[0].trim()] = smallArray[1].trim();
     }
-  }
+  });
 
   return result;
 }

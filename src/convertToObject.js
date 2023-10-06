@@ -7,20 +7,9 @@
 
 function convertToObject(sourceString) {
   const cssClass = {};
-  const sourceArr = sourceString.split('');
+  const sourceArr = sourceString.split(';');
 
-  let sourseArr = sourceArr.filter((item, i) => {
-    if (item === '\n' || (item === ' ' && sourceArr[i - 1] === ' ')) {
-      return false;
-    }
-
-    return true;
-  });
-
-  sourseArr = sourseArr.join('');
-  sourseArr = sourseArr.split(';');
-
-  sourseArr.forEach((elem) => {
+  sourceArr.forEach((elem) => {
     const LastIndOfKey = elem.indexOf(':');
     const key = elem.slice(0, LastIndOfKey).trim();
 

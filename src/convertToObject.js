@@ -15,8 +15,6 @@
  */
 
 function convertToObject(sourceString) {
-  const obj = {};
-
   const stylesArr = sourceString
     .split(';')
     .map(elem => elem
@@ -25,11 +23,13 @@ function convertToObject(sourceString) {
       .map(property => property.trim())
     );
 
-  for (const [key, value] of stylesArr) {
+  const obj = stylesArr.reduce((result, [key, value]) => {
     if (key) {
-      obj[key] = value;
+      result[key] = value;
     }
-  }
+
+    return result;
+  }, {});
 
   return obj;
 }

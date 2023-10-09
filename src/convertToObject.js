@@ -1,7 +1,5 @@
 'use strict';
 
-const stylesString = require('./stylesString');
-
 /**
  * Implement convertToObject function:
  *
@@ -30,7 +28,5 @@ function convertToObject(sourceString) {
 
   return resultObject;
 }
-
-convertToObject(stylesString);
 
 module.exports = convertToObject;

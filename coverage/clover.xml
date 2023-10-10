@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1696943574428" clover="3.2.0">
+  <project timestamp="1696943574428" name="All files">
+    <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3" elements="12" coveredelements="12" complexity="0" loc="7" ncloc="7" packages="1" files="1" classes="1"/>
+    <file name="convertToObject.js" path="D:\projects\js_style-to-object\src\convertToObject.js">
+      <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="18" count="58" type="cond" truecount="2" falsecount="0"/>
+      <line num="20" count="2" type="stmt"/>
+      <line num="21" count="52" type="stmt"/>
+      <line num="23" count="52" type="stmt"/>
+      <line num="25" count="52" type="stmt"/>
+      <line num="29" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

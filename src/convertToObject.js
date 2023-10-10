@@ -13,6 +13,20 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  const newArr = sourceString
+    .split(';')
+    .map(style => style.trim())
+    .filter(style => style !== '');
+
+  const result = {};
+
+  for (const style of newArr) {
+    const resultStyle = style.split(':').map(item => item.trim());
+
+    result[resultStyle[0]] = resultStyle[1];
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

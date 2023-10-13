@@ -19,17 +19,17 @@ function convertToObject(sourceString) {
     .map(line => line.trim())
     .filter(line => line.length > 0);
 
-  const EXPECTED_OBJECT = {};
+  const resultObject = {};
 
   cssValues.forEach(item => {
     const [key, value] = item.split(':');
     const cleanKey = key.trim();
     const cleanValue = value.trim();
 
-    EXPECTED_OBJECT[cleanKey] = cleanValue;
+    resultObject[cleanKey] = cleanValue;
   });
 
-  return EXPECTED_OBJECT;
+  return resultObject;
 }
 
 module.exports = convertToObject;

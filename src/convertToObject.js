@@ -16,20 +16,19 @@
 function convertToObject(sourceString) {
   return sourceString
     .split('\n')
-    .map(rule => rule.replace(';', '').trim())
     .reduce((prev, rule) => {
-      if (!rule) {
-        return {
-          ...prev,
-        };
+      const next = { ...prev };
+      const currentRule = rule.replace(';', '');
+
+      if (currentRule) {
+        const [property, value] = currentRule
+          .split(':')
+          .map(item => item.trim());
+
+        next[property] = value;
       }
 
-      const [property, value] = rule.split(':');
-
-      return {
-        ...prev,
-        [property.trim()]: value.trim(),
-      };
+      return next;
     }, {});
 }
 

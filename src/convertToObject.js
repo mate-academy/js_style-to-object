@@ -14,6 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const PROPERTY_MUST_HAVE_LENGTH = 2;
   const result = {};
   const cssArr = sourceString
     .split(';')
@@ -21,8 +22,10 @@ function convertToObject(sourceString) {
     .map(property => property.split(/\s*:\s*/));
 
   for (const property of cssArr) {
-    if (property.length === 2) {
-      result[property[0]] = property[1];
+    if (property.length === PROPERTY_MUST_HAVE_LENGTH) {
+      const [key, value] = property;
+
+      result[key] = value;
     }
   }
 

@@ -17,8 +17,13 @@ function convertToObject(sourceString) {
   return sourceString
     .split('\n')
     .map(rule => rule.replace(';', '').trim())
-    .filter(rule => rule)
     .reduce((prev, rule) => {
+      if (!rule) {
+        return {
+          ...prev,
+        };
+      }
+
       const [property, value] = rule.split(':');
 
       return {

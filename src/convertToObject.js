@@ -14,7 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const repN = sourceString.replace(/\r?\n/g, '');
+  const arrStr = repN.split(';');
+
+  const arrFiltered = arrStr.map(item => item.trim())
+    .filter(item => item !== '');
+  const obj = arrFiltered.reduce((acc, item) => {
+    const indDots = item.indexOf(':');
+    const key = item.slice(0, indDots).trim();
+    const val = item.slice(indDots + 1).trim();
+
+    return {
+      ...acc, [key]: val,
+    };
+  }, {});
+
+  return obj;
 }
 
 module.exports = convertToObject;

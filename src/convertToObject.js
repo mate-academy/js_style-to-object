@@ -20,30 +20,14 @@ function convertToObject(sourceString) {
     .filter(item => item !== '')
     .map(str => str.replace(/^:/, ''))
     .reduce((objectWithStyle, el) => {
-      const key = el.split(':')[0];
-      const value = el.split(':')[1].replace(/^\s/g, '');
+      const arraysStyles = el.split(':');
+      const key = arraysStyles[0];
+      const value = arraysStyles[1].replace(/^\s/g, '');
 
       return {
         ...objectWithStyle, [key]: value,
       };
     }, {});
-  // return sourceString
-  //   .split(';:')
-  //   .join(';')
-  //   .split(';')
-  //   .map(substring => substring.trim())
-  //   .filter(substring => substring !== '')
-  //   .join(';')
-  //   .split(':')
-  //   .map(substring => substring.trim())
-  //   .join(':')
-  //   .split(';')
-  //   .map(substring => substring.split(':'))
-  //   .reduce((styles, sub, index) => {
-  //     return {
-  //       ...styles, [sub[0]]: sub[1],
-  //     };
-  //   }, {});
 }
 
 module.exports = convertToObject;

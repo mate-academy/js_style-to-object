@@ -22,8 +22,7 @@ function convertToObject(sourceString) {
     const parts = line.split(':');
 
     if (parts.length === 2) {
-      const property = parts[0];
-      const value = parts[1];
+      const [property, value] = parts;
 
       const trimmedProperty = property.trim();
       const trimmedValue = value

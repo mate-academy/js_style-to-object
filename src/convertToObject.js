@@ -2,17 +2,17 @@
 
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
-  const sourceArray = sourceString.split(';');
+  const arrayCreate = sourceString.split(';');
 
-  sourceArray.map(elem => {
-    const smallArray = elem.split(':');
+  return arrayCreate.reduce((result, el) => {
+    const [key, value] = el.split(':').map((text) => text.trim());
 
-    if (smallArray.length > 1) {
-      result[smallArray[0].trim()] = smallArray[1].trim();
+    if (key) {
+      result[key] = value;
     }
-  });
 
-  return result;
+    return result;
+  }, {});
 }
+
 module.exports = convertToObject;

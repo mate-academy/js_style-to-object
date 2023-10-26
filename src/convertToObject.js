@@ -17,12 +17,11 @@ function convertToObject(sourceString) {
   const result = {};
   const str = sourceString.split(';');
 
-  for (const item of str) {
-    const idx = item.indexOf(':');
-    const property = item.slice(0, idx).trim();
+  for (const elem of str) {
+    const item = elem.split(':');
 
-    if (property) {
-      result[property] = item.slice(idx + 1).trim();
+    if (item[0].trim()) {
+      result[item[0].trim()] = item[1].trim();
     }
   }
 

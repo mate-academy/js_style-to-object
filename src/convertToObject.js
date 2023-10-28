@@ -34,7 +34,7 @@ function convertToObject(sourceString) {
 function getClearElement(item) {
   const [a, b] = item;
 
-  return `${a.trim()},${b.trim()}`.split(',');
+  return [a.trim(), b.trim()];
 }
 
 module.exports = convertToObject;

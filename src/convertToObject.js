@@ -5,7 +5,7 @@ function convertToObject(sourceString) {
 
   const splittedStr = sourceString.split(';');
 
-  splittedStr.map((item) => {
+  splittedStr.forEach((item) => {
     const [key, value] = item
       .split(':')
       .map(string => string.trim());

@@ -16,19 +16,17 @@
  */
 function convertToObject(sourceString) {
   const cssObject = {};
-  const lines = sourceString.split('\n');
 
-  for (const line of lines) {
-    const parts = line.split(':');
+  const pairs = sourceString.split(';');
 
-    if (parts.length === 2) {
-      const [property, value] = parts;
+  pairs.pop();
 
+  for (const pair of pairs) {
+    const [property, value] = pair.split(':');
+
+    if (property && value) {
       const trimmedProperty = property.trim();
-      const trimmedValue = value
-        .replace(/\s+/g, ' ')
-        .replace(/;$/, '')
-        .trim();
+      const trimmedValue = value.trim();
 
       cssObject[trimmedProperty] = trimmedValue;
     }

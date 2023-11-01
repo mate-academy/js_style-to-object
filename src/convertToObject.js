@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Implement convertToObject function:
@@ -12,7 +12,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const stylesArray = sourceString.split(";");
+  const styleObject = {};
 
+  for (const style of stylesArray) {
+    const [property, value] = style.split(":");
+
+    if (property && value) {
+      const trimmedProperty = property.trim();
+      const trimmedValue = value.trim();
+
+      styleObject[trimmedProperty] = trimmedValue;
+    }
+  }
+
+  return styleObject;
+}
 module.exports = convertToObject;

@@ -20,7 +20,7 @@ function convertToObject(sourceString) {
 
   const props = sourceString.split(';')
     .map((prop) => prop.replace(/[\n, \s]+/, ''))
-    .filter((prop) => prop.length > 0);
+    .filter((prop) => !!prop.length);
 
   // create new object for props
   const propsObj = {};

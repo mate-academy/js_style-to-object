@@ -16,23 +16,16 @@
 function convertToObject(sourceString) {
   // write your code here
 
-  // split all props to separate strings
-
-  const props = sourceString.split(';')
+  return sourceString.split(';')
     .map((prop) => prop.replace(/[\n, \s]+/, ''))
-    .filter((prop) => !!prop.length);
+    .filter((prop) => !!prop.length)
+    .reduce((acc, styleRow) => {
+      const [key, value] = styleRow.split(':');
 
-  // create new object for props
-  const propsObj = {};
+      acc[key.trim()] = value.trim();
 
-  // spilt each propetry to key value and assing to object
-  for (let i = 0; i < props.length; i++) {
-    const prop = props[i].split(':');
-
-    propsObj[prop[0].trim()] = prop[1].trim();
-  }
-
-  return propsObj;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

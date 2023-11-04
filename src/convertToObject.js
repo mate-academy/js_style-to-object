@@ -1,5 +1,5 @@
 'use strict';
-
+/* eslint-disable */
 /**
  * Implement convertToObject function:
  *
@@ -11,8 +11,24 @@
  *
  * @return {object}
  */
+/* eslint-enable */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+
+  const sourseToArray = sourceString.split(';');
+
+  sourseToArray.forEach(style => {
+    const [key, value] = style
+      .split(':')
+      .map(val => val.trim());
+
+    if (key) {
+      result[key] = value;
+    }
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

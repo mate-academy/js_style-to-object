@@ -17,13 +17,12 @@ function convertToObject(sourceString) {
   const splittedString = sourceString.split(';');
   const stylesObj = {};
 
-  const propsNamesAndValues = splittedString
+  splittedString
     .map(prop => prop.trim().split(':'))
-    .filter(prop => prop[0]);
-
-  propsNamesAndValues.forEach(prop => {
-    stylesObj[prop[0].trim()] = prop[1].trim();
-  });
+    .filter(prop => prop[0])
+    .forEach(prop => {
+      stylesObj[prop[0].trim()] = prop[1].trim();
+    });
 
   return stylesObj;
 }

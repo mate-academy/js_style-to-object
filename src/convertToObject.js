@@ -16,17 +16,17 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  const sourseToArray = sourceString.split(';');
+  sourceString
+    .split(';')
+    .forEach(style => {
+      const [key, value] = style
+        .split(':')
+        .map(val => val.trim());
 
-  sourseToArray.forEach(style => {
-    const [key, value] = style
-      .split(':')
-      .map(val => val.trim());
-
-    if (key) {
-      result[key] = value;
-    }
-  });
+      if (key) {
+        result[key] = value;
+      }
+    });
 
   return result;
 }

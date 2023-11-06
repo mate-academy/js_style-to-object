@@ -15,15 +15,15 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const parts = sourceString.split(';');
-  const newParts = parts.map((el) => {
+  const arrParts = sourceString.split(';');
+  const finalArr = arrParts.map((el) => {
     return el
       .split('')
       .filter((item) => item !== '\n')
       .join('');
   });
 
-  for (const part of newParts) {
+  for (const part of finalArr) {
     const pair = part.split(':');
     const [style, key] = pair;
 

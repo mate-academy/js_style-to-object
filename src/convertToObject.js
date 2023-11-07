@@ -22,11 +22,14 @@ function convertToObject(sourceString) {
 
   splitedString.forEach(el => {
     const listElement = el.split(':');
-    const elementKey = listElement[0].trim();
-    const elementValue = listElement[1].trim();
 
-    if (elementKey && elementValue) {
-      styleCssList[elementKey] = elementValue;
+    if (listElement.length === 2) {
+      const elementKey = listElement[0].trim();
+      const elementValue = listElement[1].trim();
+
+      if (elementKey && elementValue) {
+        styleCssList[elementKey] = elementValue;
+      }
     }
   });
 

@@ -19,11 +19,13 @@ function convertToObject(sourceString) {
 
   const resultObject = {};
 
-  propsDividedToStrings.forEach((prop) => {
-    if (prop.includes(': ')) {
-      const propTemp = prop.split(': ').map((proper) => proper.trim());
+  propsDividedToStrings.forEach((propertyPair) => {
+    if (propertyPair.includes(': ')) {
+      const propAndValue = propertyPair.split(': ')
+        .map((proper) =>
+          proper.trim());
 
-      resultObject[propTemp[0]] = propTemp[1];
+      resultObject[propAndValue[0]] = propAndValue[1];
     }
   });
 

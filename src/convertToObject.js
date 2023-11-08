@@ -6,23 +6,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultObject = {};
+  const convertedStyles = {};
 
   const attributes = sourceString.split(';');
 
   const styles = attributes
-    .map(el => {
-      const style = el.split(':');
+    .map(attribute => {
+      const style = attribute.split(':');
 
-      return style.map(elem => elem.trim());
+      return style.map(property => property.trim());
     })
-    .filter(el => el.length > 1);
+    .filter(attribute => attribute.length > 1);
 
-  styles.forEach(el => {
-    return (resultObject[el[0]] = el[1]);
+  styles.forEach(attribute => {
+    const [key, value] = attribute;
+
+    return (convertedStyles[key] = value);
   });
 
-  return resultObject;
+  return convertedStyles;
 }
 
 module.exports = convertToObject;

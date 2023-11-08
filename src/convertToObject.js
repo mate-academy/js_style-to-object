@@ -14,21 +14,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString.split(';')
+  const declarations = sourceString.split(';')
     .map(el => el.trim())
-    .filter(el => el !== '');
+    .filter(el => el);
 
-  const result = {};
+  const declarationBlock = declarations.reduce((accum, declaration) => {
+    const [key, value] = declaration.split(':').map(el => el.trim());
 
-  arr.forEach(item => {
-    const el = item.split(':');
-    const key = el[0].trim();
-    const value = el[1].trim();
+    accum[key] = value;
 
-    result[key] = value;
-  });
+    return accum;
+  }, {});
 
-  return result;
+  return declarationBlock;
 }
 
 module.exports = convertToObject;

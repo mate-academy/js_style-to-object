@@ -16,23 +16,15 @@
 function convertToObject(sourceString) {
   // write your code here
   const styled = {};
-  const parts = sourceString
-    .split(';');
 
-  parts.forEach(part => {
-    const colonIndex = part.indexOf(':');
+  sourceString
+    .split(';')
+    .filter(part => part.includes(':'))
+    .forEach(part => {
+      const [key, value] = part.split(':');
 
-    if (colonIndex !== -1) {
-      const key = part
-        .slice(0, colonIndex)
-        .trim();
-      const value = part
-        .slice(colonIndex + 1)
-        .trim();
-
-      styled[key] = value;
-    }
-  });
+      styled[key.trim()] = value.trim();
+    });
 
   return styled;
 }

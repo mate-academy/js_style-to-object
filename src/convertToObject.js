@@ -14,20 +14,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const array = sourceString.split(';').map(el => el.trim());
-  const removeScapces = array.map(el => el.split(' ').join(''));
-  const addSpace = removeScapces.map(el => el.split(':').join(': '));
-  const withoutEmptyStrings = addSpace.filter(el => el.length > 0);
+  const startedArray = sourceString
+    .split(';')
+    .map(el => el.trim());
 
-  const object = {};
+  const arrayWithoutEmptyStrings = startedArray.filter(el => el.length > 0);
 
-  withoutEmptyStrings.forEach(element => {
-    const [key, value] = element.split(':');
+  const formattedObject = {};
 
-    object[key] = value;
+  arrayWithoutEmptyStrings.forEach(eachElement => {
+    const [key, value] = eachElement
+      .split(':')
+      .map(el => el.trim());
+
+    formattedObject[key] = value;
   });
 
-  return object;
+  return formattedObject;
 }
 
 module.exports = convertToObject;

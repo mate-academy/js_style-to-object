@@ -14,7 +14,7 @@
  * @return {object}
  */
 
-//new solution
+// new solution
 function convertToObject(sourceString) {
   return sourceString
     .split('\n')
@@ -29,7 +29,7 @@ function convertToObject(sourceString) {
     }, {});
 }
 
-//old solution
+// old solution
 
 // function convertToObject(sourceString) {
 //   return sourceString

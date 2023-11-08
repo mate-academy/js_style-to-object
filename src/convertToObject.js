@@ -16,14 +16,14 @@
 function convertToObject(sourceString) {
   const cssProperties = {};
 
-  const lines = sourceString.split(';');
-  const filteredLines = lines.filter(el => el.trim() !== '');
+  sourceString
+    .split(';')
+    .filter(el => el.trim() !== '')
+    .forEach(css => {
+      const [code, value] = css.split(':');
 
-  for (const css of filteredLines) {
-    const [code, value] = css.split(':');
-
-    cssProperties[code.trim()] = value.trim();
-  }
+      cssProperties[code.trim()] = value.trim();
+    });
 
   return cssProperties;
 }

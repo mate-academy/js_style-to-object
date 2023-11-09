@@ -27,9 +27,7 @@ function convertToObject(sourceString) {
     return key.replace(/\n/g, '').trim();
   }).filter(Boolean)
     .map((key) => {
-      return key.split(':');
-    }).map((key) => {
-      return key.map((el) => el.trim());
+      return key.split(':').map((el) => el.trim());
     }).forEach(element => {
       newObject[element[0]] = element[1];
     });

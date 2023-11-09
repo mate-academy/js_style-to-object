@@ -24,10 +24,7 @@ function convertToObject(sourceString) {
 
   const trimmedArray = splitedArray.map(el => el.map(x => x.trim()));
 
-  trimmedArray.forEach(el => {
-    const key = el[0];
-    const value = el[1];
-
+  trimmedArray.forEach(([key, value]) => {
     cssStyled[key] = value;
   });
 

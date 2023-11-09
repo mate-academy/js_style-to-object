@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const object = {};
+  const cssStyled = {};
 
   const arrFromString = sourceString.split(';')
     .map(el => el.trim())
@@ -24,11 +24,14 @@ function convertToObject(sourceString) {
 
   const trimmedArray = splitedArray.map(el => el.map(x => x.trim()));
 
-  for (const el of trimmedArray) {
-    object[el[0]] = el[1];
-  }
+  trimmedArray.forEach(el => {
+    const key = el[0];
+    const value = el[1];
 
-  return object;
+    cssStyled[key] = value;
+  });
+
+  return cssStyled;
 }
 
 module.exports = convertToObject;

@@ -14,18 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssProperties = {};
-
-  sourceString
+  return sourceString
     .split(';')
     .filter(el => el.trim() !== '')
-    .forEach(css => {
-      const [code, value] = css.split(':');
+    .reduce((total, lines) => {
+      const [code, value] = lines.split(':');
 
-      cssProperties[code.trim()] = value.trim();
-    });
+      total[code.trim()] = value.trim();
 
-  return cssProperties;
+      return total;
+    }, {});
 }
 
 module.exports = convertToObject;

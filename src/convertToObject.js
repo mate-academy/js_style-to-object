@@ -14,29 +14,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const objectWithCssParams = {};
-
-  sourceString
+  const objectWithCssParams = sourceString
     .split(/\n/)
     .filter((param) => {
       const trimmedParam = param.trim();
 
       return !(trimmedParam.length <= 1);
     })
-    .map((param) => {
-      return param.split(':').map((value) => {
-        const fixedValue = value.includes(';')
-          ? value.slice(0, value.indexOf(';'))
-          : value;
+    .reduce((accumulator, stringParam) => {
+      const [key, value] = stringParam.split(':').map((param) => {
+        const fixedValue = param.includes(';')
+          ? param.slice(0, param.indexOf(';'))
+          : param;
 
         return fixedValue.trim();
       });
-    })
-    .reduce((accumulator, param) => {
-      accumulator[param[0]] = param[1];
+
+      accumulator[key] = value;
 
       return accumulator;
-    }, objectWithCssParams);
+    }, {});
 
   return objectWithCssParams;
 }

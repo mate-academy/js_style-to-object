@@ -15,22 +15,16 @@
  */
 function convertToObject(sourceString) {
   const objectWithCssParams = sourceString
-    .split(/\n/)
-    .filter((param) => {
-      const trimmedParam = param.trim();
-
-      return !(trimmedParam.length <= 1);
-    })
+    .split(';')
     .reduce((accumulator, stringParam) => {
-      const [key, value] = stringParam.split(':').map((param) => {
-        const fixedValue = param.includes(';')
-          ? param.slice(0, param.indexOf(';'))
-          : param;
+      const separatedParam = stringParam.split(':');
 
-        return fixedValue.trim();
-      });
+      if (separatedParam.length === 2) {
+        const key = separatedParam[0].trim();
+        const value = separatedParam[1].trim();
 
-      accumulator[key] = value;
+        accumulator[key] = value;
+      }
 
       return accumulator;
     }, {});

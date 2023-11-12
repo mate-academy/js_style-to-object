@@ -21,11 +21,12 @@ function convertToObject(sourceString) {
     .split(';')
     .map((element) => element
       .split(':')
-      .map((element2) => element2.trim())
-    ).forEach((element) => {
-      if (element[0] !== '' && element[0] !== undefined) {
-        stylesObject[element[0]] = element[1];
-      }
+      .map((element2) => element2.trim()))
+    .filter((element) => element[0] !== '' && element[0] !== undefined)
+    .forEach((element) => {
+      const [key, value] = element;
+
+      stylesObject[key] = value;
     }
     );
 

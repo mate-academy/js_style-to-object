@@ -18,13 +18,10 @@ function convertToObject(sourceString) {
   const propertiesArray = sourceString.split(';');
 
   for (const properties of propertiesArray) {
-    const propertie = properties.split(':');
+    const [key, value] = properties.split(':');
 
-    if (propertie.length === 2) {
-      const key = propertie[0].trim();
-      const value = propertie[1].trim();
-
-      objectWithCssProperties[key] = value;
+    if (key && value) {
+      objectWithCssProperties[key.trim()] = value.trim();
     }
   }
 

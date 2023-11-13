@@ -24,12 +24,8 @@ function convertToObject(sourceString) {
     const key = arrStyle[0].trim();
 
     if (key.length !== 0) {
-      obj[key] = arrStyle[1];
+      obj[key] = arrStyle[1].trim();
     }
-  }
-
-  for (const key in obj) {
-    obj[key] = obj[key].trim();
   }
 
   return obj;

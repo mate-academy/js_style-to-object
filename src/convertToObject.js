@@ -3,16 +3,18 @@
 function convertToObject(sourceString) {
   const returnedObject = {};
   const arrayFromString = sourceString.trim().split(';')
-    .map(line => line.replace(/ /g, '')
+    .map(line => line.replace(/(\.2s|solid)(?!\s)/g, ' $1 ')
+      .replace(/\s+/g, ' ')
       .replace(/\n/g, '')
-      .replace('.2s', ' .2s ')
-      .replace('solid', ' solid ')
-      .replace('!', ' !'))
+      .replace(/ ! (\w+)/g, '!$1'))
     .filter(line => line !== '' && line !== '\n');
 
-  for (let line of arrayFromString) {
-    line = line.split(':');
-    returnedObject[line[0]] = line[1];
+  for (const line of arrayFromString) {
+    const [key, value] = line.split(':');
+
+    if (key.trim() !== '') {
+      returnedObject[key.trim()] = value.trim();
+    }
   }
 
   return returnedObject;

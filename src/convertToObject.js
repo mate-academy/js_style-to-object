@@ -16,16 +16,16 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .reduce((styleToObject, style) => {
+    .reduce((convertedStyles, style) => {
       const [key, value] = style
         .split(':')
         .map(val => val.trim());
 
       if (key) {
-        styleToObject[key] = value;
+        convertedStyles[key] = value;
       }
 
-      return styleToObject;
+      return convertedStyles;
     }, {});
 }
 

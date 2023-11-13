@@ -14,11 +14,9 @@
 /* eslint-enable */
 
 function convertToObject(sourceString) {
-  const styleToObject = {};
-
-  sourceString
+  return sourceString
     .split(';')
-    .forEach(style => {
+    .reduce((styleToObject, style) => {
       const [key, value] = style
         .split(':')
         .map(val => val.trim());
@@ -26,9 +24,9 @@ function convertToObject(sourceString) {
       if (key) {
         styleToObject[key] = value;
       }
-    });
 
-  return styleToObject;
+      return styleToObject;
+    }, {});
 }
 
 module.exports = convertToObject;

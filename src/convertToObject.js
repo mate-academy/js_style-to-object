@@ -14,23 +14,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const startedArray = sourceString
+  const startConvertion = sourceString
     .split(';')
-    .map(el => el.trim());
+    .map(property => property.trim());
 
-  const arrayWithoutEmptyStrings = startedArray.filter(el => el.length > 0);
+  const removeEmptyStrings = startConvertion.filter(property =>
+    (property.length > 0));
 
-  const formattedObject = {};
-
-  arrayWithoutEmptyStrings.forEach(eachElement => {
-    const [key, value] = eachElement
+  const formattedStyle = removeEmptyStrings.reduce((acc, currentProperty) => {
+    const [key, value] = currentProperty
       .split(':')
-      .map(el => el.trim());
+      .map(property => (property.trim()));
 
-    formattedObject[key] = value;
-  });
+    acc[key] = value;
 
-  return formattedObject;
+    return acc;
+  }, {});
+
+  return formattedStyle;
 }
 
 module.exports = convertToObject;

@@ -14,7 +14,7 @@
 /* eslint-enable */
 
 function convertToObject(sourceString) {
-  const result = {};
+  const styleToObject = {};
 
   sourceString
     .split(';')
@@ -24,11 +24,11 @@ function convertToObject(sourceString) {
         .map(val => val.trim());
 
       if (key) {
-        result[key] = value;
+        styleToObject[key] = value;
       }
     });
 
-  return result;
+  return styleToObject;
 }
 
 module.exports = convertToObject;

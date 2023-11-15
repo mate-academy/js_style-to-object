@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+
+  const splitedString = sourceString.split(';').map(words =>
+    words.split(':')
+  );
+
+  const filtredProperties = splitedString.filter(value =>
+    value.length === 2
+  );
+
+  for (const property of filtredProperties) {
+    result[property[0].trim()] = property[1].trim();
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

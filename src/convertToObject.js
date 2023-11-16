@@ -21,12 +21,11 @@ function convertToObject(sourceString) {
     .filter(style => style !== ' ')
     .map(style => style.trim());
 
-  const stringToObject = formattedString.reduce(function(acc, curr) {
+  const stringToObject = formattedString.reduce((acc, curr) => {
     acc[curr.split(':')[0]] = curr.split(': ')[1];
-
     return acc;
   }, {});
-
+  
   return stringToObject;
 }
 

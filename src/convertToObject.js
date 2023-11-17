@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
     const value = parameter.split(':').map(item => item.trim())[1];
 
     if (key !== '') {
-      propertiesObj[`${key}`] = value;
+      propertiesObj[key] = value;
     }
   }
 

@@ -9,11 +9,11 @@ BAD EXAMPLE:
 const cssStyles = styles.map(style => style).filter(style => style.length).slice(0, 5)
 ```
 
-GOOD EXAMPLE: 
+GOOD EXAMPLE:
 ```
 const cssStyles = styles
  .map(style => style)
  .filter(style => style.length)
  .slice(0, 5)
 ```
-5. [CODE PRACTICE] - Avoid using loops in this task, use iteration methods instead. 
+5. [CODE PRACTICE] - Avoid using loops in this task, use iteration methods instead.

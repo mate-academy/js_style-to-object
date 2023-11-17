@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
   for (const parameter of tempArray) {
     const [key, value] = parameter.split(':').map(item => item.trim());
 
-    if (key !== '') {
+    if (key) {
       propertiesObj[key] = value;
     }
   }

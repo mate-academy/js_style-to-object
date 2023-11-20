@@ -20,11 +20,10 @@ function convertToObject(sourceString) {
   propertyArray.forEach((propertyRow) => {
     const propertyRowArray = propertyRow.trim().split(':');
 
-    if (propertyRowArray.length === 2) {
-      const property = propertyRowArray[0].trim();
-      const value = propertyRowArray[1].trim();
+    if (propertyRowArray[1]) {
+      const [property, value] = propertyRowArray;
 
-      stylesObj[property] = value;
+      stylesObj[property.trim()] = value.trim();
     }
   });
 

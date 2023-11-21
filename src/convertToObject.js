@@ -25,8 +25,7 @@ function convertToObject(sourceString) {
   }
 
   splitString.forEach(element => {
-    const splitArray = element.split(':');
-    const [ key, value ] = splitArray;
+    const [ key, value ] = element.split(':');
 
     styleObject[key.trim()] = value.trim();
   });

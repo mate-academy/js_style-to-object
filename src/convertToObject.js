@@ -14,21 +14,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssObj = {};
+  const stylesObj = {};
   const partObj = sourceString.split(';');
 
   partObj.forEach(part => {
     const key = part.split(':');
 
     if (key.length === 2) {
-      const property = key[0].trim();
+      const prop = key[0].trim();
       const value = key[1].trim();
 
-      cssObj[property] = value;
+      stylesObj[prop] = value;
     }
   });
 
-  return cssObj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

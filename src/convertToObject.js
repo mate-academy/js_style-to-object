@@ -17,14 +17,14 @@ function convertToObject(sourceString) {
   return Object.assign(
     {},
     ...sourceString.split(';').map((item) => {
-      const style = item.split(':');
+      const [key, value] = item.split(':');
 
-      if (style[1] === undefined) {
+      if (value === undefined) {
         return;
       }
 
       return {
-        [style[0].trim()]: style[1].trim(),
+        [key.trim()]: value.trim(),
       };
     })
   );

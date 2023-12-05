@@ -23,8 +23,7 @@ function convertToObject(sourceString) {
       obj[key.trim()] = value.trim();
 
       return obj;
-    }, {}
-    );
+    }, {});
 }
 
 module.exports = convertToObject;

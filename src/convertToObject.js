@@ -14,22 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const elements = sourceString
-    .split(';')
-    .map(el => el.trim())
-    .filter(el => el !== '');
+  const elements = sourceString.split(';');
 
-  const result = {};
+  return elements.reduce((acc, style) => {
+    const trimmedStyle = style.trim();
 
-  for (const style of elements) {
-    const [property, value] = style.split(':');
-    const convertedProp = property.trim();
-    const convertedValue = value.trim();
+    if (trimmedStyle !== '') {
+      const [property, value]
+        = trimmedStyle.split(':').map(part => part.trim());
 
-    result[convertedProp] = convertedValue;
-  }
+      acc[property] = value;
+    }
 
-  return result;
+    return acc;
+  }, {});
 }
 
 module.exports = convertToObject;

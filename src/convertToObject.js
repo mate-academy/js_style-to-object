@@ -16,7 +16,7 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .trim(el => el.trim())
+    .map(el => el.trim())
     .filter(el => el !== '')
     .map(el => el.split(':'))
     .reduce((obj, [key, value]) => {

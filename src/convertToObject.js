@@ -22,7 +22,7 @@ function convertToObject(sourceString) {
   pairs.forEach(item => {
     let [property, value] = item.split(':');
 
-    if (property !== undefined && value !== undefined) {
+    if (property && value) {
       property = property.trim();
       value = value.trim();
 

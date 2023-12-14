@@ -16,8 +16,10 @@ function convertToObject(sourceString) {
       arr[i] = arr[i].trim();
     }
 
-    if (arr[0] !== '') {
-      convertObject[arr[0]] = arr[1];
+    const [key, value] = arr;
+
+    if (key) {
+      convertObject[key] = value;
     }
   });
 

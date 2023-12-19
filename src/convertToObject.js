@@ -16,7 +16,7 @@
 function convertToObject(sourceString) {
   const propertiesArray = sourceString.split(';')
     .map(prop => prop.replace('\n', '').trim())
-    .filter(prop => !!prop);
+    .filter(prop => prop);
   const keysArray = propertiesArray
     .map(prop => prop.slice(0, prop.indexOf(':')).trim());
   const valuesArray = propertiesArray

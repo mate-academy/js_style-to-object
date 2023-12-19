@@ -14,21 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const arrayStrings = sourceString
+  const stylesObject = {};
+
+  sourceString
     .split(';')
     .map((string) => string.trim())
-    .filter((string) => string);
+    .filter((string) => string)
+    .forEach((string) => {
+      const parts = string.split(':');
+      const [ part1, part2 ] = parts;
 
-  for (const string of arrayStrings) {
-    const parts = string.split(':');
+      stylesObject[part1.trim()] = part2.trim();
+    });
 
-    const [ part1, part2 ] = parts;
-
-    result[part1.trim()] = part2.trim();
-  }
-
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

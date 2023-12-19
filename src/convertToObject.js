@@ -15,8 +15,7 @@
  */
 function convertToObject(sourceString) {
   const sourceStringCopy = sourceString.replace(/\n/g, '').split(';')
-    .map(el => el.trim().split(':')
-      .map(el2 => el2.trim()))
+    .map(el => el.trim().split(':').map(el2 => el2.trim()))
     .filter(([key, value]) => key !== '' && value !== undefined);
 
   return Object.fromEntries(sourceStringCopy);

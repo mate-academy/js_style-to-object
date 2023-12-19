@@ -17,19 +17,19 @@ function convertToObject(sourceString) {
   const result = {};
   const arrOfProperties = sourceString.split(';');
 
-  for (const index in arrOfProperties) {
-    let elem = arrOfProperties[index];
+  for (let index = 0; index < arrOfProperties.length; index++) {
+    const prop = arrOfProperties[index];
 
-    while (elem.startsWith('/n')) {
-      elem = elem.slice(0, 2);
+    while (prop.startsWith('/n')) {
+      prop.replace('/n', '..');
     }
-    arrOfProperties[index] = elem.trim();
+    arrOfProperties[index] = prop.trim();
   }
 
-  const validProps = arrOfProperties.filter((prop) => prop.length !== 0);
+  const validProps = arrOfProperties.filter((prop) => prop);
 
-  validProps.forEach((elem) => {
-    const singleProp = elem.split(':');
+  validProps.forEach((prop) => {
+    const singleProp = prop.split(':');
     // remove extra spaces
     const propName = singleProp[0].trim();
     const propValue = singleProp[1].trim();

@@ -17,13 +17,14 @@ function convertToObject(sourceString) {
   const propertiesArray = sourceString.split(';')
     .map(prop => prop.replace('\n', '').trim())
     .filter(prop => prop);
-  const keysArray = propertiesArray
-    .map(prop => prop.slice(0, prop.indexOf(':')).trim());
-  const valuesArray = propertiesArray
-    .map(prop => prop.slice(prop.indexOf(':') + 1, prop.length).trim());
-  const propertiesObjectsArray = keysArray
-    .map((key, idx) => ({ [key]: valuesArray[idx] }));
-  const styleObject = Object.assign(...propertiesObjectsArray);
+
+  const styleObject = propertiesArray.reduce((acc, prop) => {
+    const [key, value] = prop.split(':').map(part => part.trim());
+
+    acc[key] = value;
+
+    return acc;
+  }, {});
 
   return styleObject;
 }

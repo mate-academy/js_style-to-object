@@ -7,21 +7,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssObj = {};
-
-  sourceString
+  return sourceString
     .split(';')
-    .forEach((element) => {
+    .reduce((prev, element) => {
       const [property, value] = element.split(':');
 
       if (property && value) {
         const normalizedProperty = property.replace('\n', '').trim();
+        const normalizedValue = value.trim();
 
-        cssObj[normalizedProperty] = value.trim();
+        return {
+          ...prev, [normalizedProperty]: normalizedValue,
+        };
       }
-    });
 
-  return cssObj;
+      return prev;
+    }, {});
 }
 
 module.exports = convertToObject;

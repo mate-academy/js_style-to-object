@@ -15,19 +15,23 @@
  */
 
 function convertToObject(sourceString) {
-  const resultObj = {};
+  const resultObject = {};
 
-  sourceString
-    .replace(/\n/g, '')
-    .split(';')
+  const stringToArray = sourceString.replace(/\n/g, '').split(';');
+
+  const modifiedArray = stringToArray
     .map((el) => el.trim())
-    .filter((el) => el !== '')
-    .map((el) => el.split(':').map((item) => item.trim()))
-    .forEach((el) => {
-      resultObj[el[0]] = el[1];
-    });
+    .filter((el) => el !== '');
 
-  return resultObj;
+  const stylesArray = modifiedArray.map((el) =>
+    el.split(':').map((item) => item.trim()),
+  );
+
+  stylesArray.forEach((el) => {
+    resultObject[el[0]] = el[1];
+  });
+
+  return resultObject;
 }
 
 module.exports = convertToObject;

@@ -20,11 +20,11 @@ function convertToObject(sourceString) {
     .filter((string) => string);
 
   return formattedString.reduce((accumulator, string) => {
-    const parts = string.split(':');
-    const [ part1, part2 ] = parts;
+    const properties = string.split(':');
+    const [ key, value ] = properties;
 
     return {
-      ...accumulator, [part1.trim()]: part2.trim(),
+      ...accumulator, [key.trim()]: value.trim(),
     };
   }, {});
 }

@@ -15,15 +15,19 @@
 function convertToObject(sourceString) {
   const cssNormalized = {};
 
-  sourceString.split(';').forEach((element) => {
-    const [property, value] = element.split(':');
+  sourceString
+    .split(';')
+    .forEach((element) => {
+      const [property, value] = element.split(':');
 
-    if (property && value) {
-      const normalProperty = property.replace('\n', '').trim();
+      if (property && value) {
+        const formattedProperty = property
+          .replace('\n', '')
+          .trim();
 
-      cssNormalized[normalProperty] = value.trim();
-    }
-  });
+        cssNormalized[formattedProperty] = value.trim();
+      }
+    });
 
   return cssNormalized;
 }

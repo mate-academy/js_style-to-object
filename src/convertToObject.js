@@ -15,10 +15,10 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  let resultObj = {};
-  const stringArray = sourceString.replace(/\n/g, '').split(';');
+  let cssStyles = {};
+  const stylePairs = sourceString.replace(/\n/g, '').split(';');
 
-  const result = stringArray
+  const styleProperties = stylePairs
     .map(string => {
       const [property, value] = string.split(':');
 
@@ -30,9 +30,9 @@ function convertToObject(sourceString) {
     })
     .filter(item => item !== undefined);
 
-  resultObj = Object.assign(resultObj, ...result);
+  cssStyles = Object.assign(cssStyles, ...styleProperties);
 
-  return resultObj;
+  return cssStyles;
 }
 
 module.exports = convertToObject;

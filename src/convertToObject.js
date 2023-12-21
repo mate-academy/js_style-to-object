@@ -18,16 +18,16 @@ function convertToObject(sourceString) {
   const SPECIAL_SYMBOLS_REGEX = /\*+/g;
   const styleObj = {};
 
-  const rules = sourceString
-    .split(';')
+  const rules = sourceString.split(';');
+  const normalizedRules = rules
     .filter(rule => rule.match(CONTAIN_LETTER_REGEX))
     .map(rule => rule.replace(SPECIAL_SYMBOLS_REGEX, '').trim());
 
-  for (const rule of rules) {
+  normalizedRules.forEach(rule => {
     const [property, value] = rule.split(':').map(str => str.trim());
 
     styleObj[property] = value;
-  }
+  });
 
   return styleObj;
 }

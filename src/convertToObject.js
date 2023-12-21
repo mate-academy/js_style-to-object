@@ -12,17 +12,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const KEYVALUE_SEPARATOR = ';';
-  const KEY_VALUE_SEPARATOR = ':';
-
-  const keyValueArr = filterStr(sourceString).split(KEYVALUE_SEPARATOR);
+  const keyValueArr = removeSpecificCharacters(sourceString).split(';');
   const resultObj = {};
 
   keyValueArr.forEach(keyValue => {
-    let [key, value] = keyValue.split(KEY_VALUE_SEPARATOR);
+    let [key, value] = keyValue.split(':');
 
     if (value) {
-      key = filterStr(key); value = clearValue(filterStr(value));
+      key = removeSpecificCharacters(key);
+      value = removeExtraSpaces(removeSpecificCharacters(value));
       resultObj[key] = value;
     }
   });
@@ -30,15 +28,15 @@ function convertToObject(sourceString) {
   return resultObj;
 }
 
-function filterStr(str) {
+function removeSpecificCharacters(str) {
   const CHARS_TO_FILTER = ['\n'];
   const strArr = String(str).split();
 
   return strArr.filter(char => !CHARS_TO_FILTER.includes(char)).join().trim();
 }
 
-function clearValue(valueString) {
-  return String(valueString).split(' ').filter(value => value !== '').join(' ');
+function removeExtraSpaces(valueString) {
+  return String(valueString).split(' ').filter(value => value).join(' ');
 }
 
 module.exports = convertToObject;

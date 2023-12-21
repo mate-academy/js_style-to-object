@@ -14,25 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  // write your code here
   const formattedCss = {};
 
   sourceString
     .split(';')
-    .forEach(rule => {
+    .forEach((rule) => {
       const [property, value] = rule.split(':');
 
       if (property && value) {
-        const formattedProperty = removeSpaces(property);
+        const formattedProperty = property.trim();
 
         formattedCss[formattedProperty] = value.trim();
       }
     });
 
   return formattedCss;
-}
-
-function removeSpaces(str) {
-  return str.replace(/\s/g, '');
 }
 
 module.exports = convertToObject;

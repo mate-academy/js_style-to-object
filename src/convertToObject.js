@@ -11,28 +11,39 @@
  *
  * @return {object}
  */
+
+const stylesString = require('./stylesString');
+
+convertToObject(stylesString);
+
 function convertToObject(sourceString) {
   const keyValueArr = removeSpecificCharacters(sourceString).split(';');
-  const resultObj = {};
 
-  keyValueArr.forEach(keyValue => {
-    let [key, value] = keyValue.split(':');
+  return keyValueArr.reduce((styleList, style) => {
+    let [key, value] = style.split(':');
 
     if (value) {
       key = removeSpecificCharacters(key);
       value = removeExtraSpaces(removeSpecificCharacters(value));
-      resultObj[key] = value;
-    }
-  });
 
-  return resultObj;
+      return {
+        ...styleList,
+        ...{
+          [key]: value,
+        },
+      };
+    } else {
+      return {
+        ...styleList,
+      };
+    }
+  }, {});
 }
 
 function removeSpecificCharacters(str) {
-  const CHARS_TO_FILTER = ['\n'];
-  const strArr = String(str).split();
+  const strArr = String(str).replace(/(\r\n|\n|\r)/gm, '');
 
-  return strArr.filter(char => !CHARS_TO_FILTER.includes(char)).join().trim();
+  return strArr.trim();
 }
 
 function removeExtraSpaces(valueString) {

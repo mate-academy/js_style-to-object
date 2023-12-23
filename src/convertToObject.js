@@ -15,18 +15,19 @@
  */
 function convertToObject(sourceString) {
   const properties = sourceString.split(';');
-  const result = {};
 
-  properties.forEach((property) => {
+  const result = properties.reduce((prev, property) => {
     if (property.trim()) {
-      if (property.trim()) {
-        const key = property.split(':')[0].trim();
-        const value = property.split(':')[1].trim();
+      const key = property.split(':')[0].trim();
+      const value = property.split(':')[1].trim();
 
-        result[key] = value;
-      }
+      return {
+        ...prev, [key]: value,
+      };
     }
-  });
+
+    return prev;
+  }, {});
 
   return result;
 }

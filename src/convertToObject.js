@@ -18,18 +18,12 @@ function convertToObject(sourceString) {
   const resultObj = {};
 
   for (let i = 0; i < sourceArr.length; i++) {
-    const style = sourceArr[i].split(':').filter(e => e.trim().length > 0);
+    if (sourceArr[i].trim()) {
+      const key = sourceArr[i].split(':')[0].trim();
+      const value = sourceArr[i].split(':')[1].trim();
 
-    if (style.length > 0) {
-      formater(style[0], style[1]);
+      resultObj[key] = value;
     }
-  }
-
-  function formater(name, value) {
-    const objKey = name.replace(/ /g, '').trim();
-    const objValue = value.split(' ').filter(e => e.length > 0).join(' ');
-
-    resultObj[objKey] = objValue;
   }
 
   return resultObj;

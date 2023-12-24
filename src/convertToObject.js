@@ -12,22 +12,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleDeclarations = sourceString.split(';');
-  const stylesObject = {};
+  return sourceString.split(';')
+    .map(declaration => declaration.split(':').map(trim))
+    .filter(([property, value]) => property && value)
+    .reduce((stylesObject, [property, value]) => {
+      stylesObject[property] = value;
 
-  styleDeclarations.forEach(declaration => {
-    if (declaration.trim() !== '') {
-      const [property, value] = declaration.split(':');
-      const trimmedProperty = property.trim();
-      const trimmedValue = value.trim();
+      return stylesObject;
+    }, {});
+}
 
-      if (trimmedProperty && trimmedValue) {
-        stylesObject[trimmedProperty] = trimmedValue;
-      }
-    }
-  });
-
-  return stylesObject;
+function trim(str) {
+  return str.trim();
 }
 
 module.exports = convertToObject;

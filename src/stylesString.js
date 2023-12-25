@@ -1,5 +1,7 @@
 'use strict';
 
+const convertToObject = require('./convertToObject');
+
 const stylesString = `
   background-color:      #fff;
 -webkit-border-radius: 5px;
@@ -35,5 +37,7 @@ const stylesString = `
   white-space: nowrap;
   width: auto;
 `;
+
+convertToObject(stylesString);
 
 module.exports = stylesString;

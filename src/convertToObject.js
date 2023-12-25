@@ -14,31 +14,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
   const arrOfProperties = sourceString.split(';');
 
-  for (let index = 0; index < arrOfProperties.length; index++) {
-    const prop = arrOfProperties[index];
+  const allProps = arrOfProperties.map((value, index) => {
+    while (value.startsWith('/n')) {
+      value.replace('/n', '..');
+    };
 
-    while (prop.startsWith('/n')) {
-      prop.replace('/n', '..');
-    }
-    arrOfProperties[index] = prop.trim();
-  }
+    return value.trim();
+  });
 
-  const validProps = arrOfProperties.filter((prop) => prop);
+  const validProps = allProps.filter((prop) => prop);
 
-  validProps.forEach((prop) => {
+  const stylesToCSS = validProps.reduce((styles, prop, index,) => {
     const singleProp = prop.split(':');
-    // remove extra spaces
     const propName = singleProp[0].trim();
     const propValue = singleProp[1].trim();
 
-    // add props to object
-    result[propName] = propValue;
-  });
+    styles[propName] = propValue;
 
-  return result;
+    return styles;
+  }, {});
+
+  return stylesToCSS;
 }
 
 module.exports = convertToObject;

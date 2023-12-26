@@ -14,17 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssProperties = {};
-
   const strParts = sourceString.split(';');
 
-  strParts.forEach(element => {
+  const cssProperties = strParts.reduce((result, element) => {
     const [property, value] = element.split(':').map(part => part.trim());
 
     if (property && value) {
-      cssProperties[property] = value;
+      result[property] = value;
     }
-  });
+
+    return result;
+  }, {});
 
   return cssProperties;
 }

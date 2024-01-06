@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  if (sourceString.length === 0 || (!sourceString.includes(':'))) {
+  if (!sourceString.length || (!sourceString.includes(':'))) {
     throw new Error('no styles!');
   }
 

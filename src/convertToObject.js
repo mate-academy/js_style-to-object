@@ -15,6 +15,10 @@
  */
 
 function convertToObject(sourceString) {
+  if (!sourceString) {
+    return Error('source string is not empty or null');
+  }
+
   const objectCss = sourceString
     .split(';')
     .map(item => item.split(':'))

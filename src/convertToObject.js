@@ -21,8 +21,7 @@ function convertToObject(sourceString) {
 
   const objectCss = sourceString
     .split(';')
-    .map(item => item.split(':'))
-    .map(item => item.map(value => value.trim()))
+    .map(item => item.split(':').map(value => value.trim()))
     .map(item => item.filter(value => value !== ''))
     .filter(item => item.length !== 0)
     .reduce((object, item) => {

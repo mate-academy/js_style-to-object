@@ -16,7 +16,7 @@
 
 function convertToObject(sourceString) {
   if (!sourceString) {
-    return Error('source string is not empty or null');
+    return Error('source string is empty or null');
   }
 
   const objectCss = sourceString

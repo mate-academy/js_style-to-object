@@ -15,7 +15,7 @@
  */
 
 function convertToObject(sourceString) {
-  const splitString = sourceString
+  const objectCss = sourceString
     .split(';')
     .map(item => item.split(':'))
     .map(item => item.map(value => value.trim()))
@@ -27,7 +27,7 @@ function convertToObject(sourceString) {
       return object;
     }, {});
 
-  return splitString;
+  return objectCss;
 }
 
 module.exports = convertToObject;

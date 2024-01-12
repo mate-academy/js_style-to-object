@@ -1,15 +1,14 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const styleRulesArray = sourceString.split(';')
-    .map(fullRule => fullRule.split(':'))
-    .map(rule => rule.map(partOfTheRule => partOfTheRule.trim()));
+  const stylesObject = sourceString.split(';')
+    .reduce((obj, rules) => {
+      const ruleEntities = rules.split(':').map(rule => rule.trim());
 
-  const stylesObject = {};
+      (ruleEntities.length === 2) && (obj[ruleEntities[0]] = ruleEntities[1]);
 
-  styleRulesArray.forEach(rule => {
-    (rule.length === 2) && (stylesObject[rule[0]] = rule[1]);
-  });
+      return obj;
+    }, {});
 
   return stylesObject;
 }

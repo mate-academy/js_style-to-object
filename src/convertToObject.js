@@ -14,47 +14,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const EXPECTED_OBJECT = {};
-  let key = '';
-  let value = '';
+  const expectedObj = sourceString
+    .split(';')
+    .map(keysValues => {
+      return keysValues
+        .split(':')
+        .map(noSpace => noSpace.trim());
+    })
+    .reduce((accumulator, currentValue) => {
+      accumulator[currentValue[0]] = currentValue[1];
 
-  for (let i = 0; i < sourceString.length; i++) {
-    if (sourceString[i] === ' '
-      || sourceString[i] === ';'
-      || sourceString[i] === '\n') {
-      continue;
-    }
+      return accumulator;
+    }, {});
 
-    if (sourceString[i] !== ':') {
-      key = key + sourceString[i];
-    } else {
-      for (let j = i + 2; j < sourceString.length; j++) {
-        if (sourceString[j] === ';' || j === (sourceString.length - 1)) {
-          EXPECTED_OBJECT[key] = value;
+  delete expectedObj[''];
 
-          key = '';
-          value = '';
-          i = j + 1;
-
-          break;
-        }
-
-        if (sourceString[j] === '\n') {
-          break;
-        }
-
-        if ((sourceString[j] === ' ' && value === '')
-          || (sourceString[j] === ' ' && sourceString[j + 1] === ' ')
-          || (sourceString[j] === ' ' && sourceString[j + 1] === ';')) {
-          continue;
-        }
-
-        value = value + sourceString[j];
-      }
-    }
-  }
-
-  return EXPECTED_OBJECT;
+  return expectedObj;
 }
 
 module.exports = convertToObject;

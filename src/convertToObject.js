@@ -2,17 +2,13 @@
 
 function convertToObject(sourceString) {
   const styleDeclarations = sourceString.split(';');
-  const stylesArray = styleDeclarations.map(declaration => {
-    const [property, value] = declaration.split(':');
-    const trimmedProperty = property.trim();
-    const trimmedValue = value ? value.trim() : '';
 
-    return [trimmedProperty, trimmedValue];
-  });
+  const stylesArray = styleDeclarations
+    .map(declaration => declaration.split(':'))
+    .map(([property, value]) => [property.trim(), value ? value.trim() : ''])
+    .filter(([property, value]) => property && value);
 
-  const stylesObject
-  = Object.fromEntries(stylesArray.filter(([property, value]) =>
-    property && value));
+  const stylesObject = Object.fromEntries(stylesArray);
 
   return stylesObject;
 }

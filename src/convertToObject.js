@@ -3,33 +3,33 @@
 /**
  * Implement convertToObject function:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
+ * Function takes a string with styles
+ * (see an example in [stylesString.js](./stylesString.js))
  * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ * and values are the values of related CSS properties
+ * (see an exampl in [test file](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssValues = sourceString.split('\n');
-  const propertiesObject = {};
+  return sourceString
+    .split(';')
+    .reduce((prev, element) => {
+      const [key, value] = element.split(':');
 
-  cssValues.forEach(values => {
-    const cssProperties = values.split(';');
+      if (key && value) {
+        const normalizedKey = key.trim();
+        const normalizedValue = value.trim();
 
-    cssProperties.forEach(property => {
-      const part = property.split(':');
-      const key = part[0].trim();
-      const value = part[1] ? part[1].trim() : '';
-
-      if (key !== '') {
-        propertiesObject[key] = value;
+        return {
+          ...prev, [normalizedKey]: normalizedValue,
+        };
       }
-    });
-  });
 
-  return propertiesObject;
+      return prev;
+    }, {});
 }
 
 module.exports = convertToObject;

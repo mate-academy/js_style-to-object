@@ -1,18 +1,34 @@
 'use strict';
 
 /**
- * Implement convertToObject function:
+ * Реалізувати функцію convertToObject:
  *
- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))
- * and returns an object where CSS properties are keys
- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))
+ * Функція отримує рядок зі стилями
+ * (див. приклад у [stylesString.js](./stylesString.js))
+ * і повертає об'єкт, де властивості CSS є ключами
+ * а значеннями - значення пов'язаних властивостей
+ * CSS (див. приклад у [тестовому файлі](./convertToObject.test.js))
  *
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const stylesArray = sourceString.split(/\s*;\s*/);
+  const stylesObject = {};
+
+  for (let i = 0; i < stylesArray.length; i++) {
+    const pair = stylesArray[i].split(/\s*:\s*/);
+
+    if (pair.length === 2) {
+      const key = pair[0].trim();
+      const value = pair[1].trim();
+
+      stylesObject[key] = value;
+    }
+  }
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

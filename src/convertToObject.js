@@ -25,6 +25,10 @@ function convertToObject(sourceString) {
     const property = row.split(/:|;/)
       .map(element => element.trim());
 
+    if (property.length < 2) {
+      return;
+    }
+
     result[property[0]] = property[1];
   });
 

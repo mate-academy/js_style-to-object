@@ -16,10 +16,9 @@
 function convertToObject(sourceString) {
   return Object.fromEntries(
     sourceString
-      .split('\n')
-      .map((style) => style.substring(0, style.length - 1))
-      .filter((style) => style.length > 2)
+      .split(';')
       .map((style) => style.split(':').map((value) => value.trim()))
+      .filter(style => style.length > 1)
   );
 }
 

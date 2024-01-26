@@ -19,19 +19,12 @@ function convertToObject(sourceString) {
 
   for (let i = 0; i < arr.length; i++) {
     const entry = arr[i].split(':');
-    const key = entry[0].split('').filter((space) => space !== ' ').join('');
+    const key = entry[0].trim();
 
     if (entry[1] !== undefined) {
-      const value = entry[1].split('');
+      const value = entry[1].trim();
 
-      while (value[value.length - 1] === ' ') {
-        value.pop();
-      }
-
-      while (value[0] === ' ') {
-        value.shift();
-      }
-      obj[key] = value.join('');
+      obj[key] = value;
     }
   }
 

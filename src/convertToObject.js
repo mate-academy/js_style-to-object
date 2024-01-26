@@ -7,8 +7,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = sourceString.split(';')
-    .map(string => string.trim());
+  const result = sourceString.split(';');
 
   const resultObject = {};
 

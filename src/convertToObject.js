@@ -16,26 +16,7 @@
 function convertToObject(sourceString) {
   const cssStyles = sourceString
     .split(';')
-    .map(str => {
-      return str
-        .split('\n')
-        .filter(item => item !== '')
-        .map((item, i) => {
-          return item
-            .split(' ')
-            .filter(el => el !== '')
-            .map(el => {
-              return el
-                .split(':')
-                .filter(elWithoutEmptyString => elWithoutEmptyString !== '');
-            })
-            .filter(el => el.length !== 0)
-            .map(el => el[0]);
-        })
-        .filter(el => el.length !== 0);
-    })
-    .filter(el => el.length !== 0)
-    .map(arr => arr[0]);
+    .map(style => style.split(':'));
 
   return createObjectStyle(cssStyles);
 }
@@ -44,9 +25,9 @@ function createObjectStyle(cssStyles = []) {
   const objStyles = {};
 
   cssStyles.forEach(style => {
-    const [key, ...values] = style;
-
-    objStyles[key] = values.join(' ');
+    if (style.length === 2) {
+      objStyles[style[0].trim()] = style[1].trim();
+    }
   });
 
   return objStyles;

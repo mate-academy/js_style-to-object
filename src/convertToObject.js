@@ -16,21 +16,13 @@
 function convertToObject(sourceString) {
   const cssStyles = sourceString
     .split(';')
-    .map(style => style.split(':'));
+    .map(style => style.split(':'))
+    .filter(style => style.length === 2);
 
-  return createObjectStyle(cssStyles);
-}
-
-function createObjectStyle(cssStyles = []) {
-  const objStyles = {};
-
-  cssStyles.forEach(style => {
-    if (style.length === 2) {
-      objStyles[style[0].trim()] = style[1].trim();
-    }
-  });
-
-  return objStyles;
+  return cssStyles.reduce((total, current) => ({
+    ...total,
+    [current[0].trim()]: current[1].trim(),
+  }), {});
 }
 
 module.exports = convertToObject;

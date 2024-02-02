@@ -14,32 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let tmpObj = {};
-  const resultObj = {};
+  const res = {};
 
-  const arrOfSourceString = sourceString.split(';');
-  const clearArr = arrOfSourceString
-    .map(str => str.trim().replace(/\n/g, ''))
-    .map(str => str.split(':')
-      .map(finalStr => finalStr.trim()));
-  const clearArrOfStr = [];
+  sourceString.replace(/\n/g, '').split(';').forEach((string) => {
+    if (string) {
+      const key = string.split(':')[0];
+      const value = string.split(':')[1];
 
-  clearArr.forEach(prepare => clearArrOfStr.push(prepare.join()));
-
-  const clearArrOfNotEmptyStr = clearArrOfStr.filter(str => str !== '');
-
-  const arrOfStrCompleteForObj = [];
-
-  clearArrOfNotEmptyStr.forEach(
-    item => arrOfStrCompleteForObj.push(item.split(',')));
-
-  arrOfStrCompleteForObj.forEach(item => {
-    tmpObj = { [item[0]]: item[1] };
-
-    Object.assign(resultObj, tmpObj);
+      if (key && value) {
+        res[key.trim()] = value.trim();
+      }
+    }
   });
 
-  return resultObj;
+  return res;
 }
 
 module.exports = convertToObject;

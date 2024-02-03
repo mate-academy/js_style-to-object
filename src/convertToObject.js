@@ -17,14 +17,16 @@ function convertToObject(sourceString) {
   // write your code here
   return sourceString
     .split(';')
-    .map((value) => value.trim())
-    .filter((value) => value !== '')
     .reduce((acc, current) => {
-      const [key, value] = current.split(':').map((part) => part.trim());
+      const [key, value]
+      = current.split(':')
+        .map((part) => part.trim());
 
-      return {
-        ...acc, [key]: value,
-      };
+      if (key !== '' && value !== '') {
+        acc[key] = value;
+      }
+
+      return acc;
     }, {});
 }
 

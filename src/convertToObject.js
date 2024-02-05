@@ -12,7 +12,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const obj = {};
+  let arr = sourceString.split(/[\n:]+/);
+  arr.shift();
+
+  arr = arr.map((el) => {
+    el = el
+      .trim()
+      .replace(';', '');
+    return el;
+  })
+
+  for (let i = 0; i < arr.length; i++) {
+    obj[arr[i]] = arr[i + 1];
+    i++;
+  }
+
+  return obj;
 }
 
 module.exports = convertToObject;

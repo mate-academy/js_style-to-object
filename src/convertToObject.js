@@ -13,22 +13,18 @@
  */
 function convertToObject(sourceString) {
   const obj = {};
-  let arr = sourceString.split(/[\n:]+/);
-  arr.shift();
+  let arr = sourceString.replace(/\n/g, '').split(';');
+  arr.pop()
 
-  arr = arr.map((el) => {
-    el = el
-      .trim()
-      .replace(';', '');
-    return el;
-  })
+  arr = arr.map((el) => el.split(':'))
 
   for (let i = 0; i < arr.length; i++) {
-    obj[arr[i]] = arr[i + 1];
-    i++;
+    const key = arr[i][0].trim();
+    const value = arr[i][1].trim();
+
+    obj[key] = value;
   }
 
   return obj;
 }
-
 module.exports = convertToObject;

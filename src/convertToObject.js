@@ -19,7 +19,7 @@ const stylesString = require('./stylesString');
  */
 function convertToObject(sourceString) {
   const cssStyle = {};
-  const splitSource = sourceString
+  const newSourceString = sourceString
     .split(/\n/)
     .filter(elem => {
       return elem.length > 3;
@@ -30,7 +30,7 @@ function convertToObject(sourceString) {
       return elemReplace.split(':');
     });
 
-  splitSource.forEach(elem => {
+  newSourceString.forEach(elem => {
     const cssRule = elem[0].trim();
     const cssValue = elem[1].trim();
 

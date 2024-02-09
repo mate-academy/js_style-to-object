@@ -15,21 +15,22 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const styles = {};
 
-  const strings = sourceString.split('\n').map((value) => {
-    const rightString = value.trim(' ');
+  const strings = sourceString.split(';').filter(x => x.length > 2)
+    .reduce((prev, current) => {
+      const splitString = current.trim();
+      let splitted = [];
 
-    return rightString;
-  }).filter(x => x.length > 2);
+      if (splitString) {
+        splitted = splitString.split(':').map(x => x.trim());
 
-  for (let i = 0; i < strings.length; i++) {
-    const style = strings[i].split(':');
+        prev[splitted[0].toString()] = splitted[1];
+      }
 
-    styles[style[0].trim(' ')] = style[1].replace(';', '').trim(' ');
-  }
+      return prev;
+    }, {});
 
-  return styles;
+  return strings;
 }
 
 module.exports = convertToObject;

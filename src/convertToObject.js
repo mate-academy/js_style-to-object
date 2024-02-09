@@ -21,14 +21,12 @@ function convertToObject(sourceString) {
   for (let i = 0; i < sourceArray.length; i++) {
     const element = sourceArray[i].split(':');
 
-    if (element[0].length < 1 || element[1].length < 1) {
-      continue;
+    if (element[0].length > 0 && element[1]) {
+      const key = element[0].trim();
+      const value = element[1].trim();
+
+      result[key] = value;
     }
-
-    const key = element[0].trim();
-    const value = element[1].trim();
-
-    result[key] = value;
   }
 
   return result;

@@ -14,35 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const keys = [];
-  const values = [];
+  const cleanedString = sourceString.replace('\n', '');
+  const rules = cleanedString.split(';');
+  const filteredRules = rules.filter(el => el.trim() !== '');
   const stylesCss = {};
-  let startKey = 0;
 
-  for (let i = 0; i < sourceString.length; i++) {
-    if (sourceString[i] === ':') {
-      keys.push(sourceString.slice(startKey, i).trim());
-    }
+  for (const rule of filteredRules) {
+    const item = rule.split(':');
+    const property = item[0];
+    const value = item[1];
 
-    if (sourceString[i] === ';') {
-      startKey = i + 1;
-    }
-  }
-
-  let endValue = sourceString.lastIndexOf(';');
-
-  for (let j = sourceString.length; j > 0; j--) {
-    if (sourceString[j] === ';') {
-      endValue = j;
-    }
-
-    if (sourceString[j] === ':') {
-      values.push(sourceString.slice(j + 1, endValue).trim());
-    }
-  }
-
-  for (let i = 0; i < keys.length; i++) {
-    stylesCss[keys[i]] = values[values.length - i - 1];
+    stylesCss[property.trim()] = value.trim();
   }
 
   return stylesCss;

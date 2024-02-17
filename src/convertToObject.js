@@ -14,18 +14,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let stArr = sourceString.split(';');
-  const stObj = {};
+  const sourceStringArr = sourceString.split(';');
+  const stylesObj = {};
+  const sourceArrSplit = sourceStringArr.map(el => el.split(':'));
+  const sourceArrTrim = sourceArrSplit.map(el => el.map(item => item.trim()));
+  const stylesArray = sourceArrTrim.filter(el => el[0] !== '');
 
-  stArr = stArr.map(el => el.split(':'))
-    .map(el => el.map(item => item.trim()))
-    .filter(el => el[0] !== '');
-
-  stArr.forEach(el => {
-    stObj[el[0]] = el[1];
+  stylesArray.forEach(el => {
+    stylesObj[el[0]] = el[1];
   });
 
-  return stObj;
+  return stylesObj;
 }
 
 module.exports = convertToObject;

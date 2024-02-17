@@ -1,16 +1,15 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const temper = sourceString.split('\n').slice(1);
-  const result = {};
+  return sourceString.split('\n').slice(1).reduce((prev, item) => {
+    const [key, value] = item.split(':');
 
-  for (const ch of temper) {
-    if (ch !== '' && ch !== '  ;') {
-      result[ch.split(':')[0].trim()] = ch.split(':')[1].slice(0, -1).trim();
-    }
-  }
+    if (key && value) {
+      prev[key.trim()] = value.slice(0, -1).trim();
+    };
 
-  return result;
+    return prev;
+  }, {});
 }
 
 module.exports = convertToObject;

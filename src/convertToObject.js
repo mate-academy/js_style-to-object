@@ -1,9 +1,9 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const splittedVariable = sourceString.split('\n');
-  const slicedVariable = splittedVariable.slice(1);
-  const reduceVariable = slicedVariable.reduce((prev, item) => {
+  const splitted = sourceString.split('\n');
+  const sliced = splitted.slice(1);
+  const reduced = sliced.reduce((prev, item) => {
     const [key, value] = item.split(':');
 
     if (key && value) {
@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
     return prev;
   }, {});
 
-  return reduceVariable;
+  return reduced;
 }
 
 module.exports = convertToObject;

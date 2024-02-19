@@ -12,7 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObject = {};
+  const cleanString = sourceString.replace(/\/\*.*?\*\//g, '');
+  const matches = cleanString.match(/([\w-]+)\s*:\s*([^;]+)/g);
+
+  if (matches) {
+    matches.forEach(match => {
+      const parts = match.split(':').map(part => part.trim());
+      const key = parts[0];
+      const value = parts[1];
+
+      styleObject[key] = value;
+    });
+  }
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

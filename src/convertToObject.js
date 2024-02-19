@@ -14,15 +14,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const comand = sourceString.split(';');
+  const styleCommand = sourceString.split(';');
   const result = {};
 
-  for (const i of comand) {
-    let rrr = i.split(':');
+  for (const part of styleCommand) {
+    let twoPartsCommand = part.split(':');
 
-    if (rrr[1] !== undefined) {
-      result[rrr[0].trimRight().trimLeft()] = rrr[1].trimRight().trimLeft();
-      rrr = [];
+    if (twoPartsCommand[1]) {
+      result[twoPartsCommand[0].trimEnd().trimStart()]
+      = twoPartsCommand[1].trimEnd().trimStart();
+      twoPartsCommand = [];
     }
   }
 

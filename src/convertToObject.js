@@ -15,23 +15,23 @@
  */
 
 function convertToObject(sourceString) {
-  const sourceArray = sourceString
+  const trimmedString = sourceString
     .split(';')
     .filter(item => item.trim() !== '');
 
-  const updatedSourceArray = sourceArray.map(item => {
+  const propertyValuePairs = trimmedString.map(item => {
     const [ property, value ] = item.split(':');
 
     return [property.trim(), value.trim()];
   });
 
-  const sourceObject = {};
+  const convertedPairs = {};
 
-  updatedSourceArray.map(item => {
-    sourceObject[item[0]] = item[1];
+  propertyValuePairs.map(item => {
+    convertedPairs[item[0]] = item[1];
   });
 
-  return sourceObject;
+  return convertedPairs;
 }
 
 module.exports = convertToObject;

@@ -17,12 +17,11 @@ function convertToObject(sourceString) {
   const styleCommand = sourceString.split(';');
   const result = {};
 
-  for (const part of styleCommand) {
-    let twoPartsCommand = part.split(':');
+  for (const partCommand of styleCommand) {
+    let twoPartsCommand = partCommand.split(':').map((part) => part.trim());
 
     if (twoPartsCommand[1]) {
-      result[twoPartsCommand[0].trimEnd().trimStart()]
-      = twoPartsCommand[1].trimEnd().trimStart();
+      result[twoPartsCommand[0]] = twoPartsCommand[1];
       twoPartsCommand = [];
     }
   }

@@ -18,17 +18,13 @@ function convertToObject(sourceString) {
     .split(';')
     .filter(item => item.trim() !== '');
 
-  const propertyValuePairs = trimmedString.map(item => {
+  const resultingObject = trimmedString.reduce((obj, item) => {
     const [property, value] = item.split(':');
 
-    return [property.trim(), value.trim()];
-  });
+    obj[property.trim()] = value.trim();
 
-  const resultingObject = {};
-
-  propertyValuePairs.map(item => {
-    resultingObject[item[0]] = item[1];
-  });
+    return obj;
+  }, {});
 
   return resultingObject;
 }

@@ -15,18 +15,20 @@
  */
 function convertToObject(sourceString) {
   const styleObject = {};
-  const cleanString = sourceString.replace(/\/\*.*?\*\//g, '');
-  const matches = cleanString.match(/([\w-]+)\s*:\s*([^;]+)/g);
+  const cleanString = sourceString.split(';');
 
-  if (matches) {
-    matches.forEach(match => {
-      const parts = match.split(':').map(part => part.trim());
-      const key = parts[0];
-      const value = parts[1];
+  cleanString.forEach(matches => {
+    // eslint-disable-next-line no-param-reassign
+    matches = matches.trim();
 
-      styleObject[key] = value;
-    });
-  }
+    if (matches) {
+      const [key, value] = matches.split(':').map(part => part.trim());
+
+      if (key && value) {
+        styleObject[key] = value;
+      }
+    }
+  });
 
   return styleObject;
 }

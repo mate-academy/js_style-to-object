@@ -18,12 +18,8 @@ function convertToObject(sourceString) {
   const result = {};
 
   for (const partCommand of styleCommand) {
-    let twoPartsCommand = partCommand.split(':').map((part) => part.trim());
-
-    if (twoPartsCommand[1]) {
-      result[twoPartsCommand[0]] = twoPartsCommand[1];
-      twoPartsCommand = [];
-    }
+    partCommand.split(':').map((part) => part.trim())
+      .reduce((firstpart, secondpart) => (result[firstpart] = secondpart));
   }
 
   return result;

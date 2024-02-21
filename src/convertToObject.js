@@ -8,8 +8,7 @@
 function convertToObject(sourceString) {
   const string = sourceString
     .split(';')
-    .filter(pair => pair.trim() !== ''
-    );
+    .filter(pair => pair.trim() !== '');
 
   const result = {};
 

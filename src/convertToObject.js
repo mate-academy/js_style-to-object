@@ -17,7 +17,7 @@
 function convertToObject(sourceString) {
   const sourceStringArray = sourceString.split(';');
 
-  const result = sourceStringArray.reduce((acc, item) => {
+  const styledObject = sourceStringArray.reduce((acc, item) => {
     if (item.trim() !== '') {
       const itemArray = item.split(':');
       const key = itemArray[0].trim();
@@ -29,7 +29,7 @@ function convertToObject(sourceString) {
     return acc;
   }, {});
 
-  return result;
+  return styledObject;
 }
 
 module.exports = convertToObject;

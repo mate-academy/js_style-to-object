@@ -14,21 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleDeclarations = sourceString
+  return sourceString
     .split(';')
-    .map(declaration => declaration.trim());
+    .map(declaration => declaration.trim())
+    .reduce((stylesObject, declaration) => {
+      if (declaration) {
+        const [property, value] = declaration
+          .split(':')
+          .map(part => part.trim());
 
-  const stylesObject = {};
+        stylesObject[property] = value;
+      }
 
-  styleDeclarations.forEach(declaration => {
-    if (declaration) {
-      const [property, value] = declaration.split(':').map(part => part.trim());
-
-      stylesObject[property] = value;
-    }
-  });
-
-  return stylesObject;
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

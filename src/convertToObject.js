@@ -14,7 +14,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString.trim().replace(/;/g, '').split('\n');
+  const styles = sourceString
+    .trim()
+    .replace(/;/g, '')
+    .split('\n');
 
   const convertStyle = styles.reduce((obj, el) => {
     if (el.trim() === '') {

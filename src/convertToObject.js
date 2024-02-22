@@ -14,22 +14,15 @@
 
 function convertToObject(sourceString) {
   const arrayStyle = sourceString.split(';');
-  const pairItemValue = [];
   const objectStyles = {};
 
   arrayStyle.forEach(element => {
     if (element.trim() !== '') {
       const value = element.split(':').map(a => a.trim());
 
-      pairItemValue.push(value);
+      objectStyles[value[0]] = value[1];
     }
   });
-
-  for (const element of pairItemValue) {
-    for (let i = 0; i < element.length; i++) {
-      objectStyles[element[0]] = element[1];
-    }
-  }
 
   return objectStyles;
 }

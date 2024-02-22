@@ -14,16 +14,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split('\n').reduce((acc, line) => {
-    const parts = line.split(':').map((part) => part.trim().replace(';', ''));
+  return sourceString
+    .split('\n')
+    .reduce((acc, line) => {
+      const parts = line
+        .split(':')
+          .map((part) => part.trim().replace(';', ''));
 
-    if (parts.length === 2) {
-      const [key, value] = parts;
+      if (parts.length === 2) {
+        const [key, value] = parts;
 
-      acc[key] = value.trim();
-    }
+        acc[key] = value.trim();
+      }
 
-    return acc;
+      return acc;
   }, {});
 }
 

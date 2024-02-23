@@ -10,9 +10,8 @@
  */
 
 function convertToObject(sourceString) {
-  const splitedRows = sourceString.split(';');
-  const trimmedSplitedRows = splitedRows.map(el => el.trim());
-  const filteredRows = trimmedSplitedRows.filter(el => el.length !== 0);
+  const splitedRows = sourceString.split(';').map(el => el.trim());
+  const filteredRows = splitedRows.filter(el => el.length !== 0);
 
   const result = filteredRows.reduce((acc, item) => {
     const [key, value] = item.split(':');

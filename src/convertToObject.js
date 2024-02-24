@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
   const splitedRows = sourceString.split(';').map(el => el.trim());
   const filteredRows = splitedRows.filter(el => el.length !== 0);
 
-  const result = filteredRows.reduce((acc, item) => {
+  const convertedStyles = filteredRows.reduce((acc, item) => {
     const [key, value] = item.split(':');
 
     acc[key.trim()] = value.trim();
@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
     return acc;
   }, {});
 
-  return result;
+  return convertedStyles;
 }
 
 module.exports = convertToObject;

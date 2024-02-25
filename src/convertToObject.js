@@ -16,16 +16,16 @@
 function convertToObject(sourceString) {
   const sourceStringArr = sourceString
     .split(';')
-    .filter(str => str.includes(':') && str.trim().length > 1);
-  const stylesObj = {};
+    .filter(str => str.includes(':'));
+  const stylesData = {};
 
   sourceStringArr.forEach(style => {
     const [key, value] = style.split(':');
 
-    stylesObj[key.trim()] = value.trim();
+    stylesData[key.trim()] = value.trim();
   });
 
-  return stylesObj;
+  return stylesData;
 }
 
 module.exports = convertToObject;

@@ -14,7 +14,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stringToObject = sourceString
+  const convertedToObject = sourceString
     .split(";")
     .map((propertiesAndValues) => {
       return propertiesAndValues
@@ -22,16 +22,15 @@ function convertToObject(sourceString) {
         .map((propertyAndValue) => propertyAndValue.trim());
     })
     .reduce((objectProperties, propertyAndValue) => {
-      if (propertyAndValue[0] !== "" && propertyAndValue[1] !== "") {
-        return {
-          ...objectProperties,
-          [propertyAndValue[0]]: propertyAndValue[1],
-        };
+      const [property, value] = propertyAndValue;
+
+      if (property && value) {
+        objectProperties[property] = value;
       }
 
       return objectProperties;
     }, {});
 
-  return stringToObject;
+  return convertedToObject;
 }
 module.exports = convertToObject;

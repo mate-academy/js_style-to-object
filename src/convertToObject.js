@@ -1,6 +1,6 @@
 'use strict';
 
-  //const stylesString = require('./stylesString');
+// const stylesString = require('./stylesString');
 
 /**
  * @param {string} sourceString

@@ -5,13 +5,12 @@ function convertToObject(sourceString) {
   const stylesCSS = {};
 
   styles
-    .filter((style) => (style !== "" ? style.trim() : false))
-    .map((style) => {
-      const indexEnd = style.indexOf(":");
-      const styleKey = style.slice(0, indexEnd).trim();
-      const styleValue = style.slice(indexEnd + 1).trim();
+    .filter((style) => style.trim())
+    .forEach((style) => {
+      const styleKey = style.split(":")[0];
+      const styleValue = style.split(":")[1];
 
-      return (stylesCSS[styleKey] = styleValue);
+      stylesCSS[styleKey.trim()] = styleValue.trim();
     });
 
   return stylesCSS;

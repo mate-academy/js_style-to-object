@@ -15,18 +15,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const styleArray = sourceString.split(';')
+  const splittedSource = sourceString.split(';')
     .filter((item) => item.trim() !== '');
 
-  const stuleObj = {};
+  const convertedStyles = {};
 
-  styleArray.forEach((style) => {
+  splittedSource.forEach((style) => {
     const [property, value] = style.split(':').map((part) => part.trim());
 
-    stuleObj[property] = value;
+    convertedStyles[property] = value;
   });
 
-  return stuleObj;
+  return convertedStyles;
 }
 
 module.exports = convertToObject;

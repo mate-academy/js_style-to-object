@@ -30,6 +30,8 @@ function convertToObject(sourceString) {
 
     object[propertyName] = propertyValue;
   }
+
+  return object;
 }
 
 module.exports = convertToObject;

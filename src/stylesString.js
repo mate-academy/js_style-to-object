@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const complexStylesString = `
   background-color:      #fff;

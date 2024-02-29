@@ -1,0 +1,102 @@
+{
+    "sourceFile": "src/convertToObject.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 21,
+            "patches": [
+                {
+                    "date": 1708611651557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1708611659293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n  *\n  * @return {object}\n  */\n function convertToObject(sourceString) {\n-  convertToObject\n+  console.log(sourceString)\n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708611695266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n  *\n  * @return {object}\n  */\n function convertToObject(sourceString) {\n-  console.log(sourceString)\n+  \n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708611843687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n  *\n  * @return {object}\n  */\n function convertToObject(sourceString) {\n-  \n+  const result = \n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708611850609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n  *\n  * @return {object}\n  */\n function convertToObject(sourceString) {\n-  const result = \n+  const result = sourceString.map\n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708611855982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n  *\n  * @return {object}\n  */\n function convertToObject(sourceString) {\n-  const result = sourceString.map\n+  const result = sourceString.map((value))\n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708612014527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,31 @@\n+'use strict';\n+\n+/**\n+ * Implement convertToObject function:\n+ *\n+ * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))\n+ * and returns an object where CSS properties are keys\n+ * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))\n+ *\n+ * @param {string} sourceString\n+ *\n+ * @return {object}\n+ */\n+function convertToObject(sourceString) {\n+  const styledObject = {};\n+  const sourceStringArray = sourceString\n+    .split(';')\n+    .map((item) => item.split(':'));\n+\n+  for (const item of sourceStringArray) {\n+    const [key, value] = item;\n+\n+    if (value) {\n+      styledObject[key.trim()] = value.trim();\n+    }\n+  }\n+\n+  return styledObject;\n+}\n+\n+module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708612033266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,7 @@\n 'use strict';\n \n-/**\n- * Implement convertToObject function:\n- *\n- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))\n- * and returns an object where CSS properties are keys\n- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))\n- *\n- * @param {string} sourceString\n- *\n- * @return {object}\n- */\n+\n function convertToObject(sourceString) {\n   const styledObject = {};\n   const sourceStringArray = sourceString\n     .split(';')\n@@ -28,22 +18,4 @@\n   return styledObject;\n }\n \n module.exports = convertToObject;\n-'use strict';\n-\n-/**\n- * Implement convertToObject function:\n- *\n- * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))\n- * and returns an object where CSS properties are keys\n- * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))\n- *\n- * @param {string} sourceString\n- *\n- * @return {object}\n- */\n-function convertToObject(sourceString) {\n-  const result = sourceString.map((value))\n-}\n-\n-module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708612585452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n 'use strict';\n \n-\n function convertToObject(sourceString) {\n   const styledObject = {};\n   const sourceStringArray = sourceString\n     .split(';')\n@@ -14,8 +13,8 @@\n       styledObject[key.trim()] = value.trim();\n     }\n   }\n \n-  return styledObject;\n+  return obj;\n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1708612591159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,17 @@\n 'use strict';\n \n function convertToObject(sourceString) {\n-  const styledObject = {};\n+  const obj = {};\n   const sourceStringArray = sourceString\n     .split(';')\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n     const [key, value] = item;\n \n     if (value) {\n-      styledObject[key.trim()] = value.trim();\n+      obj[key.trim()] = value.trim();\n     }\n   }\n \n   return obj;\n"
+                },
+                {
+                    "date": 1708612816161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n   for (const item of sourceStringArray) {\n     const [key, value] = item;\n \n-    if (value) {\n+    // if (value) {\n       obj[key.trim()] = value.trim();\n     }\n   }\n \n"
+                },
+                {
+                    "date": 1708612845373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   for (const item of sourceStringArray) {\n     const [key, value] = item;\n \n     // if (value) {\n-      obj[key.trim()] = value.trim();\n+    obj[key.trim()] = value.trim();\n     }\n   }\n \n   return obj;\n"
+                },
+                {
+                    "date": 1708613080020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,11 @@\n     .split(';')\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n-    const [key, value] = item;\n \n-    // if (value) {\n-    obj[key.trim()] = value.trim();\n+    if (value) {\n+      obj[key.trim()] = value.trim();\n     }\n   }\n \n   return obj;\n"
+                },
+                {
+                    "date": 1708613089901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n     .split(';')\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n-\n     if (value) {\n-      obj[key.trim()] = value.trim();\n+      obj[item.key.trim()] = item.value.trim();\n     }\n   }\n \n   return obj;\n"
+                },
+                {
+                    "date": 1708613657128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n 'use strict';\n \n function convertToObject(sourceString) {\n-  const obj = {};\n+  const result = {};\n   const sourceStringArray = sourceString\n     .split(';')\n     .map((item) => item.split(':'));\n \n"
+                },
+                {
+                    "date": 1708613662302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,12 @@\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n     if (value) {\n-      obj[item.key.trim()] = item.value.trim();\n+      result[item.key.trim()] = item.value.trim();\n     }\n   }\n \n-  return obj;\n+  return result;\n }\n \n module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709222775870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     .split(';')\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n-    if (value) {\n+    if (item.value) {\n       result[item.key.trim()] = item.value.trim();\n     }\n   }\n \n"
+                },
+                {
+                    "date": 1709222794423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     .split(';')\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n-    if (item.value) {\n+    if (value) {\n       result[item.key.trim()] = item.value.trim();\n     }\n   }\n \n"
+                },
+                {
+                    "date": 1709223004769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,18 @@\n+'use strict';\n+\n+function convertToObject(sourceString) {\n+  const result = {};\n+  const sourceStringArray = sourceString\n+    .split(';')\n+    .map((item) => item.split(':'));\n+\n+  for (const item of sourceStringArray) {\n+    if (item.value) {\n+      result[item.key.trim()] = item.value.trim();\n+    }\n+  }\n+\n+  return result;\n+}\n+\n+module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709223034887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,18 @@\n+'use strict';\n+\n+function convertToObject(sourceString) {\n+  const result = {};\n+  const sourceStringArray = sourceString\n+    .split(';')\n+    .map((item) => item.split(':'));\n+\n+  for (const item of sourceStringArray) {\n+    if (value) {\n+      result[item.key.trim()] = item.value.trim();\n+    }\n+  }\n+\n+  return result;\n+}\n+\n+module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709223043099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n     .split(';')\n     .map((item) => item.split(':'));\n \n   for (const item of sourceStringArray) {\n+    const [key, value] = item\n     if (value) {\n       result[item.key.trim()] = item.value.trim();\n     }\n   }\n@@ -15,40 +16,4 @@\n   return result;\n }\n \n module.exports = convertToObject;\n-'use strict';\n-\n-function convertToObject(sourceString) {\n-  const result = {};\n-  const sourceStringArray = sourceString\n-    .split(';')\n-    .map((item) => item.split(':'));\n-\n-  for (const item of sourceStringArray) {\n-    if (item.value) {\n-      result[item.key.trim()] = item.value.trim();\n-    }\n-  }\n-\n-  return result;\n-}\n-\n-module.exports = convertToObject;\n-'use strict';\n-\n-function convertToObject(sourceString) {\n-  const result = {};\n-  const sourceStringArray = sourceString\n-    .split(';')\n-    .map((item) => item.split(':'));\n-\n-  for (const item of sourceStringArray) {\n-    if (value) {\n-      result[item.key.trim()] = item.value.trim();\n-    }\n-  }\n-\n-  return result;\n-}\n-\n-module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709223052097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,20 @@\n+'use strict';\n+\n+function convertToObject(sourceString) {\n+  const result = {};\n+  const sourceStringArray = sourceString\n+    .split(';')\n+    .map((item) => item.split(':'));\n+\n+  for (const item of sourceStringArray) {\n+    const [key, value] = item;\n+\n+    if (value) {\n+      result[key.trim()] = item.value.trim();\n+    }\n+  }\n+\n+  return result;\n+}\n+\n+module.exports = convertToObject;\n"
+                }
+            ],
+            "date": 1708611651557,
+            "name": "Commit-0",
+            "content": "'use strict';\n\n/**\n * Implement convertToObject function:\n *\n * Function takes a string with styles (see an example in [stylesString.js](./stylesString.js))\n * and returns an object where CSS properties are keys\n * and values are the values of related CSS properties (see an exampl in [test file](./convertToObject.test.js))\n *\n * @param {string} sourceString\n *\n * @return {object}\n */\nfunction convertToObject(sourceString) {\n  convertToObject\n}\n\nmodule.exports = convertToObject;\n"
+        }
+    ]
+}

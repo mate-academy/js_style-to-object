@@ -14,7 +14,7 @@ function convertToObject(sourceString) {
   for (const y of arrStyles) {
     const arr = y.split(':');
 
-    objStyles[array[0].trim()] = arr[1].trim();
+    objStyles[arr[0].trim()] = arr[1].trim();
   }
 
   return objStyles;

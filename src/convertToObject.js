@@ -12,7 +12,9 @@ function convertToObject(sourceString) {
   const stylesObject = {};
 
   stylesArray.forEach((style) => {
-    const [property, value] = style.split(":").map((part) => part.trim());
+    const [property, value] = style
+      .split(":")
+      .map((part) => part.trim());
 
     stylesObject[property] = value;
   });

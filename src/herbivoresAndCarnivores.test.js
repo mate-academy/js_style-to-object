@@ -34,8 +34,7 @@ describe('Animal', () => {
 
       expect(carn)
         .toHaveProperty('health', 100);
-    }
-  );
+    });
 
   it(`Herbivore should have 'hide' method which inverts 'hidden' property`,
     () => {
@@ -45,8 +44,7 @@ describe('Animal', () => {
 
       expect(animal.hidden)
         .toBe(true);
-    }
-  );
+    });
 
   it(`Herbivores 'hide' method should be inherited`, () => {
     const animal = new Herbivore('Zebra');
@@ -92,8 +90,7 @@ describe('Animal', () => {
 
       expect(tiger.health)
         .toBe(100);
-    }
-  );
+    });
 
   it(`Carnivores and Herbivores should be in 'Animal.alive' array`, () => {
     const bear = new Carnivore('Bear');

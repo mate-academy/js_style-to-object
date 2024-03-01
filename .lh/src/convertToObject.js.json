@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 40,
+            "activePatchIndex": 46,
             "patches": [
                 {
                     "date": 1709219837281,
@@ -168,6 +168,30 @@
                 {
                     "date": 1709276587120,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n  *\n  * @return {object}\n  */\n function convertToObject(sourceString) {\n-  const STYLES_ARRAY = sourceString.split(\";\").filter(Boolean);\n+  const STYLES_ARRAY = sourceString\n+    .split(\";\").filter(Boolean);\n   const STYLES_OBJECT = {};\n \n   STYLES_ARRAY.forEach((style) => {\n     const [property, value] = style\n"
+                },
+                {
+                    "date": 1709298456999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,24 @@\n+\"use strict\";\n+\n+/**\n+ * @param {string} sourceString\n+ *\n+ * @return {object}\n+ */\n+function convertToObject(sourceString) {\n+  const STYLES_ARRAY = sourceString\n+    .split(\";\")\n+    .filter(Boolean);\n+  const STYLES_OBJECT = {};\n+\n+  STYLES_ARRAY.forEach((style) => {\n+    const [property, value] = style\n+      .split(\":\").map((part) => part.trim());\n+\n+    STYLES_OBJECT[property] = value;\n+  });\n+\n+  return STYLES_OBJECT;\n+}\n+\n+module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709298530936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,25 @@\n+\"use strict\";\n+\n+/**\n+ * @param {string} sourceString\n+ *\n+ * @return {object}\n+ */\n+function convertToObject(sourceString) {\n+  const stylesArray = sourceString\n+    .split(\";\")\n+    .filter(Boolean);\n+  const STYLES_OBJECT = {};\n+\n+  STYLES_ARRAY.forEach((style) => {\n+    const [property, value] = style\n+      .split(\":\")\n+      .map((part) => part.trim());\n+\n+    STYLES_OBJECT[property] = value;\n+  });\n+\n+  return STYLES_OBJECT;\n+}\n+\n+module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709298541944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,67 +8,16 @@\n function convertToObject(sourceString) {\n   const stylesArray = sourceString\n     .split(\";\")\n     .filter(Boolean);\n-  const STYLES_OBJECT = {};\n+  const sty = {};\n \n-  STYLES_ARRAY.forEach((style) => {\n-    const [property, value] = style\n-      .split(\":\")\n-      .map((part) => part.trim());\n+  stylesArray.forEach((style) => {\n+    const [property, value] = style.split(\":\").map((part) => part.trim());\n \n     STYLES_OBJECT[property] = value;\n   });\n \n   return STYLES_OBJECT;\n }\n \n module.exports = convertToObject;\n-\"use strict\";\n-\n-/**\n- * @param {string} sourceString\n- *\n- * @return {object}\n- */\n-function convertToObject(sourceString) {\n-  const STYLES_ARRAY = sourceString\n-    .split(\";\")\n-    .filter(Boolean);\n-  const STYLES_OBJECT = {};\n-\n-  STYLES_ARRAY.forEach((style) => {\n-    const [property, value] = style\n-      .split(\":\").map((part) => part.trim());\n-\n-    STYLES_OBJECT[property] = value;\n-  });\n-\n-  return STYLES_OBJECT;\n-}\n-\n-module.exports = convertToObject;\n-\"use strict\";\n-\n-/**\n- * @param {string} sourceString\n- *\n- * @return {object}\n- */\n-function convertToObject(sourceString) {\n-  const STYLES_ARRAY = sourceString\n-    .split(\";\").filter(Boolean);\n-  const STYLES_OBJECT = {};\n-\n-  STYLES_ARRAY.forEach((style) => {\n-    const [property, value] = style\n-      .split(\":\")\n-      .map((part) => part\n-        .trim());\n-\n-    STYLES_OBJECT[property] = value;\n-  });\n-\n-  return STYLES_OBJECT;\n-}\n-\n-module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709298547399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n function convertToObject(sourceString) {\n   const stylesArray = sourceString\n     .split(\";\")\n     .filter(Boolean);\n-  const sty = {};\n+  const stylesObject = {};\n \n   stylesArray.forEach((style) => {\n     const [property, value] = style.split(\":\").map((part) => part.trim());\n \n"
+                },
+                {
+                    "date": 1709298553897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,25 @@\n+\"use strict\";\n+\n+/**\n+ * @param {string} sourceString\n+ *\n+ * @return {object}\n+ */\n+function convertToObject(sourceString) {\n+  const stylesArray = sourceString\n+    .split(\";\")\n+    .filter(Boolean);\n+  const stylesObject = {};\n+\n+  stylesArray.forEach((style) => {\n+    const [property, value] = style.split(\":\").map((part) => part.trim());\n+\n+      const stylesObject = {};\n+[property] = value;\n+  });\n+\n+  return   const stylesObject = {};\n+;\n+}\n+\n+module.exports = convertToObject;\n"
+                },
+                {
+                    "date": 1709298560694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,36 +13,11 @@\n \n   stylesArray.forEach((style) => {\n     const [property, value] = style.split(\":\").map((part) => part.trim());\n \n-      const stylesObject = {};\n-[property] = value;\n+    stylesObject[property] = value;\n   });\n \n-  return   const stylesObject = {};\n-;\n-}\n-\n-module.exports = convertToObject;\n-\"use strict\";\n-\n-/**\n- * @param {string} sourceString\n- *\n- * @return {object}\n- */\n-function convertToObject(sourceString) {\n-  const stylesArray = sourceString\n-    .split(\";\")\n-    .filter(Boolean);\n-  const stylesObject = {};\n-\n-  stylesArray.forEach((style) => {\n-    const [property, value] = style.split(\":\").map((part) => part.trim());\n-\n-    STYLES_OBJECT[property] = value;\n-  });\n-\n   return STYLES_OBJECT;\n }\n \n module.exports = convertToObject;\n"
                 }
             ],
             "date": 1709219837281,

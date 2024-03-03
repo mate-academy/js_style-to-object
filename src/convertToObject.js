@@ -5,8 +5,6 @@
  *
  * @return {object}
  */
-const complexStylesString = require('./stylesString');
-
 function convertToObject(sourceString) {
   const strings = sourceString
     .split(';')
@@ -23,7 +21,5 @@ function convertToObject(sourceString) {
 
   return result;
 }
-
-convertToObject(complexStylesString);
 
 module.exports = convertToObject;

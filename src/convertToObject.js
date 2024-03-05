@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const indvStyles = sourceString.split(';');
+
+  for (const eachStyle of indvStyles) {
+    const [key, value] = eachStyle.split(':').map((part) => part.trim());
+
+    if (key && value) {
+      result[key] = value;
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

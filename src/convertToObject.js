@@ -12,17 +12,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArr = sourceString.split(';');
+  const items = sourceString.split(';').map((item) => item.split(':'));
   const result = {};
 
-  sourceArr.forEach(item => {
-    const newProperty = item.split(':');
+  items.forEach((item) => {
+    const [key, value] = item;
 
-    if (newProperty.length === 2) {
-      const key = newProperty[0].trim();
-      const value = newProperty[1].trim();
-
-      result[key] = value;
+    if (item.length === 2) {
+      result[key.trim()] = value.trim();
     }
   });
 

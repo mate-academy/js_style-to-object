@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
   const cssObject = {};
   const propertiesArray = sourceString.split(';');
 
-  propertiesArray.map((element) => {
+  propertiesArray.forEach((element) => {
     if (element.length >= 2) {
       const splitElement = element.split(':').map((item) => item.trim());
 

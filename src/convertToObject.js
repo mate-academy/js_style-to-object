@@ -7,6 +7,17 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  return sourceString.split(';').reduce((style, element) => {
+    const parts = element.split(':').map((part) => part.trim());
+
+    if (parts.length === 2) {
+      const [key, value] = parts;
+
+      style[key] = value;
+    }
+
+    return style;
+  }, {});
 }
 
 module.exports = convertToObject;

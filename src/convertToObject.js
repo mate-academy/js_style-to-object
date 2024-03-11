@@ -6,36 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const mass1 = sourceString.replace(/\n/g, '').trim().split(';');
-  const mass2 = [];
+  const mass1 = sourceString.split(';');
 
-  for (let index = 0; index < mass1.length; index++) {
-    const element = mass1[index].trim();
+  mass1.forEach((element, index) => {
+    mass1[index] = element.replace(/\n|\t/g, ' ').trim().split(':');
+  });
 
-    mass2.push(element);
-  }
-
-  const strResalt = [];
-
-  for (let i = 0; i < mass2.length; i++) {
-    if (mass2[i] !== '') {
-      strResalt.push(mass2[i].split(': '));
+  mass1.forEach((element, index) => {
+    for (let i = 0; i < element.length; i++) {
+      mass1[index][i] = element[i].trim().replace(/, /g, ',\n');
     }
-  }
+  });
 
-  for (let index = 0; index < strResalt.length; index++) {
-    strResalt[index][1] = strResalt[index][1].replace(/,/g, ',\n');
-  }
-
-  const obj = strResalt.reduce((object, value) => {
-    const key = value[0].trim();
-    const valueObj = value[1].trim();
-
-    return { ...object, [key]: valueObj };
+  const objStyle = mass1.reduce((object, value) => {
+    return { ...object, [value[0]]: value[1] };
   }, {});
 
-  return obj;
+  return objStyle;
 }
 
 module.exports = convertToObject;

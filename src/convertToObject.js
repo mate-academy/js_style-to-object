@@ -23,25 +23,9 @@ function convertToObject(sourceString) {
     .filter(el => el !== '')
     .map(
       el => {
-        let match = true;
-        let property = '';
-        let value = '';
+        const properties = el.split(':');
 
-        for (const key of el) {
-          if (key === ':') {
-            match = false;
-          }
-
-          if (match && key !== ':') {
-            property += key;
-          }
-
-          if (!match && key !== ':') {
-            value += key;
-          }
-        }
-
-        result[property.trim()] = value.trim();
+        result[properties[0].trim()] = properties[1].trim();
       }
     );
 

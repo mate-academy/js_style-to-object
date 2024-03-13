@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString.split(';')
+    .map(row => row.split(':'))
+    .filter(rule => rule.length === 2)
+    .map(([prop, value]) =>
+      [prop.trim(), value.trim()]
+    )
+    .reduce((convertList, [prop, value]) => (
+      {
+        ...convertList,
+        ...{ [prop]: value },
+      }
+    ), {});
 }
 
 module.exports = convertToObject;

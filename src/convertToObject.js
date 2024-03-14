@@ -18,18 +18,18 @@ const TRIM_COLON_REGEX = new RegExp('\\s*:\\s*', 'g');
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
-  sourceString.split(SEMICOLON)
+  return sourceString
+    .split(SEMICOLON)
     .map(item => item.trim().replace(TRIM_COLON_REGEX, COLON))
     .filter(value => value)
-    .forEach(item => {
-      const properties = item.split(COLON);
+    .reduce((result, current) => {
+      const [prop, value] = current.split(COLON);
 
-      result[properties[0]] = properties[1];
-    });
-
-  return result;
+      return {
+        ...result,
+        [prop]: value,
+      };
+    }, {});
 }
 
 module.exports = convertToObject;

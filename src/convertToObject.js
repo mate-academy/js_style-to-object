@@ -1,17 +1,21 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const sourceDict = {};
+  return sourceString
+    .split(';')
+    .reduce((acc, line) => {
+      const parts = line
+        .split(':')
+        .map((part) => part.trim());
 
-  for (const source of sourceString.split(';')) {
-    if (source.includes(':')) {
-      const [property, value] = source.trim().split(':');
+      if (parts.length === 2) {
+        const [key, value] = parts;
 
-      sourceDict[property.trim()] = value.trim();
-    }
-  }
+        acc[key] = value;
+      }
 
-  return sourceDict;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

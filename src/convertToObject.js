@@ -2,12 +2,11 @@
 function convertToObject(sourceString) {
   // write your code here
     const separator = ';';
-    const styles =  formatString(sourceString).split(separator);
+    const styles = sourceString.split(separator);
     const object = {};
 
     for (const style of styles) {
-      const values = style.split(':');
-      const [property, value] = values;
+      const [property, value]  = style.split(':');
 
       if (property && value) {
         object[property.trim()] = value.trim();

@@ -1,16 +1,3 @@
-function formatString(string) {
-  let result = '';
-
-   for (let i = 0; i < string.length; i++) {
-      if (string[i] === '\n') {
-        continue;
-      }
-
-      result += string[i];
-    }
-
-    return result;
-}
 
 function convertToObject(sourceString) {
   // write your code here

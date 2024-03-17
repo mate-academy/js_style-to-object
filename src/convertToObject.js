@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 'use strict';
 
 /**
@@ -6,7 +7,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const finalStyles = {};
+  const styles = sourceString.split(';');
+
+  styles.forEach((style) => {
+    const [key, value] = style.split(':').map((part) => part.trim());
+
+    if (key && value) {
+      finalStyles[key] = value;
+    }
+  });
+
+  return finalStyles;
 }
 
 module.exports = convertToObject;

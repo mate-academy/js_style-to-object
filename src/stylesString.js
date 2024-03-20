@@ -1,6 +1,6 @@
 'use strict';
 
-const complexStylesString = `
+const stylesString = `
   background-color:      #fff;
 -webkit-border-radius: 5px;
   border-radius     : 5px;
@@ -36,4 +36,4 @@ const complexStylesString = `
   width: auto;
 `;
 
-module.exports = complexStylesString;
+module.exports = stylesString;

@@ -7,19 +7,13 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const attributes = sourceString.split(';').filter((attr) => attr.length > 1);
+  const attributes = sourceString.split(';').filter((attr) => attr.length);
 
   for (const element in attributes) {
-    const attribute = attributes[element].split(':');
+    const [key, value] = attributes[element].split(':');
 
-    const key = attribute[0];
-    const value = attribute[1];
-
-    if (key !== undefined && value !== undefined) {
-      const keyForObj = key.trim();
-      const valueForObj = value.trim();
-
-      result[keyForObj] = valueForObj;
+    if (key && value) {
+      result[key.trim()] = value.trim();
     }
   }
 

@@ -1,15 +1,5 @@
 'use strict';
 
-const func = (originalShadow) => {
-  const shadowParts = originalShadow.split(',');
-
-  shadowParts[2] = shadowParts[2].replace(/rgb\(.*?\)/, 'rgb(200 0 0 / 60%)');
-
-  const modifiedShadow = shadowParts.join(',\n         ');
-
-  return modifiedShadow;
-};
-
 function convertToObject(sourceString) {
   const obj = {};
 
@@ -20,15 +10,8 @@ function convertToObject(sourceString) {
 
     if (elem && elem.trim() && elem.split(':')) {
       const [key, value] = elem.split(':');
-      const newKey = key.trim();
-      let trimmedString = value
-        ? value.trim().replace(/\n\s*/g, '\n').replace(/\n/g, ' ')
-        : value;
 
-      trimmedString =
-        trimmedString.length > 80 ? func(trimmedString) : trimmedString;
-
-      obj[newKey] = trimmedString;
+      obj[key.trim()] = value.trim();
     }
   }
 

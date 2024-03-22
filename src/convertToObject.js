@@ -5,11 +5,11 @@ function convertToObject(sourceString) {
 
   const arr = sourceString.trim().split(';');
 
-  for (let i = 0; i <= arr.length; i++) {
-    const elem = arr[i];
+  for (const elem of arr) {
+    const newElem = elem.split(':');
 
-    if (elem && elem.trim() && elem.split(':')) {
-      const [key, value] = elem.split(':');
+    if (elem && elem.trim() && newElem) {
+      const [key, value] = newElem;
 
       obj[key.trim()] = value.trim();
     }

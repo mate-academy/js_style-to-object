@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 'use strict';
 
 /**
@@ -7,12 +8,13 @@
  */
 function convertToObject(sourceString) {
   const declarativeStyles = sourceString.split(';');
+  const mapedStyle = declarativeStyles.map((style) =>
+    style.split(':').map((str) => str.trim()),
+  );
 
-  return declarativeStyles
-    .map((style) => style.split(':').map((str) => str.trim()))
-    .reduce((convertedStyles, [property, value]) => {
-      return { ...convertedStyles, [property]: value };
-    }, {});
+  return mapedStyle.reduce((converted, [property, value]) => {
+    return { ...converted, [property]: value };
+  }, {});
 }
 
 module.exports = convertToObject;

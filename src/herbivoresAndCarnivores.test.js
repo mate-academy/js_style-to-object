@@ -121,4 +121,36 @@ describe('Animal', () => {
     expect(Animal.alive.includes(tiger))
       .toBe(true);
   });
+
+  it(`Herbivores should be removed from 'Animal.alive' array, when their health is 0 (but Zebra is not the last defined animal)`, () => {
+    const zebra = new Herbivore('Zebra');
+    const tiger = new Carnivore('Tiger');
+
+    tiger.bite(zebra);
+    tiger.bite(zebra);
+
+    expect(Animal.alive.includes(zebra))
+      .toBe(false);
+
+    expect(Animal.alive.includes(tiger))
+      .toBe(true);
+  });
+
+  it('Two of the same herbivore exist, but only one dies', () => {
+    const olderZebra = new Herbivore('Zebra');
+    const yongerZebra =  new Herbivore('Zebra');
+    const lion = new Carnivore("Lion");
+
+    lion.bite(yongerZebra);
+    lion.bite(yongerZebra);
+
+    expect(Animal.alive.includes(olderZebra))
+      .toBe(true);
+
+    expect(Animal.alive.includes(lion))
+      .toBe(true);
+
+    expect(Animal.alive.includes(yongerZebra))
+      .toBe(false);
+  });
 });

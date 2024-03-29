@@ -9,15 +9,12 @@ function convertToObject(sourceString) {
   // write your code here
   const result = {};
 
-  const tab = sourceString
-    .split(';')
-    .join(':')
-    .split(':')
-    .filter((pom) => /\S/.test(pom))
-    .map((el) => el.trim());
+  const splitedTab = sourceString.split(';').filter(pom => /\S/.test(pom));
+  const doubleSplitedTab = splitedTab.map(el => el.split(':'));
 
-  for (let i = 0; i < tab.length; i += 2) {
-    result[tab[i]] = tab[i + 1];
+  for(const key in doubleSplitedTab) {
+    let property = doubleSplitedTab[key];
+    result[property[0].trim()] = property[1].trim();
   }
 
   return result;

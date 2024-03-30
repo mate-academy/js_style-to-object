@@ -31,8 +31,8 @@ function convertToObject(sourceString) {
     propsValues[i] = splittedProp[1];
   }
 
-  propsNames = propsNames.filter(item => containsChars(item));
-  propsValues = propsValues.filter((item) => containsChars(item));
+  propsNames = propsNames.filter(item => validProp(item));
+  propsValues = propsValues.filter((item) => validProp(item));
 
   // removing all spaces for each property name
   for (const i in propsNames) {
@@ -60,7 +60,7 @@ function convertToObject(sourceString) {
   return result;
 }
 
-function containsChars(string) {
+function validProp(string) {
   if (string === undefined) {
     return false;
   }

@@ -9,9 +9,7 @@ function convertToObject(sourceString) {
   const result = {};
 
   // splitting every property for separate string
-  const props = sourceString
-    .split(';')
-    .filter((item) => item !== '' && item !== ' ');
+  const props = sourceString.split(';');
 
   // removing breaking line symbols
   for (const i in props) {
@@ -43,7 +41,7 @@ function convertToObject(sourceString) {
 
   // removing spaces at the start and the end of each property value
   for (const i in propsValues) {
-    propsValues[i] = removeStartEndSpaces(propsValues[i]);
+    propsValues[i] = propsValues[i].trim();
   }
 
   // adding linebreaks for properties with multiple lines
@@ -71,32 +69,6 @@ function validProp(string) {
   }
 
   return false;
-}
-
-function removeStartEndSpaces(string) {
-  let result = '';
-  let startIndex = 0;
-  let endIndex = string.length - 1;
-
-  for (let i = 0; i < string.length; i++) {
-    if (string[i] !== ' ') {
-      startIndex = i;
-      break;
-    }
-  }
-
-  for (let i = string.length - 1; i >= 0; i--) {
-    if (string[i] !== ' ') {
-      endIndex = i;
-      break;
-    }
-  }
-
-  for (let i = startIndex; i <= endIndex; i++) {
-    result += string[i];
-  }
-
-  return result;
 }
 
 module.exports = convertToObject;

@@ -106,16 +106,4 @@ function addLinebreaks(string) {
   return separatedProps.join(',\n');
 }
 
-convertToObject(';; ;display: flex; ; ; margin: 1rem; ; ; ');
-convertToObject('display: block; margin: 10% auto;');
-convertToObject('background-color:    rebeccapurple      ;');
-convertToObject('  \n  \n border   \n  \n :  \n  \n   3px solid green  \n ; \n');
-convertToObject('margin: 0    auto;');
-convertToObject(`
-box-shadow:
-    inset 0 -3em 3em rgb(0 200 0 / 30%),
-    0 0 0 2px white,
-    0.3em 0.3em 1em rgb(200 0 0 / 60%);
-`);
-
 module.exports = convertToObject;

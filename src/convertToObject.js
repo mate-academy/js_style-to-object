@@ -6,36 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-
   const cleanString = sourceString.trim();
-
   const rules = cleanString.split(';');
 
-  rules.forEach((rule) => {
+  const styles = rules.reduce((acc, rule) => {
     const [rawKey, rawValue] = rule.split(':');
 
     if (rawKey && rawValue) {
       const key = rawKey.trim();
-      let value = rawValue.trim();
+      const value = rawValue.trim();
 
-      if (value.includes(',')) {
-        const lines = value.split(',').map((line) => line.trim());
-
-        value = lines
-          .map((line, index) => {
-            if (index === 0) {
-              return line;
-            } else {
-              return `          ${line}`;
-            }
-          })
-          .join(',\n');
-      }
-
-      styles[key] = value;
+      acc[key] = value;
     }
-  });
+
+    return acc;
+  }, {});
 
   return styles;
 }

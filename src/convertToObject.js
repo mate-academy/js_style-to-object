@@ -5,8 +5,17 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(stylesString) {
+  const stylesArray = stylesString.split(';').filter(Boolean);
+  const stylesObject = {};
+
+  stylesArray.forEach((style) => {
+    const [property, value] = style.split(':').map((s) => s.trim());
+
+    stylesObject[property] = value;
+  });
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

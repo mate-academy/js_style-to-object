@@ -6,11 +6,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  if (!sourceString || sourceString === '') {
+  if (!sourceString) {
     return {};
   }
 
-  const STYLES_OBJECT = sourceString
+  const stylesObject = sourceString
     .split(';')
     .map((style) => style.trim().split(':'))
     .filter((pair) => pair[0] !== '')
@@ -20,9 +20,7 @@ function convertToObject(sourceString) {
       return acc;
     }, {});
 
-  return STYLES_OBJECT;
+  return stylesObject;
 }
 
 module.exports = convertToObject;
-
-// && pair[1] !== undefined

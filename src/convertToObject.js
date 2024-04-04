@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const stylesCssToObj = sourceString
+  return sourceString
     .split(';')
     .filter((style) => style.trim().length > 0)
     .reduce((acc, style) => {
@@ -17,8 +17,6 @@ function convertToObject(sourceString) {
 
       return acc;
     }, {});
-
-  return stylesCssToObj;
 }
 
 module.exports = convertToObject;

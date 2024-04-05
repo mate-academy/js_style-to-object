@@ -9,11 +9,12 @@ function convertToObject(sourceString) {
   // write your code here
   return sourceString
     .split(';')
-    .filter((style) => style.trim().length > 0)
+    .map((styleStr) => styleStr.trim())
+    .filter(([property, value]) => property && value)
     .reduce((acc, style) => {
-      const [styleProperty, stylePropertyValue] = style.split(':');
+      const [property, propertyValue] = style.split(':');
 
-      acc[styleProperty.trim()] = stylePropertyValue.trim();
+      acc[property.trim()] = propertyValue.trim();
 
       return acc;
     }, {});

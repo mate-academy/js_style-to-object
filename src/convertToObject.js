@@ -6,15 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObj = sourceString
-    .split(';')
-    .map((style) => style.split(':'))
-    .filter((style) => style.length > 1)
-    .reduce((obj, [key, value]) => {
-      obj[key.trim()] = value.trim();
+  const stylesArray = sourceString.split(';');
 
-      return obj;
-    }, {});
+  const styleKeyValuePairs = stylesArray.map((style) => style.split(':'));
+
+  const validStylePairs = styleKeyValuePairs.filter((pair) => pair.length > 1);
+
+  const stylesObj = validStylePairs.reduce((obj, [key, value]) => {
+    obj[key.trim()] = value.trim();
+
+    return obj;
+  }, {});
 
   return stylesObj;
 }

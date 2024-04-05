@@ -6,7 +6,6 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
   return sourceString
     .split(';')
     .map((styleStr) => styleStr.trim())

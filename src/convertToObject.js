@@ -1,7 +1,7 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const lines = sourceString
+  const linesOfString = sourceString
     .split(';')
     .filter((line) => {
       return line.includes(':');
@@ -14,7 +14,7 @@ function convertToObject(sourceString) {
       return lineProperties;
     });
 
-  const cssProperties = lines.reduce((acc, [key, value]) => {
+  const cssProperties = linesOfString.reduce((acc, [key, value]) => {
     acc[key] = value;
 
     return acc;

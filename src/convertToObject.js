@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
     if (style.trim() !== '') {
       const [key, value] = style.split(':').map((item) => item.trim());
 
-      stylesObject[key] = value.includes(' ') ? `${value}` : value;
+      stylesObject[key] = value;
     }
   });
 

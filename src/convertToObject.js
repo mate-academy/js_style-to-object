@@ -8,24 +8,17 @@
 
 function convertToObject(sourceString) {
   // write your code here
-  const trimmedString = sourceString.trim();
+  const result = sourceString
+    .trim()
+    .split(';')
+    .filter((style) => style.trim())
+    .reduce((acc, style) => {
+      const [styleName, styleValue] = style.split(':');
 
-  const splittedString = trimmedString.split(';');
-  const removeDuplicated = splittedString.filter(
-    (element) => element.length > 2,
-  );
+      acc[styleName.trim()] = styleValue.trim();
 
-  const removeSpaces = removeDuplicated.map((element) => {
-    return element.trim().split(':');
-  });
-
-  const removeEmptyString = removeSpaces.filter(
-    (elemet) => elemet.length !== 1,
-  );
-
-  const result = removeEmptyString.reduce((acc, element) => {
-    return { ...acc, [element[0].trim()]: element[1].trim() };
-  }, {});
+      return acc;
+    }, {});
 
   return result;
 }

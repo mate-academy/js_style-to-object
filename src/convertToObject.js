@@ -3,16 +3,17 @@
 function convertToObject(sourceString) {
   const linesOfString = sourceString
     .split(';')
-    .filter((line) => {
-      return line.includes(':');
-    })
-    .map((line) => {
-      const lineProperties = line.split(':').map((property, propertyIndex) => {
-        return property.trim();
-      });
+    .reduce((accumulator, line) => {
+      if (line.includes(':')) {
+        const lineProperties = line
+          .split(':')
+          .map((property) => property.trim());
 
-      return lineProperties;
-    });
+        accumulator.push(lineProperties);
+      }
+
+      return accumulator;
+  }, []);
 
   const cssProperties = linesOfString.reduce((acc, [key, value]) => {
     acc[key] = value;

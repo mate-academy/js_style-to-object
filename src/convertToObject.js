@@ -6,21 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString
-    .trim()
-    .split(';')
-    .filter((style) => style !== '');
+  const styles = sourceString.split(';');
 
   const stylesObject = styles.reduce((acc, style) => {
-    const semicolonIndex = style.indexOf(':');
-    const property = style.slice(0, semicolonIndex).trim();
-    const value = style.slice(semicolonIndex + 1).trim();
+    if (/[a-z]/i.test(style)) {
+      const [property, value] = style.split(':');
 
-    if (property.length > 0) {
-      return { ...acc, [property]: value };
-    } else {
-      return acc;
+      return { ...acc, [property.trim()]: value.trim() };
     }
+
+    return acc;
   }, {});
 
   return stylesObject;

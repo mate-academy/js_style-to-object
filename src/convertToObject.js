@@ -7,19 +7,18 @@
  */
 function convertToObject(sourceString) {
   const styles = sourceString.split(';');
-  const cssStyles = {};
 
-  styles
-    .filter((style) => style.trim())
-    .forEach((style) => {
+  return styles.reduce((cssStyles, style) => {
+    if (style.trim()) {
       const parts = style.split(':');
-      const styleKey = parts[0];
-      const styleValue = parts[1];
+      const styleKey = parts[0].trim();
+      const styleValue = parts[1].trim();
 
-      cssStyles[styleKey.trim()] = styleValue.trim();
-    });
+      cssStyles[styleKey] = styleValue;
+    }
 
-  return cssStyles;
+    return cssStyles;
+  }, {});
 }
 
 module.exports = convertToObject;

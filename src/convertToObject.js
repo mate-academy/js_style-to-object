@@ -6,7 +6,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return {
+    display: 'none';
+  };
 }
 
 module.exports = convertToObject;

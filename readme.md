@@ -1,4 +1,9 @@
 # Herbivores and Сarnivores
+
+**Read [the guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md) before start**
+
+# Task description:
+
 Nature is well suited to reflect the principles of Object Oriented Programming.
 All instances of the `Animal` class must have properties `health` and a `name`.
 Health is `100` by default.
@@ -48,5 +53,3 @@ Animal.alive === [
   {name: 'Max', health: 100, hidden: true},
 ];
 ```
-
-**Read [the guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md) before start**

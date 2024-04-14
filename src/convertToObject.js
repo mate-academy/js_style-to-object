@@ -9,9 +9,11 @@ function convertToObject(sourceString) {
   const cssObject = {};
   const cssString = sourceString.replace(/;\s*;/g, '').trim().split(';');
 
-  cssString.pop();
-
   for (const row of cssString) {
+    if (row === '') {
+      continue;
+    }
+
     let [key, value] = row.split(':');
 
     key = key.trim();

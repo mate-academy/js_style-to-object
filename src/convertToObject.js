@@ -18,6 +18,7 @@ function convertToObject(sourceString) {
 
     key = key.trim();
     value = value.replace(/[\r\n\t]/gm, '').trim();
+    value = value.replace(/,s*/g, ',\n');
 
     cssObject[key] = value;
   }

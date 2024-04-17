@@ -12,15 +12,11 @@ function convertToObject(sourceString) {
     .filter((style) => style.trim() !== '');
 
   const stylesObject = styles.reduce((acc, style) => {
-    if (style.indexOf(':') === -1) {
-      return acc;
-    }
-
-    const [property, value] = style.split(':')
+    const [property, value] = style.split(':', 2)
       .map((item) => item.trim());
 
     if (property.length > 0) {
-      Object.assign(acc, { [property]: value });
+      acc[property] = value;
     }
 
     return acc;

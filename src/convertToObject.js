@@ -15,7 +15,7 @@ function convertToObject(sourceString) {
     const [property, value] = style.split(':', 2)
       .map((item) => item.trim());
 
-    if (property.length > 0) {
+    if (property.length > 0 && value.length > 0) {
       acc[property] = value;
     }
 

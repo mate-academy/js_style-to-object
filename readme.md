@@ -17,7 +17,7 @@ Carnivore has a `bite` method, which takes a herbivore object and decreases the 
 `Herbivore` and `Сarnivore` should extend an `Animal` class.
 
 All alive animals should be in the static `Animal.alive` array.
-If the health of the animal reaches `0`, the beast dies and it should be removed from the static array `Animals.alive`.
+If the health of the animal becomes less than or equal to `0`, the beast dies and it should be removed from the static array `Animals.alive`.
 
 Example:
 ```js

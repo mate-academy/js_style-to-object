@@ -1,21 +1,22 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const linesOfString = sourceString
-    .split(';')
-    .reduce((accumulator, line) => {
-      if (line.includes(':')) {
-        const lineProperties = line
-          .split(':')
-          .map((property) => property.trim());
+  const linesOfString = sourceString.split(';');
 
-        accumulator.push(lineProperties);
-      }
+  const propertiesArray = linesOfString.reduce((accumulator, line) => {
+    if (line.includes(':')) {
+      const propertyPair = line
+        .split(':')
+        .map((property) => property.trim());
+      const cssProperty = { key: propertyPair[0], value: propertyPair[1] };
 
-      return accumulator;
+      accumulator.push(cssProperty);
+    }
+
+    return accumulator;
   }, []);
 
-  const cssProperties = linesOfString.reduce((acc, [key, value]) => {
+  const cssProperties = propertiesArray.reduce((acc, { key, value }) => {
     acc[key] = value;
 
     return acc;

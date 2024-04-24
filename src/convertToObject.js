@@ -7,10 +7,10 @@
  */
 function convertToObject(sourceString) {
   const newObject = {};
-  const arr = sourceString.split(";");
+  const arr = sourceString.split(';');
 
   for (const string of arr) {
-    const split = string.split(":");
+    const split = string.split(':');
 
     if (split.length === 2) {
       const key = split[0].trim();

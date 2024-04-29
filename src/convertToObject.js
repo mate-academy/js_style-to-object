@@ -13,13 +13,11 @@ function convertToObject(sourceString) {
   splitted.forEach((element) => {
     const splittedI = element.split(':').map((str) => str.trim());
 
-    const [selector, value] = splittedI;
+    const [property, value] = splittedI;
 
     if (splittedI.length > 1) {
-      newObj[`${selector}`] = value;
+      newObj[property] = value;
     }
-
-    return newObj;
   });
 
   return newObj;

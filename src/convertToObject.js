@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
   const str = sourceString.split(';');
   const result = {};
 
-  str.map((element) => {
+  str.forEach((element) => {
     if (element.length >= 2) {
       const splitElement = element.split(':').map((item) => item.trim());
 
@@ -18,6 +18,7 @@ function convertToObject(sourceString) {
   });
 
   return result;
+
 }
 
 module.exports = convertToObject;

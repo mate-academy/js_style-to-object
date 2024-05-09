@@ -11,10 +11,10 @@ function convertToObject(sourceString) {
   const objStyles = {};
 
   for (const style of arrStyles) {
-    const nameStyle = style.split(':');
+    const [key, value] = style.split(':').map((item) => item.trim());
 
-    if (nameStyle[0].trim() !== '') {
-      objStyles[nameStyle[0].trim()] = nameStyle[1].trim();
+    if (key) {
+      objStyles[key] = value;
     }
   }
 

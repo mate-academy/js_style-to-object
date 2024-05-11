@@ -8,10 +8,6 @@
 function convertToObject(sourceString) {
   const obj = {};
 
-  // if (sourceString === '') {
-  //   return {};
-  // }
-
   const splited = sourceString.split(';');
 
   for (const elem of splited) {

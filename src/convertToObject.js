@@ -6,27 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let lines = sourceString.split(';');
-  let temp;
-  const result = {};
+  const lines = sourceString
+    .split(';')
+    .filter((string) => string.trim() !== '');
 
-  lines = lines.filter((string) => string.trim() !== '');
+  const result = {};
 
   if (!sourceString) {
     return {};
   }
 
-  if (lines.length === 1) {
-    temp = lines[0].split(':');
-    result[temp[0].trim()] = temp[1].trim();
+  lines.forEach((line) => {
+    const temp = line.split(':');
 
-    return result;
-  }
-
-  for (let i = 0; i < lines.length; i++) {
-    temp = lines[i].split(':');
     result[temp[0].trim()] = temp[1].trim();
-  }
+  });
 
   return result;
 }

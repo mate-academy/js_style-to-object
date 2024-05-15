@@ -6,7 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const covertedString = sourceString.split(';');
+  covertedString.pop();
+
+  for (const key of covertedString) {
+    const keyVal = key.split(':');
+    result[keyVal[0].trim()] = keyVal[1].trim();
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

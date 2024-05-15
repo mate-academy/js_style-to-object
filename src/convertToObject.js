@@ -7,23 +7,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arr = sourceString.split(';');
+  const arrayFromSource = sourceString.split(';');
+  const newArr = arrayFromSource.filter((el) => el.trim());
 
-  arr.forEach((el) => el.trim());
-
-  const newArr = arr.filter((el) => el !== undefined);
-
-  const newObj = {};
-
-  newArr.forEach((el) => {
+  return newArr.reduce((prev, el) => {
     const [key, value] = el.split(':');
 
     if (key && value) {
-      newObj[key.trim()] = value.trim();
+      prev[key.trim()] = value.trim();
     }
-  });
 
-  return newObj;
+    return prev;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -9,10 +9,10 @@ function convertToObject(sourceString) {
   const resultObject = {};
   const splitString = sourceString.split(';');
 
-  splitString.map((element) => {
-    if (element.length >= 2) {
-      const splitElement = element.split(':').map((item) => item.trim());
+  splitString.forEach((element) => {
+    const splitElement = element.split(':').map((item) => item.trim());
 
+    if (splitElement.length >= 2) {
       resultObject[splitElement[0]] = splitElement[1];
     }
   });

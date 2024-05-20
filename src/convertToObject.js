@@ -8,7 +8,7 @@
 const convertToObject = (sourceString) => {
   const splittedSourceString = sourceString.split(';');
   const formatedStylesArray = [];
-  const StylesObject = {};
+  const stylesObject = {};
 
   splittedSourceString.forEach((x) => {
     formatedStylesArray[formatedStylesArray.length] = x
@@ -20,10 +20,10 @@ const convertToObject = (sourceString) => {
   const filteredStylesArray = formatedStylesArray.filter((x) => x.length === 2);
 
   filteredStylesArray.forEach((x) => {
-    StylesObject[x[0].trim()] = x[1].trim();
+    stylesObject[x[0].trim()] = x[1].trim();
   });
 
-  return StylesObject;
+  return stylesObject;
 };
 
 module.exports = convertToObject;

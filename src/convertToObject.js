@@ -6,48 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrSoursString = sourceString;
-  const result = {};
+  const arraySource = sourceString
+    .split(';')
+    .map((element) => element.trim().split(':'))
+    .map((element) => element.map((value) => value.trim()))
+    .map((element) => element.filter((value) => value !== ''))
+    .filter((element) => element.length !== 0);
 
-  for (let i = 0; i < arrSoursString.length; i++) {
-    if (arrSoursString[i] === ':') {
-      result[`${suchKey(arrSoursString, i)}`] = such(arrSoursString, i);
-    }
-  }
+  const objSource = arraySource.reduce((prev, element) => {
+    return { ...prev, [element[0]]: element[1] };
+  }, {});
 
-  return result;
-}
-
-function such(arr, index) {
-  let word = '';
-
-  for (let i = index; i < arr.length; i++) {
-    if (arr[i] === '\n') {
-      word = word + arr[i];
-    }
-
-    if ('abcdefghijklmnopqrstuvwxyz- ,1234567890!.#%()/'.includes(arr[i])) {
-      word = word + arr[i];
-    }
-
-    if (arr[i] === ';' || i === arr.length - 1) {
-      return word.trim();
-    }
-  }
-}
-
-function suchKey(arr, index) {
-  let word = '';
-
-  for (let i = index; i >= 0; i--) {
-    if ('abcdefghijklmnopqrstuvwxyz- ,1234567890!.#%()/'.includes(arr[i])) {
-      word = word + arr[i];
-    }
-
-    if (arr[i] === ';' || i === 0) {
-      return word.trim().split('').reverse().join('');
-    }
-  }
+  return objSource;
 }
 
 module.exports = convertToObject;

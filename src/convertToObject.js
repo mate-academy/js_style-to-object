@@ -6,20 +6,24 @@
  * @return {object}
  */
 const convertToObject = (sourceString) => {
-  const splittedSource = sourceString.split(';');
-  const resultObj = {};
+  const splittedSourceString = sourceString.split(';');
+  const formatedStylesArray = [];
+  const StylesObject = {};
 
-  for (const element of splittedSource) {
-    const resultArray = element.replace(/[[\n\t]/g, '').split(':');
+  splittedSourceString.forEach((x) => {
+    formatedStylesArray[formatedStylesArray.length] = x
+      .replace(/[\n\t]/g, '')
+      .replace(/[',']/g, ',\n')
+      .split(':');
+  });
 
-    if (resultArray.length === 2) {
-      resultObj[resultArray[0].trim()] = resultArray[1]
-        .replace(/[',']/g, ',\n')
-        .trim();
-    }
-  }
+  const filteredStylesArray = formatedStylesArray.filter((x) => x.length === 2);
 
-  return resultObj;
+  filteredStylesArray.forEach((x) => {
+    StylesObject[x[0].trim()] = x[1].trim();
+  });
+
+  return StylesObject;
 };
 
 module.exports = convertToObject;

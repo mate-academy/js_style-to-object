@@ -17,13 +17,9 @@ function convertToObject(sourceString) {
 
     const [property, value] = rule.split(':');
 
-    if (!property || !value) {
-      return;
-    }
-
     const cleanProperty = property.trim();
 
-    if (cleanProperty && value) {
+    if (property && value) {
       stylesObject[cleanProperty] = value.trim();
     }
   });

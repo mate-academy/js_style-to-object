@@ -6,7 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const stylePrev = sourceString.trim().split(';');
 
+  const style = stylePrev
+    .filter((elm) => {
+      if (elm.indexOf(':') !== -1) {
+        return elm;
+      }
+    })
+    .map((elm) => {
+      return elm.split(':');
+    })
+    .reduce((object, elm) => {
+      return { ...object, [elm[0].trim()]: elm[1].trim() };
+    }, {});
+
+  return style;
+}
 module.exports = convertToObject;

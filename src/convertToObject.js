@@ -6,9 +6,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylePrev = sourceString.trim().split(';');
+  const styleDeclarations = sourceString.trim().split(';');
 
-  const style = stylePrev
+  const style = styleDeclarations
     .filter((elm) => {
       if (elm.indexOf(':') !== -1) {
         return elm;

@@ -1,16 +1,16 @@
 function convertToObject(styleString) {
   const styleObject = {};
-  const lines = styleString.split(';');
+  const styleDeclarations = styleString.split(';');
 
-  lines.forEach((line) => {
-    const [property, value] = line.split(':');
+  styleDeclarations.forEach((declaration) => {
+    const colonIndex = declaration.indexOf(':');
 
-    if (property && value) {
-      const trimmedProperty = property.trim();
-      const trimmedValue = value.trim();
+    if (colonIndex !== -1) {
+      const property = declaration.substring(0, colonIndex).trim();
+      const value = declaration.substring(colonIndex + 1).trim();
 
-      if (trimmedProperty && trimmedValue) {
-        styleObject[trimmedProperty] = trimmedValue;
+      if (property && value) {
+        styleObject[property] = value;
       }
     }
   });

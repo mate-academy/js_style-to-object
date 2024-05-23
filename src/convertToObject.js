@@ -9,21 +9,21 @@
 const removeSpaces = (str) => str.trim();
 
 function convertToObject(sourceString) {
-  const styleObject = {};
+  const stylesObject = {};
 
   sourceString
     .split(';')
     .map(removeSpaces)
-    .filter((el) => el.length > 0)
-    .reduce((obj, el) => {
-      const propStyle = el.split(':').map(removeSpaces);
+    .filter((str) => str.length > 0)
+    .reduce((styles, style) => {
+      const propStyle = style.split(':').map(removeSpaces);
       const [prop, value] = propStyle;
 
-      obj[prop] = value;
+      styles[prop] = value;
 
-      return obj;
-    }, styleObject);
+      return styles;
+    }, stylesObject);
 
-  return styleObject;
+  return stylesObject;
 }
 module.exports = convertToObject;

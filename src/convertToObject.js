@@ -6,25 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const lines = sourceString.split(';');
-  const cssStyles = {};
+  return sourceString
+    .split(';')
+    .map((line) => line.trim())
+    .filter((line) => line)
+    .reduce((cssStyles, line) => {
+      const [cssProperty, cssValue] = line.split(':').map((el) => el.trim());
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
+      if (cssProperty && cssValue) {
+        cssStyles[cssProperty] = cssValue;
+      }
 
-    if (!line) {
-      continue;
-    }
-
-    const lineSplitted = line.split(':');
-    const [cssProperty, cssValue] = lineSplitted.map((el) => el.trim());
-
-    if (cssProperty && cssValue) {
-      cssStyles[cssProperty] = cssValue;
-    }
-  }
-
-  return cssStyles;
+      return cssStyles;
+    }, {});
 }
 
 module.exports = convertToObject;

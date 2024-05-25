@@ -10,14 +10,9 @@ function convertToObject(sourceString) {
   const rows = sourceString.split(';').filter(Boolean);
 
   for (const row of rows) {
-    const [key, value] = row.split(':');
+    const [key, value] = row.split(':').map((item) => item.trim());
 
-    if (value && key) {
-      const cleanedKey = key.trim();
-      const cleanedValue = value.trim();
-
-      styleObject[cleanedKey] = cleanedValue;
-    }
+    styleObject[key] = value;
   }
 
   return styleObject;

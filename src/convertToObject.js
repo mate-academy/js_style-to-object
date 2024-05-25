@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject = {};
   const rows = sourceString.split(';').filter(Boolean);
 
   for (const row of rows) {
@@ -16,11 +16,11 @@ function convertToObject(sourceString) {
       const cleanedKey = key.trim();
       const cleanedValue = value.trim();
 
-      result[cleanedKey] = cleanedValue;
+      styleObject[cleanedKey] = cleanedValue;
     }
   }
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

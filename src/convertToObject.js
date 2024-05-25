@@ -6,7 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const rows = sourceString.split(';').filter(Boolean);
+
+  for (const row of rows) {
+    const [key, value] = row.split(':');
+
+    if (value && key) {
+      const cleanedKey = key.trim();
+      const cleanedValue = value.trim();
+
+      result[cleanedKey] = cleanedValue;
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

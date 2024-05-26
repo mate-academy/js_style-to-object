@@ -9,18 +9,17 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .filter((line) => line.trim() !== '')
-    .reduce((acc, item) => {
+    .reduce((cssProperties, item) => {
       const separatedItem = item.split(':');
 
       if (separatedItem.length >= 2) {
         const key = separatedItem[0].trim();
         const value = separatedItem.slice(1).join(':').trim();
 
-        acc[key] = value;
+        cssProperties[key] = value;
       }
 
-      return acc;
+      return cssProperties;
     }, {});
 }
-
 module.exports = convertToObject;

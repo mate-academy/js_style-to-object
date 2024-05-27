@@ -5,7 +5,7 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const firstObrabotka = sourceString.replace(/\s+/g, ' ');
+  const firstObrabotka = sourceString;
 
   const bigArr = firstObrabotka.split(';');
 
@@ -16,22 +16,18 @@ function convertToObject(sourceString) {
 
   for (let i = 0; i < arrFinal.length; i++) {
     smallArr = arrFinal[i].split(':');
-    /* console.log(smallArr); */
-    /* console.log(smallArr[0]); */
 
     const key = smallArr[0].trim();
     const value = smallArr[1].trim();
 
-    /* console.log(key); */
-    /* console.log(value); */
     result[key] = value;
-    /* console.log(result); */
   }
 
   return result;
 }
 
 const complexStylesString = `
+  margin: 0    auto;
   background-color:      #fff;
 -webkit-border-radius: 5px;
   border-radius     : 5px;

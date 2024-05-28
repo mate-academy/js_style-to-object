@@ -8,7 +8,6 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map((item) => item.trim())
     .filter((item) => item.trim() !== '')
     .reduce((stylesObject, item) => {
       const pair = item.split(':');

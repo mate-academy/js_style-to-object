@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
 
   const styleStringToArr = sourceString.trim().split(';');
 
@@ -14,11 +14,11 @@ function convertToObject(sourceString) {
     const styleToArr = key.trim().split(':');
 
     if (styleToArr[1] && styleToArr[0] !== undefined) {
-      result[styleToArr[0].trim()] = styleToArr[1].trim();
+      stylesObject[styleToArr[0].trim()] = styleToArr[1].trim();
     }
   }
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

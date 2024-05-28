@@ -20,8 +20,8 @@ function convertToObject(sourceString) {
 
     acc[key] = value;
 
-    return acc
-  } {});
+    return acc;
+  }, {});
 }
 
 module.exports = convertToObject;

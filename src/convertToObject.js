@@ -10,7 +10,7 @@ function convertToObject(sourceString) {
     .split(';')
     .filter((item) => item.trim() !== '')
     .reduce((stylesObject, item) => {
-      const pair = item.split(':');
+      const pair = item.split(':', 2);
 
       const key = pair[0].trim();
       const value = pair[1].trim();

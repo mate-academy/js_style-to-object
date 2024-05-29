@@ -11,13 +11,13 @@ function convertToObject(sourceString) {
     (styleDeclaration) => styleDeclaration.trim() !== '',
   );
 
-  const styleObject = {};
-
-  filteredStyles.forEach((style) => {
+  const styleObject = filteredStyles.reduce((accumulator, style) => {
     const [property, value] = style.split(':').map((item) => item.trim());
 
-    styleObject[property] = value;
-  });
+    accumulator[property] = value;
+
+    return accumulator;
+  }, {});
 
   return styleObject;
 }

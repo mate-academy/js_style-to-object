@@ -6,18 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let result = sourceString.split(';');
+  let cssRules = sourceString.split(';');
 
-  result = result.filter((item) => item !== '');
-  result = result.map((item) => item.split(':').map((elem) => elem.trim()));
+  cssRules = cssRules.filter((item) => item.trim() !== '');
 
-  result = result.reduce((acc, item) => {
-    acc[item[0]] = item[1];
+  return cssRules
+    .map((item) => item.split(':').map((elem) => elem.trim()))
+    .reduce((acc, item) => {
+      acc[item[0]] = item[1];
 
-    return acc;
-  }, {});
-
-  return result;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

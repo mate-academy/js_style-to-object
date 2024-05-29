@@ -6,18 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssProperties = sourceString.split(';');
-  const cssCode = {};
+  const cssDeclarations = sourceString.split(';');
+  const styleObject = {};
 
-  cssProperties.forEach((property) => {
-    const propertyArr = property.split(':');
+  cssDeclarations.forEach((property) => {
+    const propertyArr = property.split(':', 2);
+    const [propertyName, propertyValue] = propertyArr;
 
-    if (propertyArr[0].trim().length > 0) {
-      cssCode[propertyArr[0].trim()] = propertyArr[1].trim();
+    if (propertyValue) {
+      styleObject[propertyName.trim()] = propertyValue.trim();
     }
   });
 
-  return cssCode;
+  return styleObject;
 }
 
 module.exports = convertToObject;

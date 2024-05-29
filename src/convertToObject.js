@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   const lines = sourceString.split(';');
-  const result = {};
+  const cssProperties = {};
 
   lines.forEach((line) => {
     const trimmedLine = line.trim();
@@ -16,14 +16,13 @@ function convertToObject(sourceString) {
       return;
     }
 
-    const [property, ...valueParts] = trimmedLine.split(':');
-    const value = valueParts.join(':').trim();
+    const [property, value] = trimmedLine.split(':').map((part) => part.trim());
 
     if (property && value) {
-      result[property.trim()] = value.replace(/;$/, '').trim();
+      cssProperties[property.trim()] = value.trim();
     }
   });
 
-  return result;
+  return cssProperties;
 }
 module.exports = convertToObject;

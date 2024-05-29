@@ -7,17 +7,18 @@
  */
 function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
-  const readyArr = {};
 
-  for (const property of sourceArray) {
-    const propertyArray = property.trim().split(':');
+  const objectProperties = sourceArray.reduce((acc, property) => {
+    const propertyArray = property.trim().split(':', 2);
     const [keyName, keyValue] = propertyArray;
 
-    if (keyValue !== undefined) {
-      readyArr[keyName.trim()] = keyValue.trim();
+    if (keyName && keyValue !== undefined) {
+      acc[keyName.trim()] = keyValue.trim();
     }
-  }
 
-  return readyArr;
+    return acc;
+  }, {});
+
+  return objectProperties;
 }
 module.exports = convertToObject;

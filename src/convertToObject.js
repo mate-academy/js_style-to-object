@@ -6,26 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let strToObject = sourceString
+  const strToObject = sourceString
     .trim()
     .split(';')
-    .filter((str) => str.trim());
+    .filter((str) => str.trim())
+    .map((str) => {
+      return str
+        .trim()
+        .split(':')
+        .map((s) => s.trim());
+    });
 
-  strToObject = strToObject.map((str) => {
-    return str
-      .trim()
-      .split(':')
-      .map((s) => s.trim());
-  });
-
-  strToObject = Object.fromEntries(strToObject);
-
-  for (const key in strToObject) {
-    if (strToObject[key] === undefined) {
-      delete strToObject[key];
-    }
-  }
-
-  return strToObject;
+  return Object.fromEntries(strToObject);
 }
 module.exports = convertToObject;

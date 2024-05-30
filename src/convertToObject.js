@@ -15,8 +15,11 @@ function convertToObject(sourceString) {
     .map((value) => {
       return value.split(':').map((withoutSpace) => withoutSpace.trim());
     })
+    .filter((value) => value.length === 2)
     .reduce((acc, value) => {
-      acc[value[0]] = value[1];
+      if (value.length === 2) {
+        acc[value[0]] = value[1];
+      }
 
       return acc;
     }, {});

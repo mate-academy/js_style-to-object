@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
     const propertyArray = property.trim().split(':', 2);
     const [keyName, keyValue] = propertyArray;
 
-    if (keyName && keyValue !== undefined) {
+    if (keyValue) {
       acc[keyName.trim()] = keyValue.trim();
     }
 

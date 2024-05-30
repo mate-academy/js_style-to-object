@@ -5,6 +5,7 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   return sourceString
     .trim()

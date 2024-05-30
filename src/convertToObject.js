@@ -6,16 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const declarations = sourceString.split(';');
   const stylesObject = {};
 
-  declarations.forEach((declaration) => {
-    const [property, value] = declaration.split(':').map((part) => part.trim());
+  sourceString
+    .split(';')
+    .filter((declaration) => declaration.trim() !== '')
+    .forEach((declaration) => {
+      const parts = declaration.split(':').map((part) => part.trim());
+      const [property = '', value = ''] = parts;
 
-    if (property && value) {
-      stylesObject[property] = value;
-    }
-  });
+      if (property !== '' && value !== '') {
+        stylesObject[property] = value;
+      }
+    });
 
   return stylesObject;
 }

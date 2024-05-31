@@ -8,15 +8,15 @@
 function convertToObject(sourceString) {
   // write your code here
 
-  const keysValues = sourceString.split(';');
+  const cssDeclarations = sourceString.split(';');
 
   const cssObject = {};
 
-  keysValues.forEach((keyValue) => {
-    const trimmedKeyValue = keyValue.trim();
+  cssDeclarations.forEach((cssDeclaration) => {
+    const trimmedcssDeclaration = cssDeclaration.trim();
 
-    if (trimmedKeyValue) {
-      const parts = trimmedKeyValue.split(':');
+    if (trimmedcssDeclaration) {
+      const parts = trimmedcssDeclaration.split(':');
 
       const property = parts[0].trim();
 

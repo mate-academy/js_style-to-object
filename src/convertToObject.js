@@ -11,11 +11,12 @@ function convertToObject(sourceString) {
     .trim()
     .split(';')
     .map((style) => style.trim())
+    .filter((style) => style)
     .reduce((stylesObject, style) => {
-      const [property, value] = style.split(':');
+      const [property, value] = style.split(':').map((part) => part.trim());
 
       if (property && value) {
-        return { ...stylesObject, [property.trim()]: value.trim() };
+        stylesObject[property] = value;
       }
 
       return stylesObject;

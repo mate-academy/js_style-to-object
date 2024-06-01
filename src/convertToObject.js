@@ -6,23 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-
-  const cssDeclarations = sourceString.split(';');
+  const keysValues = sourceString.split(';');
 
   const cssObject = {};
 
-  cssDeclarations.forEach((cssDeclaration) => {
-    const trimmedcssDeclaration = cssDeclaration.trim();
+  keysValues.forEach((keyValue) => {
+    const trimmedKeyValue = keyValue.trim();
 
-    if (trimmedcssDeclaration) {
-      const parts = trimmedcssDeclaration.split(':');
+    if (trimmedKeyValue) {
+      const parts = trimmedKeyValue.split(':');
 
-      const property = parts[0].trim();
+      if (parts.length === 2) {
+        const [property, value] = parts.map((part) => part.trim());
 
-      const value = parts[1].trim();
-
-      cssObject[property] = value;
+        cssObject[property] = value;
+      }
     }
   });
 

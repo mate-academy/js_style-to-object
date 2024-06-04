@@ -6,18 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newObject = {};
-  const splitProperties = sourceString.split(';');
+  const styleObject = sourceString
+    .trim()
+    .split(';')
+    .map((string) => {
+      return string
+        .trim()
+        .split(':')
+        .map((str) => str.trim());
+    });
 
-  splitProperties.forEach((style) => {
-    const [property, values] = style.split(':');
-
-    if (property && values) {
-      newObject[property.trim()] = values.trim();
-    }
-  });
-
-  return newObject;
+  return Object.fromEntries(styleObject);
 }
 
 module.exports = convertToObject;

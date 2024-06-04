@@ -1,22 +1,18 @@
 function convertToObject(sourceString) {
-  const filteredArr = sourceString
+  const styleEntries = sourceString
     .split(';')
     .map((item) => item.trim())
-    .filter((item) => item);
+    .filter((item) => item)
+    .map((item) => item.split(':').map((subItem) => subItem.trim()));
 
-  const newArr = filteredArr
-    .map((item) => item.split(':'))
-    .map((item) => item.map((subItem) => subItem.trim()));
-
-  const resultObject = newArr.reduce((obj, item) => {
-    const [key, value] = item;
-
-    obj[key] = value;
-
-    return obj;
+  const styleObject = styleEntries.reduce((obj, [key, value]) => {
+    return {
+      ...obj,
+      [key]: value,
+    };
   }, {});
 
-  return resultObject;
+  return styleObject;
 }
 
 module.exports = convertToObject;

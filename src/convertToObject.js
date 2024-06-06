@@ -6,10 +6,11 @@ function convertToObject(sourceString) {
     .map((item) => item.split(':').map((subItem) => subItem.trim()));
 
   const styleObject = styleEntries.reduce((obj, [key, value]) => {
-    return {
-      ...obj,
-      [key]: value,
-    };
+    if (key && value) {
+      obj[key] = value;
+    }
+
+    return obj;
   }, {});
 
   return styleObject;

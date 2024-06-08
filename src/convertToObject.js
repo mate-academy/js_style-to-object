@@ -6,13 +6,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = {};
+  const cssStyleObject = {};
   const declarations = sourceString.split(';');
 
   declarations.forEach((declaration) => {
     const newDeclaration = declaration.trim();
 
-    if (!declaration) {
+    if (!newDeclaration) {
       return;
     }
 
@@ -21,11 +21,11 @@ function convertToObject(sourceString) {
       .map((part) => part.trim());
 
     if (property && value) {
-      styleObject[property] = value;
+      cssStyleObject[property] = value;
     }
   });
 
-  return styleObject;
+  return cssStyleObject;
 }
 
 module.exports = convertToObject;

@@ -9,21 +9,20 @@ function convertToObject(sourceString) {
   const cssStyleObject = {};
   const declarations = sourceString.split(';');
 
-  declarations.forEach((declaration) => {
-    const newDeclaration = declaration.trim();
+  declarations
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration)
+    .forEach((declaration) => {
+      const newDeclaration = declaration.trim();
 
-    if (!newDeclaration) {
-      return;
-    }
+      const [property, value] = newDeclaration
+        .split(':')
+        .map((part) => part.trim());
 
-    const [property, value] = newDeclaration
-      .split(':')
-      .map((part) => part.trim());
-
-    if (property && value) {
-      cssStyleObject[property] = value;
-    }
-  });
+      if (property && value) {
+        cssStyleObject[property] = value;
+      }
+    });
 
   return cssStyleObject;
 }

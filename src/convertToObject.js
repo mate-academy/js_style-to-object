@@ -11,11 +11,14 @@ function convertToObject(sourceString) {
   const stylesObj = stylesArray.reduce((acc, style) => {
     const [key, value] = style.split(':');
 
-    if (!key || !value) {
-      return acc;
+    const trimmedKey = key?.trim();
+    const trimmedValue = value?.trim();
+
+    if (trimmedKey && trimmedValue) {
+      acc[key.trim()] = value.trim();
     }
 
-    return { ...acc, [key.trim()]: value.trim() };
+    return acc;
   }, {});
 
   return stylesObj;

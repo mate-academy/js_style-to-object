@@ -12,13 +12,15 @@ function convertToObject(sourceString) {
 
   const stringToObject = sourceString
     .split(';')
+
     .map((value) => value.split(':').map((spaces) => spaces.trim()))
-    .reduce((styleObject, key) => {
-      if (key[0] && key[1]) {
-        styleObject[key[0]] = key[1];
+
+    .reduce((styles, stylePair) => {
+      if (stylePair[0] && stylePair[1]) {
+        styles[stylePair[0]] = stylePair[1];
       }
 
-      return styleObject;
+      return styles;
     }, {});
 
   return stringToObject;

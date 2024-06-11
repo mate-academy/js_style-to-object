@@ -6,32 +6,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitThis = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
   const result = {};
 
-  for (const oneString of splitThis) {
-    let word = '';
-    let wordTwo = '';
-    let fazeTwo = false;
+  for (const oneString of styleDeclarations) {
+    const [property, value] = oneString.split(':');
 
-    for (const symbol of oneString) {
-      if (symbol.toLowerCase() !== symbol.toUpperCase() || symbol === '-') {
-        if (fazeTwo !== true) {
-          word += symbol;
-        }
-      }
-
-      if (fazeTwo === true) {
-        wordTwo += symbol;
-      }
-
-      if (symbol === ':') {
-        fazeTwo = true;
-      }
-    }
-
-    if (word.length !== 0) {
-      result[word] = wordTwo.trim();
+    if (value !== undefined) {
+      result[property.trim()] = value.trim();
     }
   }
 

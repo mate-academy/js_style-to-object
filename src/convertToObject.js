@@ -7,9 +7,8 @@
  */
 function convertToObject(sourceString) {
   const cssProperties = sourceString
-    .trim()
     .split(';')
-    .filter((str) => str.trim())
+    .filter(([key, value]) => key && value)
     .map((str) => {
       return str
         .trim()

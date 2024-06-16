@@ -9,16 +9,16 @@ function convertToObject(sourceString) {
   const styles = sourceString
     .split(';')
     .filter((style) => style.trim().length > 0);
-  const styleOBJ = {};
+  const styleObject = {};
 
   styles.forEach((style) => {
     const [key, value] = style.split(':').map((part) => part.trim());
 
     if (key && value) {
-      styleOBJ[key] = value;
+      styleObject[key] = value;
     }
   });
 
-  return styleOBJ;
+  return styleObject;
 }
 module.exports = convertToObject;

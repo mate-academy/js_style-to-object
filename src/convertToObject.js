@@ -13,20 +13,12 @@ function convertToObject(sourceString) {
   const result = {};
   const splited = sourceString.split(';');
 
-  for (let i = 0; i < splited.length; i++) {
-    const target = splited[i].split(':');
+  splited.forEach(item => {
+    const [key, value] = item.split(':').map(x => x.trim());
 
-    if (target.length < 2) {
-      continue;
-    }
+    result[key] = value;
+  })
 
-    const key = target[0].trim();
-    const value = target[1].trim();
-
-    if (key && value) {
-      result[key] = value;
-    }
-  }
 
   return result;
 }

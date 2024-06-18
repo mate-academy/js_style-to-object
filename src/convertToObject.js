@@ -8,12 +8,15 @@
 function convertToObject(sourceString) {
   const styleObject = {};
 
-  const styleArray = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
 
-  styleArray.forEach((style) => {
-    const [property, value] = style.split(':').map((part) => part.trim());
+  styleDeclarations.forEach((style) => {
+    const parts = style.split(':');
 
-    if (property && value) {
+    if (parts.length === 2) {
+      const property = parts[0].trim();
+      const value = parts[1].trim();
+
       styleObject[property] = value;
     }
   });

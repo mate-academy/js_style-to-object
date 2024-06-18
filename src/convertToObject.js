@@ -6,22 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const formatedCSSData = {};
-  const splitedSource = sourceString.split(';');
+  const styleObject = {};
+  const styleDeclarations = sourceString.split(';');
 
-  splitedSource
-    .map((item) => {
-      const formatedPropAndValueObject = item
-        .split(':')
-        .map((elem) => elem.trim());
+  styleDeclarations.forEach((item) => {
+    const [property, value] = item.split(':');
 
-      return formatedPropAndValueObject;
-    })
-    .forEach(([property, value]) => {
-      Object.assign(formatedCSSData, { [property]: value });
-    });
+    if (property === undefined || value === undefined) {
+      return;
+    }
 
-  return formatedCSSData;
+    styleObject[property.trim()] = value.trim();
+  });
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

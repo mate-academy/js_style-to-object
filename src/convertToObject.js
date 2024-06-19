@@ -5,25 +5,21 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const firstObrabotka = sourceString;
+  const initialData = sourceString;
 
-  const bigArr = firstObrabotka.split(';');
+  const arrOfInitialData = initialData
+    .split(';')
+    .filter((str) => str.trim() !== '');
 
-  const arrFinal = bigArr.filter((str) => str.trim() !== '');
+  const finalRes = arrOfInitialData.map((item) => {
+    const [key, value] = item.split(':').map((string) => string.trim());
 
-  let smallArr;
-  const result = {};
+    return [key, value];
+  });
 
-  for (let i = 0; i < arrFinal.length; i++) {
-    smallArr = arrFinal[i].split(':');
+  const resultObj = Object.fromEntries(finalRes);
 
-    const key = smallArr[0].trim();
-    const value = smallArr[1].trim();
-
-    result[key] = value;
-  }
-
-  return result;
+  return resultObj;
 }
 
 const complexStylesString = `

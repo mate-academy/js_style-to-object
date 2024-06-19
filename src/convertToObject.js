@@ -10,13 +10,11 @@ function convertToObject(sourceString) {
   const styleDeclarations = sourceString.split(';');
 
   styleDeclarations.forEach((item) => {
-    const [property, value] = item.split(':');
+    const [property, value] = item.split(':').map((el) => el.trim());
 
-    if (property === undefined || value === undefined) {
-      return;
+    if (property && value) {
+      styleObject[property] = value;
     }
-
-    styleObject[property.trim()] = value.trim();
   });
 
   return styleObject;

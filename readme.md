@@ -1,6 +1,6 @@
 # Convert Style String to Object
 
-> [JS Task Guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md)
+> [JS Task Guideline](https://github.com/IvanLugovskiy/js_task-guideline/blob/master/README.md)
 
 ## Task description:
 

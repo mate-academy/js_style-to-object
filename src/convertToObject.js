@@ -6,9 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const convertedToArray = sourceString.split(';');
+  if (
+    typeof sourceString !== 'string' ||
+    sourceString === null ||
+    sourceString === undefined
+  ) {
+    throw new Error('Invalid input: sourceString must be a non-null string');
+  }
 
-  return convertedToArray.reduce((obj, property) => {
+  const cssProperties = sourceString.split(';');
+
+  return cssProperties.reduce((obj, property) => {
     const style = property.split(':');
 
     let [key, value] = style;
@@ -17,10 +25,7 @@ function convertToObject(sourceString) {
     value = value ? value.trim() : '';
 
     if (value !== '') {
-      return {
-        ...obj,
-        [key]: value,
-      };
+      obj[key] = value;
     }
 
     return obj;

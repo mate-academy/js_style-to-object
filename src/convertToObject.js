@@ -5,8 +5,19 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const parts = sourceString.split(';');
+  const cssProperties = {};
+
+  parts
+    .map((part) => part.trim().split(':'))
+    .filter((piece) => piece.length === 2)
+    .forEach(([key, value]) => {
+      cssProperties[key.trim()] = value.trim();
+    });
+
+  return cssProperties;
 }
 
 module.exports = convertToObject;

@@ -8,20 +8,16 @@
 
 function convertToObject(sourceString) {
   const parts = sourceString.split(';');
-  const result = {};
+  const cssProperties = {};
 
-  for (const part of parts) {
-    const piece = part.trim().split(':');
+  parts
+    .map((part) => part.trim().split(':'))
+    .filter((piece) => piece.length === 2)
+    .forEach(([key, value]) => {
+      cssProperties[key.trim()] = value.trim();
+    });
 
-    if (piece.length === 2) {
-      const key = piece[0].trim();
-      const value = piece[1].trim();
-
-      result[key] = value;
-    }
-  }
-
-  return result;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

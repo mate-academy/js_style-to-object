@@ -7,18 +7,18 @@
  */
 
 function convertToObject(sourceString) {
-  const getDeclarationAsStrings = sourceString
+  const declarationAsStrings = sourceString
     .split(';')
     .map((rawDeclaration) => rawDeclaration.trim());
-  const getArrayOfDeclarationEntries = getDeclarationAsStrings.map(
+  const arrayOfDeclarationEntries = declarationAsStrings.map(
     (preparedDeclaration) =>
       preparedDeclaration
         .split(':')
         .map((preparedDeclarationToTrim) => preparedDeclarationToTrim.trim()),
   );
 
-  return getArrayOfDeclarationEntries.reduce((acc, declarationEntry) => {
-    if (declarationEntry.length === 1) {
+  return arrayOfDeclarationEntries.reduce((acc, declarationEntry) => {
+    if (declarationEntry[0] === '') {
       return acc;
     }
 

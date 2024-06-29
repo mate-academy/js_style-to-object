@@ -39,25 +39,15 @@ describe('convertToObject should', () => {
   });
 
   it('ignore extra spaces around values', () => {
-    expect(
-      convertToObject('background-color:    rebeccapurple      ;'),
-    ).toEqual({ 'background-color': 'rebeccapurple' });
+    expect(convertToObject('background-color:    rebeccapurple      ;')).toEqual({ 'background-color': 'rebeccapurple' });
   });
 
   it('ignore tab characters', () => {
-    expect(
-      convertToObject(
-        '  \t  \t border-color   \t  \t :  \t  \t   yellowgreen  \t ; \t',
-      ),
-    ).toEqual({ 'border-color': 'yellowgreen' });
+    expect(convertToObject('  \t  \t border-color   \t  \t :  \t  \t   yellowgreen  \t ; \t')).toEqual({ 'border-color': 'yellowgreen' });
   });
 
   it('ignore line break characters', () => {
-    expect(
-      convertToObject(
-        '  \n  \n border   \n  \n :  \n  \n   3px solid green  \n ; \n',
-      ),
-    ).toEqual({ border: '3px solid green' });
+    expect(convertToObject('  \n  \n border   \n  \n :  \n  \n   3px solid green  \n ; \n')).toEqual({ border: '3px solid green' });
   });
 
   it('keep extra spaces inside values', () => {
@@ -68,35 +58,27 @@ describe('convertToObject should', () => {
 
   it('convert several rules written in 1 line', () => {
     expect(convertToObject('display: block; margin: 10% auto;')).toEqual({
-      display: 'block',
-      margin: '10% auto',
+      display: 'block', margin: '10% auto',
     });
   });
 
   it('ignore extra semicolons', () => {
-    expect(
-      convertToObject(';; ;display: flex; ; ; margin: 1rem; ; ; '),
-    ).toEqual({
-      display: 'flex',
-      margin: '1rem',
+    expect(convertToObject(';; ;display: flex; ; ; margin: 1rem; ; ; ')).toEqual({
+      display: 'flex', margin: '1rem',
     });
   });
 
   it('convert mutiline string', () => {
-    expect(
-      convertToObject(`
+    expect(convertToObject(`
       box-sizing: border-box;
       padding: 0.5em 0.75em;
-    `),
-    ).toEqual({
-      'box-sizing': 'border-box',
-      padding: '0.5em 0.75em',
+    `)).toEqual({
+      'box-sizing': 'border-box', padding: '0.5em 0.75em',
     });
   });
 
   it('ignore empty lines', () => {
-    expect(
-      convertToObject(`
+    expect(convertToObject(`
 
 
       box-sizing: border-box;
@@ -106,23 +88,18 @@ describe('convertToObject should', () => {
 
       aspect-ration: 1;
 
-    `),
-    ).toEqual({
-      'box-sizing': 'border-box',
-      width: '300px',
-      'aspect-ration': '1',
+    `)).toEqual({
+      'box-sizing': 'border-box', width: '300px', 'aspect-ration': '1',
     });
   });
 
   it('support multiline values', () => {
-    expect(
-      convertToObject(`
+    expect(convertToObject(`
       box-shadow:
           inset 0 -3em 3em rgb(0 200 0 / 30%),
           0 0 0 2px white,
           0.3em 0.3em 1em rgb(200 0 0 / 60%);
-    `),
-    ).toEqual({
+    `)).toEqual({
       'box-shadow': `inset 0 -3em 3em rgb(0 200 0 / 30%),
           0 0 0 2px white,
           0.3em 0.3em 1em rgb(200 0 0 / 60%)`,

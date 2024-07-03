@@ -8,17 +8,17 @@
 
 function convertToObject(sourceString) {
   // write your code here
-  const splittedString = sourceString
+  const cssStyle = sourceString
     .split(';')
     .map((item) => item.split(':'))
     .map((item) => item.map((value) => value.trim()))
-    .reduce((object, itemObj) => {
-      object[itemObj[0]] = itemObj[1];
+    .reduce((styleObject, itemObj) => {
+      styleObject[itemObj[0]] = itemObj[1];
 
-      return object;
+      return styleObject;
     }, {});
 
-  return splittedString;
+  return cssStyle;
 }
 
 module.exports = convertToObject;

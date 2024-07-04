@@ -1,7 +1,7 @@
 'use strict';
 
-const convertToObject = require('./convertToObject');
-const complexStylesString = require('./stylesString');
+const { convertToObject } = require('./convertToObject');
+const { complexStylesString } = require('./stylesString');
 
 describe('convertToObject should', () => {
   it('convert an empty string to an empty object', () => {

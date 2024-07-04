@@ -10,7 +10,7 @@ function convertToObject(sourceString) {
   const styleObject = {};
 
   for (const styles of devided) {
-    if (styles === '') {
+    if (styles.trim() === '') {
       continue;
     }
 

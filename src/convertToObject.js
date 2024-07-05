@@ -5,23 +5,22 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const result = {};
-  const declarations = sourceString.split(';');
+function convertToObject(styles) {
+  const entries = styles
+    .split(';')
+    .map((style) => {
+      if (style.trim()) {
+        const [key, value] = style.split(':').map((item) => item.trim());
 
-  declarations.forEach((declaration) => {
-    const trimDeclaration = declaration.trim();
-
-    if (trimDeclaration) {
-      const [key, value] = trimDeclaration.split(':');
-
-      if (key && value) {
-        result[key.trim()] = value.trim();
+        return [key, value];
       }
-    }
-  });
 
-  return result;
+      return null;
+    })
+
+    .filter((entry) => entry !== null);
+
+  return Object.fromEntries(entries);
 }
 
 module.exports = convertToObject;

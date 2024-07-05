@@ -12,7 +12,9 @@ function convertToObject(styles) {
       if (style.trim()) {
         const [key, value] = style.split(':').map((item) => item.trim());
 
-        return [key, value];
+        if (key && value) {
+          return [key, value];
+        }
       }
 
       return null;

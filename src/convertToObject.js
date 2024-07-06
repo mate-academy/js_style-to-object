@@ -6,10 +6,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const KeyAndValues = sourceString.split(';');
+  const keyAndValues = sourceString.split(';');
   const end = {};
 
-  KeyAndValues.forEach((element) => {
+  keyAndValues.forEach((element) => {
     const preElement = element.split(':');
 
     if (preElement[0]) {

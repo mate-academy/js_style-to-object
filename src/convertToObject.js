@@ -9,8 +9,7 @@
 function convertToObject(sourceString) {
   const styleObject = {};
 
-  const styleArr = sourceString
-    .split(';')
+  const styleArr = sourceString.split(';')
     .map((style) => style.trim())
     .filter((style) => style !== '');
 

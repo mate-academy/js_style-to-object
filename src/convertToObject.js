@@ -10,16 +10,13 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const arrayOfStyles = sourceString
-    .trim()
-    .split(';')
-    .filter((el) => el.trim().length > 0 && !el.includes(';'));
+  const arrayOfStyles = sourceString.split(';');
   const stylesObject = {};
 
   arrayOfStyles.forEach((el) => {
-    const [key, value] = el.split(':').filter((elem) => elem.length > 0);
+    const [key, value] = el.split(':').map((elem) => elem.trim());
 
-    stylesObject[key.trim()] = value.trim();
+    stylesObject[key] = value;
   });
 
   return stylesObject;

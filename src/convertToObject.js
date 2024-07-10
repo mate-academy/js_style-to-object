@@ -8,26 +8,29 @@
 function convertToObject(sourceString) {
   const propertyStrings = sourceString
     .split(';')
-    .map((dirty) => dirty?.trim())
-    .filter((propStr) => propStr !== '');
+    .map((dirtyProperty) => dirtyProperty.trim())
+    .filter((property) => property !== '');
 
   const properties = propertyStrings.map(propertyStringToObject);
 
-  return properties.reduce(
-    (state, property) => Object.assign(state, property),
-    {},
-  );
+  return properties.reduce((state, property) => {
+    state[property.name] = property.args;
+
+    return state;
+  }, {});
 }
 
 /**
- * @param {string} str
+ * @param {string} propertyString
  *
  * @return {object}
  */
-function propertyStringToObject(str) {
-  const [name, args] = str.split(':').map((dirty) => dirty?.trim());
+function propertyStringToObject(propertyString) {
+  const [name, args] = propertyString
+    .split(':')
+    .map((dirtyProperty) => dirtyProperty.trim());
 
-  return { [name]: args };
+  return { name, args };
 }
 
 module.exports = convertToObject;

@@ -9,15 +9,9 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .map((style) => style.trim())
-    .filter((style) => {
-      return style !== '';
-    })
-    .map((style) => {
-      return style.split(':');
-    })
-    .reduce((styles, [key, value]) => {
-      return Object.assign(styles, { [key.trim()]: value.trim() });
-    }, {});
+    .filter((style) => style !== '')
+    .map((style) => style.split(':'))
+    .reduce((styles, [key, value]) => Object.assign(styles, { [key.trim()]: value.trim() }), {});
 }
 
 module.exports = convertToObject;

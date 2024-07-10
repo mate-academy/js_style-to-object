@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
       return style.split(':');
     })
     .reduce((styles, [key, value]) => {
-      return { ...styles, [key.trim()]: value.trim() };
+      return Object.assign(styles, { [key.trim()]: value.trim() });
     }, {});
 }
 

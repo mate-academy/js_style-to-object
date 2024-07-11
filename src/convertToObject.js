@@ -29,11 +29,11 @@ function convertToObject(sourceString) {
  * @return {object}
  */
 function propertyStringToObject(propertyString) {
-  const propertyParts = propertyString
+  const cleanPropertyParts = propertyString
     .split(':')
-    .map((dirtyProperty) => dirtyProperty.trim());
+    .map((dirtyPart) => dirtyPart.trim());
 
-  const [name, args] = propertyParts;
+  const [name, args] = cleanPropertyParts;
 
   return { name, args };
 }

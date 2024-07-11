@@ -10,13 +10,13 @@ function convertToObject(sourceString) {
     .split(';')
     .map((dirtyProperty) => dirtyProperty.trim());
 
-  const validPropertyStrings = splitCleanProperties.filter((property) => {
-    return property !== '';
-  });
+  const validPropertyStrings = splitCleanProperties.filter(
+    (property) => property,
+  );
 
-  const properties = validPropertyStrings.map(propertyStringToObject);
+  return validPropertyStrings.reduce((state, propertyString) => {
+    const property = propertyStringToObject(propertyString);
 
-  return properties.reduce((state, property) => {
     state[property.name] = property.args;
 
     return state;

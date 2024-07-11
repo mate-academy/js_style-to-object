@@ -10,32 +10,35 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const resultObject = {};
+  const cssProperties = {};
 
-  const parseArray = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
 
-  // const filteredArray = partsOfString.filter((row) => row.includes(':'));
+  styleDeclarations.map((element) => {
+    const newElement = element.trim();
 
-  for (let element of parseArray) {
-    element = element.trim();
-
-    if (element.length) {
-      let [title, value] = element.split(':');
+    if (newElement.length) {
+      let [title, value] = newElement.split(':');
 
       title = title.trim();
-
       value = value.trim();
-
-      if (value.endsWith(';')) {
-        value = value.slice(0, -1);
-      }
-
-      value = value.trim();
-      resultObject[title] = value;
+      cssProperties[title] = value;
     }
-  }
+  });
 
-  return resultObject;
+  // for (let element of styleDeclarations) {
+  //   element = element.trim();
+
+  //   if (element.length) {
+  //     let [title, value] = element.split(':');
+
+  //     title = title.trim();
+  //     value = value.trim();
+  //     cssProperties[title] = value;
+  //   }
+  // }
+
+  return cssProperties;
 }
 
 module.exports = convertToObject;

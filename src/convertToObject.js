@@ -6,12 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertyStrings = sourceString
+  const splitCleanProperties = sourceString
     .split(';')
-    .map((dirtyProperty) => dirtyProperty.trim())
-    .filter((property) => property !== '');
+    .map((dirtyProperty) => dirtyProperty.trim());
 
-  const properties = propertyStrings.map(propertyStringToObject);
+  const validPropertyStrings = splitCleanProperties.filter((property) => {
+    return property !== '';
+  });
+
+  const properties = validPropertyStrings.map(propertyStringToObject);
 
   return properties.reduce((state, property) => {
     state[property.name] = property.args;
@@ -26,9 +29,11 @@ function convertToObject(sourceString) {
  * @return {object}
  */
 function propertyStringToObject(propertyString) {
-  const [name, args] = propertyString
+  const propertyParts = propertyString
     .split(':')
     .map((dirtyProperty) => dirtyProperty.trim());
+
+  const [name, args] = propertyParts;
 
   return { name, args };
 }

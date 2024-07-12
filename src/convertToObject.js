@@ -10,11 +10,11 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .reduce((prev, el) => {
-      const [attribut, value] = el
+      const [property, value] = el
         .split(':')
         .map((elem) => elem.trim());
 
-      prev[attribut] = value;
+      prev[property] = value;
 
       return prev;
     }, {});

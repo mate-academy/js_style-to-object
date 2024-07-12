@@ -7,36 +7,22 @@
  */
 
 function convertToObject(sourceString) {
-  const stylesObject = {};
+  const cssLine = sourceString.split(';').map((item) => item.trim());
 
-  if (!sourceString) {
-    return stylesObject;
-  }
+  const cssObject = cssLine.reduce((accumulator, cssString) => {
+    const [key, value] = cssString.split(':');
 
-  const stringWithoutComments = sourceString.replace(
-    /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g,
-    '',
-  );
+    if (key && value) {
+      const trimmedKey = key.trim();
+      const trimmedValue = value.trim();
 
-  const matches = stringWithoutComments.match(/(?:[^;"']|"[^"]*"|'[^']*')+/g);
-  const cssDeclarations = matches
-    ? matches.map((decl) => decl.trim()).filter((decl) => decl)
-    : [];
-
-  cssDeclarations.forEach((declaration) => {
-    const [property, ...valueParts] = declaration.split(':');
-    const value = valueParts.join(':').trim();
-
-    if (property && value) {
-      const trimmedProperty = property.trim();
-
-      if (trimmedProperty) {
-        stylesObject[trimmedProperty] = value;
-      }
+      accumulator[trimmedKey] = trimmedValue;
     }
-  });
 
-  return stylesObject;
+    return accumulator;
+  }, {});
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

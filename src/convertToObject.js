@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 'use strict';
 
 /**
@@ -6,7 +7,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .filter((style) => style.includes(':'))
+    .reduce((stylesObject, style) => {
+      const [property, value] = style.split(':').map((el) => el.trim());
+
+      if (property !== '' && value !== '') {
+        stylesObject[property] = value;
+      }
+
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

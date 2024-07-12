@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
       // eslint-disable-next-line prettier/prettier
       SplittedCssProperty.map((propertyPart) => propertyPart.trim()));
 
-  const cssPropertiesObject = stylePropertiesSplittedByDoubleDot.reduce(
+  const cssPropertiesObject = [...stylePropertiesSplittedByDoubleDot].reduce(
     (acc, [key, value]) => {
       acc[key] = value;
 

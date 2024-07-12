@@ -14,7 +14,9 @@ function convertToObject(sourceString) {
       return property.split(':').map((style) => style.trim());
     });
 
-  return Object.fromEntries(cssProperties);
+  return cssProperties.reduce((styles, property) => {
+    return { ...styles, [property[0]]: property[1] };
+  }, {});
 }
 
 module.exports = convertToObject;

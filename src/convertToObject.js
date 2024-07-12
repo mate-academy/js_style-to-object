@@ -6,24 +6,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splittedByDotComa = sourceString
+  const stylePropertiesSplittedByDotComa = sourceString
     .split(';')
     .map((item) => item.trim())
     .filter((item) => item.length > 0);
 
-  const splittedByDoubleDot = splittedByDotComa
+  const stylePropertiesSplittedByDoubleDot = stylePropertiesSplittedByDotComa
     .map((item) => item.split(':'))
     .map((SplittedCssProperty) =>
       // eslint-disable-next-line prettier/prettier
       SplittedCssProperty.map((propertyPart) => propertyPart.trim()));
 
-  const cssProperiesObject = splittedByDoubleDot.reduce((acc, [key, value]) => {
-    acc[key] = value;
+  const cssPropertiesObject = stylePropertiesSplittedByDoubleDot.reduce(
+    (acc, [key, value]) => {
+      acc[key] = value;
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {},
+  );
 
-  return cssProperiesObject;
+  return cssPropertiesObject;
 }
 
 module.exports = convertToObject;

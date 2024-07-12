@@ -10,7 +10,12 @@ function convertToObject(sourceString) {
   // write your code here
   const stylesArray = sourceString
     .split(';')
-    .map((item) => item.split(':').map((part) => part.trim()))
+    .map((item) => {
+      const [property, ...valueParts] = item.split(':');
+      const value = valueParts.join(':').trim();
+
+      return [property.trim(), value];
+    })
     .filter((item) => item.length === 2 && item[0] && item[1]);
 
   const stylesObject = {};

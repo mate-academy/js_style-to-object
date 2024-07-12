@@ -13,11 +13,11 @@ function convertToObject(sourceString) {
 
   const stylePropertiesSplittedByDoubleDot = stylePropertiesSplittedByDotComa
     .map((item) => item.split(':'))
-    .map((SplittedCssProperty) =>
+    .map((splittedCssProperty) =>
       // eslint-disable-next-line prettier/prettier
-      SplittedCssProperty.map((propertyPart) => propertyPart.trim()));
+      splittedCssProperty.map((propertyPart) => propertyPart.trim()));
 
-  const cssPropertiesObject = [...stylePropertiesSplittedByDoubleDot].reduce(
+  const cssPropertiesObject = stylePropertiesSplittedByDoubleDot.reduce(
     (acc, [key, value]) => {
       acc[key] = value;
 

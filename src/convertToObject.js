@@ -11,11 +11,8 @@ function convertToObject(sourceString) {
   return sourceString
     .trim()
     .split(';')
-
     .map((line) => line.split(':').map((el) => el.trim()))
-
     .filter((el) => el.length === 2 && el.every((element) => element))
-
     .reduce((acc, [item, value]) => {
       acc[item] = value;
 

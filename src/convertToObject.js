@@ -9,14 +9,15 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .reduce((prev, el) => {
-      const [property, value] = el
-        .split(':')
-        .map((elem) => elem.trim());
+    .filter((style) => style.includes(':'))
+    .reduce((stylesObject, style) => {
+      const [property, value] = style.split(':').map((el) => el.trim());
 
-      prev[property] = value;
+      if (property !== '' && value !== '') {
+        stylesObject[property] = value;
+      }
 
-      return prev;
+      return stylesObject;
     }, {});
 }
 

@@ -12,12 +12,15 @@ function convertToObject(sourceString) {
     .split(';')
     .map((style) => style.trim())
     .filter((style) => style !== '')
-    .map((style) => style.split(':'))
-    .reduce(
-      (styles, [key, value]) =>
-        Object.assign(styles, { [key.trim()]: value.trim() }),
-      {},
-    );
+    .reduce((styles, style) => {
+      const [key, value] = style.split(':').map((item) => item.trim());
+
+      if (key && value) {
+        styles[key] = value;
+      }
+
+      return styles;
+    }, {});
 }
 
 module.exports = convertToObject;

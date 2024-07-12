@@ -5,20 +5,34 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   const stylesObject = {};
 
-  const declarations = sourceString
-    .split(/;(?![^(]*\))/)
-    .map((decl) => decl.trim())
-    .filter((decl) => decl);
+  if (!sourceString) {
+    return stylesObject;
+  }
 
-  declarations.forEach((declaration) => {
+  const stringWithoutComments = sourceString.replace(
+    /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g,
+    '',
+  );
+
+  const matches = stringWithoutComments.match(/(?:[^;"']|"[^"]*"|'[^']*')+/g);
+  const cssDeclarations = matches
+    ? matches.map((decl) => decl.trim()).filter((decl) => decl)
+    : [];
+
+  cssDeclarations.forEach((declaration) => {
     const [property, ...valueParts] = declaration.split(':');
     const value = valueParts.join(':').trim();
 
     if (property && value) {
-      stylesObject[property.trim()] = value;
+      const trimmedProperty = property.trim();
+
+      if (trimmedProperty) {
+        stylesObject[trimmedProperty] = value;
+      }
     }
   });
 

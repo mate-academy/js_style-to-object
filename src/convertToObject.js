@@ -10,20 +10,26 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const result = {};
-  const strings = sourceString.split(';').map((str) => str.trim());
+  const styleObject = {};
+  const strings = sourceString
+    .split(';')
+    .map((str) => str.trim())
+    .filter(Boolean);
 
   strings.forEach((string) => {
-    const [key, ...values] = string.split(':');
-    const value = values.join('').trim();
-    const trimmedKey = key.trim();
+    const colonIndex = string.indexOf(':');
 
-    if (trimmedKey && value) {
-      result[trimmedKey] = value;
+    if (colonIndex !== -1) {
+      const key = string.slice(0, colonIndex).trim();
+      const value = string.slice(colonIndex + 1).trim();
+
+      if (key && value) {
+        styleObject[key] = value;
+      }
     }
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

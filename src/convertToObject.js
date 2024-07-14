@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resultObj = sourceString
+  const convertedData = sourceString
     .split(';')
     .map((itemFromArr) => itemFromArr.trim())
     .filter((itemFromArr) => itemFromArr.length > 0)
@@ -17,13 +17,13 @@ function convertToObject(sourceString) {
 
       return [newKey, newValue];
     })
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
+    .reduce((accumulator, [key, value]) => {
+      accumulator[key] = value;
 
-      return acc;
+      return accumulator;
     }, {});
 
-  return resultObj;
+  return convertedData;
 }
 
 module.exports = convertToObject;

@@ -10,21 +10,21 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const GROUP_STYLE = sourceString.trim().split(';');
-  const GET_CLEAN_STYLE = GROUP_STYLE.map((pair) => pair.trim()).filter(
-    (style) => style !== '',
-  );
+  const styleDeclarations = sourceString.trim().split(';');
+  const cleanedStylePairs = styleDeclarations
+    .map((pair) => pair.trim())
+    .filter((style) => style !== '');
 
-  const SEPARATION_STYLE = GET_CLEAN_STYLE.map((pair) => {
+  const stylePairs = cleanedStylePairs.map((pair) => {
     return pair.trim().split(':');
   });
-  const GET_STYLE_IN_OBJECT = SEPARATION_STYLE.reduce((acc, style) => {
-    acc[style[0].trim()] = style[1].trim();
+  const stylesObject = stylePairs.reduce((styles, style) => {
+    styles[style[0].trim()] = style[1].trim();
 
-    return acc;
+    return styles;
   }, {});
 
-  return GET_STYLE_IN_OBJECT;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

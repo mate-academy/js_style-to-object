@@ -7,20 +7,22 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  return sourceString.split(';').reduce((resultObj, segment) => {
+  return sourceString.split(';').reduce((cssProperties, segment) => {
     const cleanSegment = segment.trim();
 
     if (!cleanSegment) {
-      return resultObj;
+      return cssProperties;
     }
 
-    const [key, data] = cleanSegment.split(':').map((part) => part.trim());
+    const [property, value] = cleanSegment
+      .split(':')
+      .map((part) => part.trim());
 
-    if (key && data) {
-      resultObj[key] = data;
+    if (property && value) {
+      cssProperties[property] = value;
     }
 
-    return resultObj;
+    return cssProperties;
   }, {});
 }
 

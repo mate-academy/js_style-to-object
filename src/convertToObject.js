@@ -11,16 +11,16 @@ function convertToObject(sourceString) {
   }
 
   const cleanedSourceString = sourceString.replace(/\s*;\s*/g, ';').trim();
-  const strArray = cleanedSourceString.split(';');
-  const result = {};
+  const styleDeclarations = cleanedSourceString.split(';');
+  const stylesObject = {};
 
-  strArray.forEach((str) => {
+  styleDeclarations.forEach((str) => {
     const [key, value] = str.split(':').map((s) => s.trim());
 
-    result[key] = value;
+    stylesObject[key] = value;
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -11,7 +11,7 @@ function convertToObject(sourceString) {
   }
 
   const cleanedSourceString = sourceString.replace(/\s*;\s*/g, ';\n').trim();
-  const styleDeclarations = cleanedSourceString.split(';');
+  const styleDeclarations = cleanedSourceString.split(';').filter(str => str.trim() !== '');
   const stylesObject = {};
 
   styleDeclarations.forEach((str) => {

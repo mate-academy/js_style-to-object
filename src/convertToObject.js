@@ -10,7 +10,7 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const cleanedSourceString = sourceString.replace(/\s*;\s*/g, ';').trim();
+  const cleanedSourceString = sourceString.replace(/\s*;\s*/g, ';\n').trim();
   const styleDeclarations = cleanedSourceString.split(';');
   const stylesObject = {};
 

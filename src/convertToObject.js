@@ -8,10 +8,13 @@
 function convertToObject(sourceString) {
   const styleDeclarations = sourceString
     .split(';')
-    .filter((item) => item.length)
-    .map((element) => element.split(':').map((item) => item.trim()));
+    .filter((item) => item.length);
 
-  const objectStyle = styleDeclarations.reduce((acc, value) => {
+  const styleTrim = styleDeclarations.map((element) => {
+    return element.split(':').map((item) => item.trim());
+  });
+
+  const styleObject = styleTrim.reduce((acc, value) => {
     const [key, val] = value;
 
     acc[key] = val;
@@ -19,7 +22,7 @@ function convertToObject(sourceString) {
     return acc;
   }, {});
 
-  return objectStyle;
+  return styleObject;
 }
 
 module.exports = convertToObject;

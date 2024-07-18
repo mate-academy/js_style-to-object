@@ -6,7 +6,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const resut = {};
+
+  const array = sourceString.split(';');
+
+  
 }
 
 module.exports = convertToObject;

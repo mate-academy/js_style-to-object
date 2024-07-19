@@ -8,15 +8,14 @@
 function convertToObject(sourceString) {
   const cssObject = {};
 
-  const noSpacesArray = sourceString.split(';');
-  const arrayOfArrays = noSpacesArray
+  sourceString
+    .split(';')
     .map((element) => element.split(':'))
-    .filter((element) => element.length === 2)
-    .map((element) => [element[0].trim(), element[1].trim()]);
-
-  arrayOfArrays.forEach((element) => {
-    cssObject[element[0]] = element[1];
-  });
+    .map((element) => {
+      if (element.length === 2) {
+        cssObject[element[0].trim()] = element[1].trim();
+      }
+    });
 
   return cssObject;
 }

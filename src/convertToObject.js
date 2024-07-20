@@ -10,12 +10,14 @@ function convertToObject(sourceString) {
 
   const stylesObject = {};
 
-  const lines = sourceString.split(';').filter((line) => line.length > 1);
+  const lines = sourceString.split(';');
 
   lines.forEach(function (line) {
-    const part = line.trim().split(':');
+    const part = line.split(':');
 
-    stylesObject[part[0].trim()] = part[1].trim();
+    if (part.length >= 2) {
+      stylesObject[part[0].trim()] = part[1].trim();
+    }
   });
 
   return stylesObject;

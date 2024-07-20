@@ -7,16 +7,18 @@
  */
 function convertToObject(sourceString) {
   const styles = {};
-  const lines = sourceString.split(';');
+  const lines = sourceString.split(';').filter((line) => line.trim() !== '');
 
   lines.forEach((line) => {
-    const [property, value] = line.split(':');
+    const parts = line.split(':');
 
-    if (property && value) {
-      const trimmedProperty = property.trim();
-      const trimmedValue = value.trim();
+    if (parts.length >= 2) {
+      const property = parts[0].trim();
+      const value = parts.slice(1).join(':').trim();
 
-      styles[trimmedProperty] = trimmedValue;
+      if (property && value) {
+        styles[property] = value;
+      }
     }
   });
 

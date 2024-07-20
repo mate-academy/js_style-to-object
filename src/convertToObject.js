@@ -18,6 +18,7 @@ function convertToObject(sourceString) {
     if (part.length >= 2) {
       stylesObject[part[0].trim()] = part[1].trim();
     }
+    
   });
 
   return stylesObject;

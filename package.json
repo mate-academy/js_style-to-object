@@ -15,9 +15,6 @@
   },
   "author": "Mate academy",
   "license": "GPL-3.0",
-  "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.18.6"
-  },
   "devDependencies": {
     "@mate-academy/eslint-config": "latest",
     "@mate-academy/scripts": "^1.8.6",

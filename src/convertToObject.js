@@ -6,23 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = {};
-  const lines = sourceString.split(';').filter((line) => line.trim() !== '');
+  return sourceString.split(';').reduce((styles, line) => {
+    const [property, value] = line.split(':').map((part) => part.trim());
 
-  lines.forEach((line) => {
-    const parts = line.split(':');
-
-    if (parts.length >= 2) {
-      const property = parts[0].trim();
-      const value = parts.slice(1).join(':').trim();
-
-      if (property && value) {
-        styles[property] = value;
-      }
+    if (property && value) {
+      styles[property] = value;
     }
-  });
 
-  return styles;
+    return styles;
+  }, {});
 }
 
 module.exports = convertToObject;

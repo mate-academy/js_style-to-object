@@ -6,27 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // First - clear string from other symbols
   const tempString = sourceString.trim().replace(/;+\s*$/, '');
   const cssList = tempString.split(';');
-  const cssObject = {};
-
-  cssList.forEach((style) => {
+  const cssObject = cssList.reduce((acc, style) => {
     let [key, value] = style.split(':');
 
     if (key && value) {
       key = key.trim();
       value = value.trim();
-
-      if (key && value) {
-        cssObject[key] = value;
-      }
+      acc[key] = value;
     }
 
-    return cssObject;
-  });
-
-  // console.log(cssObject);
+    return acc;
+  }, {});
 
   return cssObject;
 }

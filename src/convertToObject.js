@@ -44,22 +44,25 @@ const complexStylesString = `
  */
 
 function convertToObject(sourceString) {
-  const noSpaceLine = sourceString.split(';').map((item) => item.trim());
-
-  const result = noSpaceLine.reduce((acc, allString) => {
-    const [key, value] = allString.split(':');
+  return sourceString.split(';').reduce((cssObject, declaration) => {
+    const [key, value] = declaration.split(':');
 
     if (key && value) {
-      const cleanKey = key.trim();
-      const cleanValue = value.trim();
+      const trimmedKey = key.trim();
+      const trimmedValue = value.trim();
 
-      acc[cleanKey] = cleanValue;
+      const importantIndex = trimmedValue.indexOf('!important');
+
+      if (importantIndex !== -1) {
+        cssObject[trimmedKey] =
+          trimmedValue.slice(0, importantIndex).trim() + ' !important';
+      } else {
+        cssObject[trimmedKey] = trimmedValue;
+      }
     }
 
-    return acc;
+    return cssObject;
   }, {});
-
-  return result;
 }
 
 convertToObject(complexStylesString);

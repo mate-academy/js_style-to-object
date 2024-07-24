@@ -14,8 +14,8 @@ function convertToObject(sourceString) {
     .filter((innerArr) => innerArr.length === 2)
     .map((element) => element.map((item) => item.trim()));
 
-  const styleObject = trimmedStyleDeclarations.reduce((acc, arrayElement) => {
-    const [key, value] = arrayElement;
+  const styleObject = trimmedStyleDeclarations.reduce((acc, style) => {
+    const [key, value] = style;
 
     acc[key] = value;
 

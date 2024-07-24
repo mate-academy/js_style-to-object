@@ -6,17 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arraySorceString = sourceString
+  const styleDeclarations = sourceString
     .split(';')
     .map((string) => string.trim().split(':'));
 
-  const filteredSorceString = arraySorceString
+  const trimmedStyleDeclarations = styleDeclarations
     .filter((innerArr) => innerArr.length === 2)
     .map((element) => element.map((item) => item.trim()));
 
-  // console.log(filteredSorceString);
-
-  const convertingObject = filteredSorceString.reduce((acc, arrayElement) => {
+  const styleObject = trimmedStyleDeclarations.reduce((acc, arrayElement) => {
     const [key, value] = arrayElement;
 
     acc[key] = value;
@@ -24,8 +22,7 @@ function convertToObject(sourceString) {
     return acc;
   }, {});
 
-  return convertingObject;
-  // console.log(convertingObject);
+  return styleObject;
 }
 
 module.exports = convertToObject;

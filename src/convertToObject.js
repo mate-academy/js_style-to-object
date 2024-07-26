@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
   elements.forEach(function (element) {
     const [name, value] = element.split(':');
 
-    if (name && value) {
+    if (name.trim() && value.trim()) {
       result[name.trim()] = value.trim();
     }
   });

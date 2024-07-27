@@ -25,10 +25,10 @@ function convertToObject(sourceString) {
     const colonIndex = str.indexOf(':');
 
     const property = str.slice(0, colonIndex).trim();
-    const value = str.slice(colonIndex + 1).trim();
+    let value = str.slice(colonIndex + 1).trim();
 
-    if (property && value) {
-      obj[property] = value;
+    if (value.endsWith(';')) {
+      value = value.slice(0, -1).trim();
     }
   });
 

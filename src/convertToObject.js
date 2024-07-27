@@ -14,22 +14,18 @@
  */
 function convertToObject(sourceString) {
   const obj = {};
+  const parts = sourceString.split(';');
 
-  sourceString.split('\n').forEach((s) => {
-    const str = s.trim();
+  parts.forEach((str) => {
+    const cleanStr = str.trim();
+    const colonIndex = cleanStr.indexOf(':');
 
-    if (str === '') {
+    if (colonIndex === -1) {
       return;
     }
 
-    const colonIndex = str.indexOf(':');
-
-    const property = str.slice(0, colonIndex).trim();
-    let value = str.slice(colonIndex + 1).trim();
-
-    if (value.endsWith(';')) {
-      value = value.slice(0, -1).trim();
-    }
+    const property = cleanStr.slice(0, colonIndex).trim();
+    const value = cleanStr.slice(colonIndex + 1).trim();
 
     if (property && value) {
       obj[property] = value;

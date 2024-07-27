@@ -30,6 +30,10 @@ function convertToObject(sourceString) {
     if (value.endsWith(';')) {
       value = value.slice(0, -1).trim();
     }
+
+    if (property && value) {
+      obj[property] = value;
+    }
   });
 
   return obj;

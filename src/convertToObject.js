@@ -5,15 +5,9 @@
  *
  * @return {object}
  */
-'use strict';
 
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
 function convertToObject(sourceString) {
-  const obj = {};
+  const StyleObj = {};
   const parts = sourceString.split(';');
 
   parts.forEach((str) => {
@@ -28,13 +22,11 @@ function convertToObject(sourceString) {
     const value = cleanStr.slice(colonIndex + 1).trim();
 
     if (property && value) {
-      obj[property] = value;
+      StyleObj[property] = value;
     }
   });
 
-  return obj;
+  return StyleObj;
 }
-
-module.exports = convertToObject;
 
 module.exports = convertToObject;

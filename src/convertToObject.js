@@ -6,24 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
   const sourceStringTrim = sourceString.trim();
   const tabFromSourceString = sourceStringTrim.split(';');
 
-  for (let i = 0; i < tabFromSourceString.length; i++) {
-    const tabProperty = tabFromSourceString[i].split(':');
+  return tabFromSourceString.reduce((objectFromSourceString, property) => {
+    const tabProperty = property.split(':');
 
     if (tabProperty.length === 2) {
       const key = tabProperty[0].trim();
       const value = tabProperty[1].trim();
 
       if (key && value) {
-        obj[key] = value;
+        objectFromSourceString[key] = value;
       }
     }
-  }
 
-  return obj;
+    return objectFromSourceString;
+  }, {});
 }
 
 module.exports = convertToObject;

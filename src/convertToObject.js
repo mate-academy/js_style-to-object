@@ -6,7 +6,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const splitBySentence = sourceString.split(';');
+
+  for (let i = 0; i < splitBySentence.length; ++i) {
+    const current = splitBySentence[i].trim();
+
+    if (current) {
+      const [key, value] = current.split(':');
+
+      if (key && value) {
+        result[key.trim()] = value.trim();
+      }
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

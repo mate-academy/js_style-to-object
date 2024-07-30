@@ -6,19 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const updatedArray = sourceString
-    .split(';')
-    .map((item) => {
-      return item.split(':');
-    })
-    .filter((item) => item.length > 1)
-    .map((item) => {
-      return [item[0].trim(), item[1].trim()];
-    });
-
+  const updatedArray = sourceString.split(';');
   const finalObject = {};
 
-  updatedArray.forEach((item) => (finalObject[item[0]] = item[1]));
+  updatedArray.forEach((item) => {
+    const [key, value] = item.split(':').map((el) => el.trim());
+
+    if (key && value) {
+      finalObject[key] = value;
+    }
+  });
 
   return finalObject;
 }

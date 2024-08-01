@@ -9,15 +9,14 @@ function convertToObject(sourceString) {
   const transformedString = sourceString
     .split(';')
     .map((el) => el.split(':').map((el1) => el1.trim()))
-    .filter((el) => el.length > 1);
+    .filter((el) => el.length > 1)
+    .reduce((acu, item) => {
+      acu[item[0]] = item[1]
 
-  const obj = {};
+      return acu;
+    }, {})
 
-  for (const key in transformedString) {
-    obj[transformedString[key][0]] = transformedString[key][1];
-  }
-
-  return obj;
+  return transformedString;
 }
 
 module.exports = convertToObject;

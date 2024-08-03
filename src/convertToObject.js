@@ -10,32 +10,20 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const newStyles = sourceString.trim();
-  const stylesArray = newStyles.split(';');
-  const arr = [];
+  const styleDeclarations = sourceString
+    .trim()
+    .split(';')
+    .filter((item) => item.trim().length !== 0)
+    .map((item) => item.replace('\n', '').trim());
 
-  for (let i = 0; i < stylesArray.length; i++) {
-    if (stylesArray[i].trim().length !== 0) {
-      arr.push(stylesArray[i].replace('\n', ''));
-    }
-  }
+  const stylePairs = styleDeclarations.map((item) => item.split(': '));
 
-  const resultArray = [];
+  const stylesList = stylePairs.reduce(
+    (prev, item) => ({ ...prev, [item[0].trim()]: item[1].trim() }),
+    {},
+  );
 
-  for (let i = 0; i < arr.length; i++) {
-    const part = arr[i].split(': ');
-
-    resultArray.push(part);
-  }
-
-  const result = resultArray.reduce((prev, item) => {
-    return {
-      ...prev,
-      [item[0].trim()]: item[1].trim(),
-    };
-  }, {});
-
-  return result;
+  return stylesList;
 }
 
 module.exports = convertToObject;

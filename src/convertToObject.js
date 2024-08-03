@@ -10,15 +10,7 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const replacedStyles = sourceString;
-
-  let newStyles = '';
-
-  for (let i = 0; i < replacedStyles.length; i++) {
-    newStyles += replacedStyles[i];
-  }
-  newStyles = newStyles.trim();
-
+  const newStyles = sourceString.trim();
   const stylesArray = newStyles.split(';');
   const arr = [];
 

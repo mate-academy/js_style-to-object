@@ -1,27 +1,27 @@
 'use strict';
-
 /**
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // an array of CSS properties and values
   let declarationsArr = sourceString
     .split(';')
     .map((declaration) => {
-      return declaration.replace(/\s/g, '').replace(':', ': '); // erase whitespaces, then add one after ':'
+      return declaration.replace(/\r\n|\n|\r/gm, '', '').replace(':', ': '); // erase whitespaces, then add one after ':'
     })
     .filter((e) => e); // We filter out empty array values
 
-  const newObj = {};
+  const obj = {};
 
-  for (const e of declarationsArr) {
-    const tmp = e.split(': ');
-    const key = tmp[0];
-    const val = tmp[1];
-    newObj[key] = val;
+  for (const declaration of declarationsArr) {
+    const keyValue = declaration.split(':');
+    const key = keyValue[0].trim();
+    const value = keyValue[1];
+    if (key.trim().length > 0) {
+      obj[key.trim()] = value.trim();
+    }
   }
 
-  return newObj;
+  return obj;
 }

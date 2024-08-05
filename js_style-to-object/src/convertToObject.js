@@ -7,6 +7,10 @@
  */
 function convertToObject(sourceString) {
   // an array of CSS properties and values
+  if (sourceString.length === 0) {
+    return {};
+  }
+
   let declarationsArr = sourceString
     .split(';')
     .map((declaration) => {

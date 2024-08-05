@@ -7,23 +7,21 @@
  */
 function convertToObject(sourceString) {
   const keyAndValues = sourceString.split(';');
-  const end = {};
+  const styleObject = {};
 
   keyAndValues.forEach((element) => {
     const preElement = element.split(':');
+    let firstElement = preElement[0];
+    let secondElement = preElement[1];
 
-    if (preElement[0]) {
-      preElement[0] = preElement[0].trim();
+    if (firstElement && secondElement) {
+      firstElement = firstElement.trim();
+      secondElement = secondElement.trim();
+      styleObject[firstElement] = secondElement;
     }
-
-    if (preElement[1]) {
-      preElement[1] = preElement[1].trim();
-    }
-
-    end[preElement[0]] = preElement[1];
   });
 
-  return end;
+  return styleObject;
 }
 
 module.exports = convertToObject;

@@ -6,31 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // if the sourceString is empty return an empty object
-  if (!sourceString) {
-    return {};
-  }
+  const styleDeclarations = sourceString.split(';');
 
-  // remove all tab and new line characters
-  // replaceAll doesn't work on this version of Node
-  const clearedString = sourceString.replace(/[\t\n]/g, '');
-  const stylesArr = clearedString.split(';');
-  const stylesObj = {};
+  return styleDeclarations.reduce((cssStyles, currStyle) => {
+    const parts = currStyle.split(':');
 
-  stylesArr.forEach((style) => {
-    let [name, value] = style.split(':');
-
-    // name and value can be empty or undefined
-    if (name && value) {
-      name = name.trim();
-      value = value.trim();
-      // add a new line character where it is needed
-      value = value.replace(/,/g, ',\n');
-      stylesObj[name] = value;
+    if (parts.length !== 2) {
+      return cssStyles;
     }
-  });
 
-  return stylesObj;
+    const [name, value] = parts.map((part) => part.trim());
+
+    cssStyles[name] = value;
+
+    return cssStyles;
+  }, {});
 }
 
 module.exports = convertToObject;

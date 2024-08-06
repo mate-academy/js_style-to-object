@@ -6,6 +6,8 @@
  */
 function convertToObject(sourceString) {
   let declarationsArr = sourceString
+    .split('\n')
+    .filter((line) => line.trim() !== '')
     .split(';')
     .map((declaration) => {
       // erase whitespaces, then add one after ':'

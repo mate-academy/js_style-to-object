@@ -25,5 +25,3 @@ function convertToObject(sourceString) {
   }
   return obj;
 }
-
-convertToObject(sourceString);

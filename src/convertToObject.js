@@ -26,4 +26,4 @@ function convertToObject(sourceString) {
   return obj;
 }
 
-convertToObject(complexStylesString);
+convertToObject(sourceString);

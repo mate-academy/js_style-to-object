@@ -15,8 +15,8 @@ function convertToObject(sourceString) {
   lines.forEach((line) => {
     // Check if the line contains a colon, indicating a new key-value pair
     if (line.includes(':')) {
-      // If there's already a current key, it means we've
-      // accumulated a multiline value
+      // If there's already a current key,
+      // it means we've accumulated a multiline value
       if (currentKey) {
         obj[currentKey] = currentValue.trim();
         currentKey = ''; // Reset for the next key-value pair

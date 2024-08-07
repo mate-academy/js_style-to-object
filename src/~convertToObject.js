@@ -5,34 +5,39 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let declarationsArr = sourceString
-    .split(';')
-    .map((declaration) => {
-      // erase whitespaces, then add one after ':'
-      return declaration.replace(/\r\n|\n|\r/gm, '', '').replace(':', ': ');
-    })
-    .filter((e) => e); // We filter out empty array values
+  // Split the source string into lines and remove empty lines
+  let lines = sourceString.split('\n').filter((line) => line.trim() !== '');
 
   const obj = {};
+  let currentKey = '';
+  let currentValue = '';
 
-  for (const declaration of declarationsArr) {
-    const keyValue = declaration.split(':');
-    const key = keyValue[0].trim();
-    const value = keyValue[1];
-    if (key.trim().length > 0) {
-      obj[key.trim()] = value.trim();
+  lines.forEach((line) => {
+    // Check if the line contains a colon, indicating a new key-value pair
+    if (line.includes(':')) {
+      // If there's already a current key, it means we've accumulated a multiline value
+      if (currentKey) {
+        obj[currentKey] = currentValue.trim();
+        currentKey = ''; // Reset for the next key-value pair
+        currentValue = ''; // Reset for the next key-value pair
+      }
+
+      // Extract the key and value from the line
+      const [key, value] = line.split(':');
+      currentKey = key.trim();
+      currentValue = value.trim();
+    } else {
+      // Accumulate the value if it's part of a multiline value
+      currentValue += ' ' + line.trim();
     }
+  });
+
+  // Add the last key-value pair if it hasn't been added yet
+  if (currentKey) {
+    obj[currentKey] = currentValue.trim();
   }
+
   return obj;
 }
-
-let a = convertToObject(`
-      box-shadow:
-          inset 0 -3em 3em rgb(0 200 0 / 30%),
-          0 0 0 2px white,
-          0.3em 0.3em 1em rgb(200 0 0 / 60%);
-    `);
-
-console.log(a);
 
 module.exports = convertToObject;

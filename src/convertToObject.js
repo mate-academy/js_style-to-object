@@ -1,44 +1,43 @@
 'use strict';
+
 /**
  * @param {string} sourceString
  *
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // Split the source string into lines and remove empty lines
-  let lines = sourceString.split('\n').filter((line) => line.trim() !== '');
-
   const obj = {};
-  let currentKey = '';
-  let currentValue = '';
 
-  lines.forEach((line) => {
-    // Check if the line contains a colon, indicating a new key-value pair
-    if (line.includes(':')) {
-      // If there's already a current key,
-      // it means we've accumulated a multiline value
-      if (currentKey) {
-        obj[currentKey] = currentValue.trim();
-        currentKey = ''; // Reset for the next key-value pair
-        currentValue = ''; // Reset for the next key-value pair
-      }
+  let lines = sourceString.split('\n').filter((line) => line.trim());
+  lines = lines.filter((line) => line.trim().length > 1);
 
-      // Extract the key and value from the line
-      const [key, value] = line.split(':');
-      currentKey = key.trim();
-      currentValue = value.trim();
-    } else {
-      // Accumulate the value if it's part of a multiline value
-      currentValue += ' ' + line.trim();
+  let key = '';
+  let value = '';
+
+  for (const line of lines) {
+    const firstCharIndex = line.indexOf(line.trim());
+    const colonIndex = line.indexOf(':');
+    const semicolonIndex = line.indexOf(';');
+    const currentKey = line.slice(firstCharIndex, colonIndex).trim();
+    const currentValue = line.slice(colonIndex + 1, semicolonIndex).trim();
+    // Update current key if the line has one
+    if (colonIndex !== -1) {
+      key = currentKey;
     }
-  });
-
-  // Add the last key-value pair if it hasn't been added yet
-  if (currentKey) {
-    obj[currentKey] = currentValue.trim();
+    // a multi-line value with the terminal semicolon further afield
+    if (semicolonIndex === -1) {
+      value += currentValue;
+    } else {
+      value += currentValue;
+      obj[key] = value;
+      key = '';
+      value = '';
+    }
   }
-
+  console.log(obj);
   return obj;
 }
+
+convertToObject(complexStylesString);
 
 module.exports = convertToObject;

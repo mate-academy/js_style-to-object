@@ -12,7 +12,8 @@ function convertToObject(sourceString) {
 
   rules.forEach((rule) => {
     const [key, ...valueParts] = rule.split(':').map((part) => part.trim());
-    const value = valueParts.join(':'); // Rejoin value parts in case of pseudo-selectors like ":hover"
+    // Rejoin value parts in case of pseudo-selectors like ":hover"
+    const value = valueParts.join(':');
 
     if (key && value) {
       obj[key] = value;

@@ -5,24 +5,18 @@
  *
  * @return {object}
  */
-function ConvertToObject(cssString) {
-  // Инициализируем объект, в который будем добавлять стили
+function convertToObject(sourceString) {
   const obj = {};
 
-  // Регулярное выражение для поиска пар ключ-значение в CSS строке
-  const pattern = /([^:;]+)\s*:\s*([^;]+)/g;
+  sourceString.split(';').forEach((item) => {
+    const [key, value] = item.split(':').map((el) => el.trim());
 
-  // Ищем все вхождения пар ключ-значение в строке
-  let match;
-  const array = cssString.split(';');
+    if (key && value) {
+      obj[key] = value;
+    }
+  });
 
-  for (const el of array) {
-    const arr = el.split(':');
-
-    obj[arr[0].trim()] = arr[1].trim();
-  }
-
-  return stylesObject;
+  return obj;
 }
 
 module.exports = convertToObject;

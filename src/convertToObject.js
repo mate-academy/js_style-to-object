@@ -6,25 +6,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const source = sourceString;
-  const splitedByASemicolon = source
+  const arrOfArrs = [];
+  const resultingObject = {};
+
+  sourceString
     .split(';')
-    .map((string) => string.trim())
-    .filter((string) => string.length > 0);
-  const arrOfArrsSplitedByAColon = [];
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration.length > 0)
+    .forEach((declarationPart) => {
+      arrOfArrs.push(declarationPart.split(':'));
+    });
 
-  splitedByASemicolon.forEach((string) => {
-    arrOfArrsSplitedByAColon.push(string.split(':'));
-  });
+  arrOfArrs
+    .map((declarationArray) => {
+      return declarationArray.map((declarationPart) => declarationPart.trim());
+    })
+    .forEach(([key, value]) => (resultingObject[key] = value));
 
-  const finishedArray = arrOfArrsSplitedByAColon.map((element) => {
-    return element.map((string) => string.trim());
-  });
-  const finishedObject = {};
-
-  finishedArray.map(([key, value]) => (finishedObject[key] = value));
-
-  return finishedObject;
+  return resultingObject;
 }
 
 module.exports = convertToObject;

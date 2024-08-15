@@ -14,11 +14,11 @@ function convertToObject(sourceString) {
       .map((part) => part.trim());
   });
 
-  const stylesObject = {};
+  const stylesObject = stylesArray.reduce((acc, [key, value]) => {
+    acc[key] = value;
 
-  stylesArray.forEach(([key, value]) => {
-    stylesObject[key] = value;
-  });
+    return acc;
+  }, {});
 
   return stylesObject;
 }

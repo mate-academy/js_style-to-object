@@ -7,34 +7,29 @@
  */
 
 function convertToObject(sourceString) {
-  const result = {};
-  const arr = sourceString.replace(/\n/g, '').split(';');
-  const filtredArr = arr.filter((element) => element.trim().length > 2);
+  const styleObject = {};
+  const filtredArr = sourceString
+    .replace(/\n/g, '')
+    .split(';')
+    .filter((element) => element.trim().length > 2);
 
-  for (let i = 0; i < filtredArr.length; i++) {
-    const indexEl = filtredArr[i].indexOf(':');
-    let key = '';
-    let val = '';
-
-    for (let j = 0; j < filtredArr[i].length; j++) {
-      if (j < indexEl) {
-        key += filtredArr[i][j];
-      } else {
-        val += filtredArr[i][j];
-      }
-    }
-
-    const value = val
+  const pairs = filtredArr.map((el) => {
+    const indexEl = el.indexOf(':');
+    const key = el.slice(0, indexEl).replace(/\s+/g, '');
+    const value = el
+      .slice(indexEl, el.length)
       .slice(1)
       .trim()
       .replace(/,\s{2,}/g, ',\n          ');
 
-    const keyClear = key.replace(/\s+/g, '');
+    return [key, value];
+  });
 
-    result[keyClear] = value;
-  }
+  pairs.forEach((pair) => {
+    styleObject[pair[0]] = pair[1];
+  });
 
-  return result;
+  return styleObject;
 }
 
 convertToObject(`

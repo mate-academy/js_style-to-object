@@ -5,8 +5,20 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  let styleRules = sourceString.split(';');
+
+  styleRules = styleRules.filter((rule) => rule.trim().length);
+
+  styleRules.forEach((line) => {
+    const [rule, value] = line.split(':');
+
+    result[rule.trim()] = value.trim();
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

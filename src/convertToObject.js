@@ -7,15 +7,14 @@
  */
 
 function convertToObject(sourceString) {
-  let result = {};
-  let arr = sourceString.replace(/[;:]/g, ',').split(',');
-
-  for (let i = 0; i < arr.length; i+= 2) {
-    result[arr[i]] = arr[(i + 1)];
+  const result = {};
+  let arr = sourceString.split(';');
+  arr = arr.filter((rule) => rule.trim().length);
+  for (const line of arr) {
+    const [rule, value] = line.split(':');
+    result[rule.trim()] = value.trim();
   }
-    
   return result;
 }
-
 
 module.exports = convertToObject;

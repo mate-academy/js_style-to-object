@@ -8,12 +8,16 @@
 
 function convertToObject(sourceString) {
   const result = {};
-  let arr = sourceString.split(';');
-  arr = arr.filter((rule) => rule.trim().length);
-  for (const line of arr) {
+  let styleRules = sourceString.split(';');
+
+  styleRules = styleRules.filter((rule) => rule.trim().length);
+
+  styleRules.forEach((line) => {
     const [rule, value] = line.split(':');
+
     result[rule.trim()] = value.trim();
-  }
+  });
+
   return result;
 }
 

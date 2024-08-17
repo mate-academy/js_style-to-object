@@ -8,25 +8,14 @@
 
 function convertToObject(sourceString) {
   const styleObject = {};
-  const filtredArr = sourceString
-    .replace(/\n/g, '')
-    .split(';')
-    .filter((element) => element.trim().length > 2);
+  const filtredArr = sourceString.split(';');
 
-  const pairs = filtredArr.map((el) => {
-    const indexEl = el.indexOf(':');
-    const key = el.slice(0, indexEl).replace(/\s+/g, '');
-    const value = el
-      .slice(indexEl, el.length)
-      .slice(1)
-      .trim()
-      .replace(/,\s{2,}/g, ',\n          ');
+  filtredArr.forEach((pair) => {
+    const [property, value] = pair.split(':').map((item) => item.trim());
 
-    return [key, value];
-  });
-
-  pairs.forEach((pair) => {
-    styleObject[pair[0]] = pair[1];
+    if (property && value) {
+      styleObject[property] = value;
+    }
   });
 
   return styleObject;

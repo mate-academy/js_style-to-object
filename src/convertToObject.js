@@ -6,7 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .trim()
+    .split(';')
+    .filter(Boolean)
+    .reduce((acc, rule) => {
+      const [property, value] = rule.split(':').map((part) => part.trim());
+
+      return { ...acc, [property]: value };
+    }, {});
 }
 
 module.exports = convertToObject;

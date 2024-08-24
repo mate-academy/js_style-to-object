@@ -6,22 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssArray = sourceString.split(';');
-  const noEmptyRules = [];
-  const objStyles = {};
+  const styles = {};
 
-  for (const ch of cssArray) {
-    if (ch.length === 0) {
-      continue;
+  sourceString.split(';').forEach((declaration) => {
+    let [property, value] = declaration.split(':');
+
+    if (property && value) {
+      property = property.trim();
+      value = value.trim();
+      styles[property] = value;
     }
-    noEmptyRules.push(ch.split(':'));
-  }
+  });
 
-  for (const rule of noEmptyRules) {
-    objStyles.rule[0] = rule[1];
-  }
-
-  return objStyles;
+  return styles;
 }
 
 module.exports = convertToObject;

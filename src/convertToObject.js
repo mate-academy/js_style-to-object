@@ -7,11 +7,7 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
-  const regex = /\n+|\t+/g;
-
-  sourceString
-    .replaceAll(regex, ' ')
+  return sourceString
     .split(';')
     .map((item) => item.trim())
     .filter((item) => item !== '')
@@ -25,11 +21,11 @@ function convertToObject(sourceString) {
           .join(',\n');
       });
     })
-    .forEach((element) => {
-      result[`${element[0]}`] = element[1];
-    });
+    .reduce((acc, item) => {
+      acc[`${item[0]}`] = item[1];
 
-  return result;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

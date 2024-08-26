@@ -15,7 +15,9 @@ function convertToObject(sourceString) {
     const separateStyle = style.split(COLON).map((part) => part.trim());
 
     if (separateStyle.length === 2) {
-      temp[separateStyle[0]] = separateStyle[1];
+      const [property, value] = separateStyle;
+
+      temp[property] = value;
     }
 
     return temp;

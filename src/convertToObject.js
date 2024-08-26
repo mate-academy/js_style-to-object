@@ -9,9 +9,9 @@ const SEMICOLON = ';';
 const COLON = ':';
 
 function convertToObject(sourceString) {
-  const stylesArray = sourceString.split(SEMICOLON);
+  const styles = sourceString.split(SEMICOLON);
 
-  const styleObject = stylesArray.reduce((temp, style) => {
+  const stylesObject = styles.reduce((temp, style) => {
     const separateStyle = style.split(COLON).map((part) => part.trim());
 
     if (separateStyle.length === 2) {
@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
     return temp;
   }, {});
 
-  return styleObject;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

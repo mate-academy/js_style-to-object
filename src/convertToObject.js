@@ -9,10 +9,7 @@ function convertToObject(sourceString) {
   // write your code here
   const styleObject = {};
 
-  const tempString = sourceString
-    .toString()
-    .split(';')
-    .map((item) => item.toString().split(':'));
+  const tempString = sourceString.split(';').map((item) => item.split(':'));
 
   tempString.forEach((item) => {
     if (!(item[1] === undefined)) {

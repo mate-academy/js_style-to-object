@@ -8,21 +8,20 @@
 function convertToObject(sourceString) {
   const obj = {};
 
-  const cleanStyles = sourceString
-    .replace(/\s*;\s*/g, ';')
-    .replace(/^\s*;\s*|\s*;\s*$/g, '')
-    .trim();
+  const styles = sourceString.split(';');
 
-  const styles = cleanStyles.split(/;\s*/).filter(Boolean);
+  styles.forEach((style) => {
+    const parts = style.split(':');
 
-  for (const style of styles) {
-    const [property, ...valueParts] = style.split(/:\s*/);
-    const value = valueParts.join(':');
-
-    if (property) {
-      obj[property.trim()] = value;
+    if (parts.length < 2) {
+      return;
     }
-  }
+
+    const key = parts[0].trim();
+    const value = parts[1].trim();
+
+    obj[key] = value;
+  });
 
   return obj;
 }

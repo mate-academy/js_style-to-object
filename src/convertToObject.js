@@ -9,6 +9,7 @@ function convertToObject(sourceString) {
   // Крок 1: Очистка вхідного рядка
   const cleanedString = sourceString
     .replace(/;\s*$/, '') // Видаляємо останню крапку з комою
+
     .replace(/\s*:\s*/g, ':'); // Видаляємо зайві пробіли навколо двокрапки
 
   // Крок 2: Розділяємо рядок на окремі декларації

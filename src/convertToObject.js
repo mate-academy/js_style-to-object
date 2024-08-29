@@ -6,11 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArray = sourceString.split(';');
-
-  const convertsObject = {};
-
-  sourceArray.forEach((style) => {
+  return sourceString.split(';').reduce((prev, style) => {
     const firstKeyIndex = style.indexOf(':');
 
     if (firstKeyIndex !== -1) {
@@ -18,11 +14,11 @@ function convertToObject(sourceString) {
       const firstValueIndex = firstKeyIndex + 1;
       const value = style.slice(firstValueIndex).trim();
 
-      convertsObject[key] = value;
+      prev[key] = value;
     }
-  });
 
-  return convertsObject;
+    return prev;
+  }, {});
 }
 
 module.exports = convertToObject;

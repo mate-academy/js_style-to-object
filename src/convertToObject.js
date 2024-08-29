@@ -7,13 +7,9 @@
  */
 function convertToObject(sourceString) {
   return sourceString.split(';').reduce((prev, style) => {
-    const firstKeyIndex = style.indexOf(':');
+    const [key, value] = style.split(':').map((item) => item.trim());
 
-    if (firstKeyIndex !== -1) {
-      const key = style.slice(0, firstKeyIndex).trim();
-      const firstValueIndex = firstKeyIndex + 1;
-      const value = style.slice(firstValueIndex).trim();
-
+    if (key && value) {
       prev[key] = value;
     }
 

@@ -6,16 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleLines = sourceString.split(';');
+  const cssDeclarations = sourceString.split(';');
 
-  return styleLines.reduce((stylesObject, line) => {
+  return cssDeclarations.reduce((stylesObject, line) => {
     const trimmedLine = line.trim();
 
     if (!trimmedLine) {
       return stylesObject;
     }
 
-    const [property, value] = trimmedLine.split(':').map((part) => part.trim());
+    const [property, value] = trimmedLine
+      .split(':')
+      .map((part) => part
+      .trim());
 
     if (property && value) {
       stylesObject[property] = value;

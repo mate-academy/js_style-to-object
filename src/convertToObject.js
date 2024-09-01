@@ -13,7 +13,9 @@ function convertToObject(sourceString) {
     .reduce((object, el) => {
       const [key, value] = el.split(':').map((item) => item.trim());
 
-      return Object.assign(object, { [key]: value });
+      object[key] = value;
+
+      return object;
     }, {});
 
   return obj;

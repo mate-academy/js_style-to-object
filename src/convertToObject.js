@@ -6,9 +6,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayOfIndividualElements = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
 
-  const complexStylesObj = arrayOfIndividualElements
+  const complexStylesObj = styleDeclarations
     .map((el) => el.trim())
     .filter((el) => el !== '')
     .reduce((acc, style) => {

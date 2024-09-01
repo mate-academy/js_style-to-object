@@ -6,20 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cssProperties = {};
-
-  sourceString
+  return sourceString
     .trim()
     .split(';')
-    .forEach((item) => {
+    .reduce((properties, item) => {
       const [key, value] = item.split(':').map((str) => str.trim());
 
-      if (key && value) {
-        cssProperties[key] = value;
-      }
-    });
+      properties[key] = value;
 
-  return cssProperties;
+      return properties;
+    }, {});
 }
 
 module.exports = convertToObject;

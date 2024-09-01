@@ -6,18 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const resObj = {};
-  const arrayWithoutSpaces = sourceString.trim().split(';');
+  const cssProperties = {};
 
-  arrayWithoutSpaces.forEach((item) => {
-    const [key, value] = item.split(':').map((str) => str.trim());
+  sourceString
+    .trim()
+    .split(';')
+    .forEach((item) => {
+      const [key, value] = item.split(':').map((str) => str.trim());
 
-    if (key && value) {
-      resObj[key] = value;
-    }
-  });
+      if (key && value) {
+        cssProperties[key] = value;
+      }
+    });
 
-  return resObj;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

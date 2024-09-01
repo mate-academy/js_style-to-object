@@ -5,23 +5,24 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
   // write your code here
-  const rules = {};
-
-  sourceString
+  return sourceString
     .trim()
     .split(';')
-    .forEach((rule) => {
+    .reduce((rules, rule) => {
       const [key, value] = rule
         .trim()
         .split(':')
         .map((part) => part.trim());
 
-      rules[key] = value;
-    });
+      if (key) {
+        rules[key] = value;
+      }
 
-  return rules;
+      return rules;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -9,17 +9,16 @@ function convertToObject(sourceString) {
   // write your code here
   return sourceString
     .split(';')
+    .filter((declaration) => declaration.trim())
     .reduce((acc, declaration) => {
-      const parts = declaration.split(':');
-      const property = parts[0];
-      const value = parts[1];
+      const [cssProperty, cssValue] = declaration.split(':');
 
-    if (property && value) {
-      acc[property.trim()] = value.trim();
-    }
+      if (cssProperty && cssValue) {
+        acc[cssProperty.trim()] = cssValue.trim();
+      }
 
-    return acc;
-  }, {});
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

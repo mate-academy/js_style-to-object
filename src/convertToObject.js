@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const listOfProperties = {};
+  const propertiesList = {};
   const sourceProperties = sourceString
     .split(';')
     .map((property) => property.split(':'))
@@ -16,10 +16,10 @@ function convertToObject(sourceString) {
     const propertyKey = property[0].trim();
     const propertyValue = property[1].trim();
 
-    listOfProperties[propertyKey] = propertyValue;
+    propertiesList[propertyKey] = propertyValue;
   });
 
-  return listOfProperties;
+  return propertiesList;
 }
 
 module.exports = convertToObject;

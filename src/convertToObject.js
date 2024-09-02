@@ -5,8 +5,24 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(stylesString) {
+  const cleanedString = stylesString
+    .trim()
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .join('\n');
+
+  const declarations = cleanedString.split(';');
+
+  return declarations.reduce((styleObject, declaration) => {
+    const [key, value] = declaration.split(':').map((part) => part.trim());
+
+    if (key && value) {
+      styleObject[key] = value;
+    }
+
+    return styleObject;
+  }, {});
 }
 
 module.exports = convertToObject;

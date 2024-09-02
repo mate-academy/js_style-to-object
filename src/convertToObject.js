@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
       style[property.trim()] = value.trim();
     }
 
-    return { ...style };
+    return style;
   }, {});
 }
 

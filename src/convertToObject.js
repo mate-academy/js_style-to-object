@@ -9,11 +9,12 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .map((value) => value.trim())
-    .filter((value) => value !== '')
     .reduce((prev, curr) => {
+      const [key, value] = curr.split(':').map((part) => part.trim());
+
       return {
         ...prev,
-        [curr.split(':')[0].trim()]: curr.split(':')[1].trim(),
+        [key]: value,
       };
     }, {});
 }

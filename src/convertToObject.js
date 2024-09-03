@@ -6,22 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleDeclarations = sourceString.trim().split(/\s*;\s*/);
-
   const styleObject = {};
 
-  const styleArray = styleDeclarations.map((item) => item.split(':'));
+  sourceString
+    .split(/\s*;\s*/)
+    .map((item) => item.split(':'))
+    .filter((item) => item.length >= 2)
+    .map((item) => {
+      const key = item[0].trim();
+      const value = item[1].trim();
 
-  styleArray.map((item) => {
-    if (item.length < 2) {
-      return 0;
-    }
-
-    const key = item[0].trim();
-    const value = item[1].trim();
-
-    styleObject[key] = value;
-  });
+      styleObject[key] = value;
+    });
 
   return styleObject;
 }

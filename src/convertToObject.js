@@ -3,12 +3,14 @@
 function convertToObject(sourceString) {
   const finalStyle = {};
 
-  sourceString.split(';').forEach((part) => {
-    if (part.trim()) {
-      const [command, value] = part.split(':');
+  sourceString
+    .split(';')
+    .forEach((part) => {
+      if (part.trim()) {
+        const [command, value] = part.split(':');
 
-      finalStyle[command.trim()] = value.trim();
-    }
+        finalStyle[command.trim()] = value.trim();
+      }
   });
 
   return finalStyle;

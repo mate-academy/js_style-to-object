@@ -6,20 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const propertiesList = {};
+  const listOfProperties = {};
   const sourceProperties = sourceString
     .split(';')
     .map((property) => property.split(':'))
-    .filter((keyAndValue) => keyAndValue.length > 1);
+    .filter((entry) => entry.length > 1);
 
-  sourceProperties.forEach((property) => {
-    const propertyKey = property[0].trim();
-    const propertyValue = property[1].trim();
+  sourceProperties.forEach((entry) => {
+    const entryKey = entry[0].trim();
+    const entryValue = entry[1].trim();
 
-    propertiesList[propertyKey] = propertyValue;
+    listOfProperties[entryKey] = entryValue;
   });
 
-  return propertiesList;
+  return listOfProperties;
 }
 
 module.exports = convertToObject;

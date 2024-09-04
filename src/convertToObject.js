@@ -1,19 +1,18 @@
 'use strict';
 
 function convertToObject(sourceString) {
-  const finalStyle = {};
 
-  sourceString
+  return sourceString
     .split(';')
-    .forEach((part) => {
+    .reduce((finalStyle, part) => {
       if (part.trim()) {
         const [command, value] = part.split(':');
 
         finalStyle[command.trim()] = value.trim();
       }
-  });
 
-  return finalStyle;
+      return finalStyle;
+  }, {});
 }
 
 module.exports = convertToObject;

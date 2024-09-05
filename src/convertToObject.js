@@ -6,24 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleObject = {};
+  return sourceString.split(';').reduce((styleAccumulator, declaration) => {
+    const [property, value] = declaration.trim().split(':');
 
-  const semicolon = ';';
-  const colon = ':';
+    if (value) {
+      styleAccumulator[property.trim()] = value.trim();
+    }
 
-  const convertedToObject = sourceString
-    .split(semicolon)
-    .reduce((styleAccumulator, declaration) => {
-      const [property, value] = declaration.trim().split(colon);
-
-      if (value) {
-        styleAccumulator[property.trim()] = value.trim();
-      }
-
-      return styleAccumulator;
-    }, styleObject);
-
-  return convertedToObject;
+    return styleAccumulator;
+  }, {});
 }
 
 module.exports = convertToObject;

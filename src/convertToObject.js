@@ -6,19 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const trimmedStyles = sourceString
-    .replace(/\t/g, ' ')
-    .split(';')
-    .map((e) => e.trim());
+  const trimmedStyles = sourceString.split(';').map((style) => style.trim());
 
   const clearedStyles = trimmedStyles
-    .filter((e) => e)
-    .reduce((acc, item) => {
+    .filter((element) => element)
+    .reduce((toObject, item) => {
       const splitted = item.split(':');
 
-      acc[splitted[0].trim()] = splitted[1].trim().replaceAll(', ', ',\n\t\t');
+      toObject[splitted[0].trim()] = splitted[1].trim();
 
-      return acc;
+      return toObject;
     }, {});
 
   return clearedStyles;

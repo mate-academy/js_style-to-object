@@ -9,7 +9,7 @@
 function convertToObject(sourceString) {
   const arrayFromSource = sourceString.split(';');
   const callback = (element, index, arr) => {
-    const trimmedEl = (arr[index] = element.replaceAll('\n', '').trim());
+    arr[index] = element.replaceAll('\n', '').trim();
   };
   arrayFromSource.forEach(callback);
   const shrunkArray = arrayFromSource.filter((el) => el.length > 4);

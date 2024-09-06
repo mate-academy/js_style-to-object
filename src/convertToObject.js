@@ -6,17 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const cleared = sourceString.split(';');
+  const sourceStringToArray = sourceString.split(';');
 
-  return cleared.reduce((accum, style) => {
-    const n = style
-      .split(':')
+  return sourceStringToArray.reduce((accum, currentStyle) => {
+    const currentStyleToArray = currentStyle.split(':');
 
-      .map((element) => element.trim());
+    const [key, value] = currentStyleToArray;
 
-    const [key, value] = n;
-
-    accum[key] = value;
+    if (value) {
+      accum[key.trim()] = value.trim();
+    }
 
     return accum;
   }, {});

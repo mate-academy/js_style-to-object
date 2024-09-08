@@ -6,22 +6,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = {};
-
   // Rozdzielamy ciąg na linie, usuwamy puste linie i linie zawierające tylko białe znaki
-  const lines = sourceString.split(';').filter(line => line.trim());
+  const lines = sourceString.split(';').filter((line) => line.trim());
 
-  lines.forEach(line => {
-    // Rozdzielamy nazwę właściwości i wartość
-    const [property, value] = line.split(':');
+  // Używamy reduce do przekształcenia tablicy linii w obiekt stylów
+  const stylesObject = lines.reduce((accumulator, line) => {
+    // Używamy wyrażenia regularnego do wyodrębnienia klucza i wartości z linii
+    const match = line.match(/^\s*([^:]+?)\s*:\s*(.+)\s*$/);
 
-    if (property && value) {
-      // Usuwamy niepotrzebne spacje i dodajemy do obiektu
-      const cleanedProperty = property.trim();
-      const cleanedValue = value.trim();
-      stylesObject[cleanedProperty] = cleanedValue;
+    if (match) {
+      const [, property, value] = match;
+
+      accumulator[property] = value;
     }
-  });
+
+    return accumulator;
+  }, {});
 
   return stylesObject;
 }

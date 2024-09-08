@@ -6,10 +6,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleArr = sourceString.split(';');
+  const styleRules = sourceString.split(';');
   const newStyles = {};
 
-  styleArr.map((style) => {
+  styleRules.map((style) => {
     if (style.trim() === '') {
       return;
     }

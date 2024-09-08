@@ -6,9 +6,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourcesArr = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
 
-  const resultObj = sourcesArr.reduce((acumulator, item) => {
+  const resultObject = styleDeclarations.reduce((acumulator, item) => {
     const element = item.split(':');
     const elementName = element[0]?.trim();
     const elementValue = element[1]?.trim();
@@ -20,6 +20,6 @@ function convertToObject(sourceString) {
     return acumulator;
   }, {});
 
-  return resultObj;
+  return resultObject;
 }
 module.exports = convertToObject;

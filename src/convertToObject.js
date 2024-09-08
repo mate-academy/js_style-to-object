@@ -6,13 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styles = sourceString
-    .split(';')
-    .filter((style) => style.trim() !== '')
-    .map((style) => style.split(':'));
+  const styles = sourceString.split(';');
 
-  return styles.reduce((prevStyles, [property, value]) => {
-    return { ...prevStyles, [property.trim()]: value.trim() };
+  return styles.reduce((acc, style) => {
+    const [property, value] = style.split(':');
+
+    if (property && value) {
+      acc[property.trim()] = value.trim();
+    }
+
+    return acc;
   }, {});
 }
 

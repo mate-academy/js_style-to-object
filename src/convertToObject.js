@@ -5,22 +5,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  let result = sourceString.split(';').map((arr) => arr.split(':'));
+  const splitedString = sourceString.split(';');
 
-  result = result.map(
-    (subArray) => subArray.map((string) => string.trim()),
-    // eslint-disable-next-line prettier/prettier
-  );
+  return splitedString.reduce((accumulator, style) => {
+    const [key, value] = style.split(':');
+    const trimmedKey = key?.trim();
+    const trimmedValue = value?.trim();
 
-  result = result.filter((subArray) => subArray.length > 1);
+    if (trimmedKey && trimmedValue) {
+      return { ...accumulator, [trimmedKey]: trimmedValue };
+    }
 
-  result = result.reduce(
-    (aggr, [key, value]) => ({ ...aggr, [key]: value }),
-    {},
-  );
-
-  return result;
+    return accumulator;
+  }, {});
 }
 
 module.exports = convertToObject;

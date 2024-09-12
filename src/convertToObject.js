@@ -6,12 +6,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const allProperties = sourceString.split(';');
+  const cssProperties = sourceString.split(';');
 
-  const resultObject = allProperties.reduce((currentObject, property) => {
-    const part = property.split(':');
-    const partName = part[0]?.trim();
-    const partValue = part[1]?.trim();
+  const resultObject = cssProperties.reduce((currentObject, property) => {
+    const [partName, partValue] = property.split(':').map((str) => str.trim());
 
     if (partName && partValue) {
       currentObject[partName] = partValue;

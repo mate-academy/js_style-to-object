@@ -7,11 +7,11 @@
  */
 function convertToObject(sourceString) {
   const styleObject = {};
-  const splitedStrs = sourceString.split(';');
+  const declarations = sourceString.split(';');
 
-  splitedStrs.forEach((splitedStr) => {
-    if (splitedStr.trim()) {
-      const [property, value] = splitedStr.split(':');
+  declarations.forEach((declaration) => {
+    if (declaration.trim()) {
+      const [property, value] = declaration.split(':');
 
       if (property && value) {
         styleObject[property.trim()] = value.trim();

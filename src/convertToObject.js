@@ -10,7 +10,7 @@ function convertToObject(sourceString) {
   const stylesObj = {};
   const lines = sourceString.split(';');
 
-  lines.forEach(function (line) {
+  lines.map(function (line) {
     const part = line.split(':');
 
     if (part.length === 2) {

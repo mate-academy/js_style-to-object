@@ -6,7 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObject = {};
+  const stylesArray = sourceString.split(';');
+
+  for (let i = 0; i < stylesArray.length; i++) {
+    const style = stylesArray[i].trim().split(': ');
+    styleObject[style[0]] = style[1];
+  }
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

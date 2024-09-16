@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable */
 
 const convertToObject = require('./convertToObject');
 const complexStylesString = require('./stylesString');

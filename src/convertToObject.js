@@ -6,7 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+
+  const filteredArr = sourceString
+    .replace(/[\s]+/g, ' ')
+    .split(';')
+    .filter(item => item !== ' ');
+
+  filteredArr.forEach(item => {
+    const temp = item.split(':');
+    result[temp[0].trim()] = temp[1].trim();
+  });
+
+  return result;
 }
 
 module.exports = convertToObject;

@@ -6,7 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const mapRules = {};
+
+  sourceString
+    .split(';')
+    .forEach(rule => {
+      const splitedRule = rule.trim().split(':');
+
+      if (splitedRule.length > 1) {
+        mapRules[splitedRule[0].trim()] = splitedRule[1].trim();
+      }
+    });
+
+  return mapRules;
 }
 
 module.exports = convertToObject;

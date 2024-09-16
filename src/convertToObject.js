@@ -6,7 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const sourceObj = {};
+  const sourceArr = sourceString.split(';');
+  sourceArr.length = sourceArr.length - 1;
+
+  for (let i = 0; i < sourceArr.length; i++) {
+    const intermidiateArr = sourceArr[i].trim().split(': ');
+    sourceObj[intermidiateArr[0]] = intermidiateArr[1];
+  }
+
+  return sourceObj;
 }
 
 module.exports = convertToObject;

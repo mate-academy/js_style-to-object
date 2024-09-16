@@ -5,8 +5,21 @@
  *
  * @return {object}
  */
+/* eslint-disable no-console */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .reduce((acc, style) => {
+      const [key, value] = style.split(':').map(part => part.trim());
+
+      if (!key || !value) {
+        return acc;
+      }
+
+      acc[key] = value;
+
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

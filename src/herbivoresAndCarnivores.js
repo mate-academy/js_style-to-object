@@ -10,6 +10,7 @@ class Animal {
   }
 
   static removeIfDead(animal) {
+    // write code
     if (animal.health <= 0) {
       Animal.alive = Animal.alive.filter(
         (aliveAnimal) => aliveAnimal !== animal,

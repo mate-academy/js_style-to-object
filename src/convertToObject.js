@@ -6,7 +6,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const obj = {};
+  const arr = sourceString.split(';');
+  for (let i = 0; i < arr.length; i++) {
+    const elements = arr[i].trim().split(': ');
+    obj[elements[0]] = elements[1];
+  }
+  return obj;
 }
-
 module.exports = convertToObject;

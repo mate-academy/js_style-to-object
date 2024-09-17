@@ -5,8 +5,16 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  var outputObject = {};
+  var propertiesKeys = sourceString.split(';').slice(0, -1);
+
+  for (let property of propertiesKeys) {
+    var propertyKey = property.split(':');
+    outputObject[propertyKey[0].trim()] = propertyKey[1].trim();
+  }
+  return outputObject;
 }
 
 module.exports = convertToObject;

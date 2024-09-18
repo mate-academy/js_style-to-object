@@ -8,23 +8,18 @@
 function convertToObject(stylesString) {
   return stylesString
     .split(';')
-    .map((style) => style.trim())
+    .map(style => style.trim())
     .filter(Boolean)
-    .map((style) => {
+    .map(style => {
       const [property, value] = style.split(':');
-
-      if (property === undefined || value === undefined) {
-        return null;
-      }
-
-      return [property.trim(), value.trim()];
+      return property && value ? [property.trim(), value.trim()] : null;
     })
     .filter(Boolean)
-    .reduce((obj, [property, value]) => {
-      obj[property] = value;
-
-      return obj;
-    }, {});
+    .reduce((obj, [property, value]) => ({
+      ...obj,
+      [property]: value
+    }), {});
 }
+
 
 module.exports = convertToObject;

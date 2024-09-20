@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   const cssStyles = sourceString
-    .trim()
+    .replaceAll('\t', '')
     .split(';')
     .reduce((prev, element) => {
       const elements = element.split(':');

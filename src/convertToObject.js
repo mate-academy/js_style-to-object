@@ -6,7 +6,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssStyles = sourceString
+    .replaceAll('\t', '')
+    .split(';')
+    .reduce((prev, element) => {
+      const elements = element.split(':');
+      let key = elements[0];
+      const value = elements[1];
+
+      key = key.replaceAll(' ', '').replaceAll('\n', '');
+
+      if (key.length === 0) {
+        return prev;
+      }
+
+      prev[key] = value.trim();
+
+      return prev;
+    }, {});
+
+  return cssStyles;
 }
 
 module.exports = convertToObject;

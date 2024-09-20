@@ -6,8 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArray = sourceString
-    .replaceAll('\t', '')
+  const cssStyles = sourceString
+    .trim()
     .split(';')
     .reduce((prev, element) => {
       const elements = element.split(':');
@@ -25,7 +25,7 @@ function convertToObject(sourceString) {
       return prev;
     }, {});
 
-  return sourceArray;
+  return cssStyles;
 }
 
 module.exports = convertToObject;

@@ -6,13 +6,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const formatString = sourceString.replace(/;\s*;/g, ' ').trim();
+  sourceString.replace(/;\s*;/g, ' ').trim();
 
-  const stringToArray = formatString.split(';');
+  const styleRules = sourceString.split(';');
 
   const result = {};
 
-  stringToArray.map((element) => {
+  styleRules.forEach((element) => {
     const [key, value] = element.split(':', 2);
 
     if (value !== undefined) {

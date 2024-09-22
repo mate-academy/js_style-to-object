@@ -6,22 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arr = sourceString
+  return sourceString
     .split(';')
-    .map((el) => el.trim())
-    .filter((el) => el !== '');
-  const nweArr = arr.map((el) => el.split(':').map((item) => item.trim()));
+    .map((element) => element.trim())
+    .filter((value) => value !== '')
+    .map((el) => el.split(':').map((item) => item.trim()))
+    .reduce((obj, [key, value]) => {
+      obj[key] = value;
 
-  const obj = {};
-
-  for (const elem of nweArr) {
-    const key = elem[0];
-    const value = elem[1];
-
-    obj[key] = value;
-  }
-
-  return obj;
+      return obj;
+    }, {});
 }
 
 module.exports = convertToObject;

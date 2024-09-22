@@ -6,16 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleRules = sourceString.replace(/;\s*;/g, ' ').trim().split(';');
-  const stylesObject = {};
+  const styleRules = sourceString.trim().split(';');
+  const stylesObject = styleRules.reduce((accumulator, currentValue) => {
+    const [key, value] = currentValue.split(':');
 
-  styleRules.forEach((element) => {
-    const [key, value] = element.split(':');
-
-    if (value !== undefined) {
-      stylesObject[key.trim()] = value.trim();
+    if (key && value) {
+      accumulator[key.trim()] = value.trim();
     }
-  });
+
+    return accumulator;
+  }, {});
 
   return stylesObject;
 }

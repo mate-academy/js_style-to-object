@@ -10,36 +10,15 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const rawLines = sourceString.split(';');
-
-  // filter lines without letters
-  const noEmptyLines = rawLines
+  const noEmptyLines = sourceString
+    .split(';')
     .map((line) => {
       return line.trim();
     })
     .filter((item) => item.length > 0);
 
-  const aggregatedLines = noEmptyLines.reduce((prev, line) => {
-    if (line.includes(':')) {
-      prev.push(line);
-    } else {
-      prev[prev.length - 1] += line;
-    }
-
-    return prev;
-  }, []);
-
-  // remove ';'
-  const noSemicolon = aggregatedLines.map((item) => {
-    // Array[string]
-    const [property, value] = item.split(':');
-    const newValue = value.split(';').join('');
-
-    return `${property}:${newValue}`;
-  });
-
   // trim
-  const noSpaces = noSemicolon.map((item) => {
+  const noSpaces = noEmptyLines.map((item) => {
     const [property, value] = item.split(':');
 
     const newKey = property.trim();

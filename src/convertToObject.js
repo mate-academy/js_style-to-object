@@ -8,7 +8,7 @@
 
 function convertToObject(cssString) {
   const rules = cssString.split(';').filter(Boolean);
-  const obj = {};
+  const styleObject = {};
 
   rules.forEach((rule) => {
     const [property, value] = rule.split(':');
@@ -17,11 +17,11 @@ function convertToObject(cssString) {
       const cleanProperty = property.trim();
       const cleanValue = value.trim();
 
-      obj[cleanProperty] = cleanValue;
+      styleObject[cleanProperty] = cleanValue;
     }
   });
 
-  return obj;
+  return styleObject;
 }
 
 module.exports = convertToObject;

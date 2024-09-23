@@ -17,20 +17,15 @@ function convertToObject(sourceString) {
     })
     .filter((item) => item.length > 0);
 
-  // trim
-  const noSpaces = noEmptyLines.map((item) => {
-    const [property, value] = item.split(':');
-
-    const newKey = property.trim();
-    const newValue = value.trim();
-
-    return `${newKey}:${newValue}`;
-  });
-
-  const convertToObj = noSpaces.reduce((prev, item) => {
+  const convertToObj = noEmptyLines.reduce((prev, item) => {
     const [key, value] = item.split(':');
 
-    return { ...prev, [key]: value };
+    const newKey = key.trim();
+    const newValue = value.trim();
+
+    prev[newKey] = newValue;
+
+    return prev;
   }, {});
 
   return convertToObj;

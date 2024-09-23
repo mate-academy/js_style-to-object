@@ -19,53 +19,39 @@ function convertToObject(sourceString) {
     })
     .filter((item) => item.length > 0);
 
-  const aggregatedLines = [];
-
-  for (const line of noEmptyLines) {
+  const aggregatedLines = noEmptyLines.reduce((prev, line) => {
     if (line.includes(':')) {
-      aggregatedLines.push(line);
+      prev.push(line);
     } else {
-      aggregatedLines[aggregatedLines.length - 1] += line;
+      prev[prev.length - 1] += line;
     }
-  }
 
-  let separatedRules = [];
-
-  for (const line of aggregatedLines) {
-    if (line.split(':').length >= 3) {
-      separatedRules = [...separatedRules, ...line.split(';')];
-    } else {
-      separatedRules.push(line);
-    }
-  }
-
-  separatedRules = separatedRules.filter((item) => item.length > 1);
-
-  const convertStrToObj = separatedRules.map((item) => {
-    const [property, value] = item.split(':');
-
-    return { [property]: value };
-  });
+    return prev;
+  }, []);
 
   // remove ';'
-  convertStrToObj.forEach((item, index, array) => {
-    const key = Object.keys(item)[0];
-    const newValue = item[key].split(';').join('');
+  const noSemicolon = aggregatedLines.map((item) => {
+    // Array[string]
+    const [property, value] = item.split(':');
+    const newValue = value.split(';').join('');
 
-    array[index] = { [key]: newValue };
+    return `${property}:${newValue}`;
   });
 
   // trim
-  convertStrToObj.forEach((item, index, array) => {
-    const oldKey = Object.keys(item)[0];
-    const newKey = oldKey.trim();
-    const newValue = item[oldKey].trim();
+  const noSpaces = noSemicolon.map((item) => {
+    const [property, value] = item.split(':');
 
-    array[index] = { [newKey]: newValue };
+    const newKey = property.trim();
+    const newValue = value.trim();
+
+    return `${newKey}:${newValue}`;
   });
 
-  const convertToObj = convertStrToObj.reduce((prev, item) => {
-    return { ...prev, ...item };
+  const convertToObj = noSpaces.reduce((prev, item) => {
+    const [key, value] = item.split(':');
+
+    return { ...prev, [key]: value };
   }, {});
 
   return convertToObj;

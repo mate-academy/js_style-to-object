@@ -10,19 +10,18 @@ function convertToObject(sourceString) {
   const splitString = sourceString
     .split(';')
     .filter((string) => string.includes(':'));
-  const result = {};
+
+  const styleObject = {};
 
   const callback = (line) => {
-    if (line) {
-      const splitLine = line.split(':');
+    const splitLine = line.split(':');
 
-      result[splitLine[0].trim()] = splitLine[1].trim();
-    }
+    styleObject[splitLine[0].trim()] = splitLine[1].trim();
   };
 
-  splitString.forEach(callback);
+  splitString.map(callback);
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

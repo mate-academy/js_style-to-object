@@ -6,35 +6,33 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // Transform string into array of lines
-  const propertiesArray = sourceString.split(';');
-  const styles = {};
+  const stylesObject = sourceString.split(';').reduce(transformStyles, {});
 
-  // Transform separate lines of the array of properties into key-value pairs
-  propertiesArray.forEach((property) => {
-    const parts = property.split(':');
-
-    const key = dataCleanup(parts[0]);
-    const value = dataCleanup(parts[1]);
-
-    // Add to the resulting object only the lines with both key and value
-    if (key.length && value.length) {
-      styles[key] = value;
-    }
-  });
-
-  return styles;
+  return stylesObject;
 }
 
 /**
- * @param {any} item
+ * @param {object} styles
+ * @param {string} property
  *
- * @returns {string}
+ * @returns {object}
  *
- * Remove whitespaces around the parts of the property
+ * Transform 'property' string into object and assign it
+ * to the given 'styles' object
  */
-function dataCleanup(item) {
-  return String(item).trim();
+function transformStyles(styles, property) {
+  if (property.trim().length) {
+    const [key, value] = property.split(':').map((part) => {
+      return part === undefined ? '' : String(part).trim();
+    });
+
+    // Add to the resulting object only the lines with both key and value
+    if (key.length && value.length) {
+      return Object.assign(styles, { [key]: value });
+    }
+  }
+
+  return styles;
 }
 
 module.exports = convertToObject;

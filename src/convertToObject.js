@@ -6,7 +6,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString.split(';').map(el => el.split(':'))
+    .reduce((obj, curent) => {
+      if (curent[1] !== undefined) {
+        obj[curent[0].trim()] = curent[1].trim();
+      };
+      return obj;
+    }, {});
 }
 
 module.exports = convertToObject;

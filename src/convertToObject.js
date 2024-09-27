@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 /**
@@ -6,7 +7,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssNormalized = {};
+
+  sourceString
+    .split(';')
+    .forEach((element) => {
+      const [property, value] = element.split(':');
+
+      if (property && value) {
+        const formattedProperty = property
+          .replace('\n', '')
+          .trim();
+
+        cssNormalized[formattedProperty] = value.trim();
+      }
+    });
+
+  return cssNormalized;
 }
 
 module.exports = convertToObject;

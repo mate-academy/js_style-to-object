@@ -6,7 +6,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = sourceString
+    .split(';')
+    .map(cssRule => cssRule.split(':')
+      .map(cssRuleItem => cssRuleItem.trim()))
+    .filter(cssRule => cssRule.length > 1);
+
+  return Object.fromEntries(result);
 }
 
 module.exports = convertToObject;

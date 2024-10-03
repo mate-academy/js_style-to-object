@@ -6,30 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const array = sourceString
+  const styleDeclarations = sourceString
     .split(';')
     .map((style) => style.trim())
     .filter((style) => style.length > 0);
 
-  const styleObject = {};
-
-  for (let i = 0; i < array.length; i++) {
-    const style = array[i];
-
-    // Separar a chave (propriedade) e o valor da declaração
+  return styleDeclarations.reduce((acc, style) => {
     const [key, value] = style.split(':');
 
     if (key && value) {
-      // Remover espaços extras da chave e do valor
       const cleanedKey = key.trim();
       const cleanedValue = value.trim();
 
-      // Adicionar o par chave-valor ao objeto
-      styleObject[cleanedKey] = cleanedValue;
+      acc[cleanedKey] = cleanedValue;
     }
-  }
 
-  return styleObject;
+    return acc;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -1,21 +1,24 @@
 'use strict';
 
-function convertToObject(sourceString) {
-  return sourceString
-    .split(';')
-    .reduce((acc, line) => {
-      const parts = line
-        .split(':')
-        .map((part) => part.trim());
+function convertToObject(styles) {
+  const declarations = styles.trim().split(/;\s*/);
 
-      if (parts.length === 2) {
-        const [key, value] = parts;
+  const stylesObject = {};
 
-        acc[key] = value;
+  declarations.forEach((declaration) => {
+    const [property, ...valueParts] = declaration.split(':');
+
+    if (property) {
+      const cleanProperty = property.trim();
+      const cleanValue = valueParts.join(':').trim();
+
+      if (cleanProperty && cleanValue) {
+        stylesObject[cleanProperty] = cleanValue;
       }
+    }
+  });
 
-      return acc;
-    }, {});
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -12,9 +12,9 @@ function convertToObject(sourceString) {
 
   // debugger;
 
-  const getArrayFromString = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
 
-  const formateString = getArrayFromString
+  const formateString = styleDeclarations
     .filter((arrString) => arrString.trim().length > 0)
     .map((arrString) => {
       const [key, value] = arrString.split(':').map((part) => part.trim());

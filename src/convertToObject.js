@@ -6,7 +6,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const stringMass = [];
+  const sourceStringMass = sourceString.split(';');
+
+  for (let i = 0; i < sourceStringMass.length; i++) {
+    if (sourceStringMass[i].includes(':')) {
+      stringMass.push(sourceStringMass[i]);
+    }
+  }
+
+  const result = sourceStringMass.reduce((prev, item) => {
+    const tempMass = item.split(':').map((string) => string.trim());
+
+    prev[tempMass[0]] = tempMass[1];
+
+    return prev;
+  }, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

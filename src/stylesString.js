@@ -1,5 +1,3 @@
-'use strict';
-
 const complexStylesString = `
   background-color:      #fff;
 -webkit-border-radius: 5px;
@@ -23,14 +21,12 @@ const complexStylesString = `
   ;
   position: relative;
 
-
   text-align: left !important;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
 
   white-space: nowrap;
   width: auto;

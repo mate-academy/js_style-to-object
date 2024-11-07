@@ -6,7 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .trim()
+    .split(';')
+    .reduce((stylesObj, declaration) => {
+      const [property, value] = declaration
+        .split(':')
+        .map((part) => part.trim());
+
+      if (property && value) {
+        stylesObj[property] = value;
+      }
+
+      return stylesObj;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -2,7 +2,7 @@
 
 const complexStylesString = `
   background-color:      #fff;
--webkit-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius     : 5px;
   border: 1px solid #e8e8e8;
   -webkit-box-sizing: border-box;
@@ -11,7 +11,7 @@ const complexStylesString = `
   cursor: pointer;
   float: left;
   font-family: inherit;
-      font-size: 14px;
+  font-size: 14px;
   font-weight: 400;
   height: 42px;
   line-height:    40px;

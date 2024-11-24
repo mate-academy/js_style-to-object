@@ -1,12 +1,18 @@
 'use strict';
 
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
 function convertToObject(sourceString) {
-  // write your code here
+  const array = sourceString
+    .split(';')
+    .map((str) => str.trim())
+    .filter((str) => str !== '')
+    .map((str) => str.split(/\s*:\s*/));
+  const obj = {};
+
+  array.forEach((element) => {
+    obj[element[0]] = element[1];
+  });
+
+  return obj;
 }
 
 module.exports = convertToObject;

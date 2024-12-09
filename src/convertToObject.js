@@ -6,7 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const res = {};
+
+  const estilos = sourceString.split(';').filter(checkEmpty);
+
+  estilos.forEach((estilo) => {
+    const [key, value] = estilo.split(':');
+
+    res[key.trim()] = value.trim();
+  });
+
+  return res;
+}
+
+function checkEmpty(linha) {
+  return linha.trim() !== '';
 }
 
 module.exports = convertToObject;

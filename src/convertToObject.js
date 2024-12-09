@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssStyleObject = {};
+  const cssStyles = sourceString.split(';');
+
+  cssStyles.forEach((style) => {
+    const [key, value] = style.trim().split(':');
+
+    if (key && value) {
+      cssStyleObject[key.trim()] = value.trim();
+    }
+  });
+
+  return cssStyleObject;
 }
 
 module.exports = convertToObject;

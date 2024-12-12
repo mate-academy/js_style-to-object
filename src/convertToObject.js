@@ -6,17 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesList = sourceString
+  return sourceString
     .split(';')
-    .map((styleString) => styleString.split(':').map((rule) => rule.trim()));
+    .map((styleString) => styleString.split(':').map((rule) => rule.trim()))
+    .filter(([key, value]) => key && value)
+    .reduce((styles, [key, value]) => {
+      styles[key] = value;
 
-  const formattedStyles = {};
-
-  for (const style of stylesList) {
-    formattedStyles[style[0]] = style[1];
-  }
-
-  return formattedStyles;
+      return styles;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -1,19 +1,18 @@
-function convertToObject(sourceString) {
-  return sourceString
-    .split(';')
-    .filter((line) => line.trim())
-    .reduce((acc, line) => {
-      const [property, value] = line.split(':');
+const convertToObject = (sourceString) => {
+  const trimmedSourceString = sourceString.trim();
+  const styleDeclarations = trimmedSourceString.split(';');
 
-      if (property && value) {
-        const trimmedProperty = property.trim();
-        const trimmedValue = value.trim();
+  const stylesObject = styleDeclarations.reduce((acc, declaration) => {
+    const [property, value] = declaration.split(':').map((item) => item.trim());
 
-        acc[trimmedProperty] = trimmedValue;
-      }
+    if (property && value) {
+      acc[property] = value;
+    }
 
-      return acc;
-    }, {});
-}
+    return acc;
+  }, {});
+
+  return stylesObject;
+};
 
 module.exports = convertToObject;

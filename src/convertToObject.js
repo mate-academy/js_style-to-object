@@ -6,7 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arrCss = sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter(Boolean);
+
+  const obgElm = {};
+
+  arrCss.forEach((element) => {
+    const [key, value] = element.split(':').map((item) => item.trim());
+
+    obgElm[key] = value;
+  });
+
+  return obgElm;
 }
 
 module.exports = convertToObject;

@@ -10,18 +10,20 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const convertedOblect = sourceString
+  const convertedObject = sourceString
     .split(';')
-    .filter((obj) => obj.length > 0)
-    .reduce((acc, obj) => {
-      const [key, value] = obj.split(':').map((part) => part.trim());
+    .filter((cssObject) => cssObject.length > 0)
+    .reduce((acc, cssObject) => {
+      const [key, value] = cssObject
+        .split(':')
+        .map((partOfObject) => partOfObject.trim());
 
       acc[key] = value;
 
       return acc;
     }, {});
 
-  return convertedOblect;
+  return convertedObject;
 }
 
 module.exports = convertToObject;

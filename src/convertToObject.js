@@ -17,10 +17,30 @@ function convertToObject(sourceString) {
 
     return trimmedParts;
   });
+  // variant 1
+  // const objecting = {};
 
-  const objecting = Object.fromEntries(dividing);
+  // dividing.forEach(([key, value]) => {
+  //   objecting[key] = value;
+  // });
+
+  // variant 2
+
+  const objecting = dividing.reduce((acc, [key, value]) => {
+    acc[key] = value;
+
+    return acc;
+  }, {});
+
+  // variant 3
+  // const styleObject = Object.fromEntries(keyValuePairs);
 
   return objecting;
 }
+
+// const obj = {};
+// array.forEach(([key, value]) => {
+//   obj[key] = value;
+// });
 
 module.exports = convertToObject;

@@ -9,7 +9,7 @@ describe('convertToObject should', () => {
   });
 
   it('convert a single rule to a single object property', () => {
-    expect(convertToObject('padding: 20px')).toEqual({ padding: '20px' });
+    expect(convertToObject(' padding: 20px')).toEqual({ padding: '20px' });
   });
 
   it('convert a single rule with ; at the end', () => {

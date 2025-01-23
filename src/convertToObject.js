@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
       }
 
       return prevResult;
-    });
+    }, {});
 }
 
 module.exports = convertToObject;

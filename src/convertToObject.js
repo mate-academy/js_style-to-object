@@ -6,35 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  if (sourceString === '') {
-    return {};
-  }
+  let resultObject = {};
+  let resultArray = sourceString.split(';');
 
-  let temporaryWordsArray = [];
-  let temporaryValuesString = '';
-  const stylesObject = {};
-  const splitedSource = sourceString.split(';');
-  const allowedSymbols = /[^\s:;\n\t ]+/gm;
+  resultArray = resultArray.map((style) => style.trimStart().trimEnd());
 
-  for (const style of splitedSource) {
-    if (allowedSymbols.test(style) === false) {
-      continue;
-    }
+  resultArray = resultArray.filter((style) => style !== '');
 
-    temporaryWordsArray = style.match(allowedSymbols);
-    temporaryValuesString = temporaryWordsArray[1];
+  resultArray = resultArray.map((style) => style.split(':'));
 
-    for (let i = 2; i < temporaryWordsArray.length; i++) {
-      temporaryValuesString += ' ' + temporaryWordsArray[i];
-    }
+  resultObject = resultArray.reduce(
+    (prev, style) => ({ ...prev, [style[0].trimEnd()]: style[1].trimStart() }),
+    {},
+  );
 
-    stylesObject[temporaryWordsArray[0]] = temporaryValuesString;
-
-    temporaryWordsArray = [];
-    temporaryValuesString = '';
-  }
-
-  return stylesObject;
+  return resultObject;
 }
 
 module.exports = convertToObject;

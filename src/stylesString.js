@@ -2,7 +2,7 @@
 
 const complexStylesString = `
   background-color:      #fff;
--webkit-border-radius: 5px;
+ -webkit-border-radius: 5px;
   border-radius     : 5px;
   border: 1px solid #e8e8e8;
   -webkit-box-sizing: border-box;
@@ -30,8 +30,6 @@ const complexStylesString = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-
   white-space: nowrap;
   width: auto;
 `;

@@ -6,7 +6,6 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  
   return sourceString.split(';').reduce((acc, pair) => {
     const [key, value] = pair.split(':');
     if (key && value) {

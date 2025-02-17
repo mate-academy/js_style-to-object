@@ -6,9 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arraySourceString = sourceString.split(';');
-
-  return arraySourceString
+  return sourceString
+    .split(';')
     .filter((item) => {
       const [name, value] = item.split(':');
 

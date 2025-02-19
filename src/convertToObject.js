@@ -6,21 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  const styles = {};
-
-  sourceString
+  // write your code her
+  return sourceString
     .split(';')
-    .map((declaration) => declaration.trim())
-    .filter((declaration) => declaration)
-    .forEach((declaration) => {
-      const [property, value] = declaration.split(/:(.+)/);
+    .map((str) => str.trim())
+    .filter(Boolean)
+    .reduce((acc, str) => {
+      const [key, value] = str.split(':').map((sub) => sub.trim());
 
-      if (property && value) {
-        styles[property.trim()] = value.trim();
+      if (key && value !== undefined) {
+        acc[key] = value;
       }
-    });
 
-  return styles;
+      return acc;
+    }, {});
 }
+
 module.exports = convertToObject;

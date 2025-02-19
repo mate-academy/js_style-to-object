@@ -5,8 +5,20 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .map((el) => el.trim())
+    .filter((el) => el !== '')
+    .map((el) => {
+      const [key, value] = el.split(':').map((part) => part.trim());
+
+      return {
+        [key]: value,
+      };
+    })
+    .reduce((acc, style) => ({ ...acc, ...style }), {});
 }
 
 module.exports = convertToObject;

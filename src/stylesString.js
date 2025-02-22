@@ -36,4 +36,4 @@ const complexStylesString = `
   width: auto;
 `;
 
-module.exports = complexStylesString;
+module.exports = { complexStylesString };

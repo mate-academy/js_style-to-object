@@ -6,7 +6,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  if (!sourceString) {
+    return {};
+  }
+
+  const styleToObject = {};
+  const styleDeclarations = sourceString.split(';');
+
+  styleDeclarations.forEach((declaration) => {
+    const index = declaration.indexOf(':');
+
+    const name = declaration.substring(0, index).trim();
+    const value = declaration.substring(index + 1).trim();
+
+    if (name && value) {
+      styleToObject[name] = value;
+    }
+  });
+
+  return styleToObject;
 }
 
 module.exports = convertToObject;

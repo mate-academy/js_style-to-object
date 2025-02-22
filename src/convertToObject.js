@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const styleLines = sourceString.trim().split(';').filter(Boolean);
+  const styleObject = {};
+
+  styleLines.forEach((line) => {
+    const [propertyName, propertyValue] = line.trim().split(':').map(part => part.trim());
+
+    if (propertyName && propertyValue) {
+      styleObject[propertyName] = propertyValue;
+    }
+  });
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

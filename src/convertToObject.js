@@ -5,8 +5,22 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const styleObject = {};
+
+  sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .forEach((rule) => {
+      const [key, value] = rule.split(':');
+
+      if (key && value) {
+        styleObject[key.trim()] = value.trim();
+      }
+    });
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

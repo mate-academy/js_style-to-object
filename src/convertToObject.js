@@ -6,6 +6,8 @@
  * @return {object}
  */
 
+// const result = convertToObject(complexStylesString);
+
 function convertToObject(convertableString) {
   const objectToReturn = {};
   const normalizedArray = convertableString
@@ -20,12 +22,8 @@ function convertToObject(convertableString) {
 
 function fixAndMerge(array, object) {
   for (const element of array) {
-    let key = element.split(':')[0].trim();
+    const key = element.split(':')[0].trim();
     const valOfKey = element.split(':')[1].trim();
-
-    if (key.includes('-')) {
-      key = `'${key}'`;
-    }
 
     object[key] = valOfKey;
   }

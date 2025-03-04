@@ -7,25 +7,28 @@
  */
 
 function convertToObject(convertableString) {
-  const baseArray = convertableString.split(';');
-  const processArray = {};
+  const objectToReturn = {};
+  const normalizedArray = convertableString
+    .split(';')
+    .map((part) => part.trim())
+    .filter((element) => element.length > 0);
 
-  for (const value of baseArray) {
-    if (value.length > 4) {
-      const variable = value.split(':');
-      let key = variable[0].trim();
+  fixAndMerge(normalizedArray, objectToReturn);
 
-      if (key.includes('-')) {
-        key = `'${key}'`;
-      }
+  return objectToReturn;
+}
 
-      const val = variable[1].trim();
+function fixAndMerge(array, object) {
+  for (const element of array) {
+    let key = element.split(':')[0].trim();
+    const valOfKey = element.split(':')[1].trim();
 
-      processArray[key] = val;
+    if (key.includes('-')) {
+      key = `'${key}'`;
     }
-  }
 
-  return processArray;
+    object[key] = valOfKey;
+  }
 }
 
 const complexStylesString = `

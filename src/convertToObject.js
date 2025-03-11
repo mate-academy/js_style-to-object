@@ -6,7 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .map(trimItem)
+    .filter((arrayItem) => arrayItem !== '')
+    .map((styleRuleString) => styleRuleString.split(':').map(trimItem))
+    .reduce(
+      (previousObject, [key, value]) => ({ ...previousObject, [key]: value }),
+      {},
+    );
+}
+
+function trimItem(item) {
+  return item.trim();
 }
 
 module.exports = convertToObject;

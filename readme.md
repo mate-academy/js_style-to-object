@@ -2,11 +2,11 @@
 
 > [JS Task Guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md)
 
-## Task description:
+## Task description
 
 Implement a `convertToObject` function that takes a string with styles and returns an object where CSS declarations are converted to keys and values.
 
-Example: 
+Example
 
 ```javascript
 'use strict';
@@ -76,5 +76,5 @@ console.log(result === {
   'user-select': 'none',
   'white-space': 'nowrap',
   width: 'auto',
-}) // outputs true; 
+}) // outputs true;
 ```

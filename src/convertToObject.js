@@ -9,17 +9,17 @@ function convertToObject(sourceString) {
   const normalizedString = sourceString.replace(/;+/g, ';').replace(/;$/, '');
 
   const stringToArr = normalizedString.split(';');
-  const obj = {};
+  const resultingObject = {};
 
-  for (const prop of stringToArr) {
+  stringToArr.map((prop) => {
     const [key, ...valueParts] = prop.split(':');
 
     if (key && valueParts.length > 0) {
-      obj[key.trim()] = valueParts.join().trim();
+      resultingObject[key.trim()] = valueParts.join().trim();
     }
-  }
+  });
 
-  return obj;
+  return resultingObject;
 }
 
 module.exports = convertToObject;

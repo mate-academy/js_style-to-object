@@ -7,9 +7,9 @@
  */
 function convertToObject(stylesString) {
   return stylesString
-    .split(';') // Розбиваємо рядок на окремі оголошення
-    .map((line) => line.trim()) // Видаляємо зайві пробіли
-    .filter((line) => line.includes(':')) // Відкидаємо порожні рядки
+    .split(';')
+    .map((line) => line.trim())
+    .filter((line) => line.includes(':'))
     .reduce((acc, declaration) => {
       const [property, value] = declaration.split(':');
 

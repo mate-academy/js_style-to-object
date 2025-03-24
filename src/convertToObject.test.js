@@ -1,6 +1,6 @@
 'use strict';
 
-const convertToObject = require('./convertToObject');
+const convertToObject = require('./convertToObject').default;
 const complexStylesString = require('./stylesString');
 
 describe('convertToObject should', () => {

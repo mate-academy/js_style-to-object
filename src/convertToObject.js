@@ -7,9 +7,13 @@
  */
 function convertToObject(sourceString) {
   return sourceString
+
     .split(';')
+
     .map((property) => property.trim())
+
     .filter((property) => property)
+
     .reduce((styles, property) => {
       const parts = property.split(':');
 

@@ -7,6 +7,8 @@
  */
 function convertToObject(sourceString) {
   // write your code here
+  // prettier-ignore
+
   const convertToArray = sourceString.split(';');
   const normalizedArray = convertToArray.map((item) => {
     return item.trim();

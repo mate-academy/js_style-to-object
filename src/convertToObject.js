@@ -7,14 +7,12 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const strArray = sourceString.split(';');
-
-  for (let i = 0; i < strArray.length; i++) {
-    strArray[i] = strArray[i]
+  const strArray = sourceString.split(';').map((el1) => {
+    return el1
       .trim()
       .split(':')
-      .map((el) => el.trim());
-  }
+      .map((cssProp) => cssProp.trim());
+  });
 
   const filtArray = strArray.filter((prop) => prop.length > 1);
 

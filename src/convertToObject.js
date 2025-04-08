@@ -10,31 +10,26 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const result = {};
-  const lines = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .map((line) => line.trim())
+    .filter((line) => line)
+    .reduce((result, line) => {
+      const colonIndex = line.indexOf(':');
 
-  for (const line of lines) {
-    const trimmedLine = line.trim();
+      if (colonIndex === -1) {
+        return result;
+      }
 
-    if (!trimmedLine) {
-      continue;
-    }
+      const property = line.substring(0, colonIndex).trim();
+      const value = line.substring(colonIndex + 1).trim();
 
-    const colonIndex = trimmedLine.indexOf(':');
+      if (property && value) {
+        result[property] = value;
+      }
 
-    if (colonIndex === -1) {
-      continue;
-    }
-
-    const property = trimmedLine.substring(0, colonIndex).trim();
-    const value = trimmedLine.substring(colonIndex + 1).trim();
-
-    if (property && value) {
-      result[property] = value;
-    }
-  }
-
-  return result;
+      return result;
+    }, {});
 }
 
 module.exports = convertToObject;

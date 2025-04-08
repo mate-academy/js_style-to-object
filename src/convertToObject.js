@@ -6,31 +6,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  let str = [];
-
-  if (sourceString.length === 0) {
-    return obj;
+  // Якщо рядок порожній, повертаємо порожній об'єкт
+  if (sourceString.trim() === '') {
+    return {};
   }
 
-  str = sourceString.split(';');
+  const result = {};
 
-  for (let i = 0; i < str.length; i++) {
-    const newstr = str[i].trim();
+  // Розбиваємо рядок на стилі за допомогою символу ";"
+  sourceString
+    .split(';')
+    .map((style) => style.trim()) // Очищаємо зайві пробіли
+    .filter(Boolean) // Фільтруємо порожні елементи
+    .forEach((style) => {
+      // Розділяємо стиль на ключ і значення
+      const [key, value] = style.split(':').map((item) => item.trim());
 
-    if (newstr.length < 2) {
-      continue;
-    }
+      // Перевірка на випадки з зайвими пробілами чи символами
+      if (key && value) {
+        result[key] = value;
+      }
+    });
 
-    const colonpos = newstr.search(':');
-    const property = newstr.substr(0, colonpos).trim();
-    const value = newstr.substr(colonpos + 1).trim();
-
-    obj[property] = value;
-    /* obj.property = value */
-  }
-
-  return obj;
+  return result;
 }
 
 module.exports = convertToObject;

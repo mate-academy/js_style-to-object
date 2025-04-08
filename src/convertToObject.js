@@ -5,30 +5,22 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // Якщо рядок порожній, повертаємо порожній об'єкт
-  if (sourceString.trim() === '') {
-    return {};
-  }
+function convertToObject(stylesString) {
+  return stylesString
+    .split(';') // розбиваємо на окремі декларації
+    .map((declaration) => declaration.trim()) // прибираємо зайві пробіли
+    .filter(Boolean) // фільтруємо порожні строки
+    .map((declaration) => declaration.split(':')) // розділяємо ключ та значення
+    .filter((parts) => parts.length >= 2) // ігноруємо некоректні рядки
+    .reduce((styles, [property, ...valueParts]) => {
+      const key = property.trim();
 
-  const result = {};
+      const value = valueParts.join(':').trim();
 
-  // Розбиваємо рядок на стилі за допомогою символу ";"
-  sourceString
-    .split(';')
-    .map((style) => style.trim()) // Очищаємо зайві пробіли
-    .filter(Boolean) // Фільтруємо порожні елементи
-    .forEach((style) => {
-      // Розділяємо стиль на ключ і значення
-      const [key, value] = style.split(':').map((item) => item.trim());
+      styles[key] = value;
 
-      // Перевірка на випадки з зайвими пробілами чи символами
-      if (key && value) {
-        result[key] = value;
-      }
-    });
-
-  return result;
+      return styles;
+    }, {});
 }
 
 module.exports = convertToObject;

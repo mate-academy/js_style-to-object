@@ -8,7 +8,6 @@
 function convertToObject(stylesString) {
   const rules = stylesString
     .replace(/\s*;\s*/g, ';')
-    .replace(/\n/g, '')
     .replace(/\t/g, '')
     .split(';')
     .map(rule => rule.trim())
@@ -20,10 +19,9 @@ function convertToObject(stylesString) {
     const [property, ...valueParts] = rule.split(':');
     const value = valueParts.join(':').trim();
     const cleanProperty = property.trim();
-    const cleanValue = value.trim();
-
-    const valueWithImportant = cleanValue.includes('!important') 
-      ? cleanValue 
+    const cleanValue = value.replace(/\n/g, '');
+    const valueWithImportant = cleanValue.includes('!important')
+      ? cleanValue
       : cleanValue.trim();
 
     stylesObject[cleanProperty] = valueWithImportant;
@@ -33,4 +31,3 @@ function convertToObject(stylesString) {
 }
 
 module.exports = convertToObject;
-

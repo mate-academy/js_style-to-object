@@ -7,15 +7,16 @@
  */
 function convertToObject(sourceString) {
   const obj = {};
-  let splitted = sourceString.split(';');
 
-  splitted = splitted.map((item) => {
-    return item.split(':');
-  });
+  let splitted = sourceString.split(';')
+    .map(item => item.trim())
+    .filter(item => item.length > 0 && item.includes(':'));
 
   for (const s of splitted) {
-    if (s[1]) {
-      obj[`${s[0].trim()}`] = s[1].trim();
+    const [key, value] = s.split(':').map(item => item.trim());
+
+    if (key) {
+      obj[key] = value;
     }
   }
 

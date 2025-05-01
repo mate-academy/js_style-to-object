@@ -9,9 +9,9 @@ function convertToObject(sourceString) {
   const styleObject = {};
 
   // Розділяємо рядок на окремі оголошення
-  const declarations = sourceString.split(';');
+  const stylesArray = sourceString.split(';');
 
-  declarations.forEach((declaration) => {
+  stylesArray.forEach((declaration) => {
     if (declaration.trim() === '') {
       return;
     }

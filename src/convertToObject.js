@@ -3,24 +3,22 @@
 /**
  * @param {string} sourceString
  *
- * /@return {object}
+ * @return {object}
  */
-function convertToObject(sourceString) {
+function convertToObject(stylesString) {
   const styles = {};
-  const declarations = sourceString.split(';');
 
-  for (const declaration of declarations) {
-    const parts = declaration.trim().split(':');
-
-    if (parts.length === 2) {
-      const key = parts[0].trim();
-      const value = parts[1].trim();
+  stylesString.split(';').forEach(part => {
+    const index = part.indexOf(':');
+    if (index !== -1) {
+      const key = part.substring(0, index).trim();
+      const value = part.substring(index + 1).trim();
 
       if (key !== '' && value !== '') {
         styles[key] = value;
       }
     }
-  }
+  });
 
   return styles;
 }

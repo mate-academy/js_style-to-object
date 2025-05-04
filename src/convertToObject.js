@@ -8,8 +8,9 @@
 function convertToObject(stylesString) {
   const styles = {};
 
-  stylesString.split(';').forEach(part => {
+  stylesString.split(';').forEach((part) => {
     const index = part.indexOf(':');
+
     if (index !== -1) {
       const key = part.substring(0, index).trim();
       const value = part.substring(index + 1).trim();

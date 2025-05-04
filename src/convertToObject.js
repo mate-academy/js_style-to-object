@@ -3,8 +3,8 @@
 /**
  * @param {string} sourceString
  *
- * @return {object}
- */new
+ * /@return {object}
+ */
 function convertToObject(sourceString) {
   const styles = {};
   const declarations = sourceString.split(';');

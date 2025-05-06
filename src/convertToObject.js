@@ -1,44 +1,32 @@
 'use strict';
+/**
+ * @param {string} sourceString
+ *
+ * @return {object}
+ */
+function convertToObject(sourceString) {
+  // write your code here
+  const result = {};
 
-function convertToObject(styleString) {
-  const styleObject = {};
-  const declarations = styleString.split(';');
+  const rules = sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter((rule) => rule);
 
-  for (const declaration of declarations) {
-    const trimmedDeclaration = declaration.trim();
-    if (trimmedDeclaration) {
-      const parts = trimmedDeclaration.split(':');
-      if (parts.length === 2) {
-        const property = parts[0].trim();
-        const value = parts[1].trim();
-        styleObject[property] = value;
-      }
+  for (const rule of rules) {
+    const colonIndex = rule.indexOf(':');
+
+    if (colonIndex === -1) {
+      continue;
     }
+
+    const property = rule.slice(0, colonIndex).trim();
+    const value = rule.slice(colonIndex + 1).trim();
+
+    result[property] = value;
   }
 
-  return styleObject;
+  return result;
 }
 
-const complexStylesString = `
-  background-color: #fff;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid #e8e8e8;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  clear: both;
-  cursor: pointer;
-  float: left;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 400;
-  height: 42px;
-  line-height: 40px;
-  outline: 0;
-  padding-left: 18px;
-  padding-right: 30px;
-  position;
-  `
-  const result = convertToObject(complexStylesString);
-
-  console.log(result);
+module.exports = convertToObject;

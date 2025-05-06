@@ -40,3 +40,5 @@ const complexStylesString = `
   position;
   `
   const result = convertToObject(complexStylesString);
+
+  console.log(result);

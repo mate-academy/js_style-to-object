@@ -14,7 +14,7 @@ function convertToObject(sourceString) {
     const trimmed = item.trim();
 
     if (trimmed) {
-      const [key, value] = trimmed.split(':');
+      const [key, value] = trimmed.split(':', 2);
 
       if (key && value) {
         obj[key.trim()] = value.trim();

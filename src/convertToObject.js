@@ -6,7 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return Object.fromEntries(
+    sourceString
+      .split(';')
+      .map((prop) => prop.trim())
+      .filter((prop) => prop.includes(':'))
+      .map((prop) => {
+        const [key, value] = prop.split(':');
+
+        return [key.trim(), value.trim()];
+      }),
+  );
 }
 
 module.exports = convertToObject;

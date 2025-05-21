@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
       continue;
     }
 
-    const value = valueParts.join().trim();
+    const value = valueParts.join(':').trim();
 
     result[key.trim()] = value;
   }

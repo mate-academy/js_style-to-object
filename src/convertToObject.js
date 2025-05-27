@@ -12,7 +12,11 @@ function convertToObject(sourceString) {
   for (let string1 of sourceString1) {
     string1 = string1.split(':');
 
-    if (string1[0].trim() !== '' && string1[1].trim() !== '') {
+    if (
+      string1.length >= 2 &&
+      string1[0].trim() !== '' &&
+      string1[1].trim() !== ''
+    ) {
       cssObject[string1[0].trim()] = string1[1].trim();
     }
   }

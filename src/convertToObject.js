@@ -6,7 +6,15 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arr = sourceString.split(';');
+  const arrTrim = arr.map((el) => el.trim());
+  const res = arrTrim.reduce((prev, el, i) => {
+    const words = el.split(':').map((word) => word.trim());
+
+    return { ...prev, [words[0]]: words[1] };
+  }, {});
+
+  return res;
 }
 
 module.exports = convertToObject;

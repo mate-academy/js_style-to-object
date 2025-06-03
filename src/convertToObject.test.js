@@ -130,6 +130,7 @@ describe('convertToObject should', () => {
   });
 
   it('convert a complex CSS rule', () => {
+
     expect(convertToObject(complexStylesString)).toEqual({
       'background-color': '#fff',
       '-webkit-border-radius': '5px',

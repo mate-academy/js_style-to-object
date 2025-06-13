@@ -6,7 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = {};
+  const pairs = sourceString.split('&');
+
+  pairs.forEach((pair) => {
+    const [key, value] = pair.split('=');
+
+    result[key] = value;
+  });
+
+  return result;
 }
+export default convertToObject; // export default
 
 module.exports = convertToObject;

@@ -17,6 +17,5 @@ function convertToObject(sourceString) {
 
   return result;
 }
-export default convertToObject; // export default
 
 module.exports = convertToObject;

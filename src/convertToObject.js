@@ -6,7 +6,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const res = {};
+  const rules = sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter(Boolean);
+
+  for (const rule of rules) {
+    const [rawKey, ...rest] = rule.split(':');
+
+    if (!rawKey || rest.length === 0) {
+      continue;
+    }
+
+    const key = rawKey.trim();
+    const value = rest.join(':').trim();
+
+    res[key] = value;
+  }
+
+  return res;
 }
 
 module.exports = convertToObject;

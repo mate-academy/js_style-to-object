@@ -9,17 +9,19 @@ function convertToObject(sourceString) {
   // write your code here
   const arr = sourceString.split(';');
 
-  const obj1 = {};
+  const obj = {};
 
-  arr.map((item) => {
-    const [key, value] = item.split(':').map((part) => part.trim());
+  arr.map((item, index) => {
+    const [rawKey, rawValue] = item.split(':');
+    const key = rawKey?.trim();
+    const value = rawValue?.trim();
 
-    if (key && value !== undefined) {
-      obj1[key] = value;
+    if (key && value) {
+      obj[key] = value;
     }
   });
 
-  return obj1;
+  return obj;
 }
 
 module.exports = convertToObject;

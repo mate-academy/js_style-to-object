@@ -7,25 +7,22 @@
  */
 function convertToObject(sourceString) {
   const res = {};
-  const sourceStringSplitted = sourceString.split('\n');
+  const rules = sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter(Boolean);
 
-  const keyAndValues = sourceStringSplitted.map((el) => {
-    let [key, value] = el.split(':');
+  for (const rule of rules) {
+    const [rawKey, ...rest] = rule.split(':');
 
-    if ([key, value].length < 2) {
-      return null;
+    if (!rawKey || rest.length === 0) {
+      continue;
     }
 
-    key = key.trim();
-    value = value.trim().replace(/;$/, '');
+    const key = rawKey.trim();
+    const value = rest.join(':').trim();
 
-    return [key, value];
-  });
-
-  for (let i = 0; i < keyAndValues.length; i++) {
-    if (keyAndValues[i][0] && keyAndValues[i][1]) {
-      res[keyAndValues[i][0]] = keyAndValues[i][1];
-    }
+    res[key] = value;
   }
 
   return res;

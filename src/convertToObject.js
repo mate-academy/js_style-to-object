@@ -9,18 +9,17 @@ function convertToObject(sourceString) {
   // write your code here
   const cssObject = {};
 
-  const declarations = sourceString
+  sourceString
     .split(';')
     .map((element) => element.trim())
-    .filter((element) => element.includes(':'));
+    .filter((element) => element.includes(':'))
+    .map((element) => {
+      const [key, value] = element.split(':');
 
-  for (let style = 0; style < declarations.length; style++) {
-    const [key, value] = declarations[style].split(':');
-
-    if (key && value) {
-      cssObject[key.trim()] = value.trim();
-    }
-  }
+      if (key && value) {
+        cssObject[key.trim()] = value.trim();
+      }
+    });
 
   return cssObject;
 }

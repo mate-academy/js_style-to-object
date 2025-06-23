@@ -14,7 +14,7 @@ function convertToObject(sourceString) {
     .map((element) => element.trim())
     .filter((element) => element.includes(':'));
 
-  for (const style in declarations) {
+  for (let style = 0; style < declarations.length; style++) {
     const [key, value] = declarations[style].split(':');
 
     if (key && value) {

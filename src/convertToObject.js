@@ -6,7 +6,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arr = sourceString.split(';').filter((x) => x.trim() !== '');
+  const tab = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const a = arr[i].split(':').map((x) => x.trim());
+
+    tab.push(a);
+  }
+
+  const obj = {};
+
+  for (let i = 0; i < tab.length; i++) {
+    const [a, b] = tab[i] || [];
+
+    if (typeof a === 'string' && b !== undefined) {
+      obj[a] = b;
+    }
+  }
+
+  return obj;
 }
 
 module.exports = convertToObject;

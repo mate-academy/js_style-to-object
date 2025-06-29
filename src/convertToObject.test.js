@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 const convertToObject = require('./convertToObject');
 const complexStylesString = require('./stylesString');

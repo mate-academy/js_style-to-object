@@ -13,7 +13,9 @@ function convertToObject(sourceString) {
     if (declaration.trim()) {
       const [property, value] = declaration.split(':');
 
-      result[property.trim()] = value.trim();
+      if (property !== undefined && value !== undefined) {
+        result[property.trim()] = value.trim();
+      }
     }
   }
 

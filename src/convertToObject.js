@@ -20,7 +20,9 @@ function convertToObject(sourceString) {
   for (let i = 0; i < arrSourceString.length; i++) {
     const splitData = arrSourceString[i].split(':');
 
-    result[splitData[0].trim()] = splitData[1].trim();
+    if (splitData[0].trim() !== '' && splitData[1].trim() !== '') {
+      result[splitData[0].trim()] = splitData[1].trim();
+    }
   }
 
   return result;

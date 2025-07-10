@@ -49,7 +49,7 @@ function convertToObject(sourceString) {
 
   for (let i = 0; i < nonBlankRules.length; i++) {
     let modifiedRule = '';
-    const rulePieces = nonBlankRules[i].split(':');
+    const rulePieces = nonBlankRules[i].split(':', 2);
 
     const modifiedFirstHalf = rulePieces[0].trimEnd();
     const modifiedSecondHalf = rulePieces[1].trimStart();
@@ -72,7 +72,7 @@ function convertToObject(sourceString) {
   const stylesObject = {};
 
   for (let i = 0; i < finalModifiedRules.length; i++) {
-    const keysAndValues = finalModifiedRules[i].split(':');
+    const keysAndValues = finalModifiedRules[i].split(':', 2);
 
     stylesObject[keysAndValues[0]] = keysAndValues[1];
   }

@@ -6,7 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitted = sourceString.split(';');
+  const sastted = sourceString.split(';');
+  const splitted = sastted.filter((satt) => satt.length > 0);
   const formatted = splitted.map((item) => item.trim().split(':'));
   const sas = formatted.map((s) => s.map((x) => x.trim()));
 

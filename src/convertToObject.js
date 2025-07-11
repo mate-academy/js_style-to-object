@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
     (element, index, array) => (array[index] = element.split(':')),
   );
 
-  splittedString.map((element) => {
+  splittedString.forEach((element) => {
     for (let i = 0; i < element.length; i++) {
       element[i] = element[i].trim();
     }

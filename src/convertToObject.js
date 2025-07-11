@@ -8,7 +8,7 @@
 function convertToObject(sourceString) {
   const splittedString = sourceString.split(';');
 
-  splittedString.map(
+  splittedString.forEach(
     (element, index, array) => (array[index] = element.split(':')),
   );
 

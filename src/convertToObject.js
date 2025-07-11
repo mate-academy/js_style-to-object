@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
   return splittedString.reduce((accumulator = {}, string) => {
     const [key, value] = string;
 
-    if (key === '') {
+    if (key !== '') {
       accumulator[key] = value;
     }
 

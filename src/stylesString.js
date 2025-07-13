@@ -2,7 +2,7 @@
 
 const complexStylesString = `
   background-color:      #fff;
--webkit-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius     : 5px;
   border: 1px solid #e8e8e8;
   -webkit-box-sizing: border-box;
@@ -11,7 +11,7 @@ const complexStylesString = `
   cursor: pointer;
   float: left;
   font-family: inherit;
-      font-size: 14px;
+  font-size: 14px;
   font-weight: 400;
   height: 42px;
   line-height:    40px;
@@ -19,21 +19,31 @@ const complexStylesString = `
   padding-left    : 18px;
   padding-right: 30px;
   ;
-
   ;
   position: relative;
-
-
   text-align: left !important;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-
   white-space: nowrap;
   width: auto;
 `;
 
-module.exports = complexStylesString;
+function convertToObject (cssString) {
+  const obj = {};
+  cssString.split(';').forEach(rule => {
+    const [key, value] = rule.split(':');
+    if (key && value) {
+      obj[key.trim()] = value.trim();
+    }
+  });
+  return obj;
+}
+
+
+const stylesObject = convertToObject (complexStylesString);
+
+
+module.exports = stylesObject;

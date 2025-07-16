@@ -7,16 +7,20 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-  const lines = sourceString.split('\n');
+  const rules = sourceString
+    .split(';')
+    .map(rule => rule.trim())
+    .filter(Boolean);
 
-  for (let line of lines) {
-    line = line.trim();
-    if (!line || !line.includes(':')) continue;
+  for (let i = 0; i < rules.length; i++) {
+    const rule = rules[i];
+    const parts = rule.split(':');
+    if (parts.length < 2) continue;
 
-    const [key, ...rest] = line.split(':');
-    const value = rest.join(':').trim().replace(/;$/, '');
+    const key = parts[0].trim();
+    const value = parts.slice(1).join(':').trim();
 
-    result[key.trim()] = value;
+    result[key] = value;
   }
 
   return result;

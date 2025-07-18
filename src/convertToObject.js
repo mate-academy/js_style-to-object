@@ -17,7 +17,9 @@ function convertToObject(sourceString) {
     return newItem;
   });
 
-  const fixedEmptySlots = fixedPairs.filter((item) => item.length > 1);
+  const fixedEmptySlots = fixedPairs.filter(
+    (item) => item[0].length > 0 && item[1].length > 0,
+  );
 
   const result = fixedEmptySlots.reduce((obj, item) => {
     return { ...obj, [item[0]]: item[1] };

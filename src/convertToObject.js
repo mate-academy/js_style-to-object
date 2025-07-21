@@ -13,11 +13,13 @@ function convertToObject(sourceString) {
     .filter((line) => line !== '');
 
   removedSpacesLines.forEach((line) => {
-    const [rule, key] = line.split(':');
-    const trimmedRule = rule.trim();
-    const trimmedKey = key.trim();
+    const [key, value] = line.split(':');
+    const trimmedRule = key.trim();
+    const trimmedKey = value.trim();
 
-    resultStyleObject[trimmedRule] = trimmedKey;
+    if (trimmedKey !== undefined && trimmedRule !== undefined) {
+      resultStyleObject[trimmedRule] = trimmedKey;
+    }
   });
 
   return resultStyleObject;

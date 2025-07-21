@@ -16,7 +16,7 @@ function convertToObject(sourceString) {
   rulesList.forEach((style) => {
     const [rule, value] = style.split(':');
 
-    if (rule && value) {
+    if (rule && value && rule.trim !== '') {
       stylesObject[rule.trim()] = value.trim();
     }
   });

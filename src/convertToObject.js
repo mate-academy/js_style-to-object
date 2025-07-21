@@ -6,7 +6,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const separateStyles = sourceString.split(';');
+  const mapStyles = separateStyles.map((style) => {
+    const [property, value] = style.split(':');
+
+    return [property?.trim(), value?.trim()];
+  });
+
+  const convertedStyle = {};
+
+  for (const style of mapStyles) {
+    const key = style[0];
+    const value = style[1];
+
+    if (key.length !== 0 && value !== undefined) {
+      convertedStyle[key] = value;
+    }
+  }
+
+  return convertedStyle;
 }
 
 module.exports = convertToObject;

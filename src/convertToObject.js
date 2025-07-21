@@ -15,10 +15,12 @@ function convertToObject(sourceString) {
     .filter((line) => line.includes(':'));
 
   styles.forEach((el) => {
-    const [key, value] = el.split(':');
+    const colonIndex = el.indexOf(':');
+    const key = el.slice(0, colonIndex).trim();
+    const value = el.slice(colonIndex + 1).trim();
 
     if (key && value !== undefined) {
-      result[key.trim()] = value.trim();
+      result[key] = value;
     }
   });
 

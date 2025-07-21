@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
     const key = style[0];
     const value = style[1];
 
-    if (key.length !== 0 && value !== undefined) {
+    if (key && value !== undefined) {
       convertedStyle[key] = value;
     }
   }

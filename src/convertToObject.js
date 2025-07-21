@@ -9,7 +9,13 @@ function convertToObject(sourceString) {
   const styleObject = {};
 
   sourceString.split(';').forEach((declaration) => {
-    const parts = declaration.split(':');
+    const trimmedDeclaration = declaration.trim();
+
+    if (!trimmedDeclaration) {
+      return;
+    }
+
+    const parts = trimmedDeclaration.split(':');
 
     if (parts.length === 2) {
       const property = parts[0].trim();

@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
   const finalObject = sourceString
     .split(';')
     .map((declaration) => declaration.trim())
-    .filter((declaration) => declaration !== '')
+    .filter((declaration) => declaration.trim() !== '' && ';')
     .reduce((acc, declaration) => {
       const parts = declaration.split(':');
 

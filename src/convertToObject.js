@@ -7,11 +7,16 @@
  */
 function convertToObject(sourceString) {
   const result = {};
-
   const declarations = sourceString.split(';');
 
-  for (const ch of declarations) {
-    const [prop, value] = ch.split(':');
+  for (const declaration of declarations) {
+    const cleaned = declaration.trim();
+
+    if (cleaned === '') {
+      continue;
+    }
+
+    const [prop, value] = cleaned.split(':');
 
     if (prop && value) {
       result[prop.trim()] = value.trim();

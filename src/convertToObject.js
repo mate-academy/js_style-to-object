@@ -11,7 +11,7 @@ function convertToObject(sourceString) {
     .map((styleOption) => styleOption.trim())
     .filter((styleOption) => styleOption !== '' && styleOption !== ';')
     .reduce((stylesObj, curStyle) => {
-      const [option, value] = curStyle.split(':');
+      const [option, value] = curStyle.split(':', 2);
 
       return {
         ...stylesObj,

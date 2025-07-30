@@ -11,7 +11,12 @@ function convertToObject(sourceString) {
     .map((row) => row.trim())
     .filter((row) => row.length > 0)
     .map((row) => {
-      const [key, value] = row.split(':');
+      const parts = row.split(':');
+      const [key, value] = parts;
+
+      if (parts.length < 2 || !key || !value) {
+        return null;
+      }
 
       return [key.trim(), value.trim()];
     })

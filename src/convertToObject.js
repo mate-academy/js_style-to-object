@@ -17,6 +17,11 @@ function convertToObject(sourceString) {
     }
 
     const keyValue = newElement.split(':');
+
+    if (!keyValue.includes(':')) {
+      return;
+    }
+
     const key = keyValue[0].trim();
     const value = keyValue[1].trim();
 

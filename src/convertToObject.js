@@ -16,14 +16,13 @@ function convertToObject(sourceString) {
       return;
     }
 
-    const keyValue = newElement.split(':');
-
-    if (!keyValue.includes(':')) {
+    if (!newElement.includes(':')) {
       return;
     }
 
+    const keyValue = newElement.split(':');
     const key = keyValue[0].trim();
-    const value = keyValue[1].trim();
+    const value = keyValue.slice(1).join(':').trim();
 
     result[key] = value;
   });

@@ -8,12 +8,12 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map((el) => el.trim())
+    .map((declaration) => declaration.trim())
     .filter(Boolean)
-    .map((el) => el.split(':'))
-    .map((arr) => arr.map((el) => el.trim()))
-    .reduce((acc, arr) => {
-      acc[arr[0]] = arr[1];
+    .map((declaration) => declaration.split(':'))
+    .map((pair) => pair.map((declaration) => declaration.trim()))
+    .reduce((acc, pair) => {
+      acc[pair[0]] = pair[1];
 
       return acc;
     }, {});

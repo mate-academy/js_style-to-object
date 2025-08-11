@@ -10,31 +10,28 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const result = {};
-
-  const rules = sourceString
+  return sourceString
     .split(';')
     .map((rule) => rule.trim())
-    .filter((rule) => rule.length > 0);
+    .filter((rule) => rule.length > 0)
+    .reduce((styleProperties, rule) => {
+      const colonIndex = rule.indexOf(':');
 
-  for (const rule of rules) {
-    const colonIndex = rule.indexOf(':');
+      if (colonIndex === -1) {
+        return styleProperties;
+      }
 
-    if (colonIndex === -1) {
-      continue;
-    }
+      const property = rule.slice(0, colonIndex).trim();
+      const value = rule.slice(colonIndex + 1).trim();
 
-    const property = rule.slice(0, colonIndex).trim();
-    const value = rule.slice(colonIndex + 1).trim();
+      if (!property || !value) {
+        return styleProperties;
+      }
 
-    if (!property || !value) {
-      continue;
-    }
+      styleProperties[property] = value;
 
-    result[property] = value;
-  }
-
-  return result;
+      return styleProperties;
+    }, {});
 }
 
 module.exports = convertToObject;

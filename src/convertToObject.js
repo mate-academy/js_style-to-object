@@ -5,20 +5,20 @@
  *
  * @return {object}
  */
-function convertToObject(stylesString) {
-  const result = {};
+function convertToObject(styleString) {
+  const styleObject = {};
 
-  stylesString
+  styleString
     .split(';')
-    .map((line) => line.trim())
-    .filter((line) => line.includes(':'))
-    .forEach((line) => {
-      const [property, value] = line.split(':');
+    .map((pair) => pair.trim())
+    .filter(Boolean)
+    .forEach((pair) => {
+      const [key, value] = pair.split(':').map((s) => s.trim());
 
-      result[property.trim()] = value.trim();
+      styleObject[key] = value;
     });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

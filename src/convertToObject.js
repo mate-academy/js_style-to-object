@@ -6,10 +6,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitArray = sourceString.trim().split(';');
+  const splitsourceString = sourceString.trim().split(';');
   const object = {};
 
-  for (const item of splitArray) {
+  splitsourceString.forEach((item) => {
     if (item.trim().length > 0) {
       const resultItemSplit = item.split(':');
       const key = resultItemSplit[0].trim();
@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
 
       object[key] = value;
     }
-  }
+  });
 
   return object;
 }

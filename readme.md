@@ -21,7 +21,7 @@ const complexStylesString = `
   clear   : both       ;
   cursor: pointer;
   float: left;
-  font-family: inherit;
+  font-family: inherit; 
       font-size: 14px;
   font-weight: 400;
   height: 42px;

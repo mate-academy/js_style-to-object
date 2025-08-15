@@ -6,31 +6,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesObject = sourceString.split(';');
-  const filtered = stylesObject.filter((str) => str.trim() !== '');
+  const styleMap = sourceString
+    .split(';')
+    .filter((str) => str.trim() !== '')
+    .reduce((acc, item) => {
+      const [rawKey, ...rawValueParts] = item.split(':');
 
-  const result = filtered.reduce((acc, item) => {
-    const [rawKey, ...rawValueParts] = item.split(':');
+      if (!rawKey || rawValueParts.length === 0) {
+        return acc;
+      }
 
-    if (!rawKey || rawValueParts.length === 0) {
-      // некоректний формат, пропускаємо
+      const key = rawKey.trim();
+      const value = rawValueParts.join(':').trim();
+
+      if (!key || !value) {
+        return acc;
+      }
+
+      acc[key] = value;
+
       return acc;
-    }
+    }, {});
 
-    const key = rawKey.trim();
-    const value = rawValueParts.join(':').trim();
-
-    if (!key || !value) {
-      // ключ або значення порожні після обрізання
-      return acc;
-    }
-
-    acc[key] = value;
-
-    return acc;
-  }, {});
-
-  return result;
+  return styleMap;
 }
 
 module.exports = convertToObject;

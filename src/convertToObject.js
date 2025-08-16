@@ -1,47 +1,30 @@
 'use strict';
 
 /**
- * @param {string} sourceString
- *
- * @return {object}
+ * Converts CSS string to JS object (last property wins for duplicates)
+ * @param {string} sourceString - CSS string to parse
+ * @return {Object} - JS object with CSS properties
  */
 function convertToObject(sourceString) {
   const result = {};
 
-  // Primeiro, tratar casos de múltiplas regras em uma linha
-  const rules = sourceString.split(';');
-
-  for (const rule of rules) {
-    // Remover espaços em branco e quebras de linha
+  sourceString.split(';').forEach(rule => {
     const trimmedRule = rule.trim();
 
-    // Ignorar regras vazias
-    if (!trimmedRule) continue;
+    if (!trimmedRule) return; // Skip empty rules
 
-    // Dividir a regra em propriedade e valor
     const colonIndex = trimmedRule.indexOf(':');
 
-    if (colonIndex === -1) continue;
+    if (colonIndex === -1) return; // Skip invalid rules
 
-    // Extrair propriedade e valor
-    let property = trimmedRule.substring(0, colonIndex).trim();
-    let value = trimmedRule.substring(colonIndex + 1).trim();
+    const property = trimmedRule.slice(0, colonIndex).trim();
+    const value = trimmedRule.slice(colonIndex + 1).trim();
 
-    // Se o valor terminar com ; (pode acontecer em alguns casos)
-    if (value.endsWith(';')) {
-      value = value.substring(0, value.length - 1).trim();
-    }
-
-    // Adicionar ao objeto resultante
     if (property && value) {
-      // Se a propriedade já existe, juntar os valores com quebra de linha
-      if (result[property]) {
-        result[property] += '\n' + value;
-      } else {
-        result[property] = value;
-      }
+      // Last occurrence wins (CSS cascade behavior)
+      result[property] = value;
     }
-  }
+  });
 
   return result;
 }

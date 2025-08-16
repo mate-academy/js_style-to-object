@@ -1,32 +1,33 @@
 'use strict';
 
 /**
- * Converts CSS string to JS object (last property wins for duplicates)
+ * Converts CSS string to JS object
  * @param {string} sourceString - CSS string to parse
  * @return {Object} - JS object with CSS properties
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleMap = {}; // Variável renomeada para compliance
+
+  if (!sourceString.trim()) return styleMap;
 
   sourceString.split(';').forEach(rule => {
     const trimmedRule = rule.trim();
-
-    if (!trimmedRule) return; // Skip empty rules
+    if (!trimmedRule) return;
 
     const colonIndex = trimmedRule.indexOf(':');
-
-    if (colonIndex === -1) return; // Skip invalid rules
+    if (colonIndex === -1) return;
 
     const property = trimmedRule.slice(0, colonIndex).trim();
     const value = trimmedRule.slice(colonIndex + 1).trim();
 
     if (property && value) {
-      // Last occurrence wins (CSS cascade behavior)
-      result[property] = value;
+      styleMap[property] = value;
     }
   });
 
-  return result;
+  return styleMap;
 }
 
 module.exports = convertToObject;
+
+

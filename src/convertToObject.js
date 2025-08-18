@@ -6,7 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssDeclarations = sourceString
+    .split(';')
+    .filter((pair) => pair.trim() !== '');
+
+  function objCreator(objectAccumulator, cssDeclaration = '') {
+    const objKey = cssDeclaration.split(':')[0].trim();
+    const objValue = cssDeclaration.split(':')[1].trim();
+
+    return {
+      ...objectAccumulator,
+      [objKey]: objValue,
+    };
+  }
+
+  return cssDeclarations.reduce(objCreator, {});
 }
 
 module.exports = convertToObject;

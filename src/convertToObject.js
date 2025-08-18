@@ -17,6 +17,10 @@ function convertToObject(sourceString) {
       const objKey = cssDeclaration.split(':')[0].trim();
       const objValue = cssDeclaration.split(':')[1].trim();
 
+      if (!objKey || !objValue) {
+        return objectAccumulator;
+      }
+
       return {
         ...objectAccumulator,
         [objKey]: objValue,

@@ -8,7 +8,10 @@
 function convertToObject(sourceString) {
   // write your code here
   let styleObject = {};
-  const styleArray = sourceString.trim().split(';');
+  const styleArray = sourceString
+    .trim()
+    .split(';')
+    .filter((item) => item.trim() !== '');
 
   styleObject = Object.fromEntries(
     styleArray.map((couple) => couple.split(':').map((item) => item.trim())),

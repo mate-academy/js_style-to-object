@@ -6,24 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let arr = sourceString
+  const declarationsArr = sourceString
     .split(';')
-    .map(sla => sla.trim())
-    .filter(sla => sla.length > 0);
+    .map(declarationSla => declarationSla.trim())
+    .filter(declarationSla => declarationSla.length > 0);
 
-  let suporte = {};
+  const suporteObject = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    let [key, value] = arr[i].split(':');
+  declarationsArr.forEach(declarationSla => {
+    const [key, value] = declarationSla.split(':');
     if (key && value) {
-      let prop = key.trim();
-      let val = value.trim();
-      suporte[prop] = val;
+      suporteObject[key.trim()] = value.trim();
     }
-  }
+  });
 
-  return suporte;
+  return suporteObject;
 }
 
 module.exports = convertToObject;
-

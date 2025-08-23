@@ -19,15 +19,21 @@ function convertToObject(convertableString) {
 }
 
 function fixAndMerge(array, object) {
-  for (const element of array) {
-    let key = element.split(':')[0].trim();
-    const valOfKey = element.split(':')[1].trim();
-
-    if (key.includes('-')) {
-      key = `${key}`;
+  array.forEach((element) => {
+    if (!element.includes(':')) {
+      return;
     }
+
+    const [rawKey, rawValue] = element.split(':');
+    const key = rawKey.trim();
+    const valOfKey = rawValue.trim();
+
+    if (key.length === 0 || valOfKey.length === 0) {
+      return;
+    }
+
     object[key] = valOfKey;
-  }
+  });
 }
 
 module.exports = convertToObject;

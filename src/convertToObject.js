@@ -24,7 +24,7 @@ function fixAndMerge(array, object) {
     const valOfKey = element.split(':')[1].trim();
 
     if (key.includes('-')) {
-      key = `'${key}'`;
+      key = `${key}`;
     }
     object[key] = valOfKey;
   }

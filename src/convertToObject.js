@@ -5,17 +5,25 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const result = {};
-  const strings = sourceString.split(';');
-
-  for (const string of strings) {
-    const strArray = string.split(':');
-
-    result[strArray[0].trim()] = strArray[1].trim();
+const result = convertToObject(complexStylesString);
+function convertToObject(convertableString) {
+  const objectToReturn = {};
+  const normalizedArray = convertableString
+  .split(';')
+  .map((part) => part.trim())
+  .filter((element) => element.length > 0);
+  fixAndMerge(normalizedArray, objectToReturn);
+  return objectToReturn;
+}
+function fixAndMerge(array, object) {
+  for (const element of array) {
+    let key = element.split(':')[0].trim();
+    let valOfKey = element.split(':')[1].trim();
+    if (key.includes('-')) {
+      key = `'${key}'`
+    }
+    object[key] = valOfKey;
   }
-
-  return result;
 }
 
 module.exports = convertToObject;

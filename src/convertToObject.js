@@ -1,22 +1,30 @@
 'use strict';
 
 /**
- * @param {string} sourceString
+ * @param {string} styleString
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const parts = sourceString.split(';').filter((item) => item.trim());
+function convertToObject(styleString) {
+  const declarations = styleString.split(';').filter((item) => item.trim());
 
-  const objectOfproperties = parts.reduce((nameOfProperties, currentValue) => {
-    const [key, value] = currentValue.split(':');
+  const styleObject = declarations.reduce((acc, declaration) => {
+    if (!declaration.includes(':')) {
+      return acc;
+    }
 
-    nameOfProperties[key.trim()] = value.trim();
+    const [property, value] = declaration.split(':', 2);
 
-    return nameOfProperties;
+    if (!value) {
+      return acc;
+    }
+
+    acc[property.trim()] = value.trim();
+
+    return acc;
   }, {});
 
-  return objectOfproperties;
+  return styleObject;
 }
 
 module.exports = convertToObject;

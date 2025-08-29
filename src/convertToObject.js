@@ -9,14 +9,21 @@ function convertToObject(sourceString) {
   // write your code here
   return sourceString
     .split(';')
-    .map((line) => line.trim())
-    .filter((line) => line.length > 0)
-    .map((line) => line.split(':'))
-    .map(([key, value]) => [key.trim(), value.trim()])
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
+    .map((declaration) => declaration.trim())
+    .filter(
+      (declaration) =>
+        declaration.includes(':') &&
+        declaration.split(':')[0].trim().length > 0,
+    )
+    .map((declaration) => {
+      const [property, value] = declaration.split(':');
 
-      return acc;
+      return [property.trim(), value.trim()];
+    })
+    .reduce((styleObject, [property, value]) => {
+      styleObject[property] = value;
+
+      return styleObject;
     }, {});
 }
 module.exports = convertToObject;

@@ -6,36 +6,36 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
   if (!sourceString) {
-    return result;
+    return {};
   }
 
-  const cleaned = sourceString.replace(/[\t\r]/g, ' ');
+  const cleanedString = sourceString.replace(/[\r\t]/g, ' ');
 
-  const rules = cleaned.split(';');
+  const declarations = cleanedString.split(';');
 
-  for (const r of rules) {
-    if (!r.trim()) {
-      continue;
+  const stylesObject = declarations.reduce((stylesMap, rule) => {
+    if (!rule.trim()) {
+      return stylesMap;
     }
 
-    const parts = r.split(':');
+    const parts = rule.split(':');
 
     if (parts.length < 2) {
-      continue;
+      return stylesMap;
     }
 
     const property = parts[0].trim();
     const value = parts.slice(1).join(':').trim();
 
     if (property && value) {
-      result[property] = value;
+      stylesMap[property] = value;
     }
-  }
 
-  return result;
+    return stylesMap;
+  }, {});
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

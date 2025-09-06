@@ -5,47 +5,34 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
   if (!sourceString) {
-    return result;
+    return {};
   }
 
-  // Розбиваємо за ';' і обробляємо кожну декларацію окремо
-  for (let chunk of String(sourceString).split(';')) {
-    if (!chunk) {
-      continue;
-    }
+  const stylesObject = String(sourceString)
+    .split(';') // split declarations
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((decl) => {
+      const [rawProp, ...rest] = decl.split(':'); // allow ':' inside values
 
-    chunk = chunk.trim(); // прибираємо зайві пробіли навколо
+      if (!rawProp || rest.length === 0) {
+        return null;
+      }
 
-    if (!chunk) {
-      continue;
-    }
+      const prop = rawProp.trim();
+      const value = rest.join(':').trim(); // keep internal spaces/newlines
 
-    const colon = chunk.indexOf(':'); // шукаємо першу двокрапку
+      return prop ? [prop, value] : null;
+    })
+    .filter(Boolean)
+    .reduce((acc, [prop, value]) => {
+      acc[prop] = value; // overwrite duplicates as in CSS
 
-    if (colon === -1) {
-      continue;
-    } // не декларація — пропускаємо
+      return acc;
+    }, {});
 
-    const prop = chunk.slice(0, colon).trim();
-
-    if (!prop) {
-      continue;
-    }
-
-    // Значення обрізаємо по краях, але внутрішні пробіли/переноси зберігаємо
-    const value = chunk.slice(colon + 1).trim();
-
-    if (!value && value !== '') {
-      continue;
-    }
-
-    result[prop] = value;
-  }
-
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

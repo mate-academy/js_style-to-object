@@ -1,10 +1,10 @@
 'use strict';
 
 function convertToObject(styles) {
-  const result = {};
+  const stylesMap = {};
 
   if (typeof styles !== 'string' || styles.trim() === '') {
-    return result;
+    return stylesMap;
   }
 
   const DECLARATION_REGEX = /(^|;)\s*([-\w]+)\s*:\s*([^;]*?)(?=;|$)/g;
@@ -12,15 +12,15 @@ function convertToObject(styles) {
   let match;
 
   while ((match = DECLARATION_REGEX.exec(styles)) !== null) {
-    const prop = match[2].trim();
+    const property = match[2].trim();
     const value = match[3].replace(/^[\s\r\n\t]+|[\s\r\n\t]+$/g, '');
 
-    if (prop && value !== '') {
-      result[prop] = value;
+    if (property && value !== '') {
+      stylesMap[property] = value;
     }
   }
 
-  return result;
+  return stylesMap;
 }
 
 module.exports = convertToObject;

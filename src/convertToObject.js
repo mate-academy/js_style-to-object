@@ -10,9 +10,9 @@ function convertToObject(sourceString) {
   const declarations = stringArray.map((values) => values.split(':'));
   const pairs = declarations.map((item) => item.map((el) => el.trim()));
   const trimmedPairs = pairs.filter(([key, value]) => key && value);
-  const result = Object.fromEntries(trimmedPairs);
+  const parsedStyles = Object.fromEntries(trimmedPairs);
 
-  return result;
+  return parsedStyles;
 }
 
 module.exports = convertToObject;

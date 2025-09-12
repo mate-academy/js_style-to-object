@@ -6,36 +6,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styles = sourceString
+    .split(';')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .reduce((acc, decl) => {
+      const colon = decl.indexOf(':');
 
-  // Dzielimy tekst po średnikach
-  const parts = sourceString.split(';');
+      if (colon === -1) {
+        return acc;
+      }
 
-  for (let i = 0; i < parts.length; i++) {
-    const declaration = parts[i].trim();
+      const prop = decl.slice(0, colon).trim();
+      const value = decl.slice(colon + 1).trim();
 
-    // Pomijamy puste linie lub same średniki
-    if (declaration === '') {
-      continue;
-    }
+      if (prop) {
+        acc[prop] = value;
+      }
 
-    // Znajdujemy pierwsze wystąpienie dwukropka
-    const colonIndex = declaration.indexOf(':');
+      return acc;
+    }, {});
 
-    if (colonIndex === -1) {
-      continue;
-    }
-
-    // Podział na klucz i wartość
-    const key = declaration.slice(0, colonIndex).trim();
-    const value = declaration.slice(colonIndex + 1).trim();
-
-    if (key && value) {
-      result[key] = value;
-    }
-  }
-
-  return result;
+  return styles;
 }
 
 module.exports = convertToObject;

@@ -6,18 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-  let arr = sourceString.split(';');
-
-  arr = arr.map((str) => str.trim());
-
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].split(':').map((str) => str.trim());
-  }
-
-  return arr.reduce((accumulator, currentValue) => {
-    return { ...accumulator, [currentValue[0]]: currentValue[1] };
-  }, {});
+  return sourceString
+    .split(';')
+    .map(segment => segment.trim())
+    .filter(Boolean)
+    .filter(segment => segment.includes(':'))
+    .map(segment => {
+      const colonIndex = segment.indexOf(':');
+      const prop = segment.slice(0, colonIndex).trim();
+      const value = segment.slice(colonIndex + 1).trim();
+      return [prop, value];
+    })
+    .reduce((stylesObject, [prop, value]) => {
+      stylesObject[prop] = value;
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -12,10 +12,10 @@ function convertToObject(sourceString) {
 
   const cssObject = Object.fromEntries(
     arrayOfLines.map((line) => {
-      let [key, value] = line.split(':');
+      const [prop, ...rest] = line.split(':');
 
-      key = key.trim();
-      value = value.trim();
+      const key = prop.trim();
+      const value = rest.join(':').trim();
 
       return [key, value];
     }),

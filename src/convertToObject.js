@@ -13,7 +13,6 @@ function convertToObject(sourceString) {
   const cssObject = Object.fromEntries(
     arrayOfLines.map((line) => {
       const [prop, ...rest] = line.split(':');
-
       const key = prop.trim();
       const value = rest.join(':').trim();
 

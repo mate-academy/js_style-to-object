@@ -6,7 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const arrayOfLines = sourceString
+    .split(';')
+    .filter((line) => line.includes(':'));
+
+  const cssObject = Object.fromEntries(
+    arrayOfLines.map((line) => {
+      const [prop, ...rest] = line.split(':');
+      const key = prop.trim();
+      const value = rest.join(':').trim();
+
+      return [key, value];
+    }),
+  );
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

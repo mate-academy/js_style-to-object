@@ -26,6 +26,10 @@ function convertToObject(sourceString) {
     const property = trimmedDecl.slice(0, colonIndex).trim();
     const value = trimmedDecl.slice(colonIndex + 1).trim();
 
+    if (property === '' || value === '') {
+      return;
+    }
+
     parsedStyles[property] = value;
   });
 

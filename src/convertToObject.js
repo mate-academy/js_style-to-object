@@ -6,19 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrStrings = sourceString
+  const declarations = sourceString
     .split(';')
     .map((str) => str.trim())
-    .filter((str) => str.length !== 0)
+    .filter((str) => str.length !== 0 && str.includes(':'))
     .map((item) => item.split(':').map((str) => str.trim()));
 
-  const objStylesString = {};
+  const stylesMap = {};
 
-  arrStrings.forEach(([key, value]) => {
-    objStylesString[key] = value;
+  declarations.forEach(([key, value]) => {
+    if (key && value) {
+      stylesMap[key] = value;
+    }
   });
 
-  return objStylesString;
+  return stylesMap;
 }
 
 module.exports = convertToObject;

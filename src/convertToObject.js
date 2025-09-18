@@ -6,18 +6,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
-  const result = sourceString.split(';');
+  const selector = {};
+  const declarations = sourceString
+    .split(';')
+    .map((d) => d.trim())
+    .filter(Boolean);
 
-  for (const i of result) {
+  for (const i of declarations) {
     const parts = i.split(':');
 
     if (parts.length === 2) {
-      obj[parts[0].trim()] = parts[1].trim();
+      selector[parts[0].trim()] = parts[1].trim();
     }
   }
 
-  return obj;
+  return selector;
 }
 
 module.exports = convertToObject;

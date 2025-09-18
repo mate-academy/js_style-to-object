@@ -9,13 +9,16 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .map((el) => {
-      const [prop, value] = el.trim().split(':');
+      const [prop, value] = el.trim().split(':', 2);
 
-      if (prop.length > 0) {
+      if (prop && value) {
         return { [prop.trim()]: value.trim() };
       }
     })
-    .reduce((result, element) => Object.assign(result, element), {});
+    .reduce(
+      (parsedStyles, element) => Object.assign(parsedStyles, element),
+      {},
+    );
 }
 
 module.exports = convertToObject;

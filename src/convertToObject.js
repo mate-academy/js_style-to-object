@@ -6,7 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const cssStyles = sourceString
+    .split(';')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .reduce((prev, line) => {
+      const [prop, ...value] = line.split(':');
+      const key = prop.trim();
+
+      if (!key || value.length === 0) {
+        return prev;
+      }
+      prev[prop.trim()] = value.join(':').trim();
+
+      return prev;
+    }, {});
+
+  return cssStyles;
 }
 
 module.exports = convertToObject;

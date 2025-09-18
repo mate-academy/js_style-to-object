@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newArr = sourceString
+  const stylesList = sourceString
     .split(';')
     .map((el) => el.trim())
     .map((el) => {
@@ -14,17 +14,17 @@ function convertToObject(sourceString) {
 
       return parts.map((part) => part.trim());
     })
-    .filter((element) => element[0] !== '');
+    .filter((element) => element.length >= 2 && element[0] !== '');
 
-  const resultObject = {};
+  const stylesMap = {};
 
-  newArr.forEach((element) => {
+  stylesList.forEach((element) => {
     const [key, value] = element;
 
-    resultObject[key] = value;
+    stylesMap[key] = value;
   });
 
-  return resultObject;
+  return stylesMap;
 }
 
 module.exports = convertToObject;

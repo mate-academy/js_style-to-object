@@ -36,5 +36,3 @@ function convertToObject(inputString) {
 }
 
 module.exports = convertToObject;
-
-module.exports = convertToObject;

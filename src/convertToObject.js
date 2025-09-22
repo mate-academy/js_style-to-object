@@ -11,6 +11,7 @@ function convertToObject(sourceString) {
   sourceString
     .split(';')
     .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration && declaration.includes(':'))
     .forEach((declaration) => {
       const [cssProperty, cssValue] = declaration
         .split(':')

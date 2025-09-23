@@ -9,31 +9,31 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const obj = {};
-  const rules = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .map((rule) => rule.replace(/\t/g, '').trim())
+    .filter(Boolean)
+    .map((cleaned) => {
+      const colonIndex = cleaned.indexOf(':');
 
-  for (const raw of rules) {
-    const cleaned = raw.replace(/\t/g, '');
+      if (colonIndex === -1) {
+        return null;
+      }
 
-    if (!cleaned.trim()) {
-      continue;
-    }
+      const rawKey = cleaned.slice(0, colonIndex);
+      const rawValue = cleaned.slice(colonIndex + 1);
 
-    const colonIndex = cleaned.indexOf(':');
+      const key = rawKey.replace(/\s+/g, '').trim();
+      const value = rawValue.trim();
 
-    if (colonIndex === -1) {
-      continue;
-    }
+      return key ? [key, value] : null;
+    })
+    .filter(Boolean)
+    .reduce((styleObject, [key, value]) => {
+      styleObject[key] = value;
 
-    const key = cleaned.slice(0, colonIndex).replace(/\s+/g, '').trim();
-    const value = cleaned.slice(colonIndex + 1).trim();
-
-    if (key) {
-      obj[key] = value;
-    }
-  }
-
-  return obj;
+      return styleObject;
+    }, /** @type {Record<string, string>} */ ({}));
 }
 
 module.exports = convertToObject;

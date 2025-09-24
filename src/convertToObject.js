@@ -9,16 +9,21 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .map((property) => property.trim())
-    .filter((property) => property)
+    .filter(
+      (property) =>
+        property.includes(':') &&
+        property.split(':')[0].trim().length > 0 &&
+        property.slice(property.indexOf(':') + 1).trim().length > 0,
+    )
     .map((property) => {
-      const [key, ...valueProperty] = property.split(':');
+      const [key, ...valueParts] = property.split(':');
 
-      return [key.trim(), valueProperty.join(':').trim()];
+      return [key.trim(), valueParts.join(':').trim()];
     })
-    .reduce((obj, [key, value]) => {
-      obj[key] = value;
+    .reduce((stylesProperties, [key, value]) => {
+      stylesProperties[key] = value;
 
-      return obj;
+      return stylesProperties;
     }, {});
 }
 

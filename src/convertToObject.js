@@ -20,15 +20,12 @@ function convertToObject(sourceString) {
         .map((item) => item.trim())
         .filter((item) => item !== '');
     });
-  const styleObject = {};
 
-  styleArray.reduce((accum, [key, value]) => {
+  return styleArray.reduce((accum, [key, value]) => {
     accum[key] = value;
 
     return accum;
-  }, styleObject);
-
-  return styleObject;
+  }, {});
 }
 
 module.exports = convertToObject;

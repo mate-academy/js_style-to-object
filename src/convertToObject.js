@@ -6,35 +6,30 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  if(sourceString.length === 0) {
+  if (sourceString.length === 0) {
     return {};
   }
 
-  const styleLines = sourceString.split(';');
-  const res = {};
+  return sourceString
+    .split(';')
+    .map(s => s.trim())
+    .filter(Boolean)
+    .reduce((acc, segment) => {
+      const idx = segment.indexOf(':');
 
-  for(const i in styleLines) {
-    const updatedSource = styleLines[i].split(':');
-
-    if(updatedSource.length === 1) {
-       continue;
-    }
-
-    const key = updatedSource[0].trim();
-    const valueRaw = updatedSource[1].trim().split(' ');  
-
-    let valueClean = [];
-
-    for(const i in valueRaw) {
-      if(valueRaw[i] !== ';' && valueRaw[i] !== '\t' && valueRaw[i] !== '\n') {
-        valueClean.push(valueRaw[i])
+      if(idx === - 1) {
+        return acc;
       }
-    }
 
-    res[key] = `${valueClean.join(' ')}`
-  }
+      const key = segment.slice(0, idx).trim();
+ 
+      if(!key) return acc;
 
-  return res;
+      const rawVal = segment.slice(idx+1).trim();
+      acc[key] = rawVal;
+
+      return acc;
+    }, {})
 }
 
 module.exports = convertToObject;

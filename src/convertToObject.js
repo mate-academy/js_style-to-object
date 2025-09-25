@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 /**
@@ -6,7 +7,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const splitByProperty = sourceString.split(';').filter(Boolean);
+
+  const result = splitByProperty.reduce((acc, el) => {
+    const [key, value] = el.split(':').map((word) => word.trim());
+
+    if (!key) {
+      return acc;
+    }
+
+    acc[key] = value || '';
+
+    return acc;
+  }, {});
+
+  return result;
 }
+
+convertToObject('    position: fixed;      ');
 
 module.exports = convertToObject;

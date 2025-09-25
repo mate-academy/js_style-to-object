@@ -13,9 +13,13 @@ function convertToObject(sourceString) {
 
   const formatedObject = {};
 
-  properties.map((item) => {
+  properties.forEach((item) => {
     const propKey = item[0].trim();
     const propValue = item[1].trim();
+
+    if (!propKey || !propValue) {
+      return;
+    }
 
     formatedObject[propKey] = propValue;
   });

@@ -9,10 +9,10 @@ function convertToObject(sourceString) {
   // write your code here
   // Split on ; to get individual rules.
   // Then split on : to get property and values.
-  const stylesObj = {};
+  const stylesObject = {};
 
   if (!sourceString || !sourceString.trim()) {
-    return stylesObj;
+    return stylesObject;
   }
 
   // First split by semicolons to get individual rules
@@ -30,13 +30,13 @@ function convertToObject(sourceString) {
         const value = trimmedRule.substring(colonIndex + 1).trim();
 
         if (property && value) {
-          stylesObj[property] = value;
+          stylesObject[property] = value;
         }
       }
     }
   });
 
-  return stylesObj;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

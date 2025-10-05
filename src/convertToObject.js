@@ -12,8 +12,11 @@ function convertToObject(sourceString) {
     );
   }
 
-  const propertisWithoutSpace = sourceString.split(':').map((el) => el.trim());
-  const modifiedSourceString = propertisWithoutSpace
+  const withoutSpace = sourceString
+    .split(':')
+    .map((el) => el.trim());
+
+  const modifiedSourceString = withoutSpace
     .join(':')
     .split(';')
     .map((el) => el.trim())
@@ -23,9 +26,9 @@ function convertToObject(sourceString) {
     .map((el) => el.split(':'))
     .filter((el) => el.length >= 2);
 
-  const resulr = Object.fromEntries(propertyEntries);
+  const stylesObject = Object.fromEntries(propertyEntries);
 
-  return resulr;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

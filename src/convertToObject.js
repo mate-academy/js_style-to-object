@@ -21,7 +21,7 @@ function convertToObject(sourceString) {
   const propertyEntries = modifiedSourceString
     .split(';')
     .map((el) => el.split(':'))
-    .filter((el) => el[0] !== '');
+    .filter((el) => el.length >= 2);
 
   const resulr = Object.fromEntries(propertyEntries);
 

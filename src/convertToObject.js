@@ -5,21 +5,22 @@
  *
  * @return {object}
  */
-function toCamelCase(str) {
-  return str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
-}
-
 function convertToObject(sourceString) {
   const result = {};
-  const declaration = sourceString.split(';');
+  const declaration = sourceString
+    .split(';')
+    .map((decl) => decl.trim())
+    .filter(Boolean);
 
   declaration.forEach((decl) => {
-    if (!decl.includes(':')) {
+    const [key, ...rest] = decl.split(':');
+
+    if (!key || rest.length === 0) {
       return;
     }
 
-    const [key, value] = decl.split(':');
-    const cleanKey = toCamelCase(key.trim());
+    const value = rest.join(':');
+    const cleanKey = key.trim();
     const cleanValue = value.trim();
 
     result[cleanKey] = cleanValue;

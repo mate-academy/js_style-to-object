@@ -28,9 +28,10 @@ function convertToObject(sourceString) {
 
     const value = decl.slice(idx + 1).trim();
 
-    if (!key || !value) {
+    if (!key || value === '') {
       return;
     }
+
     styles[key] = value;
   });
 

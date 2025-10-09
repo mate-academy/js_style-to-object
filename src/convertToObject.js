@@ -6,28 +6,24 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
+  const cleaned = sourceString.replace(/\s+/g, ' ').trim();
+
+  if (!cleaned) {
+    return {};
+  }
+
+  const rules = cleaned
+    .split(';')
+    .map(rule => rule.trim())
+    .filter(Boolean);
+
   const result = {};
 
-  const declarations = sourceString.split(';');
+  for (const rule of rules) {
+    const [property, value] = rule.split(':').map(part => part.trim());
 
-  for (let decl of declarations) {
-    decl = decl.trim();
-
-    if (!decl) {
-      continue;
-    }
-
-    const [property, ...valueParts] = decl.split(':');
-
-    if (!valueParts.length) {
-      continue;
-    }
-
-    const key = property.trim();
-    const value = valueParts.join(':').trim();
-
-    if (key) {
-      result[key] = value;
+    if (property && value !== undefined) {
+      result[property] = value;
     }
   }
 

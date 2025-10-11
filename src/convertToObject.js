@@ -55,7 +55,7 @@ function convertToObject(sourceString) {
 
 }
 
-const stylesObject = convertToObject(complexStylesString);
+convertToObject(complexStylesString);
 
 
 module.exports = convertToObject;

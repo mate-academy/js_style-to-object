@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const stylesObj = {};
+  const styles = {};
 
   sourceString.split(';').forEach((style) => {
     let property;
@@ -15,14 +15,15 @@ function convertToObject(sourceString) {
 
     [property, value] = style.split(':');
 
-    if (property && value) {
-      property = property.trim();
-      value = value.trim();
-      stylesObj[property] = value;
+    property = property.trim();
+    value = (value ?? '').trim();
+
+    if (property !== '') {
+      styles[property] = value;
     }
   });
 
-  return stylesObj;
+  return styles;
 }
 
 module.exports = convertToObject;

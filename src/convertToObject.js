@@ -1,9 +1,9 @@
 function convertToObject(stylesString) {
-  // Podziel string na potencjalne deklaracje CSS
+  // Podziel string na deklaracje CSS
   const declarations = stylesString
     .split(';')
     .map(decl => decl.trim())
-    .filter(decl => decl.length && decl.includes(':')) // tylko niepuste i zawierające dwukropek
+    .filter(decl => decl.length && decl.includes(':'))
 
   // Zamień każdą deklarację na parę [property, value] przy pierwszym dwukropku
   const validDeclarations = declarations
@@ -13,11 +13,14 @@ function convertToObject(stylesString) {
       const value = decl.slice(colonIndex + 1).trim()
       return [property, value]
     })
-    .filter(([property, value]) => property && value) // ignoruj puste klucze lub brak wartości
+    .filter(([property, value]) => property && value)
 
   // Zbuduj obiekt CSS bez mutowania istniejącego obiektu
   const stylesMap = validDeclarations.reduce(
-    (accumulator, [property, value]) => ({ ...accumulator, [property]: value }),
+    (accumulator, [property, value]) => ({
+      ...accumulator,
+      [property]: value,
+    }),
     {}
   )
 
@@ -25,5 +28,6 @@ function convertToObject(stylesString) {
 }
 
 export default convertToObject
+
 
 

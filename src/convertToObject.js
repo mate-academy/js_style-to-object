@@ -27,7 +27,7 @@ function convertToObject(stylesString) {
   return stylesMap
 }
 
-export default convertToObject
+module.exports = convertToObject
 
 
 

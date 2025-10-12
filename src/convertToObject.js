@@ -1,12 +1,19 @@
-'use strict';
-
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(stylesString) {
+  const rules = stylesString.split(';');
+  
+  const validRules = rules
+    .map(rule => rule.trim())
+    .filter(rule => rule.length);
+  
+  const keyValuePairs = validRules.map(rule => rule.split(':').map(item => item.trim()));
+  
+  const result = keyValuePairs.reduce((obj, [key, value]) => {
+    obj[key] = value;
+    return obj;
+  }, {});
+  
+  return result;
 }
 
-module.exports = convertToObject;
+export default convertToObject;
+

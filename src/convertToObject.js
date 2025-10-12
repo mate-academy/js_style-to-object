@@ -25,13 +25,13 @@ function convertToObject(sourceString) {
     })
     .filter((x) => Array.isArray(x) && x.length === 2);
 
-  const result = parts.reduce((acc, [key, value]) => {
-    acc[key] = value;
+  const stylesObject = parts.reduce((styles, [key, value]) => {
+    styles[key] = value;
 
-    return acc;
+    return styles;
   }, {});
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

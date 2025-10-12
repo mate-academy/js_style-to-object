@@ -1,19 +1,21 @@
 function convertToObject(stylesString) {
-  const rules = stylesString.split(';');
+  const rules = stylesString.split(';')
   
   const validRules = rules
     .map(rule => rule.trim())
     .filter(rule => rule.length);
   
-  const keyValuePairs = validRules.map(rule => rule.split(':').map(item => item.trim()));
+  const keyValuePairs = validRules.map(rule => rule.split(':')
+    .map(item => item.trim())
+  )
   
   const result = keyValuePairs.reduce((obj, [key, value]) => {
-    obj[key] = value;
-    return obj;
-  }, {});
+    obj[key] = value
+    return obj
+  }, {})
   
-  return result;
+  return result
 }
 
-export default convertToObject;
+export default convertToObject
 

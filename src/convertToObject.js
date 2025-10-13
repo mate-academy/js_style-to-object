@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const normalized = sourceString.replace(/\t/g, ' ');
+  const normalized = sourceString.replace(/\t/g, ' ').replace(/\n/g, ' ');
 
   const rules = normalized
     .split(';')
@@ -21,7 +21,9 @@ function convertToObject(sourceString) {
   for (const rule of rules) {
     const [property, ...valueParts] = rule.split(':');
 
-    if (!property || valueParts.length === 0) continue;
+    if (!property || valueParts.length === 0) {
+      continue;
+    }
 
     const prop = property.trim();
     const value = valueParts.join(':').trimEnd().replace(/^\s+/, '');

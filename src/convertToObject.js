@@ -6,32 +6,25 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = sourceString
+    .split(';')
+    .map((decl) => decl.trim())
+    .filter((decl) => decl)
+    .reduce((acc, declaration) => {
+      const [property, ...valueParts] = declaration.split(':');
 
-  // розбиваємо рядок CSS на окремі декларації
-  const declarations = sourceString.split(';');
+      if (!property || valueParts.length === 0) {
+        return acc;
+      }
 
-  // eslint-disable-next-line prettier/prettier
-  for (let declaration of declarations) {
-    // змінено на "declaration"
-    declaration = declaration.trim();
+      const value = valueParts.join(':').trim();
 
-    if (!declaration) {
-      continue;
-    }
+      acc[property.trim()] = value;
 
-    const [property, ...valueParts] = declaration.split(':');
+      return acc;
+    }, {});
 
-    if (!property || valueParts.length === 0) {
-      continue;
-    }
-
-    const value = valueParts.join(':').trim();
-
-    result[property.trim()] = value;
-  }
-
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -16,22 +16,22 @@ function convertToObject(sourceString) {
     .map((rule) => rule.trim())
     .filter((rule) => rule.length > 0);
 
-  const result = {};
-
-  for (const rule of rules) {
+  const stylesMap = rules.reduce((acc, rule) => {
     const [property, ...valueParts] = rule.split(':');
+    const prop = (property || '').trim();
 
-    if (!property || valueParts.length === 0) {
-      continue;
+    if (!prop || valueParts.length === 0) {
+      return acc;
     }
 
-    const prop = property.trim();
-    const value = valueParts.join(':').trimEnd().replace(/^\s+/, '');
+    const value = valueParts.join(':').trim();
 
-    result[prop] = value;
-  }
+    acc[prop] = value;
 
-  return result;
+    return acc;
+  }, {});
+
+  return stylesMap;
 }
 
 module.exports = convertToObject;

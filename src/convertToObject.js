@@ -6,21 +6,27 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = sourceString
+    // Quebra a string em possíveis declarações usando ';' como separador
+    .split(';')
+    // Remove linhas vazias e espaços extras
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration && declaration.includes(':'))
+    // Transforma cada declaração em um par [key, value]
+    .map((declaration) => {
+      const [key, ...valueParts] = declaration.split(':');
+      const value = valueParts.join(':').trim();
 
-  const regex = /([-\w]+)\s*:\s*([^;]+);?/g;
-  let match;
+      return [key.trim(), value];
+    })
+    // Constrói o objeto final
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
 
-  while ((match = regex.exec(sourceString)) !== null) {
-    const key = match[1].trim();
-    const value = match[2].trim();
+      return acc;
+    }, {});
 
-    if (key) {
-      result[key] = value;
-    }
-  }
-
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

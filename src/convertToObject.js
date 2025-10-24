@@ -6,10 +6,10 @@
  * @return {object}
  */
 function convertToObject(stringStyles) {
-  const arrayString = stringStyles.split(';').filter(Boolean);
-  const modArray = arrayString
-    .map((a) => {
-      const [key, value] = a.trim().split(':');
+  const styleDeclarations = stringStyles.split(';').filter(Boolean);
+  const keyValuePairs = styleDeclarations
+    .map((declaration) => {
+      const [key, value] = declaration.trim().split(':');
 
       if (!key || !value) {
         return null;
@@ -19,7 +19,7 @@ function convertToObject(stringStyles) {
     })
     .filter(Boolean);
 
-  const newObj = Object.fromEntries(modArray);
+  const newObj = Object.fromEntries(keyValuePairs);
 
   return newObj;
 }

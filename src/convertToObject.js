@@ -5,8 +5,23 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(stringStyles) {
+  const styleDeclarations = stringStyles.split(';').filter(Boolean);
+  const keyValuePairs = styleDeclarations
+    .map((declaration) => {
+      const [key, value] = declaration.trim().split(':');
+
+      if (!key || !value) {
+        return null;
+      }
+
+      return [key.trim(), value.trim()];
+    })
+    .filter(Boolean);
+
+  const newObj = Object.fromEntries(keyValuePairs);
+
+  return newObj;
 }
 
 module.exports = convertToObject;

@@ -4,18 +4,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const list = sourceString.split(';');
   const result = {};
-  let name = '';
-  let value = '';
+  const items = sourceString.split(';');
 
-  for (let i of list) {
-    if (i.includes(':')) {
-      i = i.split(':');
-      name = i[0].trim();
-      value = i[1].trim();
-      result[name] = value;
+  for (let item of items) {
+    item = item.trim();
+
+    if (!item) {
+      continue;
     }
+
+    const parts = item.split(':');
+
+    if (parts.length < 2) {
+      continue;
+    }
+
+    const key = parts[0].trim();
+    const value = parts.slice(1).join(':').trim();
+
+    result[key] = value;
   }
 
   return result;

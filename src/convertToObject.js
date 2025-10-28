@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const normalized = sourceString.replace(/\t/g, ' ').replace(/\n/g, ' ');
+  const normalized = sourceString.replace(/\t/g, ' ');
 
   const rules = normalized
     .split(';')

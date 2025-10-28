@@ -4,29 +4,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const items = sourceString.split(';');
+  const styleObject = {};
 
-  for (let item of items) {
-    item = item.trim();
+  sourceString
+    .split(';')
+    .map((item) => item.trim())
+    .filter((item) => item)
+    .forEach((item) => {
+      const parts = item.split(':');
 
-    if (!item) {
-      continue;
-    }
+      if (parts.length > 2) {
+        return;
+      }
 
-    const parts = item.split(':');
+      const key = parts[0].trim();
+      const value = parts.slice(1).join(':').trim();
 
-    if (parts.length < 2) {
-      continue;
-    }
+      styleObject[key] = value;
+    });
 
-    const key = parts[0].trim();
-    const value = parts.slice(1).join(':').trim();
-
-    result[key] = value;
-  }
-
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

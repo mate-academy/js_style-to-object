@@ -8,19 +8,22 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map(Item => Item.trim())
+    .map((declaration ) => declaration .trim())
     .filter(Boolean)
-    .reduce((newObj, Item) => {
-      const colonIndex = Item.indexOf(':');
-      if (colonIndex === -1) return newObj;
+    .reduce((styleObject , declaration ) => {
+      const colonIndex = declaration .indexOf(':');
 
-      const key = Item.slice(0, colonIndex).trim();
-      const value = Item.slice(colonIndex + 1).trim();
+      if (colonIndex === -1) {
+        return styleObject ;
+      }
 
-      newObj[key] = value;
-      return newObj;
+      const key = declaration .slice(0, colonIndex).trim();
+      const value = declaration .slice(colonIndex + 1).trim();
+
+      styleObject [key] = value;
+
+      return styleObject ;
     }, {});
 }
 
 module.exports = convertToObject;
-

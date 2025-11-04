@@ -6,29 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  return Object.fromEntries(
+    sourceString
+      .split(';')
+      .map((decl) => decl.trim())
+      .filter((decl) => decl)
+      .map((decl) => {
+        const [property, ...rest] = decl.split(':');
+        const value = rest.join(':').trim();
 
-  const declaration = sourceString.split(';');
-
-  for (let decl of declaration) {
-    decl = decl.trim();
-
-    if (!decl) {
-      continue;
-    }
-
-    const [property, ...rest] = decl.split(':');
-
-    if (!property || rest.length === 0) {
-      continue;
-    }
-
-    const value = rest.join(':').trim();
-
-    result[property.trim()] = value;
-  }
-
-  return result;
+        return [property.trim(), value];
+      }),
+  );
 }
 
 module.exports = convertToObject;

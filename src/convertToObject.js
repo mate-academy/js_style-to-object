@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
   const secoes = sourceString.split(';'); // divide pelos espaços ' '
   const tratamentoDeLimpeza = secoes
     .map((partes) => partes.trim()) // tira espaços vazios de cada parte
-    .filter((index) => index !== ''); // tira os espaços do arry
+    .filter((valor) => valor !== ''); // tira os espaços do arry
 
   const objetoFormatado = {};
 
@@ -17,11 +17,14 @@ function convertToObject(sourceString) {
     // pega cada elemento do arry e divide nos ':'
     const partes = elemento.split(':');
     // tira todos os espaços antes e depois de cada elemento do arry
-    const chave = partes[0].trim();
-    const valor = partes[1].trim();
-    // adiciona ao obj a chave e valor já formatados
 
-    objetoFormatado[chave] = valor;
+    if (partes[1] !== undefined) {
+      const chave = partes[0].trim();
+      const valor = partes[1].trim();
+      // adiciona ao obj a chave e valor já formatados
+
+      objetoFormatado[chave] = valor;
+    }
   });
 
   return objetoFormatado;

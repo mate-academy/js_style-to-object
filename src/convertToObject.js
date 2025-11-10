@@ -5,30 +5,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  return sourceString
+    .split(';')
+    .map((decl) => decl.trim())
+    .filter((decl) => decl && decl.includes(':'))
+    .reduce((styleObject, decl) => {
+      const [key, ...valueParts] = decl.split(':');
+      const property = key.trim();
+      const value = valueParts.join(':').trim();
 
-  const declarations = sourceString.split(';');
+      if (property && value) {
+        styleObject[property] = value;
+      }
 
-  for (const decl of declarations) {
-    const trimmed = decl.trim();
-
-    if (!trimmed) {
-      continue;
-    }
-
-    const [key, ...valueParts] = trimmed.split(':');
-
-    if (!valueParts.length) {
-      continue;
-    }
-
-    const property = key.trim();
-    const value = valueParts.join(':').trim();
-
-    result[property] = value;
-  }
-
-  return result;
+      return styleObject;
+    }, {});
 }
 
 module.exports = convertToObject;

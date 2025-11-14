@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
 
   const parts = sourceString.split(';');
   const cleaned = parts.map((el) => el.trim()).filter((el) => el !== '');
-  const result = {};
+  const styleObject = {};
 
   cleaned.forEach((rule) => {
     const colonIndex = rule.indexOf(':');
@@ -25,10 +25,10 @@ function convertToObject(sourceString) {
     const key = rule.slice(0, colonIndex).trim();
     const value = rule.slice(colonIndex + 1).trim();
 
-    result[key] = value;
+    styleObject[key] = value;
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

@@ -5,8 +5,31 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(stylesString) {
+  const result = {};
+
+  const lines = stylesString.split(';');
+
+  for (let line of lines) {
+    line = line.trim();
+
+    if (!line) {
+      continue;
+    }
+
+    const colonIndex = line.indexOf(':');
+
+    if (colonIndex === -1) {
+      continue;
+    }
+
+    const key = line.slice(0, colonIndex).trim();
+    const value = line.slice(colonIndex + 1).trim();
+
+    result[key] = value;
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

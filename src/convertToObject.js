@@ -8,20 +8,22 @@
 function convertToObject(sourceString) {
   // write your code here
 
-  const res = {};
-  const arr = sourceString.split(';');
+  const styleObject = {};
+  const pairs = sourceString.split(';');
 
-  const sor = arr
+  const parsedPairs = pairs
     .map((str) => str.split(':'))
     .filter((el) => {
       return el[0].trim() !== '';
     });
 
-  sor.forEach((str) => {
-    res[str[0].trim()] = str[1].trim();
+  parsedPairs.forEach(([key, value]) => {
+    if (key.trim() && value.trim()) {
+      styleObject[key.trim()] = value.trim();
+    }
   });
 
-  return res;
+  return styleObject;
 }
 
 module.exports = convertToObject;

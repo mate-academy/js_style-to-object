@@ -9,15 +9,15 @@ function convertToObject(sourceString) {
   // write your code here
 
   const styleObject = {};
-  const pairs = sourceString.split(';');
+  const styleDeclarations = sourceString.split(';');
 
-  const parsedPairs = pairs
+  const parsedDeclarations = styleDeclarations
     .map((str) => str.split(':'))
     .filter((el) => {
       return el[0].trim() !== '';
     });
 
-  parsedPairs.forEach(([key, value]) => {
+  parsedDeclarations.forEach(([key, value]) => {
     if (key.trim() && value.trim()) {
       styleObject[key.trim()] = value.trim();
     }

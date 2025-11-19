@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
 
   const declarations = sourceString.split(';');
 
@@ -23,17 +23,17 @@ function convertToObject(sourceString) {
       return;
     }
 
-    const property = trimmed.slice(0, colonIndex).trim();
-    const value = trimmed.slice(colonIndex + 1).trim();
+    const cssProperty = trimmed.slice(0, colonIndex).trim();
+    const cssValue = trimmed.slice(colonIndex + 1).trim();
 
-    if (!property || !value) {
+    if (!cssProperty || !cssValue) {
       return;
     }
 
-    result[property] = value;
+    stylesObject[cssProperty] = cssValue;
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

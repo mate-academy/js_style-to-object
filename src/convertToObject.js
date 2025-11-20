@@ -12,17 +12,21 @@ function convertToObject(sourceString) {
     .map((value) => value.trim())
     .filter((value) => value !== '');
 
-  const result = newString.reduce((acc, pair) => {
+  const styleObject = newString.reduce((acc, pair) => {
     const parts = pair.split(':');
     const key = parts[0].trim();
     const value = parts[1].trim();
+
+    if (parts.length < 2) {
+      return acc;
+    }
 
     acc[key] = value;
 
     return acc;
   }, {});
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

@@ -14,12 +14,13 @@ function convertToObject(sourceString) {
 
   const styleObject = newString.reduce((acc, pair) => {
     const parts = pair.split(':');
-    const key = parts[0].trim();
-    const value = parts[1].trim();
 
     if (parts.length < 2) {
       return acc;
     }
+
+    const key = parts[0].trim();
+    const value = parts[1].trim();
 
     acc[key] = value;
 

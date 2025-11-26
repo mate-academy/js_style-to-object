@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   const splitStr = sourceString.split(';');
-  const result = {};
+  const styleObject = {};
 
   splitStr.forEach((item) => {
     const trimmedItem = item.trim();
@@ -19,12 +19,12 @@ function convertToObject(sourceString) {
         const key = parts[0].trim();
         const value = parts[1].trim();
 
-        result[key] = value;
+        styleObject[key] = value;
       }
     }
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

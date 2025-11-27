@@ -6,30 +6,19 @@
  * @return {object}
  */
 function convertToObject(stylesString) {
-  const result = {};
+  return stylesString
+    .split(';')
+    .map((part) => part.trim())
+    .filter(Boolean) // remove empty strings
+    .reduce((stylesObject, declaration) => {
+      const [property, value] = declaration.split(':');
 
-  // Split by semicolon, each part is "key: value"
-  const declarations = stylesString.split(';');
+      if (property && value !== undefined) {
+        stylesObject[property.trim()] = value.trim();
+      }
 
-  for (let declaration of declarations) {
-    // Trim spaces
-    declaration = declaration.trim();
-
-    if (!declaration) {
-      continue;
-    } // skip empty
-
-    const [property, value] = declaration.split(':');
-
-    if (property && value !== undefined) {
-      const key = property.trim();
-      const val = value.trim();
-
-      result[key] = val;
-    }
-  }
-
-  return result;
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

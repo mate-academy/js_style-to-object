@@ -6,9 +6,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const stylesArray = sourceString.split(';');
+  const declarationsList = sourceString.split(';');
 
-  const cleaned = stylesArray
+  const cleaned = declarationsList
     .map((elm) => elm.trim())
     .filter((elm) => elm.length);
 
@@ -27,13 +27,13 @@ function convertToObject(sourceString) {
     })
     .filter(Boolean);
 
-  const result = pairs.reduce((acc, [key, value]) => {
+  const stylesObject = pairs.reduce((acc, [key, value]) => {
     acc[key] = value;
 
     return acc;
   }, {});
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

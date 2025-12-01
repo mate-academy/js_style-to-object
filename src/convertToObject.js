@@ -9,17 +9,17 @@ function convertToObject(sourceString) {
   // write your code here
   const sourceSplit = sourceString.split(';');
 
-  const result = {};
+  const cssProperties = {};
 
   sourceSplit.forEach((element) => {
     const objectValues = element.split(':');
 
     if (objectValues[1]) {
-      result[objectValues[0].trim(' ')] = objectValues[1].trim(' ');
+      cssProperties[objectValues[0].trim(' ')] = objectValues[1].trim(' ');
     }
   });
 
-  return result;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

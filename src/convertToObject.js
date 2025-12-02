@@ -18,6 +18,9 @@ function convertToObject(sourceString) {
       if (colonIndex === -1) {
         const lastKey = Object.keys(acc).pop();
 
+        if (!lastKey) {
+          return acc; // або можна кинути помилку, але так краще для тестів
+        }
         acc[lastKey] += '\n' + part;
 
         return acc;

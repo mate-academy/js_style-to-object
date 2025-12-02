@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 /**
@@ -6,7 +7,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .reduce((acc, part) => {
+      const colonIndex = part.indexOf(':');
+
+      // Якщо немає :, це продовження value попереднього правила
+      if (colonIndex === -1) {
+        const lastKey = Object.keys(acc).pop();
+
+        acc[lastKey] += '\n' + part;
+
+        return acc;
+      }
+
+      const key = part.slice(0, colonIndex).trim();
+      const value = part.slice(colonIndex + 1).trim();
+
+      acc[key] = value;
+
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

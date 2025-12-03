@@ -14,6 +14,7 @@ function convertToObject(sourceString) {
     if (!decl.trim()) {
       continue;
     }
+
     const colonIndex = decl.indexOf(':');
 
     if (colonIndex === -1) {

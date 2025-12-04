@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const filtered = sourceString
+    .split(/[:;]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  return filtered.reduce((acc, p, i) => {
+    if (i % 2 === 0 && i + 1 < filtered.length) {
+      acc[filtered[i]] = filtered[i + 1];
+    }
+
+    return acc;
+  }, {});
 }
 
 module.exports = convertToObject;

@@ -6,21 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const styleArr = sourceString
+  const styleDeclaration = sourceString
     .split(';')
     .filter((string) => string.length > 0);
 
-  const styleObj = {};
+  return styleDeclaration.reduce((acc, currentRule) => {
+    const parts = currentRule.split(':');
 
-  for (let i = 0; i < styleArr.length; i++) {
-    styleArr[i] = styleArr[i].split(':');
-
-    if (styleArr[i].length === 2) {
-      styleObj[styleArr[i][0].trim()] = styleArr[i][1].trim();
+    if (parts.length >= 2) {
+      acc[parts[0].trim()] = parts.slice(1).join(':').trim();
     }
-  }
 
-  return styleObj;
+    return acc;
+  }, {});
 }
 
 // console.log(

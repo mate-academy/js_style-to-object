@@ -6,22 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+
 
   const styleLines = sourceString
     .split(';')
     .map((line) => line.trim())
     .filter((line) => line.length > 0);
+  const stylesObject = styleLines.reduce(
+    (akum, ch) => {
+      const [key, value] = ch.split(/\s*:\s*(.+)/s);
+      return (key && value)
+        ? { ...akum, [key.trim()]: value.trim() }
+        : akum;
+    },
+    {},
+  );
 
-  for (let i of styleLines) {
-    const [key, value] = i.split(/\s*:\s*(.+)/s);
-
-    if (key && value) {
-      result[key.trim()] = value.trim();
-    }
-  }
-
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -6,7 +6,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = new Object();
+
+  const styleLines = sourceString
+    .split(';')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+  for (let i of styleLines) {
+    const [key, value] = i.split(/\s*:\s*(.+)/s);
+
+    if (key && value) {
+      result[key.trim()] = value.trim();
+    }
+  }
+
+  return result;
 }
 
 module.exports = convertToObject;

@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = new Object();
+  const result = {};
 
   const styleLines = sourceString
     .split(';')

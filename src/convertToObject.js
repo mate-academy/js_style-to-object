@@ -6,7 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .map((line) => line.trim())
+    .filter((line) => line && line.includes(':'))
+    .map((line) => {
+      const [key, value] = line.split(':');
+
+      return [key.trim(), value.trim()];
+    })
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

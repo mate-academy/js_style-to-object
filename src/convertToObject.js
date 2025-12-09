@@ -14,13 +14,15 @@ function convertToObject(sourceString) {
     .map((item) => item.trim())
     .filter((item) => item !== '' && item !== "'");
 
-  const result = {};
+  const stylesObject = newString.reduce((acc, item, index) => {
+    if (index % 2 === 0) {
+      acc[item] = newString[index + 1];
+    }
 
-  for (let i = 0; i < newString.length; i += 2) {
-    result[newString[i]] = newString[i + 1];
-  }
+    return acc;
+  }, {});
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

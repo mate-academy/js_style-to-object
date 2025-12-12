@@ -7,10 +7,10 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
+  const styleObject = {};
 
   if (sourceString.length === 0) {
-    return result;
+    return styleObject;
   }
 
   sourceString
@@ -23,11 +23,11 @@ function convertToObject(sourceString) {
         .map((item) => item.trim()))
     .forEach((el) => {
       if (el.length !== 1) {
-        result[el[0]] = el[1];
+        styleObject[el[0]] = el[1];
       }
     });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

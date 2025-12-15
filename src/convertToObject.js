@@ -9,12 +9,12 @@ function convertToObject(sourceString) {
   const sourceArray = sourceString.split(';');
 
   const filteredSourceArrays = sourceArray
-    .map((arr) => arr.split(':'))
-    .filter((arr) => arr.length > 1);
+    .map((style) => style.split(':'))
+    .filter((stylePair) => stylePair.length > 1);
 
   const convertedToObject = filteredSourceArrays.reduce(
-    (sourceObject, array) => {
-      const [property, value] = array;
+    (sourceObject, stylePair) => {
+      const [property, value] = stylePair;
 
       sourceObject[property.trim()] = value.trim();
 

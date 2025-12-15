@@ -3,17 +3,19 @@
 3. [CODE KNOWLEDGE] - Don't need to make copy before each operation. Moreover, methods like `filter` or `map` don't mutate original array.
 4. [CODE STYLE] - All chained methods called on the same level should have same indentation. This makes code much more readable.
 
-
 BAD EXAMPLE:
+
 ```
 const cssStyles = styles.map(style => style).filter(style => style.length).slice(0, 5)
 ```
 
-GOOD EXAMPLE: 
+GOOD EXAMPLE:
+
 ```
 const cssStyles = styles
  .map(style => style)
  .filter(style => style.length)
  .slice(0, 5)
 ```
-5. [CODE PRACTICE] - Avoid using loops in this task, use iteration methods instead. 
+
+5. [CODE PRACTICE] - Avoid using loops in this task, use iteration methods instead.

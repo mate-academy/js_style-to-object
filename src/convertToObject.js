@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
     if (prop.trim() !== '') {
       const parts = prop.split(':');
 
-      if (parts[0] !== undefined) {
+      if (parts[0] !== undefined && parts[1] !== undefined) {
         const key = parts[0].trim();
         const value = parts[1].replace(';', '').trim();
 

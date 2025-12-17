@@ -19,9 +19,9 @@ function convertToObject(sourceString) {
       return [key, value];
     });
 
-  const result = Object.fromEntries(parts);
+  const styleObject = Object.fromEntries(parts);
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

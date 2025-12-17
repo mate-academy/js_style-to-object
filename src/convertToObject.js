@@ -8,14 +8,21 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map((style) => style.trim())
-    .filter((style) => style.length)
-    .reduce((stylesObject, style) => {
-      const [property, value] = style.split(':').map((part) => part.trim());
+    .map((styleDeclaration) => styleDeclaration.trim())
+    .filter((styleDeclaration) => styleDeclaration.length)
+    .map((styleDeclaration) => {
+      const [property, value] = styleDeclaration
+        .split(':')
+        .map((part) => part.trim());
 
-      stylesObject[property] = value;
-
-      return stylesObject;
+      return [property, value];
+    })
+    .filter(([property, value]) => property && value)
+    .reduce((stylesMap, [property, value]) => {
+      return {
+        ...stylesMap,
+        [property]: value,
+      };
     }, {});
 }
 

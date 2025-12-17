@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
   sourceString
     .split(';')
     .map((element) => element.trim())
-    .filter((element) => element.length > 1)
+    .filter((element) => element.length > 1 && element.includes(':'))
     .forEach(applyStyle);
 
   return stylesMap;

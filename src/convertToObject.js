@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 'use strict';
 
 /**
@@ -5,8 +6,18 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString.split(';').reduce((prevProp, property) => {
+    const parts = property.split(':').map((part) => part.trim());
+
+    return parts[0] === '' || parts[1] === undefined
+      ? prevProp
+      : {
+        ...prevProp,
+        [parts[0]]: parts[1],
+      };
+  }, {});
 }
 
 module.exports = convertToObject;

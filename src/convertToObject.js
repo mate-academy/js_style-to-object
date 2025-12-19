@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject = {};
 
   sourceString.split(';').forEach((rule) => {
     if (!rule.includes(':')) {
@@ -21,10 +21,10 @@ function convertToObject(sourceString) {
       return;
     }
 
-    result[key] = value;
+    styleObject[key] = value;
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

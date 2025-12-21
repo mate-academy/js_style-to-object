@@ -10,13 +10,13 @@ function convertToObject(sourceString) {
 
   // Розбиваємо весь рядок по ";", бо кожне правило CSS закінчується ;
   sourceString.split(';').forEach((rule) => {
-    rule.trim();
+    const trimRule = rule.trim();
 
-    if (!rule) {
+    if (!trimRule) {
       return;
     }
 
-    const [key, ...valueParts] = rule.split(':');
+    const [key, ...valueParts] = trimRule.split(':');
 
     if (!valueParts.length) {
       return;

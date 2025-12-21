@@ -6,33 +6,33 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const transformObject = {};
-  const stringToArr = sourceString.split(';');
+  const convertStyle = {};
 
-  for (let i = 0; i < stringToArr.length; i++) {
-    const lineTrim = stringToArr[i].trim();
+  sourceString.split(';').forEach((line) => {
+    const lineTrim = line.trim();
 
-    if (lineTrim.length !== 0) {
-      const partLine = lineTrim.split(':');
-      let key;
-      let value;
-
-      for (let j = 0; j < partLine.length; j++) {
-        const valueTrim = partLine[j].trim();
-
-        if (j === 0) {
-          key = valueTrim;
-        }
-
-        if (j === 1) {
-          value = valueTrim;
-        }
-      }
-      transformObject[key] = value;
+    if (lineTrim.length === 0) {
+      return;
     }
-  }
 
-  return transformObject;
+    let key;
+    let value;
+
+    lineTrim.split(':').forEach((partLine, index) => {
+      const valueTrim = partLine.trim();
+
+      if (index === 0) {
+        key = valueTrim;
+      }
+
+      if (index === 1) {
+        value = valueTrim;
+      }
+    });
+    convertStyle[key] = value;
+  });
+
+  return convertStyle;
 }
 
 module.exports = convertToObject;

@@ -6,15 +6,13 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
+  const cssObject = {};
 
   // Розбиваємо весь рядок по ";", бо кожне правило CSS закінчується ;
   sourceString.split(';').forEach((rule) => {
-    let string = rule;
+    rule.trim();
 
-    string = rule.trim();
-
-    if (!string) {
+    if (!rule) {
       return;
     }
 
@@ -27,10 +25,10 @@ function convertToObject(sourceString) {
     // eslint-disable-next-line max-len
     const value = valueParts.join(':').trim();
 
-    obj[key.trim()] = value;
+    cssObject[key.trim()] = value;
   });
 
-  return obj;
+  return cssObject;
 }
 
 module.exports = convertToObject;

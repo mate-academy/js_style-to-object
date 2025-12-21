@@ -15,21 +15,11 @@ function convertToObject(sourceString) {
       return;
     }
 
-    let key;
-    let value;
+    const [key, value] = lineTrim.split(':');
 
-    lineTrim.split(':').forEach((partLine, index) => {
-      const valueTrim = partLine.trim();
-
-      if (index === 0) {
-        key = valueTrim;
-      }
-
-      if (index === 1) {
-        value = valueTrim;
-      }
-    });
-    convertStyle[key] = value;
+    if (key && value) {
+      convertStyle[key.trim()] = value.trim();
+    }
   });
 
   return convertStyle;

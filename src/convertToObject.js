@@ -8,10 +8,10 @@
 'use strict';
 
 function convertToObject(stylesString) {
-  const result = {};
+  const stylesObject = {};
 
   if (!stylesString) {
-    return result;
+    return stylesObject;
   }
 
   stylesString
@@ -29,11 +29,11 @@ function convertToObject(stylesString) {
       const value = trimmedRule.slice(colonIndex + 1).trim();
 
       if (key && value) {
-        result[key] = value;
+        stylesObject[key] = value;
       }
     });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

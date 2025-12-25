@@ -9,18 +9,18 @@ function convertToObject(sourceString) {
   return sourceString
     .trim()
     .split(';')
-    .reduce((mas, el) => {
+    .reduce((acc, el) => {
       const cleanLine = el.trim();
 
-      if (cleanLine.length > 4) {
+      if (cleanLine.includes(':')) {
         const [key, value] = cleanLine.split(':');
 
         if (key && value) {
-          mas[key.trim()] = value.trim();
+          acc[key.trim()] = value.trim();
         }
       }
 
-      return mas;
+      return acc;
     }, {});
 }
 

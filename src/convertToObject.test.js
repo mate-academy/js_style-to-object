@@ -55,7 +55,7 @@ describe('convertToObject should', () => {
   it('ignore line break characters', () => {
     expect(
       convertToObject(
-        '  \n  \n border   \n  \n :  \n  \n   3px solid green  \n ; \n',
+        '  \n  \n border  \n  \n :  \n  \n   3px solid green  \n ; \n',
       ),
     ).toEqual({ border: '3px solid green' });
   });

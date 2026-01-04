@@ -10,51 +10,19 @@ function convertToObject(sourceString) {
   const result = {};
 
   if (!sourceString || typeof sourceString !== 'string') {
-    return result;
+    return {};
   }
 
-  let buffer = '';
-  let property = null;
-  let value = '';
-  let inValue = false;
-  const pushRule = () => {
-    if (property !== null) {
-      result[property.trim()] = value.trim();
+  sourceString.split(';').forEach((declaration) => {
+    const declarationElements = declaration.split(':');
+
+    if (declarationElements[0].trim() !== '' && declarationElements[1]) {
+      const key = declarationElements[0].trim();
+      const value = declarationElements[1].trim();
+
+      result[key] = value;
     }
-    property = null;
-    value = '';
-    inValue = false;
-  };
-
-  for (let i = 0; i < sourceString.length; i++) {
-    const char = sourceString[i];
-
-    if (!inValue) {
-      if (char === ':') {
-        property = buffer;
-        buffer = '';
-        inValue = true;
-      } else if (char === ';' || char === '\n' || char === '\r') {
-        buffer = '';
-      } else {
-        buffer += char;
-      }
-    } else {
-      if (char === ';') {
-        value = buffer;
-        pushRule();
-        buffer = '';
-      } else {
-        buffer += char;
-      }
-    }
-  }
-
-  // handle last rule if not ended with ;
-  if (inValue && property !== null && buffer.trim() !== '') {
-    value = buffer;
-    pushRule();
-  }
+  });
 
   return result;
 }

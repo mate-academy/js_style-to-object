@@ -7,7 +7,7 @@
  */
 
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject = {};
 
   if (!sourceString || typeof sourceString !== 'string') {
     return {};
@@ -20,11 +20,11 @@ function convertToObject(sourceString) {
       const key = declarationElements[0].trim();
       const value = declarationElements[1].trim();
 
-      result[key] = value;
+      styleObject[key] = value;
     }
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

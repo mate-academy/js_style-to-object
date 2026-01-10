@@ -10,11 +10,12 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const arrayOfRules = sourceString.split(';');
+  const stylesObject = sourceString.split(';');
 
-  const result = arrayOfRules
+  const result = stylesObject
     .map((value) => value.trim())
     .filter((value) => value.length)
+    .filter(value => value.includes(':'))
     .reduce((previous, value) => {
       const [cssProperty, cssValue] = value.split(':');
 

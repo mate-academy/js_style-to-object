@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
 
   const arrayOfRules = sourceString.split(';');
 
-  const result = arrayOfRules``
+  const result = arrayOfRules
     .map((value) => value.trim())
     .filter((value) => value.length)
     .reduce((previous, value) => {

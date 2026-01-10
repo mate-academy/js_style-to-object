@@ -24,7 +24,7 @@ function convertToObject(stylesString) {
       const value = declaration.slice(colonIndex + 1).trim();
 
       if (property && value) {
-        stylesObject[property] = value;
+        return { ...stylesObject, [property]: value };
       }
 
       return stylesObject;

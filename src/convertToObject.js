@@ -9,29 +9,26 @@
 function convertToObject(stylesString) {
   const newString = stylesString.replace(/\/\*[\s\S]*?\*\//g, '');
 
-  const declarations = newString
+  return newString
     .split(';')
     .map((decl) => decl.trim())
-    .filter((decl) => decl.length > 0);
+    .filter((decl) => decl.length > 0)
+    .reduce((stylesObject, declaration) => {
+      const colonIndex = declaration.indexOf(':');
 
-  const result = {};
+      if (colonIndex === -1) {
+        return stylesObject;
+      }
 
-  for (const declaration of declarations) {
-    const colonIndex = declaration.indexOf(':');
+      const property = declaration.slice(0, colonIndex).trim();
+      const value = declaration.slice(colonIndex + 1).trim();
 
-    if (colonIndex === -1) {
-      continue;
-    }
+      if (property && value) {
+        stylesObject[property] = value;
+      }
 
-    const property = declaration.slice(0, colonIndex).trim();
-    const value = declaration.slice(colonIndex + 1).trim();
-
-    if (property && value) {
-      result[property] = value;
-    }
-  }
-
-  return result;
+      return stylesObject;
+    }, {});
 }
 
 module.exports = convertToObject;

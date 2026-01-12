@@ -16,9 +16,9 @@ function convertToObject(sourceString) {
     .filter(Boolean)
     .map((element) => element.split(':'));
 
-  const object = Object.fromEntries(sourceArr);
+  const stylesObject = Object.fromEntries(sourceArr);
 
-  return object;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

@@ -11,12 +11,12 @@ function convertToObject(sourceString) {
     .replace(/\s*:\s*/g, ':')
     .replace(/\s*;\s*/g, ';');
 
-  const sourceArr = clean
+  const stylesPairs = clean
     .split(';')
     .filter(Boolean)
     .map((element) => element.split(':'));
 
-  const stylesObject = Object.fromEntries(sourceArr);
+  const stylesObject = Object.fromEntries(stylesPairs);
 
   return stylesObject;
 }

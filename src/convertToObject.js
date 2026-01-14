@@ -10,14 +10,14 @@ function convertToObject(sourceString) {
     .split(';')
     .map((rule) => rule.trim())
     .filter((rule) => rule && rule.includes(':'))
-    .reduce((result, rule) => {
+    .reduce((stylesObject, rule) => {
       const colonIndex = rule.indexOf(':');
       const key = rule.slice(0, colonIndex).trim();
       const value = rule.slice(colonIndex + 1).trim();
 
-      result[key] = value;
+      stylesObject[key] = value;
 
-      return result;
+      return stylesObject;
     }, {});
 }
 

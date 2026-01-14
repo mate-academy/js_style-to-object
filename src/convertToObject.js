@@ -9,11 +9,11 @@ function convertToObject(sourceString) {
   const result = {};
   const parts = sourceString.split(';');
 
-  for (let i = 0; i < parts.length; i++) {
-    const part = parts[i].trim();
+  parts.forEach((element) => {
+    const part = element.trim();
 
-    if (part === '') {
-      continue;
+    if (!part) {
+      return;
     }
 
     const index = part.indexOf(':');
@@ -23,7 +23,7 @@ function convertToObject(sourceString) {
     if (key !== '' && value !== '') {
       result[key] = value;
     }
-  }
+  });
 
   return result;
 }

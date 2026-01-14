@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
   const parts = sourceString.split(';');
 
   parts.forEach((element) => {
@@ -21,11 +21,11 @@ function convertToObject(sourceString) {
     const value = part.slice(index + 1).trim();
 
     if (key !== '' && value !== '') {
-      result[key] = value;
+      stylesObject[key] = value;
     }
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

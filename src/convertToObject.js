@@ -1,12 +1,32 @@
-'use strict';
-
 /**
- * @param {string} sourceString
+ * @param {string} styleString
  *
- * @return {object}
+ * @returns {Object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(styleString) {
+  const result = {};
+
+  if (!styleString) {
+    return result;
+  }
+
+  const lines = styleString.split(';');
+
+  for (const line of lines) {
+    if (line.trim() === '') {
+      continue;
+    }
+
+    const [key, ...valueParts] = line.split(':');
+    const value = valueParts.join(':');
+
+    if (key && value) {
+      result[key.trim()] = value.trim();
+    }
+  }
+
+  return result;
 }
 
-module.exports = convertToObject;
+// ESTA LINHA É ESSENCIAL PARA O TESTE FUNCIONAR:
+module.exports = { convertToObject };

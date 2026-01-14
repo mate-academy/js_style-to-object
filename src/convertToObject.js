@@ -1,32 +1,19 @@
+'use strict';
+
 /**
  * @param {string} styleString
- *
  * @returns {Object}
  */
 function convertToObject(styleString) {
-  const result = {};
-
-  if (!styleString) {
-    return result;
-  }
-
-  const lines = styleString.split(';');
-
-  for (const line of lines) {
-    if (line.trim() === '') {
-      continue;
-    }
-
-    const [key, ...valueParts] = line.split(':');
-    const value = valueParts.join(':');
+  return styleString.split(';').reduce((acc, curr) => {
+    const [key, value] = curr.split(':');
 
     if (key && value) {
-      result[key.trim()] = value.trim();
+      acc[key.trim()] = value.trim();
     }
-  }
 
-  return result;
+    return acc;
+  }, {});
 }
 
-// ESTA LINHA É ESSENCIAL PARA O TESTE FUNCIONAR:
-module.exports = { convertToObject };
+module.exports = convertToObject;

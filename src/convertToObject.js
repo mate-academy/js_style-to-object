@@ -6,22 +6,34 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const cssProperties = {};
 
-  const regex = /([^:;\s]+)[ \t\r\n]*:[ \t\r\n]*([\s\S]*?)[ \t\r\n]*(?:;|$)/g;
+  sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter(Boolean)
+    .forEach((rule) => {
+      const colonIndex = rule.indexOf(':');
 
-  let match;
+      if (colonIndex === -1) {
+        return;
+      }
 
-  while ((match = regex.exec(sourceString)) !== null) {
-    const property = match[1].replace(/^[ \t]+|[ \t]+$/g, '');
-    const value = match[2].replace(/^[ \t]+|[ \t]+$/g, '');
+      const propertyName = rule
+        .slice(0, colonIndex)
+        .replace(/^[ \t\r\n]+|[ \t\r\n]+$/g, '');
 
-    if (property) {
-      result[property] = value;
-    }
-  }
+      const propertyValue = rule
+        .slice(colonIndex + 1)
+        // 🔥 KLUCZOWA LINIA – usuwa \n tylko z BRZEGÓW
+        .replace(/^[\s\r\n]+|[\s\r\n]+$/g, '');
 
-  return result;
+      if (propertyName) {
+        cssProperties[propertyName] = propertyValue;
+      }
+    });
+
+  return cssProperties;
 }
 
 module.exports = convertToObject;

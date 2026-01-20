@@ -6,40 +6,26 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject = sourceString
+    .split(';')
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration.includes(':'))
+    .map((declaration) => {
+      const colonIndex = declaration.indexOf(':');
 
-  // Split by ";" because CSS declarations end with semicolons.
-  // Then parse each chunk as "property: value".
-  // eslint-disable-next-line no-undef
-  const declarations = sourceString.split(';');
+      return [
+        declaration.slice(0, colonIndex).trim(),
+        declaration.slice(colonIndex + 1).trim(),
+      ];
+    })
+    .filter(([property, value]) => property && value)
+    .reduce((acc, [property, value]) => {
+      acc[property] = value;
 
-  for (let i = 0; i < declarations.length; i++) {
-    const raw = declarations[i].trim();
+      return acc;
+    }, {});
 
-    // Skip empty chunks (e.g. extra ";" or blank lines)
-    if (!raw) {
-      continue;
-    }
-
-    const colonIndex = raw.indexOf(':');
-
-    // Skip invalid declarations (no ":")
-    if (colonIndex === -1) {
-      continue;
-    }
-
-    const prop = raw.slice(0, colonIndex).trim();
-    const value = raw.slice(colonIndex + 1).trim();
-
-    // Skip if property or value is missing
-    if (!prop || !value) {
-      continue;
-    }
-
-    result[prop] = value;
-  }
-
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

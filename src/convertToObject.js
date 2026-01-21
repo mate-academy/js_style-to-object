@@ -10,10 +10,8 @@ function convertToObject(sourceString) {
   .split(';')
   .filter(a => a.trim().length > 0);
 
-  let parts = '';
-
-  pairs.reduce((acc, item, index, items) => {
-    parts = item.split(':');
+  return pairs.reduce((acc, item) => {
+    let parts = item.split(':');
 
     if (parts.length >= 0) {
       let key = parts[0].trim();
@@ -22,7 +20,6 @@ function convertToObject(sourceString) {
     }
     return acc;
   },{})
-  return acc;
 }
 
 module.exports = convertToObject;

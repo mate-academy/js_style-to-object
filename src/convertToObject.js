@@ -11,20 +11,18 @@ function convertToObject(sourceString) {
   .filter(a => a.trim().length > 0);
 
   let parts = '';
-  let result = {};
 
-  pairs.reduce((prev, item, index, items) => {
+  pairs.reduce((acc, item, index, items) => {
     parts = item.split(':');
 
-    if (parts.length >= 2) {
+    if (parts.length >= 0) {
       let key = parts[0].trim();
       let value = parts.slice(1).join(':').trim();
-      result[key] = value;
+      acc[key] = value;
     }
+    return acc;
   },{})
-
-   return result;
-
+  return acc;
 }
 
 module.exports = convertToObject;

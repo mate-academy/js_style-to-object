@@ -8,15 +8,16 @@
 function convertToObject(sourceString) {
   return sourceString
     .split(';')
-    .map((rule) => rule.trim())
-    .filter((rule) => rule && rule.includes(':'))
-    .reduce((result, rule) => {
+    .map(rule => rule.trim())
+    .filter(rule => rule && rule.includes(':'))
+    .reduce((styleObject, rule) => {
       const [property, ...valueParts] = rule.split(':');
       const value = valueParts.join(':').trim();
 
-      result[property.trim()] = value;
-
-      return result;
+      return {
+        ...styleObject,
+        [property.trim()]: value,
+      };
     }, {});
 }
 

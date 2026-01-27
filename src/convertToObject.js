@@ -7,30 +7,26 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
-  const lines = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .map((styleRule) => styleRule.trim())
+    .filter((styleRule) => styleRule !== '' && styleRule.includes(':'))
+    .reduce((styleObject, styleRule) => {
+      const colonIndex = styleRule.indexOf(':');
 
-  for (let line of lines) {
-    line = line.trim();
+      const propertyName = styleRule
+        .slice(0, colonIndex)
+        .replace(/\s+/g, '')
+        .trim();
 
-    if (line === '' || !line.includes(':')) {
-      continue;
-    }
+      const propertyValue = styleRule.slice(colonIndex + 1).trim();
 
-    const colonIndex = line.indexOf(':');
+      if (propertyName !== '') {
+        styleObject[propertyName] = propertyValue;
+      }
 
-    const key = line.slice(0, colonIndex).replace(/\s+/g, '').trim();
-
-    const value = line.slice(colonIndex + 1).trim();
-
-    if (key === '') {
-      continue;
-    }
-
-    result[key] = value;
-  }
-
-  return result;
+      return styleObject;
+    }, {});
 }
 
 module.exports = convertToObject;

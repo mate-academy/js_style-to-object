@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject = {};
 
   if (!sourceString || typeof sourceString !== 'string') {
     return {};
@@ -18,11 +18,11 @@ function convertToObject(sourceString) {
     const newValue = value?.trim();
 
     if (newKey && newValue) {
-      result[newKey] = newValue;
+      styleObject[newKey] = newValue;
     }
   });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

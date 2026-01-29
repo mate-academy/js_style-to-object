@@ -10,15 +10,15 @@ function convertToObject(sourceString) {
     .split(';')
     .map((line) => line.trim())
     .filter((line) => line.includes(':'))
-    .reduce((result, line) => {
+    .reduce((styleObject, line) => {
       const index = line.indexOf(':');
 
       const property = line.slice(0, index).trim();
       const value = line.slice(index + 1).trim();
 
-      result[property] = value;
+      styleObject[property] = value;
 
-      return result;
+      return styleObject;
     }, {});
 }
 

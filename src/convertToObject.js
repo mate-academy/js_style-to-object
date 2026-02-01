@@ -6,8 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const splitString = sourceString.split(';');
-  const result = splitString
+  const arrayString = sourceString.split(';');
+  const styleObject = arrayString
     .filter((element) => {
       if (element.trim() === '') {
         return false;
@@ -19,7 +19,7 @@ function convertToObject(sourceString) {
       const splitOneString = string.split(':');
       const [key, value] = splitOneString;
 
-      return [key.trim(), value.trim()];
+      return [key.trim(), value ? value.trim() : null];
     })
     .reduce((sum, element) => {
       const [key, value] = element;
@@ -29,7 +29,7 @@ function convertToObject(sourceString) {
       return sum;
     }, {});
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

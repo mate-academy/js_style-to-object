@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
     }
   });
 
-  return styleObject;
+  return properties;
 }
 
 module.exports = convertToObject;

@@ -6,24 +6,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const convertedObject = {};
 
   const rules = sourceString.split(';');
 
-  for (const rule of rules) {
+  rules.map((rule) => {
     const [property, value] = rule.split(':');
 
     if (property && value) {
       const trimmedProperty = property.trim();
       const trimmedValue = value.trim();
 
-      if (trimmedProperty && trimmedValue) {
-        result[trimmedProperty] = trimmedValue;
-      }
+      convertedObject[trimmedProperty] = trimmedValue;
     }
-  }
+  });
 
-  return result;
+  return convertedObject;
 }
 
 module.exports = convertToObject;

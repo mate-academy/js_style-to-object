@@ -8,16 +8,18 @@
 function convertToObject(sourceString) {
   const convertedObject = {};
 
-  const rules = sourceString.split(';');
+  const rules = sourceString.split(';').filter((rule) => rule.trim() !== '');
 
-  rules.map((rule) => {
+  rules.forEach((rule) => {
     const [property, value] = rule.split(':');
 
     if (property && value) {
       const trimmedProperty = property.trim();
       const trimmedValue = value.trim();
 
-      convertedObject[trimmedProperty] = trimmedValue;
+      if (trimmedProperty && trimmedValue) {
+        convertedObject[trimmedProperty] = trimmedValue;
+      }
     }
   });
 

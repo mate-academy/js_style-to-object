@@ -5,27 +5,22 @@
  * @return {object}
  */
 function convertToObject(stylesString) {
-  const result = {};
+  return stylesString
+    .split(';')
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration.includes(':'))
+    .reduce((parsedStyles, declaration) => {
+      const [keyPart, ...valueParts] = declaration.split(':');
 
-  const declarations = stylesString.split(';');
+      const key = keyPart.trim();
+      const value = valueParts.join(':').trim();
 
-  for (const declaration of declarations) {
-    const trimmed = declaration.trim();
+      if (key) {
+        parsedStyles[key] = value;
+      }
 
-    if (!trimmed) {
-      continue;
-    }
-
-    const [key, ...valueParts] = trimmed.split(':');
-
-    if (!key || valueParts.length === 0) {
-      continue;
-    }
-
-    result[key.trim()] = valueParts.join(':').trim();
-  }
-
-  return result;
+      return parsedStyles;
+    }, {});
 }
 
 module.exports = convertToObject;

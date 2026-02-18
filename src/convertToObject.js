@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .filter((line) => line.includes(':'))
+    .map((line) => line.split(':'))
+    .reduce((accum, initialPair) => {
+      const first = initialPair[0].trim();
+      const second = initialPair[1].trim();
+
+      accum[first] = second;
+
+      return accum;
+    }, {});
 }
 
 module.exports = convertToObject;

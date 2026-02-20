@@ -14,21 +14,21 @@ function convertToObject(sourceString) {
 
   const styleObject = declarations
     .filter((decl) => decl && decl.trim() !== '')
-    .reduce((obj, decl) => {
+    .reduce((stylesAccumulator, decl) => {
       const colonIndex = decl.indexOf(':');
 
       if (colonIndex === -1) {
-        return obj;
+        return stylesAccumulator;
       }
 
       const property = decl.slice(0, colonIndex).replace(/\s+/g, ' ').trim();
       const value = decl.slice(colonIndex + 1).replace(/^\s+|\s+$/g, '');
 
       if (property) {
-        obj[property] = value;
+        stylesAccumulator[property] = value;
       }
 
-      return obj;
+      return stylesAccumulator;
     }, {});
 
   return styleObject;

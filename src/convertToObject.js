@@ -6,7 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const result = sourceString
+    .split(';')
+    .map((el) => {
+      return el.split(':').map((elPart) => elPart.trim());
+    })
+    .filter((el) => el.length > 1)
+    .reduce((resulted, el) => {
+      return {
+        ...resulted,
+        [el[0]]: el[1],
+      };
+    }, {});
+
+  return result;
 }
 
 module.exports = convertToObject;

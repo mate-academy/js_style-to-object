@@ -1,6 +1,7 @@
 'use strict';
 
 const complexStylesString = `
+
   background-color:      #fff;
 -webkit-border-radius: 5px;
   border-radius     : 5px;

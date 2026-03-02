@@ -6,14 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const newStyleString = {};
+  let newStyleString = {};
+  const pairs = [];
   const eachWord = sourceString.split(/[;:]/).map((el) => el.trim());
 
   const temp = eachWord.filter((el) => el !== '');
 
-  for (let i = 0; i < temp.length; i += 2) {
-    newStyleString[temp[i]] = temp[i + 1];
-  }
+  temp.forEach((v, i) => {
+    if (i % 2 === 0) {
+      pairs.push([v, temp[i + 1]]);
+    }
+  });
+
+  newStyleString = pairs.reduce((acc, [key, value]) => {
+    acc[key] = value;
+
+    return acc;
+  }, {});
 
   return newStyleString;
 }

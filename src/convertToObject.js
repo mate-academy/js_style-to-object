@@ -6,16 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const styleObject = {};
 
   if (!sourceString) {
-    return result;
-  } // порожній рядок
+    return styleObject;
+  }
 
   sourceString
-    .split(';') // розділяємо по крапці з комою
-    .map((rule) => rule.trim()) // прибираємо пробіли навколо
-    .filter((rule) => rule) // ігноруємо пусті рядки
+    .split(';')
+    .map(rule => rule.trim())
+    .filter(rule => rule)
     .forEach((rule) => {
       const [property, ...valueParts] = rule.split(':');
 
@@ -26,10 +26,10 @@ function convertToObject(sourceString) {
       const key = property.trim();
       const value = valueParts.join(':').trim();
 
-      result[key] = value;
+      styleObject[key] = value;
     });
 
-  return result; // ОБОВ'ЯЗКОВО
+  return styleObject;
 }
 
 module.exports = convertToObject;

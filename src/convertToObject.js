@@ -7,27 +7,19 @@
  */
 
 function convertToObject(cssString) {
-  const result = {};
+  const cssDeclarations = cssString
+    .split(';')
+    .map((line) => line.trim())
+    .filter((line) => line.includes(':'));
 
-  const lines = cssString.split(';');
+  const entries = cssDeclarations.map((line) => {
+    const colonIndex = line.indexOf(':');
+    const key = line.slice(0, colonIndex).trim();
+    const value = line.slice(colonIndex + 1).trim();
 
-  for (const line of lines) {
-    const trimmedLine = line.trim();
+    return [key, value];
+  });
 
-    if (!trimmedLine) {
-      continue;
-    }
-
-    const colonIndex = trimmedLine.indexOf(':');
-
-    if (colonIndex !== -1) {
-      const key = trimmedLine.slice(0, colonIndex).trim();
-      const value = trimmedLine.slice(colonIndex + 1).trim();
-
-      result[key] = value;
-    }
-  }
-
-  return result;
+  return Object.fromEntries(entries);
 }
 module.exports = convertToObject;

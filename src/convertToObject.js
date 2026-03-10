@@ -6,21 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  /**
- * Функція для перетворення рядка CSS-стилів у об'єкт.
- * @param {string} stylesString - Рядок із CSS деклараціями.
- * @returns {Object} - Об'єкт, де ключі — це властивості, а значення — їхні параметри.
- */
-function convertToObject(sourceString) {
-  // Використовуємо ланцюжок методів для обробки рядка без мутацій
+  // Використовуємо ланцюжок методів ітерації для створення об'єкта без мутацій.
+  // Кожен метод викликається з нового рядка з однаковим відступом для читабельності.
   return sourceString
     .split(';')
     .map(declaration => declaration.trim())
     .filter(trimmedDeclaration => trimmedDeclaration.length > 0)
     .reduce((accumulator, validDeclaration) => {
-      // Знаходимо першу двокрапку для точного розділення ключа та значення
+      // Знаходимо першу двокрапку, щоб розділити назву властивості та її значення.
       const separatorIndex = validDeclaration.indexOf(':');
 
+      // Витягуємо назву та значення, очищаючи їх від зайвих пробілів.
       const propertyName = validDeclaration
         .slice(0, separatorIndex)
         .trim();
@@ -29,7 +25,7 @@ function convertToObject(sourceString) {
         .slice(separatorIndex + 1)
         .trim();
 
-      // Повертаємо новий об'єкт, поєднуючи накопичені дані з новою властивістю
+      // Повертаємо новий об'єкт, копіюючи попередній стан і додаючи нову пару.
       return {
         ...accumulator,
         [propertyName]: propertyValue,

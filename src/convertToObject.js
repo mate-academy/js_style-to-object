@@ -12,12 +12,13 @@ function convertToObject(sourceString) {
  * @returns {Object} - Об'єкт, де ключі — це властивості, а значення — їхні параметри.
  */
 function convertToObject(sourceString) {
+  // Використовуємо ланцюжок методів для обробки рядка без мутацій
   return sourceString
     .split(';')
     .map(declaration => declaration.trim())
     .filter(trimmedDeclaration => trimmedDeclaration.length > 0)
     .reduce((accumulator, validDeclaration) => {
-      // знаходимо першу двокрапку для розділення ключа та значення.
+      // Знаходимо першу двокрапку для точного розділення ключа та значення
       const separatorIndex = validDeclaration.indexOf(':');
 
       const propertyName = validDeclaration
@@ -28,15 +29,12 @@ function convertToObject(sourceString) {
         .slice(separatorIndex + 1)
         .trim();
 
-      // повертаємо НОВИЙ об'єкт, копіюючи старий стан і додаючи нову властивість.
-      // дозволяє уникнути прямої мутації об'єкта accumulator.
+      // Повертаємо новий об'єкт, поєднуючи накопичені дані з новою властивістю
       return {
         ...accumulator,
-        [propertyName]: propertyValue
+        [propertyName]: propertyValue,
       };
-    }, {}); // {} — це початкове значення для акумулятора.
+    }, {});
 }
-
-
 
 module.exports = convertToObject;

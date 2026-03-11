@@ -7,25 +7,23 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
+  const styleObject = sourceString.split(';').reduce((acc, decl) => {
+    const trim = decl.trim();
 
-  const declarations = sourceString.split(';');
-
-  for (let decl of declarations) {
-    decl = decl.trim();
-
-    if (!decl) {
-      continue;
+    if (!trim) {
+      return acc;
     }
 
-    const parts = decl.split(':');
+    const parts = trim.split(':');
     const key = parts[0].trim();
     const value = parts[1].trim();
 
-    result[key] = value;
-  }
+    acc[key] = value;
 
-  return result;
+    return acc;
+  }, {});
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

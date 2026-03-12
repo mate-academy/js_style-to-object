@@ -14,10 +14,16 @@ function convertToObject(sourceString) {
 
   for (const decl of declarations) {
     const part = decl.trim();
-    if (!part) continue;
+
+    if (!part) {
+      continue;
+    }
 
     const idx = part.indexOf(':');
-    if (idx === -1) continue;
+
+    if (idx === -1) {
+      continue;
+    }
 
     const key = part.slice(0, idx).trim();
     const value = part.slice(idx + 1).trim();

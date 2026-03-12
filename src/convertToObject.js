@@ -6,34 +6,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
   const normalized = (sourceString || '').replace(/\r/g, '').trim();
-
   const declarations = normalized.split(';');
 
-  for (const decl of declarations) {
-    const part = decl.trim();
+  const styleObject = declarations
+    .map((decl) => decl.trim())
+    .filter((part) => part)
+    .reduce((acc, part) => {
+      const idx = part.indexOf(':');
 
-    if (!part) {
-      continue;
-    }
+      if (idx === -1) {
+        return acc;
+      }
 
-    const idx = part.indexOf(':');
+      const key = part.slice(0, idx).trim();
+      const value = part.slice(idx + 1).trim();
 
-    if (idx === -1) {
-      continue;
-    }
+      if (key) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {});
 
-    const key = part.slice(0, idx).trim();
-    const value = part.slice(idx + 1).trim();
-
-    if (key) {
-      result[key] = value;
-    }
-  }
-
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

@@ -6,25 +6,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const items = sourceString.split(';').filter(Boolean);
+  return sourceString
+    .split(';')
+    .filter(Boolean)
+    .reduce((cssProperties, item) => {
+      if (!item.includes(':')) {
+        return cssProperties;
+      }
 
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+      const parts = item.split(':');
+      const key = parts[0].split(/\s+/).filter(Boolean).join('');
+      const value = parts.slice(1).join(':').trim();
 
-    if (!item.includes(':')) {
-      continue;
-    }
+      cssProperties[key] = value;
 
-    const parts = item.split(':');
-
-    const key = parts[0].split(/\s+/).filter(Boolean).join('');
-    const value = parts[1].trim();
-
-    result[key] = value;
-  }
-
-  return result;
+      return cssProperties;
+    }, {});
 }
 
 module.exports = convertToObject;

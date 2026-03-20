@@ -10,7 +10,7 @@ function convertToObject(sourceString) {
     .replaceAll('\n', '')
     .split(';')
     .filter((string) => {
-      return string.trim() !== '';
+      return (string.trim() !== '' && string.includes(':'));
     })
     .map((objString) => {
       let [key, value] = objString.split(':');
@@ -25,9 +25,9 @@ function convertToObject(sourceString) {
 
       return { [key]: value };
     })
-    .reduce((agregate, keyValue) => {
+    .reduce((aggregate, keyValue) => {
       return {
-        ...agregate,
+        ...aggregate,
         ...keyValue,
       };
     }, {});

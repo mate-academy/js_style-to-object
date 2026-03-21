@@ -11,7 +11,9 @@ function convertToObject(sourceString) {
     .map((item) => item.trim())
     .filter((item) => item.length > 0);
 
-  const styleValues = styleDeclarations.map((value) => value.split(':'));
+  const styleValues = styleDeclarations
+    .filter((string) => string.includes(':'))
+    .map((value) => value.split(':'));
 
   return styleValues.reduce((acc, item) => {
     const key = item[0].trim();

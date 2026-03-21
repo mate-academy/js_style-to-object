@@ -5,18 +5,17 @@ function convertToObject(sourceString) {
     .map((s) => s.trim()) // Remove espaços extras de cada item
     .filter(Boolean); // Remove valores vazios do array
 
-  // Cria um objeto vazio para armazenar os pares chave/valor
-  const result = {};
-
-  // Percorre o array pulando de 2 em 2 (chave e valor)
-  for (let i = 0; i < filtered.length; i += 2) {
-    // Garante que existe um valor correspondente para a chave
-    if (i + 1 < filtered.length) {
-      result[filtered[i]] = filtered[i + 1]; // Adiciona chave e valor ao objeto
+  // Usa reduce para construir o objeto de pares chave/valor
+  const styleObject = filtered.reduce((acc, curr, index, arr) => {
+    if (index % 2 === 0 && index + 1 < arr.length) {
+      acc[curr] = arr[index + 1];
     }
-  }
+
+    return acc;
+  }, {});
 
   // Retorna o objeto final com os pares chave/valor
-  return result;
+  return styleObject;
 }
+
 module.exports = convertToObject;

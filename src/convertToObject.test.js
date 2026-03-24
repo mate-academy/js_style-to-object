@@ -82,6 +82,12 @@ describe('convertToObject should', () => {
     });
   });
 
+  it('ignore rules without a colon', () => {
+    expect(convertToObject('clear; display: flex; invalid-rule')).toEqual({
+      display: 'flex',
+    });
+  });
+
   it('convert mutiline string', () => {
     expect(
       convertToObject(`

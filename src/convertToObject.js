@@ -6,7 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const lines = sourceString.split('\n');
+  const arr = lines.reduce((acc, item) => {
+    const [key, ...rest] = item.trim().split(' ');
+
+    if (key) {
+      acc[key] = rest.join(' ');
+    }
+
+    return acc;
+  }, {});
+
+  return arr;
 }
 
 module.exports = convertToObject;

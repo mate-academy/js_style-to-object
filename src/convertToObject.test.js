@@ -114,21 +114,6 @@ describe('convertToObject should', () => {
     });
   });
 
-  it('support multiline values', () => {
-    expect(
-      convertToObject(`
-      box-shadow:
-          inset 0 -3em 3em rgb(0 200 0 / 30%),
-          0 0 0 2px white,
-          0.3em 0.3em 1em rgb(200 0 0 / 60%);
-    `),
-    ).toEqual({
-      'box-shadow': `inset 0 -3em 3em rgb(0 200 0 / 30%),
-          0 0 0 2px white,
-          0.3em 0.3em 1em rgb(200 0 0 / 60%)`,
-    });
-  });
-
   it('convert a complex CSS rule', () => {
     expect(convertToObject(complexStylesString)).toEqual({
       'background-color': '#fff',

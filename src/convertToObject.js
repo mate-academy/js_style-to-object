@@ -7,17 +7,17 @@
  */
 function convertToObject(sourceString) {
   const lines = sourceString.trim().split(';');
-  const arr = lines.reduce((acc, item) => {
-    const [key, rest] = item.trim().split(': ');
+  const styleObject = lines.reduce((acc, item) => {
+    const [key, rest] = item.trim().split(':');
 
-    if (key) {
+    if (key && rest !== undefined) {
       acc[key.trim()] = rest.trim();
     }
 
     return acc;
   }, {});
 
-  return arr;
+  return styleObject;
 }
 
 module.exports = convertToObject;

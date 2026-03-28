@@ -113,6 +113,7 @@ describe('convertToObject should', () => {
       'aspect-ration': '1',
     });
   });
+
   it('convert a complex CSS rule', () => {
     expect(convertToObject(complexStylesString)).toEqual({
       'background-color': '#fff',

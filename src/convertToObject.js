@@ -6,12 +6,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const lines = sourceString.split('\n');
+  const lines = sourceString.trim().split(';');
   const arr = lines.reduce((acc, item) => {
-    const [key, ...rest] = item.trim().split(' ');
+    const [key, rest] = item.trim().split(': ');
 
     if (key) {
-      acc[key] = rest.join(' ');
+      acc[key.trim()] = rest.trim();
     }
 
     return acc;

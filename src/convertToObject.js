@@ -9,8 +9,11 @@ function convertToObject(sourceString) {
   return sourceString.split(';').reduce((acc, item) => {
     const current = item.split(':');
 
-    if (current[0].trim()) {
-      acc[`${current[0]}`.trim()] = `${current[1]}`.trim();
+    if (current[0] && current[0].trim()) {
+      const key = current[0].trim();
+      const value = (current[1] || '').trim();
+
+      acc[key] = value;
     }
 
     return acc;

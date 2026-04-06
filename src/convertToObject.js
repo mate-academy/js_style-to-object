@@ -6,9 +6,9 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const mass = sourceString.split(';');
+  const stylesArray = sourceString.split(';');
 
-  return mass
+  return stylesArray
     .map((s) => s.trim())
     .filter(Boolean)
     .reduce((acc, item) => {

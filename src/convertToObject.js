@@ -7,21 +7,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arr = sourceString.split(';').map((el) => el.trim());
-  const arrOfArrs = arr.map((el) => el.split(':'));
+  const declarations = sourceString.split(';').map((item) => item.trim());
+  const declarationPairs = declarations.map((item) => item.split(':'));
 
-  const res = {};
+  const stylesObject = {};
 
-  for (let i = 0; i < arrOfArrs.length; i++) {
-    if (arrOfArrs[i].length > 1) {
-      const key = arrOfArrs[i][0].trim();
-      const val = arrOfArrs[i][1].trim();
+  declarationPairs.forEach((pair) => {
+    if (pair.length > 1) {
+      const key = pair[0].trim();
+      const value = pair[1].trim();
 
-      res[key] = val;
+      stylesObject[key] = value;
     }
-  }
+  });
 
-  return res;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

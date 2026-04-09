@@ -12,7 +12,10 @@ function convertToObject(sourceString) {
     .filter((style) => style.trim() !== '')
     .map((style) => style.split(':'))
     .reduce((convertedStyles, style) => {
-      convertedStyles[style[0].trim()] = style[1].trim();
+      const key = [style[0].trim()];
+      const value = style[1] ? style[1].trim() : '';
+
+      convertedStyles[key] = value;
 
       return convertedStyles;
     }, {});

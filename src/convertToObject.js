@@ -10,16 +10,16 @@ function convertToObject(sourceString) {
 
   const validLines = lines.filter((line) => line.includes(':'));
 
-  const result = {};
+  const stylesObject = {};
 
-  validLines.map((line) => {
+  validLines.forEach((line) => {
     const [key, ...valueParts] = line.split(':');
     const value = valueParts.join(':').trim().replace(';', '').trim();
 
-    result[key.trim().replace(/\n/g, '')] = value;
+    stylesObject[key.trim().replace(/\n/g, '')] = value;
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

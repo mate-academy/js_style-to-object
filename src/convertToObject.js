@@ -6,19 +6,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString
-    .split(';')
-    .reduce((result, rule) => {
-
-    const [property, value] = rule
-      .split(':')
-      .map((part) => part.trim());
+  return sourceString.split(';').reduce((styleObject, rule) => {
+    const [property, value] = rule.split(':').map((part) => part.trim());
 
     if (property && value) {
-      result[property] = value;
+      styleObject[property] = value;
     }
 
-    return result;
+    return styleObject;
   }, {});
 }
 

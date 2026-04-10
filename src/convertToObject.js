@@ -6,7 +6,29 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const convertedObject = {};
+  const trimmedArr = sourceString
+    .trim()
+    .split(';')
+    .map((style) => style.trim())
+    .filter((style) => style && style.indexOf(':') !== -1);
+
+  for (const style of trimmedArr) {
+    const colonIndex = style.indexOf(':');
+    const key = style.slice(0, colonIndex).trim();
+
+    const value = style.slice(colonIndex + 1).trim();
+
+    // if (value.endsWith(';')) {
+    //   value = value.replace(/;+\s*$/, '').trim();
+    // }
+
+    if (key) {
+      convertedObject[key] = value;
+    }
+  }
+
+  return convertedObject;
 }
 
 module.exports = convertToObject;

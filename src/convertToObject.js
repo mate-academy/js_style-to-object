@@ -19,10 +19,6 @@ function convertToObject(sourceString) {
 
     const value = style.slice(colonIndex + 1).trim();
 
-    // if (value.endsWith(';')) {
-    //   value = value.replace(/;+\s*$/, '').trim();
-    // }
-
     if (key) {
       convertedObject[key] = value;
     }

@@ -6,18 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const sourceArr = sourceString.split(';');
-  const finallSortedObject = {};
+  const sourceSplit = sourceString.split(';');
+  const finallSorting = {};
 
-  sourceArr.forEach((element, index, arr) => {
+  sourceSplit.forEach((element) => {
     const [key, value] = element.split(':');
 
     if (key && value) {
-      finallSortedObject[key.trim()] = value.trim();
+      finallSorting[key.trim()] = value.trim();
     }
   });
 
-  return finallSortedObject;
+  return finallSorting;
 }
 
 module.exports = convertToObject;

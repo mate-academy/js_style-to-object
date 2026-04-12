@@ -7,17 +7,17 @@
  */
 function convertToObject(sourceString) {
   const sourceArr = sourceString.split(';');
-  const obj = {};
+  const finallSortedObject = {};
 
   sourceArr.forEach((element, index, arr) => {
     const [key, value] = element.split(':');
 
     if (key && value) {
-      obj[key.trim()] = value.trim();
+      finallSortedObject[key.trim()] = value.trim();
     }
   });
 
-  return obj;
+  return finallSortedObject;
 }
 
 module.exports = convertToObject;

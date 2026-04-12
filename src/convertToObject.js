@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const parsedStyles = {};
 
   const cleanString = sourceString.replace(/\n/g, '\n').replace(/\t/g, ' ');
 
@@ -30,10 +30,10 @@ function convertToObject(sourceString) {
 
     cleanValue = cleanValue.trim();
 
-    result[key.trim()] = cleanValue;
+    parsedStyles[key.trim()] = cleanValue;
   });
 
-  return result;
+  return parsedStyles;
 }
 
 module.exports = convertToObject;

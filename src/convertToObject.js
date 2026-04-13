@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
 
   // Split by semicolon to get individual CSS declarations
   const rules = sourceString.split(';');
@@ -29,10 +29,10 @@ function convertToObject(sourceString) {
       return;
     }
 
-    result[property] = value;
+    stylesObject[property] = value;
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

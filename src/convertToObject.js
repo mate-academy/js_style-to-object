@@ -5,8 +5,25 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+
+function convertToObject(styles) {
+  const stylesMap = {};
+
+  styles.split(';').forEach((item) => {
+    if (!item.trim()) {
+      return;
+    }
+
+    const [key, value] = item.split(':');
+
+    if (!key || !value) {
+      return;
+    }
+
+    stylesMap[key.trim()] = value.trim();
+  });
+
+  return stylesMap;
 }
 
 module.exports = convertToObject;

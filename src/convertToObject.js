@@ -10,14 +10,14 @@ function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .filter((line) => line.trim().length > 0)
-    .reduce((newArray, line) => {
+    .reduce((accumulator, line) => {
       const colonIndex = line.indexOf(':');
       const key = line.slice(0, colonIndex).trim();
       const value = line.slice(colonIndex + 1).trim();
 
-      newArray[key] = value;
+      accumulator[key] = value;
 
-      return newArray;
+      return accumulator;
     }, {});
 }
 

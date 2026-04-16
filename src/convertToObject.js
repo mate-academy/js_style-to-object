@@ -18,9 +18,7 @@ function convertToObject(sourceString) {
         return stylesMap;
       }
 
-      stylesMap[property] = value;
-
-      return stylesMap;
+      return { ...stylesMap, [property]: value };
     }, {});
 }
 

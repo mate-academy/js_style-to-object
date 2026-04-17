@@ -7,11 +7,11 @@
  */
 function convertToObject(sourceString) {
   const pairs = sourceString.split(';');
-  const keyValueArr = pairs.map((pair) => pair.split(':'));
+  const keyValuePairs = pairs.map((pair) => pair.split(':'));
 
-  const result = {};
+  const stylesMap = {};
 
-  keyValueArr.forEach((pair) => {
+  keyValuePairs.forEach((pair) => {
     const clearKey = pair[0].trim();
     const clearValue = pair[1]?.trim();
 
@@ -19,10 +19,10 @@ function convertToObject(sourceString) {
       return;
     }
 
-    result[clearKey] = clearValue;
+    stylesMap[clearKey] = clearValue;
   });
 
-  return result;
+  return stylesMap;
 }
 
 //    key:     value    ;

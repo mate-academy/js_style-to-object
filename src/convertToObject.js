@@ -6,13 +6,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
 
   if (!sourceString) {
-    return result;
+    return stylesObject;
   }
 
-  // Zmienione ze stylesString na sourceString
   const declarations = sourceString.split(';');
 
   declarations.forEach((declaration) => {
@@ -25,12 +24,12 @@ function convertToObject(sourceString) {
         const key = trimmedDeclaration.substring(0, colonIndex).trim();
         const value = trimmedDeclaration.substring(colonIndex + 1).trim();
 
-        result[key] = value;
+        stylesObject[key] = value;
       }
     }
   });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

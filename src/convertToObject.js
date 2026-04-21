@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 /**
@@ -6,7 +7,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .reduce((obj, rule) => {
+      const [key, value] = rule.split(':');
+
+      obj[key.trim()] = value.trim();
+
+      return obj;
+    }, {});
 }
 
 module.exports = convertToObject;

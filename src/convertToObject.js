@@ -11,12 +11,13 @@ function convertToObject(sourceString) {
     .split(';')
     .map((item) => item.trim())
     .filter(Boolean)
-    .reduce((obj, rule) => {
+    .reduce((styledObj, rule) => {
       const [key, value] = rule.split(':');
 
-      obj[key.trim()] = value.trim();
-
-      return obj;
+      return {
+        ...styledObj,
+        [key.trim()]: value.trim(),
+      };
     }, {});
 }
 

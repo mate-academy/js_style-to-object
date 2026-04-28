@@ -7,22 +7,15 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const res = {};
-  const styles = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .filter((style) => style.trim() !== '')
+    .map((style) => style.split(':'))
+    .reduce((acc, [key, value]) => {
+      acc[key.trim()] = value.trim();
 
-  for (const style of styles) {
-    if (!style.trim()) {
-      continue;
-    }
-
-    const [key, value] = style.split(':');
-
-    if (key && value) {
-      res[key.trim()] = value.trim();
-    }
-  }
-
-  return res;
+      return acc;
+    }, {});
 }
 
 module.exports = convertToObject;

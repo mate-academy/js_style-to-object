@@ -10,6 +10,7 @@ function convertToObject(sourceString) {
   const sourceStringSplitted = sourceString
     .split(';')
     .map((item) => item.trim())
+    .filter(Boolean)
     .map((item) => item.split(':').map((part) => part.trim()));
 
   return sourceStringSplitted.reduce((accumulator, [key, value]) => {

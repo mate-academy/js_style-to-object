@@ -7,19 +7,19 @@
  */
 function convertToObject(sourceString) {
   const splitString = sourceString.split(';');
-  const result = {};
+  const styleObject = {};
 
   splitString
-    .filter((line) => line.includes(':'))
-    .map((each) => {
+    .filter((line) => line.trim() && line.includes(':'))
+    .forEach((each) => {
       const parts = each.split(':');
       const key = parts[0].trim();
       const value = parts[1].trim();
 
-      result[key] = value;
+      styleObject[key] = value;
     });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

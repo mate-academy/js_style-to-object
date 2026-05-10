@@ -14,9 +14,7 @@ function convertToObject(sourceString) {
   return styleLines.reduce((prev, line) => {
     const [key, value] = line.split(':');
 
-    prev[key.trim()] = value.trim();
-
-    return prev;
+    return { ...prev, [key.trim()]: value.trim() };
   }, {});
 }
 

@@ -10,15 +10,15 @@ function convertToObject(sourceString) {
   const declarations = sourceString
     .split(';')
     .filter((item) => item.trim() !== '');
-  const result = {};
+  const cssProperties = {};
 
-  for (const declaration of declarations) {
+  declarations.forEach((declaration) => {
     const [key, value] = declaration.split(':');
 
-    result[key.trim()] = value.trim();
-  }
+    cssProperties[key.trim()] = value.trim();
+  });
 
-  return result;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

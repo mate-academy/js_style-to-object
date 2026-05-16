@@ -7,23 +7,23 @@
  */
 function convertToObject(sourceString) {
   const result = sourceString.split(';');
-  const realResult = {};
 
-  for (const item of result) {
-    const triM = item.trim();
+  const triM = result.filter((item) => item.trim());
+  const triMe = triM.map((item) => {
+    const index = item.indexOf(':');
+    const key = item.slice(0, index).trim();
+    const value = item.slice(index + 1).trim();
 
-    if (!triM) {
-      continue;
-    }
+    return { key, value };
+  });
 
-    const index = triM.indexOf(':');
-    const key = triM.slice(0, index).trim();
-    const value = triM.slice(index + 1).trim();
+  const resul = triMe.reduce((acc, { key, value }) => {
+    acc[key] = value;
 
-    realResult[key] = value;
-  }
+    return acc;
+  }, {});
 
-  return realResult;
+  return resul;
   // write your code here
 }
 

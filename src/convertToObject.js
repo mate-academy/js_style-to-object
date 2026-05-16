@@ -6,16 +6,17 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const parts = sourceString.split(`;`);
-  const trimmed = parts.map((x) => x.trim());
-  const filtered = trimmed.filter((x) => x.length > 0);
-  const pair = filtered.map((x) => x.split(`:`));
-  const result = pair.reduce((acc, x) => {
-    acc[x[0].trim()] = x[1].trim();
+  const cssDeclarations = sourceString
+    .split(`;`)
+    .map((x) => x.trim())
+    .filter((x) => x.length > 0)
+    .map((x) => x.split(`:`))
+    .reduce((acc, x) => {
+      acc[x[0].trim()] = x[1].trim();
 
-    return acc;
-  }, {});
+      return acc;
+    }, {});
 
-  return result;
+  return cssDeclarations;
 }
 module.exports = convertToObject;

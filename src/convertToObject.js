@@ -11,7 +11,7 @@ function convertToObject(sourceString) {
     .map((item) => item.trim().replace(';', ''))
     .filter((item) => item.length > 1);
 
-  return parsedString.reduce((styleObject, item) => {
+  return parsedString.reduce((cssList, item) => {
     const prop = item.split(':');
     const key = prop[0].trim();
     const valueRaw = prop[1].trim();
@@ -19,9 +19,9 @@ function convertToObject(sourceString) {
       ? valueRaw.replaceAll("'", '')
       : valueRaw;
 
-    styleObject[key] = value;
+    cssList[key] = value;
 
-    return styleObject;
+    return cssList;
   }, {});
 }
 

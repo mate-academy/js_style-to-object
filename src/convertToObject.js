@@ -6,9 +6,8 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  let dividedString = sourceString.split(';');
-
-  dividedString = dividedString
+  const dividedString = sourceString
+    .split(';')
     .map((item) => item.trim())
     .filter((item) => item !== '');
 

@@ -9,7 +9,9 @@ function convertToObject(sourceString) {
   const resultsCSSObject = {};
 
   const splitData = sourceString.split(';');
-  const filteredData = splitData.filter((el) => el);
+  const filteredData = splitData.filter((el) => {
+    return el.trim() && el.includes(':');
+  });
 
   filteredData.forEach((el) => {
     const idx = el.indexOf(':');

@@ -6,14 +6,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const temporaryArr = sourceString
+  const stylesEntries = sourceString
     .split(';')
     .map((item) => item.trim())
     .filter((item) => item !== '')
     .map((item) => item.split(':'));
 
   const newObjectDates = Object.fromEntries(
-    temporaryArr.map(([key, value]) => [key.trim(), value.trim()]),
+    stylesEntries.map(([key, value]) => [key.trim(), value.trim()]),
   );
 
   return newObjectDates;

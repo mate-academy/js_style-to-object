@@ -6,10 +6,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const cssProperties = {};
 
   if (!sourceString || sourceString.trim() === '') {
-    return result;
+    return cssProperties;
   }
 
   sourceString
@@ -19,11 +19,11 @@ function convertToObject(sourceString) {
       const [key, value] = decl.split(':');
 
       if (key && value) {
-        result[key.trim()] = value.trim();
+        cssProperties[key.trim()] = value.trim();
       }
     });
 
-  return result;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

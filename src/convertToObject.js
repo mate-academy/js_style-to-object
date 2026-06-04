@@ -6,24 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
   const cleanStr = sourceString.split(';');
 
-  for (const line of cleanStr) {
+  return cleanStr.reduce((parsedStyles, line) => {
     const trimmedLine = line.trim();
 
     if (!trimmedLine) {
-      continue;
+      return parsedStyles;
     }
 
     const colonIndex = trimmedLine.indexOf(':');
     const key = trimmedLine.slice(0, colonIndex).trim();
     const value = trimmedLine.slice(colonIndex + 1).trim();
 
-    result[key] = value;
-  }
+    parsedStyles[key] = value;
 
-  return result;
+    return parsedStyles;
+  }, {});
 }
 
 module.exports = convertToObject;

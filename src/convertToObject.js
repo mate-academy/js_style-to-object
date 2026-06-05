@@ -6,18 +6,18 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';').reduce((result, style) => {
+  return sourceString.split(';').reduce((cssObject, style) => {
     const declaration = style.trim();
 
     if (!declaration) {
-      return result;
+      return cssObject;
     }
 
     const [property, value] = declaration.split(':');
 
-    result[property.trim()] = value.trim();
+    cssObject[property.trim()] = value.trim();
 
-    return result;
+    return cssObject;
   }, {});
 }
 

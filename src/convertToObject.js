@@ -12,9 +12,10 @@ function convertToObject(sourceString) {
     .reduce((styles, rule) => {
       const [property, value] = rule.split(':').map((part) => part.trim());
 
-      styles[property] = value;
-
-      return styles;
+      return {
+        ...styles,
+        [property]: value,
+      };
     }, {});
 }
 

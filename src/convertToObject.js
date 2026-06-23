@@ -5,16 +5,17 @@ function convertToObject(stylesString) {
     .split(';')
     .map((line) => line.trim())
     .filter(Boolean)
-    .reduce((acc, line) => {
+    .reduce((stylesObject, line) => {
       const [property, value] = line.split(':');
 
       if (!property || !value) {
-        return acc;
+        return stylesObject;
       }
 
-      acc[property.trim()] = value.trim();
-
-      return acc;
+      return {
+        ...stylesObject,
+        [property.trim()]: value.trim(),
+      };
     }, {});
 }
 

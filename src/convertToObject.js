@@ -1,26 +1,27 @@
 'use strict';
 
 module.exports = function convertToObject(stylesString) {
-  const result = {};
+  if (!stylesString) {
+    return {};
+  }
 
-  const rules = stylesString.split(';');
-
-  for (const rule of rules) {
+  return stylesString.split(';').reduce((stylesObject, rule) => {
     const index = rule.indexOf(':');
 
     if (index === -1) {
-      continue;
+      return stylesObject;
     }
 
     const key = rule.slice(0, index).trim();
     const value = rule.slice(index + 1).trim();
 
     if (!key) {
-      continue;
+      return stylesObject;
     }
 
-    result[key] = value;
-  }
-
-  return result;
+    return {
+      ...stylesObject,
+      [key]: value,
+    };
+  }, {});
 };

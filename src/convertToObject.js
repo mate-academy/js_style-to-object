@@ -1,12 +1,26 @@
 'use strict';
 
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
-function convertToObject(sourceString) {
-  // write your code here
-}
+module.exports = function convertToObject(stylesString) {
+  const result = {};
 
-module.exports = convertToObject;
+  const rules = stylesString.split(';');
+
+  for (const rule of rules) {
+    const index = rule.indexOf(':');
+
+    if (index === -1) {
+      continue;
+    }
+
+    const key = rule.slice(0, index).trim();
+    const value = rule.slice(index + 1).trim();
+
+    if (!key) {
+      continue;
+    }
+
+    result[key] = value;
+  }
+
+  return result;
+};

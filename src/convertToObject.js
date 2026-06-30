@@ -6,12 +6,12 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
   const declarations = sourceString.split(';');
 
-  for (const declaration of declarations) {
+  declarations.forEach((declaration) => {
     if (declaration.trim() === '') {
-      continue;
+      return {};
     }
 
     const [rawKey, rawValue] = declaration.split(':');
@@ -19,10 +19,10 @@ function convertToObject(sourceString) {
     const key = rawKey.trim();
     const value = rawValue.trim();
 
-    result[key] = value;
-  }
+    stylesObject[key] = value;
+  });
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

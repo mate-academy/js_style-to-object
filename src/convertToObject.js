@@ -13,15 +13,15 @@ function convertToObject(sourceString) {
 
     .filter((el) => el !== '');
 
-  const result = {};
+  const finalObject = {};
 
   const call = (string) => {
-    result[string.split(':')[0].trim()] = string.split(':')[1].trim();
+    finalObject[string.split(':')[0].trim()] = string.split(':')[1].trim();
   };
 
   interimArray.forEach(call);
 
-  return result;
+  return finalObject;
 }
 
 module.exports = convertToObject;

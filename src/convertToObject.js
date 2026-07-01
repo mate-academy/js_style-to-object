@@ -6,7 +6,22 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  const interimArray = sourceString
+    .split(';')
+
+    .map((el) => el.trim())
+
+    .filter((el) => el !== '');
+
+  const finalObject = {};
+
+  const call = (string) => {
+    finalObject[string.split(':')[0].trim()] = string.split(':')[1].trim();
+  };
+
+  interimArray.forEach(call);
+
+  return finalObject;
 }
 
 module.exports = convertToObject;

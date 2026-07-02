@@ -9,7 +9,7 @@ function convertToObject(sourceString) {
   // write your code here
   const convertedStyles = {};
 
-  sourceString.split(';').forEach(el => {
+  sourceString.split(';').forEach((el) => {
     const [property, value] = el.split(':');
 
     if (property.length > 1 && value !== undefined) {

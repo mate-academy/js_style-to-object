@@ -7,23 +7,17 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
+
   const splitString = sourceString.trim().split(';');
+  const newStrings = splitString
+    .filter((string) => string.includes(':'))
+    .map((string) => {
+      const parts = string.split(':');
 
-  for (let i = 0; i < splitString.length; i++) {
-    const partsString = splitString[i].trim().split(':');
+      return [parts[0].trim(), parts[1].trim()];
+    });
 
-    if (partsString.length < 2) {
-      continue;
-    }
-
-    const key = partsString[0].trim();
-    const value = partsString[1].trim();
-
-    result[key] = value.trim();
-  }
-
-  return result;
+  return Object.fromEntries(newStrings);
 }
 
 module.exports = convertToObject;

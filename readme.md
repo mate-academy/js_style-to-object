@@ -76,5 +76,5 @@ console.log(result === {
   'user-select': 'none',
   'white-space': 'nowrap',
   width: 'auto',
-}) // outputs true; 
+}) // outputs true;
 ```

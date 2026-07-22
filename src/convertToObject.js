@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
     obj[value] = property;
 
     return obj;
-  }, {});пше
+  }, {});
 
   return cssObject;
 }

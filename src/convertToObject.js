@@ -10,18 +10,17 @@ function convertToObject(sourceString) {
     .split(';')
     .map((item) => item.trim())
     .filter((item) => item !== '');
-  const resultObj = {};
-  const style = [];
+  let cssObject = {};
 
-  for (let i = 0; i < styles.length; i++) {
-    style.push(styles[i].split(':').map((str) => str.trim()));
-  }
+  cssObject = styles.reduce((obj, item) => {
+    const [value, property] = item.split(':').map((str) => str.trim());
 
-  for (let i = 0; i < style.length; i++) {
-    resultObj[style[i][0]] = style[i][1];
-  }
+    obj[value] = property;
 
-  return resultObj;
+    return obj;
+  }, {});пше
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

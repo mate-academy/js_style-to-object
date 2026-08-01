@@ -5,16 +5,15 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const result = {};
 
+function convertToObject(sourceString) {
   const stylesArray = sourceString.split(';');
 
-  for (const item of stylesArray) {
+  const stylesObject = stylesArray.reduce((acc, item) => {
     const style = item.trim();
 
     if (style === '') {
-      continue;
+      return acc;
     }
 
     const parts = style.split(':');
@@ -22,10 +21,12 @@ function convertToObject(sourceString) {
     const key = parts[0].trim();
     const value = parts[1].trim();
 
-    result[key] = value;
-  }
+    return {
+      ...acc,
+      [key]: value,
+    };
+  }, {});
 
-  return result;
+  return stylesObject;
 }
-
 module.exports = convertToObject;

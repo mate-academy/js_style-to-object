@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  sourceString.split(';').forEach(item => item.trim().split(':').forEach(i => i.trim()));
 }
 
 module.exports = convertToObject;

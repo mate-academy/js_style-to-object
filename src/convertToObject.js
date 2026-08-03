@@ -6,11 +6,11 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arraySourceString = sourceString.split(';');
-  const filterArraySourceSpace = arraySourceString.filter((x) => trimElem(x));
-  const mapArraySourceString = filterArraySourceSpace.map((ele) => ele.trim());
+  const declarations = sourceString.split(';');
+  const filteredDeclarations = declarations.filter((x) => trimElem(x));
+  const trimmedDeclarations = filteredDeclarations.map((ele) => ele.trim());
 
-  const result = mapArraySourceString.reduce((acc, elem) => {
+  const result = trimmedDeclarations.reduce((acc, elem) => {
     const pair = elem.split(':');
 
     pair[0] = pair[0].trim();

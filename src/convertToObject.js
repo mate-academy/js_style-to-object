@@ -8,13 +8,9 @@
 function convertToObject(sourceString) {
   const arraySourceString = sourceString.split(';');
   const filterArraySourceSpace = arraySourceString.filter((x) => trimElem(x));
-  const trimArraySourceString = [];
+  const mapArraySourceString = filterArraySourceSpace.map((ele) => ele.trim());
 
-  for (const elem of filterArraySourceSpace) {
-    trimArraySourceString.push(elem.trim());
-  }
-
-  const result = trimArraySourceString.reduce((acc, elem) => {
+  const result = mapArraySourceString.reduce((acc, elem) => {
     const pair = elem.split(':');
 
     pair[0] = pair[0].trim();

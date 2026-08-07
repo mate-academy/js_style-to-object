@@ -5,8 +5,19 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const solution = {};
+
+  sourceString.split(';').forEach((style) => {
+    const [k, v] = style.split(':');
+
+    if (k && v) {
+      solution[k.trim()] = v.trim();
+    }
+  });
+
+  return solution;
 }
 
 module.exports = convertToObject;

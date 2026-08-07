@@ -7,22 +7,21 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
+  return Object.fromEntries(
+    sourceString
+      .split(';')
+      .map((style) => style.trim())
+      .filter(Boolean)
+      .map((style) => {
+        const colonIndex = style.indexOf(':');
 
-  const allLines = sourceString
-    .split(';')
-    .map((part) => part.trim())
-    .filter(Boolean);
+        const property = style.slice(0, colonIndex).trim();
 
-  for (const line of allLines) {
-    const colonIndex = line.indexOf(':');
-    const property = line.slice(0, colonIndex).trim();
-    const value = line.slice(colonIndex + 1).trim();
+        const value = style.slice(colonIndex + 1).trim();
 
-    result[property] = value;
-  }
-
-  return result;
+        return [property, value];
+      }),
+  );
 }
 
 module.exports = convertToObject;

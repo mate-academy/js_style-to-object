@@ -7,24 +7,22 @@
  */
 function convertToObject(sourceString) {
   const lines = sourceString.trim().split(';');
-  const result = {};
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
+  const styles = lines
+    .map((line) => line.trim())
+    .filter((line) => line !== '')
+    .reduce((style, line) => {
+      const separatorIndex = line.indexOf(':');
 
-    if (line === '') {
-      continue;
-    }
+      const key = line.slice(0, separatorIndex).trim();
+      const value = line.slice(separatorIndex + 1).trim();
 
-    const separatorIndex = line.indexOf(':');
+      style[key] = value;
 
-    const key = line.slice(0, separatorIndex).trim();
-    const value = line.slice(separatorIndex + 1).trim();
+      return style;
+    }, {});
 
-    result[key] = value;
-  }
-
-  return result;
+  return styles;
 }
 
 module.exports = convertToObject;

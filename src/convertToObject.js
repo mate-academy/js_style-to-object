@@ -22,4 +22,6 @@ function convertToObject(sourceString) {
   return parsedStylesObject;
 }
 
+// after review version
+
 module.exports = convertToObject;

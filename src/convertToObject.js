@@ -6,18 +6,14 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const lines = sourceString.split('\n');
-  const filteredLines = lines.filter((line) => line.trim() !== '');
+  const normalized = sourceString.replace(/\n/g, ' ');
+  const rules = normalized.split(';');
+  const filteredRules = rules.filter((rule) => rule.trim() !== '');
 
-  const parsedStylesObject = filteredLines.reduce((obj, line) => {
-    const rule = line.trim();
+  const parsedStylesObject = filteredRules.reduce((obj, rule) => {
     const colonIndex = rule.indexOf(':');
     const key = rule.slice(0, colonIndex).trim();
-    let value = rule.slice(colonIndex + 1).trim();
-
-    if (value.endsWith(';')) {
-      value = value.slice(0, -1).trim();
-    }
+    const value = rule.slice(colonIndex + 1).trim();
 
     obj[key] = value;
 

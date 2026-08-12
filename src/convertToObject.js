@@ -10,16 +10,16 @@ function convertToObject(sourceString) {
     .split(';')
     .map((rule) => rule.trim())
     .filter((rule) => rule.includes(':'))
-    .reduce((object, rule) => {
+    .reduce((styles, rule) => {
       const colonIndex = rule.indexOf(':');
       const property = rule.slice(0, colonIndex).trim();
       const value = rule.slice(colonIndex + 1).trim();
 
       if (property && value) {
-        object[property] = value;
+        styles[property] = value;
       }
 
-      return object;
+      return styles;
     }, {});
 
   return stylesObject;

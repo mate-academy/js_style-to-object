@@ -6,8 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const normalized = sourceString.replace(/\n/g, ' ');
-  const rules = normalized.split(';');
+  const rules = sourceString.split(';');
   const filteredRules = rules.filter((rule) => rule.trim() !== '');
 
   const parsedStylesObject = filteredRules.reduce((obj, rule) => {

@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
+  const stylesObject = {};
   const pairs = sourceString
     .split(';')
     .map((pair) => pair.trim())
@@ -14,10 +14,11 @@ function convertToObject(sourceString) {
 
   for (const pair of pairs) {
     const [key, value] = pair.split(':').map((val) => val.trim());
-    result[key] = value;
+
+    stylesObject[key] = value;
   }
 
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

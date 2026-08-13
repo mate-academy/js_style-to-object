@@ -10,14 +10,15 @@ function convertToObject(sourceString) {
     .split(';')
     .filter((declaration) => declaration.trim());
 
-  return declarations.reduce((result, declaration) => {
+  return declarations.reduce((stylesObject, declaration) => {
     const parts = declaration.split(':');
     const property = parts[0].trim();
     const value = parts[1].trim();
 
-    result[property] = value;
-
-    return result;
+    return {
+      ...stylesObject,
+      [property]: value,
+    };
   }, {});
 }
 

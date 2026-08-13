@@ -14,13 +14,11 @@ function convertToObject(sourceString) {
     return [pair[0].trim(), pair[1].trim()];
   });
 
-  const result = {};
+  return cleanPairs.reduce((stylesObject, pair) => {
+    stylesObject[pair[0]] = pair[1];
 
-  for (const pair of cleanPairs) {
-    result[pair[0]] = pair[1];
-  }
-
-  return result;
+    return stylesObject;
+  }, {});
 }
 
 module.exports = convertToObject;

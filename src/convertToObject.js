@@ -13,7 +13,7 @@ function convertToObject(sourceString) {
     .filter((property) => {
       return property.trim().length !== 0;
     })
-    .map((prop) => {
+    .forEach((prop) => {
       const property = prop.split(':');
       const key = property[0].trim();
       const value = property[1].trim();

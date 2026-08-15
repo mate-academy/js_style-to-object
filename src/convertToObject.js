@@ -6,20 +6,22 @@
  */
 
 function convertToObject(sourceString) {
-  const result = {};
-  const arrOfProperties = sourceString.split(';').filter((property) => {
-    return property.trim().length !== 0;
-  });
+  const cssObject = {};
 
-  for (const property of arrOfProperties) {
-    const arr = property.split(':');
-    const key = arr[0].trim();
-    const value = arr[1].trim();
+  sourceString
+    .split(';')
+    .filter((property) => {
+      return property.trim().length !== 0;
+    })
+    .map((prop) => {
+      const property = prop.split(':');
+      const key = property[0].trim();
+      const value = property[1].trim();
 
-    result[key] = value;
-  }
+      cssObject[key] = value;
+    });
 
-  return result;
+  return cssObject;
 }
 
 module.exports = convertToObject;

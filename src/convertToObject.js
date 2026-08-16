@@ -14,7 +14,7 @@ function convertToObject(sourceString) {
       .map((parameter) => {
         const trimParam = parameter.map((phrase) => phrase.trim());
 
-        if (trimParam.length > 1) {
+        if (trimParam.length > 1 && trimParam[0]) {
           return [trimParam[0], trimParam.slice(1).join(':')];
         }
       })

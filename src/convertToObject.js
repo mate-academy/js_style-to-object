@@ -6,26 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const noSpaceStr = sourceString.replace(/ {2, }/g, ' ');
-  const listInArray = noSpaceStr
+  const listInArray = sourceString
     .split(';')
     .map((parameter) => parameter.split(':'));
   const keyValCouples = Object.fromEntries(
-    listInArray.map((parameter) => {
-      // console.log(parameter);
+    listInArray
+      .map((parameter) => {
+        const trimParam = parameter.map((phrase) => phrase.trim());
 
-      const trimParam = parameter.map((phrase) => {
-        const trimmed = phrase.trim();
-
-        // console.log(phrase);
-
-        return trimmed;
-      });
-
-      if (trimParam.length) {
-        return [trimParam[0], trimParam[1]];
-      }
-    }),
+        if (trimParam.length > 1) {
+          return [trimParam[0], trimParam.slice(1).join(':')];
+        }
+      })
+      .filter(Boolean),
   );
 
   return keyValCouples;
@@ -33,6 +26,7 @@ function convertToObject(sourceString) {
 
 convertToObject(`
   background-color:      #fff;
+  background: url(http://example.com/img.png)    ;
 -webkit-border-radius: 5px;
   border-radius     : 5px;
   border: 1px solid #e8e8e8;

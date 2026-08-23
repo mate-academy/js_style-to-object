@@ -6,7 +6,19 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter((rule) => rule.length > 0)
+    .reduce((styles, rule) => {
+      const colonIndex = rule.indexOf(':');
+      const property = rule.slice(0, colonIndex).trim();
+      const value = rule.slice(colonIndex + 1).trim();
+
+      styles[property] = value;
+
+      return styles;
+    }, {});
 }
 
 module.exports = convertToObject;

@@ -1,12 +1,22 @@
 'use strict';
 
 /**
- * @param {string} sourceString
+ * @param {string} styles
  *
- * @return {object}
+ * @returns {object}
  */
-function convertToObject(sourceString) {
-  // write your code here
+function convertToObject(styles) {
+  const stylesObject = {};
+
+  styles.split(';').forEach((declaration) => {
+    const [property, value] = declaration.split(':');
+
+    if (property && value !== undefined) {
+      stylesObject[property.trim()] = value.trim();
+    }
+  });
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

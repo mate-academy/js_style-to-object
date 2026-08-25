@@ -1,26 +1,26 @@
 'use strict';
 
 function convertToObject(styles) {
-  const result = {};
-
   const declarations = styles.split(';');
 
-  for (const declaration of declarations) {
+  const styleObject = declarations.reduce((accumulator, declaration) => {
     const colonIndex = declaration.indexOf(':');
 
     if (colonIndex === -1) {
-      continue;
+      return accumulator;
     }
 
     const property = declaration.slice(0, colonIndex).trim();
     const value = declaration.slice(colonIndex + 1).trim();
 
     if (property && value) {
-      result[property] = value;
+      accumulator[property] = value;
     }
-  }
 
-  return result;
+    return accumulator;
+  }, {});
+
+  return styleObject;
 }
 
 module.exports = convertToObject;

@@ -12,13 +12,11 @@ function convertToObject(sourceString) {
   styles = styles.filter((element) => element.length === 2);
   styles = styles.map((element) => [element[0].trim(), element[1].trim()]);
 
-  const resultObject = styles.reduce((acc, element) => {
+  return styles.reduce((acc, element) => {
     acc[element[0]] = element[1];
 
     return acc;
   }, {});
-
-  return resultObject;
 }
 
 module.exports = convertToObject;

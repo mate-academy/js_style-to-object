@@ -14,18 +14,20 @@ function convertToObject(sourceString) {
     return resultObject;
   }
 
-  for (const part of splittedString) {
+  const callback = (part) => {
     const colonIndex = part.indexOf(':');
     const key = part.slice(0, colonIndex).trim();
 
     if (!key) {
-      continue;
+      return;
     }
 
     const value = part.slice(colonIndex + 1).trim();
 
     resultObject[key] = value;
-  }
+  };
+
+  splittedString.forEach(callback);
 
   return resultObject;
 }

@@ -5,27 +5,17 @@
  *
  * @return {object}
  */
-function convertToObject(sourceString) {
-  const result = {};
+function convertToObject(stylesString) {
+  return stylesString
+    .split(';')
+    .filter((item) => item.includes(':'))
+    .reduce((cssProperties, item) => {
+      const [property, value] = item.split(':');
 
-  const declarations = sourceString.split(';');
+      cssProperties[property.trim()] = value.trim();
 
-  for (const declar of declarations) {
-    const trimmed = declar.trim();
-
-    if (!trimmed) {
-      continue;
-    }
-
-    const colIndex = trimmed.indexOf(':');
-
-    const property = trimmed.slice(0, colIndex).trim();
-    const value = trimmed.slice(colIndex + 1).trim();
-
-    result[property] = value;
-  }
-
-  return result;
+      return cssProperties;
+    }, {});
 }
 
 module.exports = convertToObject;

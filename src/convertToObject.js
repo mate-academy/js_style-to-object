@@ -7,32 +7,35 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
   if (!sourceString) {
-    return result;
+    return {};
   }
 
-  const declarations = sourceString.split(';');
+  const stylesObject = sourceString
+    .split(';')
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration !== '')
+    .reduce((parsedStyles, declaration) => {
+      const colonIndex = declaration.indexOf(':');
 
-  for (const declaration of declarations) {
-    const colonIndex = declaration.indexOf(':');
+      if (colonIndex === -1) {
+        return parsedStyles;
+      }
 
-    if (colonIndex === -1) {
-      continue;
-    }
+      const property = declaration.slice(0, colonIndex).trim();
+      const value = declaration.slice(colonIndex + 1).trim();
 
-    const property = declaration.slice(0, colonIndex).trim();
-    const value = declaration.slice(colonIndex + 1).trim();
+      if (property === '') {
+        return parsedStyles;
+      }
 
-    if (property === '') {
-      continue;
-    }
+      return {
+        ...parsedStyles,
+        [property]: value,
+      };
+    }, {});
 
-    result[property] = value;
-  }
-
-  return result;
+  return stylesObject;
 }
 
 module.exports = convertToObject;

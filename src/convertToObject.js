@@ -11,29 +11,29 @@ function convertToObject(sourceString) {
     return {};
   }
 
-  const stylesObject = sourceString
+  const declarations = sourceString
     .split(';')
     .map((declaration) => declaration.trim())
-    .filter((declaration) => declaration !== '')
-    .reduce((parsedStyles, declaration) => {
-      const colonIndex = declaration.indexOf(':');
+    .filter((declaration) => declaration !== '');
 
-      if (colonIndex === -1) {
-        return parsedStyles;
-      }
+  const stylesObject = {};
 
-      const property = declaration.slice(0, colonIndex).trim();
-      const value = declaration.slice(colonIndex + 1).trim();
+  declarations.forEach((declaration) => {
+    const colonIndex = declaration.indexOf(':');
 
-      if (property === '') {
-        return parsedStyles;
-      }
+    if (colonIndex === -1) {
+      return;
+    }
 
-      return {
-        ...parsedStyles,
-        [property]: value,
-      };
-    }, {});
+    const property = declaration.slice(0, colonIndex).trim();
+    const value = declaration.slice(colonIndex + 1).trim();
+
+    if (property === '') {
+      return;
+    }
+
+    stylesObject[property] = value;
+  });
 
   return stylesObject;
 }

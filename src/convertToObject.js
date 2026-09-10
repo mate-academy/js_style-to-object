@@ -6,31 +6,31 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-  const declarations = sourceString.split(';')
+  const styleObject = {};
+  const declarations = sourceString.split(';');
 
-  for (const decl of declarations) {
+  declarations.forEach((decl) => {
     const trimmed = decl.trim();
 
     if (!trimmed) {
-      continue;
+      return;
     }
 
     const colonIndex = trimmed.lastIndexOf(':');
 
     if (colonIndex === -1) {
-      continue;
+      return;
     }
 
     const key = trimmed.slice(0, colonIndex).trim();
     const value = trimmed.slice(colonIndex + 1).trim();
 
     if (key) {
-      result[key] = value;
+      styleObject[key] = value;
     }
-  }
+  });
 
-  return result;
+  return styleObject;
 }
 
 module.exports = convertToObject;

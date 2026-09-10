@@ -1,12 +1,20 @@
 'use strict';
 
-/**
- * @param {string} sourceString
- *
- * @return {object}
- */
 function convertToObject(sourceString) {
-  // write your code here
+  const convert = sourceString.split(';');
+  const stylesObject = {};
+
+  convert.forEach((line) => {
+    if (line.trim() === '') {
+      return;
+    }
+
+    const parts = line.split(':');
+
+    stylesObject[parts[0].trim()] = parts[1].trim();
+  });
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

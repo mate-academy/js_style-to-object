@@ -7,21 +7,20 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
 
-  const stringsArr = sourceString
+  const stylesObject = sourceString
     .split(';')
-    .map((element) => element.trim())
     .filter((lines) => lines !== '' && lines !== ';')
     .map((line) => line.split(':'))
     .map((parts) => {
       return parts.map((part) => part.trim().replaceAll(';', ''));
-    });
+    })
+    .reduce((acc, item) => {
+      acc[item[0]] = item[1];
 
-  for (let i = 0; i < stringsArr.length; i++) {
-    result[stringsArr[i][0]] = stringsArr[i][1];
-  }
+      return acc;
+    }, {});
 
-  return result;
+  return stylesObject;
 }
 module.exports = convertToObject;

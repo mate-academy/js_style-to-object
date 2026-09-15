@@ -9,22 +9,21 @@ function convertToObject(sourceString) {
   // write your code here
   const stringArray = sourceString.split(';');
 
-  const result = {};
+  const declarations = stringArray.filter((element) => {
+    return element.trim() !== '';
+  });
 
-  for (const element of stringArray) {
+  const stylesObject = declarations.reduce((accumulator, element) => {
     const parts = element.split(':');
-
-    if (parts[1] === undefined) {
-      continue;
-    }
-
     const property = parts[0].trim();
     const value = parts[1].trim();
 
-    result[property] = value;
-  }
+    accumulator[property] = value;
 
-  return result;
+    return accumulator;
+  }, {});
+
+  return stylesObject;
 }
 
 module.exports = convertToObject;

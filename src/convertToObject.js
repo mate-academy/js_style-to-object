@@ -6,23 +6,20 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const arrayCommands = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .map((declaration) => declaration.trim())
+    .filter((declaration) => declaration.length > 0)
+    .reduce((result, declaration) => {
+      const semicolonsIndex = declaration.indexOf(':');
+      const rule = declaration.slice(0, semicolonsIndex).trim();
+      const value = declaration.slice(semicolonsIndex + 1).trim();
 
-  const result = {};
+      if (rule && value) {
+        result[rule] = value;
+      }
 
-  for (const command of arrayCommands) {
-    const [rule, value] = command.split(':');
-
-    if (rule === undefined || value === undefined) {
-      continue;
-    }
-
-    const cleanRule = rule.trim();
-    const cleanValue = value.trim();
-
-    result[cleanRule] = cleanValue;
-  }
-
-  return result;
+      return result;
+    }, {});
 }
 module.exports = convertToObject;

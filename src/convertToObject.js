@@ -6,7 +6,23 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
-}
+  const arrayCommands = sourceString.split(';');
 
+  const result = {};
+
+  for (const command of arrayCommands) {
+    const [rule, value] = command.split(':');
+
+    if (rule === undefined || value === undefined) {
+      continue;
+    }
+
+    const cleanRule = rule.trim();
+    const cleanValue = value.trim();
+
+    result[cleanRule] = cleanValue;
+  }
+
+  return result;
+}
 module.exports = convertToObject;

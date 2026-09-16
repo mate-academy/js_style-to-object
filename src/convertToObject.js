@@ -6,7 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  // write your code here
+  return sourceString
+    .split(';')
+    .filter((declaration) => declaration.trim() !== '')
+    .reduce((result, declaration) => {
+      const [key, value] = declaration.split(':');
+
+      result[key.trim()] = value.trim();
+
+      return result;
+    }, {});
 }
 
 module.exports = convertToObject;

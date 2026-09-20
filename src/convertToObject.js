@@ -6,37 +6,28 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
-  // Звертаємо увагу на порожні рядки або рядки, що містять лише пробіли
   if (!sourceString || !sourceString.trim()) {
-    return result;
+    return {};
   }
 
-  // Розділяємо рядок на окремі CSS-правила за символом крапки з комою `;`
-  const stylesList = sourceString.split(';');
+  return sourceString
+    .split(';')
+    .filter((style) => style.trim() !== '')
+    .reduce((styleObject, style) => {
+      const trimmedStyle = style.trim();
+      const colonIndex = trimmedStyle.indexOf(':');
 
-  for (const style of stylesList) {
-    const trimmedStyle = style.trim();
+      if (colonIndex !== -1) {
+        const key = trimmedStyle.slice(0, colonIndex).trim();
+        const value = trimmedStyle.slice(colonIndex + 1).trim();
 
-    // Ігноруємо порожні елементи (наприклад, після останнього `;`)
-    if (!trimmedStyle) {
-      continue;
-    }
-
-    const colonIndex = trimmedStyle.indexOf(':');
-
-    if (colonIndex !== -1) {
-      const key = trimmedStyle.slice(0, colonIndex).trim();
-      const value = trimmedStyle.slice(colonIndex + 1).trim();
-
-      if (key) {
-        result[key] = value;
+        if (key) {
+          styleObject[key] = value;
+        }
       }
-    }
-  }
 
-  return result;
+      return styleObject;
+    }, {});
 }
 
 module.exports = convertToObject;

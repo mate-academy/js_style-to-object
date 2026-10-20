@@ -16,11 +16,11 @@ function convertToObject(sourceString) {
     return word.slice(word.indexOf(':') + 1).trim();
   });
 
-  const RESULT = {};
+  const RESULT = KEYS_ARRAY.reduce((acc, key, index) => {
+    acc[key] = VALUES_ARRAY[index];
 
-  for (let i = 0; i < KEYS_ARRAY.length; i++) {
-    RESULT[KEYS_ARRAY[i]] = VALUES_ARRAY[i];
-  }
+    return acc;
+  }, {});
 
   return RESULT;
 }

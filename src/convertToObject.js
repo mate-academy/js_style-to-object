@@ -6,7 +6,7 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(/[;\n]/).reduce((acc, line) => {
+  return sourceString.split(';').reduce((acc, line) => {
     const trimmedLine = line.trim();
 
     if (!trimmedLine.includes(':')) {

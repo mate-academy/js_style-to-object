@@ -5,8 +5,21 @@
  *
  * @return {object}
  */
+
 function convertToObject(sourceString) {
-  // write your code here
+  const trimmed = sourceString.split(';').filter((item) => item.trim() !== '');
+
+  const cssObject = trimmed.reduce((acc, item) => {
+    const semicolonIndex = item.indexOf(':');
+    const key = item.slice(0, semicolonIndex).trim();
+    const value = item.slice(semicolonIndex + 1).trim();
+
+    acc[key] = value;
+
+    return acc;
+  }, {});
+
+  return cssObject;
 }
 
 module.exports = convertToObject;

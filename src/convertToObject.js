@@ -7,22 +7,19 @@
  */
 
 function convertToObject(sourceString) {
-  const result = {};
   const trimmed = sourceString.split(';').filter((item) => item.trim() !== '');
 
-  trimmed.forEach((item) => {
+  const cssObject = trimmed.reduce((acc, item) => {
     const semicolonIndex = item.indexOf(':');
     const key = item.slice(0, semicolonIndex).trim();
     const value = item.slice(semicolonIndex + 1).trim();
 
-    // if (!key || semicolonIndex === -1) {
-    //   return;
-    // }
+    acc[key] = value;
 
-    result[key] = value;
-  });
+    return acc;
+  }, {});
 
-  return result;
+  return cssObject;
 }
 
 module.exports = convertToObject;

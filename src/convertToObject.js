@@ -26,22 +26,35 @@ function convertToObject(sourceString) {
 
   // return object;
 
-  const object = {};
-  const splitSource = sourceString.split(';');
+  // const object = {};
+  // const splitSource = sourceString.split(';');
 
-  for (const line of splitSource) {
-    if (!line.trim()) {
-      continue;
-    }
+  // for (const line of splitSource) {
+  //   if (!line.trim()) {
+  //     continue;
+  //   }
 
-    const splitLine = line.split(':');
-    const lineKey = splitLine[0].trim();
-    const lineValue = splitLine[1].trim();
+  //   const splitLine = line.split(':');
+  //   const lineKey = splitLine[0].trim();
+  //   const lineValue = splitLine[1].trim();
 
-    object[lineKey] = lineValue;
-  }
+  //   object[lineKey] = lineValue;
+  // }
 
-  return object;
+  // return object;
+
+  // new code
+  const splitSource = sourceString
+    .split(';')
+    .map((rule) => rule.trim())
+    .filter(Boolean)
+    .map((rule) => {
+      const newRule = rule.split(':');
+
+      return [newRule[0].trim(), newRule[1].trim()];
+    });
+
+  return Object.fromEntries(splitSource);
 }
 
 module.exports = convertToObject;

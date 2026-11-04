@@ -24,3 +24,4 @@ function convertToObject(sourceString) {
 }
 
 module.exports = convertToObject;
+// 'Finish version'

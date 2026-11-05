@@ -12,20 +12,21 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const obj = {};
   const strToArr = sourceString.split(`\n`)
     .map(el => el.trim().replace(`;`, ``))
     .filter(el => el !== ``)
     .map(el => el.split(`:`));
 
-  for (const el of strToArr) {
+  const convertedObj = strToArr.reduce((acc, el, index) => {
     const key = el[0].trim();
     const value = el[1].trim();
 
-    obj[key] = value;
-  }
+    acc[key] = value;
 
-  return obj;
+    return acc;
+  }, {});
+
+  return convertedObj;
 }
 
 module.exports = convertToObject;

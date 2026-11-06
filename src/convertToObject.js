@@ -3,27 +3,28 @@
 /**
  * @param {string} sourceString
  *
- * @return {object}
+ * @returns {object}
  */
 function convertToObject(sourceString) {
-  const result = {};
-
-  sourceString.split(';').forEach((declaration) => {
+  return sourceString.split(';').reduce((stylesObject, declaration) => {
     const colonIndex = declaration.indexOf(':');
 
     if (colonIndex === -1) {
-      return;
+      return stylesObject;
     }
 
     const property = declaration.slice(0, colonIndex).trim();
     const value = declaration.slice(colonIndex + 1).trim();
 
-    if (property && value) {
-      result[property] = value;
+    if (!property || !value) {
+      return stylesObject;
     }
-  });
 
-  return result;
+    return {
+      ...stylesObject,
+      [property]: value,
+    };
+  }, {});
 }
 
 module.exports = convertToObject;

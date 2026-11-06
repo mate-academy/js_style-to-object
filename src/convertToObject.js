@@ -54,7 +54,7 @@ function convertToObject(stylesString) {
     }, {});
 }
 
-const result = convertToObject(complexStylesString);
+module.exports = convertToObject;
 
 
 

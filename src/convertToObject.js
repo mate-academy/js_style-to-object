@@ -6,14 +6,16 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  return sourceString.split(';').reduce((result, curentvalue) => {
+  const sourceStringClone = sourceString;
+
+  return sourceStringClone.split(';').reduce((acc, curentvalue) => {
     const [key, value] = curentvalue.split(':').map((s) => s.trim());
 
     if (key) {
-      result[key] = value;
+      acc[key] = value;
     }
 
-    return result;
+    return acc;
   }, {});
 }
 

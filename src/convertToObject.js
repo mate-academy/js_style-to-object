@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
     const [key, value] = curentvalue.split(':').map((s) => s.trim());
 
     if (key) {
-      acc[key] = value;
+      return { ...acc, [key]: value };
     }
 
     return acc;

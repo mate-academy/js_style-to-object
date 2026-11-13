@@ -5,12 +5,7 @@
  *
  * @return {object}
  */
-
 function convertToObject(sourceString) {
-  if (typeof sourceString !== 'string' || !sourceString.trim()) {
-    return {};
-  }
-
   return sourceString.split(';').reduce((styleObject, line) => {
     const cleanLine = line.trim();
 
@@ -31,9 +26,10 @@ function convertToObject(sourceString) {
       return styleObject;
     }
 
-    styleObject[property] = value;
-
-    return styleObject;
+    return {
+      ...styleObject,
+      [property]: value,
+    };
   }, {});
 }
 

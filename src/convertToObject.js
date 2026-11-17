@@ -9,14 +9,14 @@
 function convertToObject(sourceString) {
   /* Розділяю початковий CSS-рядок за ";".
   Отримую масив, де кожен елемент — окрема CSS-декларація. */
-  const arrString = sourceString.split(';');
-  const object = {};
+  const cssDeclarations = sourceString.split(';');
+  const cssProperties = {};
 
   /* Перевіряю кожен CSS-рядок за допомогою trim().
     Якщо після видалення пробілів та символів перенесення
     рядок залишається порожнім, не додаю його до нового масиву.
     Таким чином отримую масив без порожніх елементів. */
-  const cleanStrings = arrString.filter((item) => {
+  const cleanStrings = cssDeclarations.filter((item) => {
     return item.trim() !== '';
   });
 
@@ -25,12 +25,12 @@ function convertToObject(sourceString) {
     /* Розділяю CSS-рядок за двокрапкою. Отримую масив із назвою
     властивості та її значенням.
     ['background-color', '      #fff'] */
-    const keyValArr = cssDeclaration.split(':');
+    const propertyParts = cssDeclaration.split(':');
 
     /* знову захожу в кожен масив отриманий з спліт рядком вище
     і  видаляю зайві пробіли з ключа і значення за допомогою trim()
     ['background-color', '#fff'] */
-    const trimmedKeyVal = keyValArr.map((part) => {
+    const trimmedKeyVal = propertyParts.map((part) => {
       return part.trim();
     });
 
@@ -38,17 +38,17 @@ function convertToObject(sourceString) {
   });
 
   /* видаляю пусті масиви і отримую масив масивів */
-  const getClearArr = keyValArrays.filter((item) => {
+  const validDeclarations = keyValArrays.filter((item) => {
     return item.every((el) => {
       return el !== '';
     });
   });
 
-  getClearArr.forEach((item) => {
-    object[item[0]] = item[1];
+  validDeclarations.forEach((item) => {
+    cssProperties[item[0]] = item[1];
   });
 
-  return object;
+  return cssProperties;
 }
 
 module.exports = convertToObject;

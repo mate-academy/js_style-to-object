@@ -13,12 +13,12 @@ function convertToObject(sourceString) {
 
   const pairs = declarations.map((declaration) => declaration.split(':'));
 
-  const styles = {};
+  const styles = pairs.reduce((acc, [key, value]) => {
+    acc[key.trim()] = value.trim();
 
-  for (const [key, values] of pairs) {
-    styles[key.trim()] = values.trim();
-  }
-
+    return acc;
+  }, {});
+  
   return styles;
 }
 

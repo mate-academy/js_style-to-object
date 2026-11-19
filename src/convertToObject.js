@@ -18,7 +18,7 @@ function convertToObject(sourceString) {
 
     return acc;
   }, {});
-  
+
   return styles;
 }
 

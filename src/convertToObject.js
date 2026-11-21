@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const result = {};
+  const styleProperties = {};
 
   const styles = sourceString.split(';');
 
@@ -16,10 +16,10 @@ function convertToObject(sourceString) {
   const validPairs = keyAndValue.filter((style) => style.length === 2);
 
   validPairs.forEach(([key, value]) => {
-    result[key.trim()] = value.trim();
+    styleProperties[key.trim()] = value.trim();
   });
 
-  return result;
+  return styleProperties;
 }
 
 module.exports = convertToObject;

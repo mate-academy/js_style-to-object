@@ -11,10 +11,12 @@ function convertToObject(sourceString) {
   const cssObject = {};
 
   lines.forEach((line) => {
-    const [key, value] = line.split(':');
+    const separatorIndex = line.indexOf(':');
+    const key = line.slice(0, separatorIndex).trim();
+    const value = line.slice(separatorIndex + 1).trim();
 
     if (key && value) {
-      cssObject[key.trim()] = value.trim();
+      cssObject[key] = value;
     }
   });
 

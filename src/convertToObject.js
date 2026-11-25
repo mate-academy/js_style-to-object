@@ -12,13 +12,18 @@ function convertToObject(sourceString) {
     .filter((word) => word !== '');
 
   const thirdStep = seconsStep.map((word) => {
-    return word.split(':').map((part) => part.trim());
+    const indexOfColon = word.indexOf(':');
+    const key = word.slice(0, indexOfColon).trim();
+    const value = word.slice(indexOfColon + 1).trim();
+
+    return [key, value];
   });
 
-  return thirdStep.reduce((obj, item) => {
-    obj[item[0]] = item[1];
-
-    return obj;
+  return thirdStep.reduce((styles, [key, value]) => {
+    return {
+      ...styles,
+      [key]: value,
+    };
   }, {});
 }
 

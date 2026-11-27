@@ -6,10 +6,10 @@
  * @return {object}
  */
 function convertToObject(sourceString) {
-  const convStringToArr = sourceString.split(';');
+  const conv = sourceString.split(';');
   const declarationObject = {};
 
-  convStringToArr.forEach(function (element) {
+  conv.forEach(function (element) {
     if (element.trim() === '') {
       return;
     }

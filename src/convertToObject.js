@@ -7,9 +7,9 @@
  */
 function convertToObject(sourceString) {
   const convStringToArr = sourceString.split(';');
-  let result = {};
+  const result = {};
 
-  convStringToArr.forEach(function(element) {
+  convStringToArr.forEach(function (element) {
     if (element.trim() === '') {
       return;
     }
@@ -17,7 +17,7 @@ function convertToObject(sourceString) {
     const [key, value] = element.split(':');
 
     result[key.trim()] = value.trim();
-  })
+  });
 
   return result;
 }

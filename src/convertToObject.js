@@ -7,7 +7,7 @@
  */
 function convertToObject(sourceString) {
   const convStringToArr = sourceString.split(';');
-  const newObj = {};
+  const declarationObject = {};
 
   convStringToArr.forEach(function (element) {
     if (element.trim() === '') {
@@ -16,10 +16,10 @@ function convertToObject(sourceString) {
 
     const [key, value] = element.split(':');
 
-    newObj[key.trim()] = value.trim();
+    declarationObject[key.trim()] = value.trim();
   });
- 
-  return newObj;
+
+  return declarationObject;
 }
 
 module.exports = convertToObject;

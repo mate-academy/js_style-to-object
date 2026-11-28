@@ -12,18 +12,15 @@ function convertToObject(sourceString) {
     (declaration) => declaration.trim() !== '',
   );
 
-  const object = {};
-
-  for (const declaration of cleanDeclarations) {
+  return cleanDeclarations.reduce((stylesObject, declaration) => {
     const parts = declaration.split(':');
-
     const key = parts[0].trim();
     const value = parts[1].trim();
 
-    object[key] = value;
-  }
+    stylesObject[key] = value;
 
-  return object;
+    return stylesObject;
+  }, {});
 }
 
 module.exports = convertToObject;

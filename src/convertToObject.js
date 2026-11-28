@@ -17,9 +17,7 @@ function convertToObject(sourceString) {
     const key = parts[0].trim();
     const value = parts[1].trim();
 
-    stylesObject[key] = value;
-
-    return stylesObject;
+    return { ...stylesObject, [key]: value };
   }, {});
 }
 
